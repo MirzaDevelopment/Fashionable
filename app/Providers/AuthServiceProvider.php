@@ -12,6 +12,7 @@ use App\Models\Price;
 use App\Models\Size;
 use App\Models\Tag;
 use App\Models\Type;
+use App\Models\Question;
 // use Illuminate\Support\Facades\Gate;
 
 use App\Policies\UserPolicy;
@@ -25,6 +26,7 @@ use App\Policies\PricePolicy;
 use App\Policies\SizePolicy;
 use App\Policies\TagPolicy;
 use App\Policies\TypePolicy;
+use App\Policies\QuestionPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -46,6 +48,7 @@ class AuthServiceProvider extends ServiceProvider
         Size::class => SizePolicy::class,
         Tag::class => TagPolicy::class,
         Type::class => TypePolicy::class,
+        Question::class => QuestionPolicy::class,
     ];
 
     /**
