@@ -1,0 +1,94 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*Custom css code for carousel*/
+ * {
+      box-sizing: border-box;
+    }
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+    }
+    #carouselTrack::-webkit-scrollbar {
+    display: none; /* Chrome, Safari, Edge */
+}
+    .carousel-track {
+      display: flex;
+      margin-top:2rem;
+      align-items: center;
+      transition: transform 0.3s ease-in-out;
+      gap: 50px;
+      padding: 20px 0;
+      justify-content: center;
+      overflow-x: auto;
+    white-space: nowrap;
+      scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+    }
+    .carousel-item {
+      min-width: 100px;
+      max-width: 120px;
+      text-align: center;
+    }
+    .carousel-item img {
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: grayscale(100%);
+      transition: filter 0.3s;
+    }
+    .carousel-item img:hover {
+      filter: grayscale(0%);
+    }
+    .brand-name {
+      margin-top: 10px;
+      font-size: 14px;
+      color: #333;
+    }
+    .nav-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      z-index: 10;
+    }
+    .nav-left {
+      left: 0;
+    }
+    .nav-right {
+      right: 0;
+    }
+
+  #carouselTrack:hover {
+  cursor: pause;
+}
+
+/* Some custom css for pagination*/
+
+@media (min-width: 1024px) {
+div#frontPagination nav[role="navigation"] .text-sm {
+    height: 100%;
+    width: 100%;
+    font-size: 1.2rem;
+}
+div#frontPagination nav[role="navigation"] svg.w-5{
+  width: 1.5rem;
+  height: 1.5rem;
+}
+}
+
+@media (min-width: 1280px) {
+div#frontPagination nav[role="navigation"] .text-sm {
+    height: 100%;
+    width: 100%;
+    font-size: 1.5rem;
+}
+div#frontPagination nav[role="navigation"] svg.w-5{
+  width: 1.8rem;
+  height: 1.8rem;
+}
+}

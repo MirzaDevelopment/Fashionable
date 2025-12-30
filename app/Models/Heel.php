@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
+class Heel extends Model
+{
+    use SoftDeletes, HasFactory;
+
+    // Specify the table name
+    protected $table = 'heels';
+
+    protected $fillable = [
+        'heel_type',   
+    ];
+
+    /***One to one relationship with product***/
+    public function product()
+    {
+        return $this->hasOne(Product::class);
+    }
+}
