@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Question;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Gate;
@@ -103,6 +104,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Gate::authorize('create', $user); //Authorisation for admin
         return view('editproduct'); //Authenticated and mail-verified
     })->name('editproduct');
+
+        //Livewire users search route
+    Route::get('/questions', function (Question $user) {
+        Gate::authorize('view', Question::class);; //Authorisation for admin
+        return view('questions'); //Authenticated and mail-verified
+    })->name('questions');
 });
 
 /***Breeze middleware***/
