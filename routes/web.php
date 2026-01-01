@@ -64,51 +64,52 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboardusers');
 
     //Livewire users search route
-    Route::get('/users', function (User $user) {
-        Gate::authorize('create', $user); //Authorisation for admin
-        return view('users'); //Authenticated and mail-verified
+    Route::get('/users', function () {
+        Gate::authorize('view', User::class); //Authorisation for admin
+        return view('users'); 
     })->name('users');
     //Add user by Admin view (safety route)
-    Route::get('/add-user', function (User $user) {
-        Gate::authorize('create', $user); //Authorisation for admin
+    Route::get('/add-user', function () {
+        Gate::authorize('create', User::class); //Authorisation for admin
         return view('adduser');
     })->name('adduser');
-    Route::get('/deleted-users', function (User $user) {
-        Gate::authorize('create', $user); //Authorisation for admin
-        return view('deleted-users'); //Authenticated and mail-verified
+    Route::get('/deleted-users', function () {
+        Gate::authorize('delete', User::class); //Authorisation for admin
+        return view('deleted-users'); 
     })->name('deleted-users');
-    Route::get('/categories', function (User $user) {
-        Gate::authorize('create', $user); //Authorisation for admin
-        return view('categories'); //Authenticated and mail-verified
+    //Small category route (using product view policy here)
+    Route::get('/categories', function () {
+        Gate::authorize('view', Product::class); //Authorisation for admin
+        return view('categories'); 
     })->name('categories');
     //Livewire product routes
-    Route::get('/addproduct', function (User $user) {
-        Gate::authorize('create', $user); //Authorisation for admin
-        return view('addproduct'); //Authenticated and mail-verified
+    Route::get('/addproduct', function () {
+        Gate::authorize('create', Product::class); //Authorisation for admin
+        return view('addproduct'); 
     })->name('addproduct');
     //Stock management 
-    Route::get('/stock-management/{id}', function (User $user) {
-        Gate::authorize('create', $user); //Authorisation for admin
+    Route::get('/stock-management/{id}', function () {
+        Gate::authorize('view', Product::class); //Authorisation for admin
         return view('stock-management'); 
     })->name('stock-management');
     //Show, modify and delete products
-    Route::get('/products', function (User $user) {
-        Gate::authorize('create', $user); //Authorisation for admin
-        return view('products'); //Authenticated and mail-verified
+    Route::get('/products', function () {
+        Gate::authorize('view', Product::class); //Authorisation for admin
+        return view('products'); 
     })->name('products');
-    Route::get('/deleted-products', function (User $user) {
-        Gate::authorize('create', $user); //Authorisation for admin
-        return view('deleted-products'); //Authenticated and mail-verified
+    Route::get('/deleted-products', function () {
+        Gate::authorize('delete', Product::class); //Authorisation for admin
+        return view('deleted-products'); 
     })->name('deleted-products');
-    Route::get('/edit-products/{id}', function (User $user) {
-        Gate::authorize('create', $user); //Authorisation for admin
-        return view('editproduct'); //Authenticated and mail-verified
+    Route::get('/edit-products/{id}', function () {
+        Gate::authorize('view', Product::class); //Authorisation for admin
+        return view('editproduct'); 
     })->name('editproduct');
 
-        //Livewire users search route
-    Route::get('/questions', function (Question $user) {
+        //Livewire show questions route
+    Route::get('/questions', function () {
         Gate::authorize('view', Question::class);; //Authorisation for admin
-        return view('questions'); //Authenticated and mail-verified
+        return view('questions'); 
     })->name('questions');
 });
 
