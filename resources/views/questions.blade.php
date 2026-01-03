@@ -11,7 +11,7 @@
     </div>
     <div>
         <div class="mt-10 mb-10">
-           <p>Questions component will be here</p>
+           <p>Questions from users - component will be here</p>
         </div>
     </div>
     <div>

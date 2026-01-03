@@ -9,7 +9,7 @@
             </div>
         </div>
     </div>
-    <!--Livewire component for showing products in db-->
+    <!--Livewire component for showing products in db FOR ADMIN-->
     <livewire:show-products/>
     <div class="pb-12">
     <x-slot:footerContent>

@@ -12,7 +12,7 @@
                 </picture>
                 <h2 class="font-playfair p-[1rem] absolute text-6xl sm:text-7xl text-white md:text-[6rem] lg:text-[7rem] 2xl:text-[11rem] leading-tight">
                     Melisa Webshop
-                    <p class="text-4xl 2xl:text-6xl">(Demo)</p>
+                    <p class="text-4xl font-bold 2xl:text-6xl">(Demo - English version)</p>
                 </h2>
                 
             </div>
