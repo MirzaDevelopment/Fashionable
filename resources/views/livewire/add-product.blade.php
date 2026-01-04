@@ -174,7 +174,6 @@
                 @if (session('status'))
                 <!-- Moving towards stock management -->
                 <a class="col-start-1 lg:col-span-2 lg:col-start-3 bg-sky-500 lg2:col-start-4 row-start-3 lg:row-start-4 lg2:col-span-1 justify-center inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" href="/stock-management/{{$productId}}" wire:navigate>Update product stocks</a>
-
                 @endif
                 <!--Livewire components for default image upload-->
                 <livewire:add-default-image />
@@ -189,9 +188,6 @@
                     <div class="text-[#004085] rounded-md p-2.5 bg-[#cce5ff] justify-center" x-show="open" x-on:click.outside="open=false" x-transition>{{ session('status')}}</div>
                 </div>
                 <!-- Resetting input -->
-                <x-primary-button wire:click="resetProduct" class="justify-center mt-2 xl:col-span-2 xl:col-start-3 lg:col-start-3 row-start-3 lg:row-start-5 md:col-start-5 lg:col-span-2 lg2:col-span-1 lg2:col-start-4">
-                    {{ __('Clear input fields') }}
-                </x-primary-button>
                 @elseif(session('errorException'))
                 <!-- Failed insert message -->
                 <div class="lg:col-span-2 lg2:col-span-1 lg2:col-start-4 lg:col-start-3 lg:row-start-3 row-start-2" x-data="{open:true}">
