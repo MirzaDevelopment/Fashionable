@@ -1,5 +1,9 @@
 <?php
-
+/*
+This is a backend livewire component for question upload by users on first product page.
+It contains simple validation for user name, message/question body, and email
+It also contains a simple question upload function, wrapped in transaction with sucessful or failed messages
+*/
 namespace App\Livewire;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Validate;
@@ -45,7 +49,7 @@ class AddQuestions extends Component
         'question.string' => 'The question must be in text format.',
         'question.min' => 'The question must be at least 10 characters.',
         'question.max' => 'The question must not exceed 1000 characters.',
-        //Product Price validation messages
+        //Email validation messages
         'email.required' => 'Please provide a valid email adress, so we can replay as soon as possible',
         'email.email' => 'Please provide a valid email adress format',
 
