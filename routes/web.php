@@ -42,7 +42,6 @@ Route::get('/assets/{filename}', function ($filename) {
 });
 
 //Product first page route 
-
 Route::get('/shop', function () {
     return view('firstpage');
 })->name('firstpage');
