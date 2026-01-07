@@ -1,6 +1,7 @@
 <div>
+    {!! RecaptchaV3::initJs() !!}
     <div class="p-4 w-[300px] mx-auto  bg-white shadow-lg max-w-[300px]">
-        <h2 class="text-3xl text-slate-900 font-bold">Contact us</h2>
+        <h2 class="text-3xl text-slate-900 font-bold">How can we help?</h2>
         <form class="mt-8 space-y-5">
             <div>
                 <label class='text-sm text-slate-900 font-medium mb-2 block'>Name</label>
@@ -28,6 +29,7 @@
             <!-- Validation failed message -->
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
             @enderror
+            {!! RecaptchaV3::field('register') !!}
             <button type='button' wire:click="uploadQuestion" class="text-white bg-slate-900 font-medium hover:bg-slate-800 tracking-wide text-sm px-4 py-2.5 w-full border-0 outline-0 cursor-pointer">Send message</button>
 
         </form>

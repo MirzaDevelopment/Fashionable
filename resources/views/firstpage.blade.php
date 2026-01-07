@@ -2,17 +2,17 @@
     <!--Header part-->
     <!--Back to top button-->
     <div class="relative" x-data="{ open: false }" >
-        <a href="#top" class="fixed bottom-2 right-4 bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl z-[5000] transition-all duration-300 p-2" aria-label="Back to top">
+        <a href="#top" class="fixed bottom-[5rem] lg:bottom-[6rem] right-4 bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl z-[5000] transition-all duration-300 p-2" aria-label="Back to top">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-6 lg:w-10 lg:h-10 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
             </svg>
         </a>
-        <span x-on:click="open = ! open" class="fixed bottom-[4rem] lg:bottom-[5rem] right-4  bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl z-[5000] transition-all duration-300 p-2 group"><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/message.svg') }}" alt="messages_icon" width="25" height="25">
+        <span x-on:click="open = ! open" class="fixed bottom-[8rem] lg:bottom-[10rem] right-4  bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl z-[5000] transition-all duration-300 p-2 group"><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/message.svg') }}" alt="messages_icon" width="25" height="25">
             <span class="absolute bottom-[6px]  right-[3rem] lg:right-[4rem] bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                Contact Us!
+                Contact us!
             </span>
         </span>
-        <span class="fixed bottom-[7.5rem] z-[5000] lg:bottom-[9rem] border border border-blue-500 right-4" x-show="open" x-transition>
+        <span class="fixed bottom-[11.5rem] z-[5000] lg:bottom-[14rem] border border border-blue-500 right-4" x-show="open" x-transition>
             <livewire:add-questions />
         </span>
     </div>

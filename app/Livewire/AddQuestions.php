@@ -69,6 +69,7 @@ class AddQuestions extends Component
                 'user_email'=>$this->email,
                 'question' => $this->question,
                 'status' => "unanswered",
+                'g-recaptcha-response' => 'required|recaptchav3:register,0.5'
 
             ]);
             DB::commit();
