@@ -2,10 +2,11 @@
 /*
 Simple test of rendering the app dashboard depending on the logged in user.
 */
+
 namespace Tests\Feature;
+
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
 class DashboardTest extends TestCase
@@ -24,6 +25,4 @@ class DashboardTest extends TestCase
         $response = $this->actingAs($user)->get('dashboardusers');
         $response->assertViewIs('dashboardusers');
     }
-
-
 }
