@@ -12,13 +12,13 @@
                 </picture>
                 <h2 class="font-playfair p-[1rem] absolute text-6xl sm:text-7xl text-white md:text-[6rem] lg:text-[7rem] 2xl:text-[11rem] leading-tight">
                     Melisa Webshop
-                    <p class="text-4xl font-bold 2xl:text-6xl">(Demo - English version)</p>
+                    <p class="text-4xl font-bold 2xl:text-6xl">(Demo)</p>
                 </h2>
                 
             </div>
             <div class="sm:mt-[2rem]  xl:mt-0 min-w-[31%]">
                 <a class="text-gray-800 xl:leading-tight break-normal hover:text-gray-900 text-3xl sm:text-4xl rounded-md relative group w-fit lg:text-[3rem] xl:text-[4rem] 2xl:text-[6rem]" href="{{ route('firstpage') }}">
-                    {{ __('Explore our collection') }}
+                    {{ __('Pretraži našu kolekciju') }}
                     <span class="absolute top-[36px] left-0 lg:top-[3.5rem] xl:top-auto xl:left-5 w-0 h-[2px] lg:h-[3px] 2xl:h-[4px] bg-gray-900 transition-all group-hover:w-full"></span>
                 </a>
             </div>

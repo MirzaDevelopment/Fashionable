@@ -2,8 +2,8 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold flex gap-x-[0.5rem] flex-row text-xl text-gray-800 leading-tight">
-            {{ __('Admin Dashboard') }}
-           <a class="flex flex-row" href="{{ route('questions') }}" wire:navigate><img class="cursor-pointer" src="{{ asset('storage/images/message.svg') }}" alt="messages_icon" width="25" height="20">(2)</a>
+            {{ __('Poruke od korisnika') }}
+            <a class="flex flex-row" href="{{ route('questions') }}" wire:navigate><img class="cursor-pointer" src="{{ asset('storage/images/message.svg') }}" alt="messages_icon" width="25" height="20">(2)</a>
         </h2>
     </x-slot>
     
@@ -11,14 +11,16 @@
         <div class="max-w-[50rem] xl:w-3/4 lg2:w-1/2 mx-auto sm:px-6">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-center">
                 <div class="p-6 text-gray-900">
-                    {{ __("Welcome to Dashboard") }}
+                    {{ __("Dobrodošli") }}
+                    <p>Ovdje možete vršiti administratorske funkcije nad vašim proizvodima i korisnicima.</p>
+                    <p>Molimo da se po potrebi konsultujete sa vodičem dostupnim <a href="/#footer" class="underline text-cornflowerblue">ovdje</a></p></p>
                 </div>
             </div>
         </div>
     </div>
     <!--Users-->
     <div class="mb-[1rem] sm:p-6 sm:mb-[0rem] max-w-[50rem] m-auto grid grid-cols-1 items-center justify-center">
-        <h1 class="text-xl bg-white overflow-hidden shadow-sm p-[2rem] sm:rounded-t-lg">Users ({{$usersCount}})</h1>
+        <h1 class="text-xl bg-white overflow-hidden shadow-sm p-[2rem] sm:rounded-t-lg">Korisnici ({{$usersCount}})</h1>
         <nav class="p-6 gap-4 grid grid-cols-2 md:grid-cols-3  xl:grid lg:grid-cols-3 justify-center bg-white overflow-hidden shadow-sm sm:rounded-b-lg">
             <!--Add users-->
             <div class="flex flex-col items-center">
@@ -32,7 +34,7 @@
                             <path d="M12 6.92969C9.93 6.92969 8.25 8.60969 8.25 10.6797C8.25 12.7097 9.84 14.3597 11.95 14.4197C11.98 14.4197 12.02 14.4197 12.04 14.4197C12.06 14.4197 12.09 14.4197 12.11 14.4197C12.12 14.4197 12.13 14.4197 12.13 14.4197C14.15 14.3497 15.74 12.7097 15.75 10.6797C15.75 8.60969 14.07 6.92969 12 6.92969Z" fill="#292D32"></path>
                         </g>
                     </svg></a>
-                <h3>Add Users</h3>
+                <h3>Dodaj korisnike</h3>
             </div>
             <!--Show and modify users-->
             <div class="flex flex-col items-center">
@@ -45,7 +47,7 @@
                             <path d="M12.0002 14C6.99016 14 2.91016 17.36 2.91016 21.5C2.91016 21.78 3.13016 22 3.41016 22H20.5902C20.8702 22 21.0902 21.78 21.0902 21.5C21.0902 17.36 17.0102 14 12.0002 14Z" fill="#292D32"></path>
                         </g>
                     </svg></a>
-                <h3>User management</h3>
+                <h3>Upravljaj korisnicima</h3>
             </div>
             <!--Delete users-->
             <div class="flex flex-col items-center">
@@ -58,13 +60,13 @@
                             <path d="M17.0809 14.1489C14.2909 12.2889 9.74094 12.2889 6.93094 14.1489C5.66094 14.9989 4.96094 16.1489 4.96094 17.3789C4.96094 18.6089 5.66094 19.7489 6.92094 20.5889C8.32094 21.5289 10.1609 21.9989 12.0009 21.9989C13.8409 21.9989 15.6809 21.5289 17.0809 20.5889C18.3409 19.7389 19.0409 18.5989 19.0409 17.3589C19.0309 16.1289 18.3409 14.9889 17.0809 14.1489ZM13.9409 18.2589C14.2309 18.5489 14.2309 19.0289 13.9409 19.3189C13.7909 19.4689 13.6009 19.5389 13.4109 19.5389C13.2209 19.5389 13.0309 19.4689 12.8809 19.3189L12.0009 18.4389L11.1209 19.3189C10.9709 19.4689 10.7809 19.5389 10.5909 19.5389C10.4009 19.5389 10.2109 19.4689 10.0609 19.3189C9.77094 19.0289 9.77094 18.5489 10.0609 18.2589L10.9409 17.3789L10.0609 16.4989C9.77094 16.2089 9.77094 15.7289 10.0609 15.4389C10.3509 15.1489 10.8309 15.1489 11.1209 15.4389L12.0009 16.3189L12.8809 15.4389C13.1709 15.1489 13.6509 15.1489 13.9409 15.4389C14.2309 15.7289 14.2309 16.2089 13.9409 16.4989L13.0609 17.3789L13.9409 18.2589Z" fill="#292D32"></path>
                         </g>
                     </svg></a>
-                <h3>Deleted users ({{$deletedUsersCount}})</h3>
+                <h3>Obrisani korisnici ({{$deletedUsersCount}})</h3>
             </div>
         </nav>
     </div>
     <!--Products-->
     <div class="sm:p-6 max-w-[50rem] m-auto grid grid-cols-1 items-center justify-center">
-        <h1 class="text-xl bg-white overflow-hidden shadow-sm p-[2rem] sm:rounded-t-lg ">Products ({{$productsCount}})</h1>
+        <h1 class="text-xl bg-white overflow-hidden shadow-sm p-[2rem] sm:rounded-t-lg ">Proizvodi ({{$productsCount}})</h1>
         <nav class="p-6 gap-4 grid grid-cols-2 md:grid-cols-3 xl:grid lg:grid-cols-3 justify-center bg-white overflow-hidden shadow-sm sm:rounded-b-lg">
             <!--Add Products-->
             <div class="flex flex-col items-center">
@@ -76,7 +78,7 @@
                             <path d="M12 2C6.49 2 2 6.49 2 12C2 17.51 6.49 22 12 22C17.51 22 22 17.51 22 12C22 6.49 17.51 2 12 2ZM16 12.75H12.75V16C12.75 16.41 12.41 16.75 12 16.75C11.59 16.75 11.25 16.41 11.25 16V12.75H8C7.59 12.75 7.25 12.41 7.25 12C7.25 11.59 7.59 11.25 8 11.25H11.25V8C11.25 7.59 11.59 7.25 12 7.25C12.41 7.25 12.75 7.59 12.75 8V11.25H16C16.41 11.25 16.75 11.59 16.75 12C16.75 12.41 16.41 12.75 16 12.75Z" fill="#292D32"></path>
                         </g>
                     </svg></a>
-                <h3>Add products</h3>
+                <h3>Dodaj proizvode</h3>
             </div>
             <!--Show and modify Products-->
             <div class="flex flex-col items-center">
@@ -90,7 +92,7 @@
                             <path d="M17 11C13.69 11 11 13.69 11 17C11 20.31 13.69 23 17 23C20.31 23 23 20.31 23 17C23 13.69 20.31 11 17 11ZM19.93 18.2C19.77 18.59 19.54 18.94 19.24 19.24C18.64 19.84 17.85 20.17 17 20.17C16.32 20.17 15.68 19.95 15.14 19.55V19.69C15.14 20 14.89 20.26 14.57 20.26C14.25 20.25 14 20 14 19.68V18.24C14 17.93 14.25 17.67 14.57 17.67H16.01C16.32 17.67 16.58 17.92 16.58 18.24C16.58 18.53 16.37 18.75 16.09 18.79C16.85 19.16 17.82 19.04 18.43 18.43C18.62 18.24 18.77 18.01 18.87 17.76C18.99 17.47 19.32 17.33 19.61 17.45C19.91 17.57 20.05 17.91 19.93 18.2ZM20 15.76C20 16.07 19.75 16.33 19.43 16.33H17.99C17.68 16.33 17.42 16.08 17.42 15.76C17.42 15.47 17.63 15.25 17.91 15.21C17.15 14.84 16.18 14.96 15.56 15.57C15.39 15.74 15.26 15.93 15.16 16.14C15.06 16.35 14.86 16.47 14.65 16.47C14.57 16.47 14.49 16.45 14.41 16.42C14.13 16.29 14 15.95 14.14 15.66C14.3 15.33 14.51 15.03 14.76 14.77C15.36 14.17 16.15 13.84 17 13.84C17.68 13.84 18.32 14.06 18.86 14.46V14.33C18.86 14.02 19.11 13.76 19.43 13.76C19.75 13.76 20 14 20 14.32V15.76Z" fill="#292D32"></path>
                         </g>
                     </svg></a>
-                <h3>Product management</h3>
+                <h3>Upravljaj proizvodima</h3>
             </div>
             <!--Delete Products-->
             <div class="flex flex-col items-center">
@@ -103,7 +105,7 @@
                             <path d="M19.2297 8.14C18.9897 7.89 18.6597 7.75 18.3197 7.75H5.67975C5.33975 7.75 4.99975 7.89 4.76975 8.14C4.53975 8.39 4.40975 8.73 4.42975 9.08L5.04975 19.34C5.15975 20.86 5.29975 22.76 8.78975 22.76H15.2097C18.6997 22.76 18.8398 20.87 18.9497 19.34L19.5697 9.09C19.5897 8.73 19.4597 8.39 19.2297 8.14ZM13.6597 17.75H10.3297C9.91975 17.75 9.57975 17.41 9.57975 17C9.57975 16.59 9.91975 16.25 10.3297 16.25H13.6597C14.0697 16.25 14.4097 16.59 14.4097 17C14.4097 17.41 14.0697 17.75 13.6597 17.75ZM14.4997 13.75H9.49975C9.08975 13.75 8.74975 13.41 8.74975 13C8.74975 12.59 9.08975 12.25 9.49975 12.25H14.4997C14.9097 12.25 15.2497 12.59 15.2497 13C15.2497 13.41 14.9097 13.75 14.4997 13.75Z" fill="#292D32"></path>
                         </g>
                     </svg></a>
-                <h3>Deleted products ({{$deletedProductsCount}})</h3>
+                <h3>Obriši proizvode ({{$deletedProductsCount}})</h3>
             </div>
             <!--Category management-->
             <div class="flex flex-col items-center">
@@ -119,7 +121,7 @@
                             <path d="M20.8 22H17.2C16.54 22 16 21.46 16 20.8V19.2C16 18.54 16.54 18 17.2 18H20.8C21.46 18 22 18.54 22 19.2V20.8C22 21.46 21.46 22 20.8 22Z" fill="#292D32"></path>
                         </g>
                     </svg></a>
-                <h3>Category management</h3>
+                <h3>Upravljaj kategorijama</h3>
             </div>
         </nav>
     </div>

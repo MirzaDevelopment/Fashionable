@@ -15,7 +15,7 @@
     @enderror
     <x-primary-button wire:click="defaultImageUpload" wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="lg:col-span-1 md:col-span-1 col-span-2 justify-center col-start-1 lg:col-span-2 lg2:col-span-1 lg2:col-start-1">
 
-        {{ __('Upload default image') }}
+        {{ __('Ubaci zamjensku sliku') }}
 
     </x-primary-button>
 </div>
