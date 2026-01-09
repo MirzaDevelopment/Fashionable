@@ -49,7 +49,7 @@ class UserController extends Controller
         $user->role = $request->role;
         $user->save();
 
-        return redirect()->back()->with("status", "New user added succesfully!");
+        return redirect()->back()->with("status", "Novi korisnik je uspješno dodan!");
     }
 
     /**
@@ -85,25 +85,25 @@ class UserController extends Controller
             ]);
             User::where("id", $user->id)->update(['name' => $request->name, 'email' => $request->email, 'role' => $request->role]);
 
-            return redirect()->back()->with("status", "User modified succesfully!");
+            return redirect()->back()->with("status", "Korisnik je uspješno izmijenjen!");
         } else if ($request->name) {
             $request->validate([
                 'name' => ['string', 'max:255'],
             ]);
             User::where("id", $user->id)->update(['name' => $request->name]);
-            return redirect()->back()->with("status", "User name modified succesfully!");
+            return redirect()->back()->with("status", "Korisnikovo ime je izmijenjeno uspješno!");
         } else if ($request->role) {
             $request->validate([
                 'role' => ['required'],
             ]);
             User::where("id", $user->id)->update(['role' => $request->role]);
-            return redirect()->back()->with("status", "User role modified succesfully!");
+            return redirect()->back()->with("status", "Korisnikova uloga je izmijenjena uspješno");
         } else {
             $request->validate([
                 'email' => ['string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             ]);
             User::where("id", $user->id)->update(['email' => $request->email]);
-            return redirect()->back()->with("status", "User email modified succesfully!");
+            return redirect()->back()->with("status", "Korisnikov mail je izmijenjen uspješno");
         }
     }
     /**

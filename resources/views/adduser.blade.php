@@ -4,7 +4,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-center">
                 <div class="p-6 text-gray-900">
-                    {{ __("Provide credentials for the new user") }}
+                    {{ __("Popunite podaci za novog korisnika") }}
                 </div>
             </div>
         </div>
@@ -14,7 +14,7 @@
             @csrf
             <!-- Name -->
             <div>
-                <x-input-label for="name" :value="__('Name')" />
+                <x-input-label for="name" :value="__('Korisničko ime')" />
                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
@@ -28,7 +28,7 @@
 
             <!-- Password -->
             <div class="mt-4">
-                <x-input-label for="password" :value="__('Password')" />
+                <x-input-label for="password" :value="__('Lozinka')" />
 
                 <x-text-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
 
@@ -37,7 +37,7 @@
 
             <!-- Confirm Password -->
             <div class="mt-4">
-                <x-input-label for="password_confirmation" :value="__('Confirm Password')" />
+                <x-input-label for="password_confirmation" :value="__('Potvrdite lozinku')" />
 
                 <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
 
@@ -45,17 +45,17 @@
             </div>
             <div class="mt-4">
                 <!-- New user role (guest is by default) -->
-                <x-input-label for="role" :value="__('Role')" />
+                <x-input-label for="role" :value="__('Uloga korisnika')" />
                 <select name="role" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="role">
-                    <option value="guest">Guest</option>
-                    <option value="admin">Admin</option>
+                    <option value="guest">Gost</option>
+                    <option value="admin">Administrator</option>
                 </select>
             </div>
             <div class="flex items-center justify-end mt-4">
 
-                <a class="ms-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" href="{{ route('dashboard') }}" wire:navigate>Back</a>
+                <a class="ms-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" href="{{ route('dashboard') }}" wire:navigate>Natrag</a>
                 <x-primary-button class="ms-4">
-                    {{ __('Add') }}
+                    {{ __('Dodaj') }}
                 </x-primary-button>
             </div>
             <!-- Successfull user add message -->
