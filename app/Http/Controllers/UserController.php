@@ -85,7 +85,7 @@ class UserController extends Controller
             ]);
             User::where("id", $user->id)->update(['name' => $request->name, 'email' => $request->email, 'role' => $request->role]);
 
-            return redirect()->back()->with("status", "Korisnik je uspješno izmijenjen!");
+            return redirect()->back()->with("status", "Korisnik je uspješno ažuriran!");
         } else if ($request->name) {
             $request->validate([
                 'name' => ['string', 'max:255'],

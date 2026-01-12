@@ -48,11 +48,11 @@ class AddDefaultImage extends Component
     */
     protected $messages = [
         //Default image upload validation messages
-        'defaultImage.required' => 'Chose a product default image first.',
-        'defaultImage.image' => 'Wrong file uploaded! The uploaded file must be an image.',
-        'defaultImage.mimes' => 'Wrong image type uploaded! The image must be a file of type: jpeg, webp, png, jpg, gif, svg.',
-        'defaultImage.max' => 'Wrong file size! The image size must be less than 1MB.',
-        'defaultImage.dimensions' => 'Wrong file dimensions! The image dimensions must be between 300x300 and 1200x1200.',
+        'defaultImage.required' => 'Odaberite zamjensku sliku za proizvod.',
+        'defaultImage.image' => 'Odabrana pogrešna datoteka! Datoteka mora biti slika.',
+        'defaultImage.mimes' => 'Odabrana pogrešna vrsta datoteke! Datoteka mora biti slika u formatu: jpeg, webp, png, jpg, gif, svg.',
+        'defaultImage.max' => 'Pogrešna veličina slike! Veličina slike mora biti manja od 1 megabajta.',
+        'defaultImage.dimensions' => 'Pogrešne dimenzije slike! Dimenzije slike moraju biti između 300x300 and 1200x1200.',
 
     ];
 
@@ -104,12 +104,12 @@ public function defaultImageUpload():?RedirectResponse
         ]);
         DB::commit();
         $this->isUploading = true;
-        return redirect()->back()->with("statusDefault", "Default image uploaded succesfully! This image will be used when no image is found for appropriate color.");
+        return redirect()->back()->with("statusDefault", "Zadana slika je uspješno učitana! Ova slika će se koristiti kada ne bude pronađena slika za odgovarajuću boju.");
     } catch (\Exception $e) {
         DB::rollBack(); // Rollback the transaction on error
         $this->isUploading = false;
         Log::error('Error occurred: ' . $e->getMessage());
-        return redirect()->back()->with("errorException", "There was an issue uploading default Image. Please try again.");
+        return redirect()->back()->with("errorException", "Nastao je problem tokom učitavanja zamjenske slike. Molimo pokušajte ponovo.");
     }
 }
 

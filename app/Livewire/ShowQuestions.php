@@ -1,4 +1,8 @@
 <?php
+/*
+This is a livewire backend component used to render the quetions/comments for admin in the view.
+Work in progress...
+*/
 
 namespace App\Livewire;
 

@@ -10,7 +10,9 @@ This is a backend class in livewire framework used for category management (add 
 - Method to reset input fields.
 It's frontend component is also used a child component in categories.blade.php view.
 */
+
 namespace App\Livewire;
+
 use App\Models\Color;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
@@ -27,13 +29,13 @@ class ColorManagement extends Component
     public array $colorUserPicked = []; //Colors that user picked
 
     // Method to add a new blank input field for another material
-    public function addColorInput():void
+    public function addColorInput(): void
     {
         $this->colors[] = '';
         $this->colorPicked[] = "#000000";
     }
     //Update variable when user picks color
-    public function updatedcolorPicked():array
+    public function updatedcolorPicked(): array
     {
 
         $colorUserPicked = $this->colorPicked;
@@ -47,7 +49,7 @@ class ColorManagement extends Component
         unset($this->colorPicked[$index]);
     }
     //Validation
-    protected function rules():array
+    protected function rules(): array
     {
 
         return [
@@ -60,38 +62,37 @@ class ColorManagement extends Component
 
     //Custom messages for validation
     protected $messages = [
-        'colors.required' => 'Please provide at least one color.',
-        'colors.*.required' => 'Each added input must be filled.',
-        'colors.*.string' => 'Each color must be a valid string.',
-        'colors.*.min' => 'Each color must contain at least three letters.',
-        'colors.*.unique' => 'Duplicate color detected.',
-        'colors.*.regex' => 'Color must contain only letters.',
-        'colorPicked.*.unique' => 'Duplicate color detected.',
+        'colors.required' => 'Molimo unesite barem jednu boju.',
+        'colors.*.required' => 'Svako dodano polje mora biti popunjeno.',
+        'colors.*.string' => 'Svaka boja mora biti ispravan tekst.',
+        'colors.*.min' => 'Svaka boja mora sadržavati najmanje tri slova.',
+        'colors.*.unique' => 'Otkrivena je duplirana boja.',
+        'colors.*.regex' => 'Boja smije sadržavati samo slova.',
+        'colorPicked.*.unique' => 'Otkrivena je duplirana boja.',
     ];
 
     //Inserting category in db
-    public function insertColor():RedirectResponse
+    public function insertColor(): RedirectResponse
     {
         Gate::authorize('create', Color::class);
-         //Checking if color is already present but soft deleted (to prevent unique validation error)
-         //Preparations first
+        //Checking if color is already present but soft deleted (to prevent unique validation error)
+        //Preparations first
         $this->colorUserPicked = $this->updatedcolorPicked(); //Getting chosen color
         $hex_codes_present = Color::pluck('hex_code', 'id')->toArray(); //Getting hex_codes already stored
         foreach ($this->colors as $key => $colors) {
             if ($colorsDeleted = Color::onlyTrashed()->where('color', $colors)->first()) {
                 if (in_array($this->colorUserPicked[$key], $hex_codes_present)) {
-                    return redirect()->back()->with("errorException", "There was an issue adding color category: Duplicate color detected.");
+                    return redirect()->back()->with("errorException", "Nastao je problem tokom dodavanja kategorije boje: Otkrivena je duplirana boja");
                 } else {
 
                     $colorsDeleted->restore();
-                    return redirect()->back()->with("status", "Color types added successfully!");
+                    return redirect()->back()->with("status", "Tipovi boje su uspješno dodani!");
                     Color::where('color', $colors)->update(['hex_code' => $this->colorUserPicked[$key]]);
-                    
                 }
             } else {
                 //...if not, continue with regular insert
                 $this->validate();
-                
+
                 //Beginning transaction
                 DB::beginTransaction();
                 try {
@@ -103,25 +104,25 @@ class ColorManagement extends Component
                     }
 
                     DB::commit();
-                    return redirect()->back()->with("status", "Color types added successfully!");
+                    return redirect()->back()->with("status", "Tipovi boje su uspješno dodani!");
                 } catch (\Exception $e) {
                     DB::rollBack(); // Rollback the transaction on error
                     Log::error('Error occurred: ' . $e->getMessage());
-                    return redirect()->back()->with("errorException", "There was an issue adding color category. Please try again");
+                    return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja kategorije boje. Molimo pokušajte ponovo.");
                 }
             }
         }
     }
     // Method to delete category from db
-    public function deleteColorCategory(int $id):void
+    public function deleteColorCategory(int $id): void
     {
-       Gate::authorize('delete', Color::class);
+        Gate::authorize('delete', Color::class);
         $color = Color::find($id);
         $color->delete();
     }
 
     //Method to reset input fields
-    public function resetColor():void
+    public function resetColor(): void
     {
 
         $this->reset(['colors', 'colorPicked', 'colorUserPicked']);

@@ -13,7 +13,8 @@ It includes:
 Notice - "isUploading" property is used to prevent a submit spam.
 */
 
-namespace App\Livewire; 
+namespace App\Livewire;
+
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
@@ -48,13 +49,13 @@ class AddProduct extends Component
     #[Validate]
     public string $productDescription;
     #[Validate]
-    public ?float $productPrice=null;
+    public ?float $productPrice = null;
     #[Validate]
-    public ?float $productDiscount=null;
+    public ?float $productDiscount = null;
     #[Validate]
-    public ?string $startDate=null;
+    public ?string $startDate = null;
     #[Validate]
-    public ?string $endDate=null;
+    public ?string $endDate = null;
     #[Validate]
     public int $productId; //Used also for routing parameter towards stock management
     public array $colorSelect = [];
@@ -67,14 +68,14 @@ class AddProduct extends Component
     public array $productImage = [];
     public array $colorRender = [];
     public int $productDiscountedPrice;
-  
+
 
     /*
     Categories select
     */
 
     //Visual change of selected colors
-    public function ColorSelect(string $parameter):void
+    public function ColorSelect(string $parameter): void
     {
         if (in_array($parameter, $this->colorSelect)) {
             $index = array_search($parameter, $this->colorSelect);
@@ -94,7 +95,7 @@ class AddProduct extends Component
     }
 
     //Visual change of selected genders
-    public function GenderSelect(string $parameter):void
+    public function GenderSelect(string $parameter): void
     {
 
         if (in_array($parameter, $this->genderSelect)) {
@@ -106,7 +107,7 @@ class AddProduct extends Component
     }
 
     //Visual change of selected tags
-    public function TagSelect(string $parameter):void
+    public function TagSelect(string $parameter): void
     {
 
         if (in_array($parameter, $this->tagSelect)) {
@@ -118,7 +119,7 @@ class AddProduct extends Component
     }
 
     //Visual change of selected Heels
-    public function HeelSelect(string $parameter):void
+    public function HeelSelect(string $parameter): void
     {
 
         if (in_array($parameter, $this->heelSelect)) {
@@ -137,7 +138,7 @@ class AddProduct extends Component
 
 
     //Visual change of selected materials
-    public function MaterialSelect(string $parameter):void
+    public function MaterialSelect(string $parameter): void
     {
 
         if (in_array($parameter, $this->materialSelect)) {
@@ -151,7 +152,7 @@ class AddProduct extends Component
     }
 
     //Visual change of selected sizes
-    public function SizeSelect(string $parameter):void
+    public function SizeSelect(string $parameter): void
     {
 
         if (in_array($parameter, $this->sizeSelect)) {
@@ -163,7 +164,7 @@ class AddProduct extends Component
     }
 
     //Visual change of selected product types
-    public function TypeSelect(string $parameter):void
+    public function TypeSelect(string $parameter): void
     {
 
         if (in_array($parameter, $this->typeSelect)) {
@@ -183,7 +184,7 @@ class AddProduct extends Component
     /*
     Price and discount manipulation
     */
-    public function updatedproductDiscount():void
+    public function updatedproductDiscount(): void
     {
         //Logic to display discounted price for the admin.
         if ($this->productDiscount) {
@@ -194,7 +195,7 @@ class AddProduct extends Component
         }
     }
     //Resetting discount precentage to empty if price is changed 
-    public function updatedproductPrice():void
+    public function updatedproductPrice(): void
     {
         unset($this->productDiscount);
     }
@@ -202,7 +203,7 @@ class AddProduct extends Component
     /*
     Validation
     */
-    protected function rules():array
+    protected function rules(): array
     {
 
         $rules = [
@@ -241,44 +242,44 @@ class AddProduct extends Component
     */
     protected $messages = [
         //Product name validation messages
-        'productName.required' => 'Please provide a product name.',
-        'productName.string' => 'Product name must contain only letters.',
-        'productName.min' => 'Product name must contain at least three letters.',
-        'productName.regex' => 'Product name must contain only letters.',
-        //Product description validation messages
-        'productDescription.required' => 'Please provide a product description.',
-        'productDescription.string' => 'Product name must be valid string.',
-        'productDescription.min' => 'The product description must be at least 10 characters.',
-        'productDescription.max' => 'The product description must not exceed 1000 characters.',
-        //Product Price validation messages
-        'productPrice.required' => 'Starting product price is required.',
-        'productPrice.numeric' => 'Product price must be a number.',
-        'productPrice.regex' => 'The price must be a valid number with two decimal places (e.g., 25.45, 100.00).',
-        'product_price.gt' => 'The price must be greater than 0.',
-        //Product discount validation messages
-        'productDiscount.numeric' => 'The discount must be a valid number.',
-        'productDiscount.between' => 'The discount percentage must be between 0 and 100.',
-        'productDiscount.regex' => 'The discount must be a valid number with up to two decimal places.',
-        //Discount start and end date validation messages
-        'startDate' => 'The provided discount start date is not valid.',
-        'endDate' => 'The provided discount end date is not valid.',
-        //Category select validation messages
-        'colorSelect.required' => 'Please choose a color for your product',
-        'genderSelect.required' => 'Please choose appropriate gender for your product',
-        'typeSelect.required' => 'Please choose product type',
-        'materialSelect.required' => 'Please select your product material',
-        'sizeSelect.required' => 'Please choose a size for your product',
-        //Product image upload validation messages
-        'productImage.*.required' => 'Product image is required.',
-        'productImage.*.image' => 'Wrong file uploaded! The uploaded file must be an image.',
-        'productImage.*.mimes' => 'Wrong image type uploaded! The image must be a file of type: jpeg, webp, png, jpg, gif, svg.',
-        'productImage.*.max' => 'Wrong file size! The image size must be less than 1MB.',
-        'productImage.*.dimensions' => 'Wrong file dimensions! The image dimensions must be between 300x300 and 1200x1200.',
+        'productName.required' => 'Molimo unesite naziv proizvoda.',
+        'productName.string' => 'Naziv proizvoda smije sadržavati samo slova.',
+        'productName.min' => 'Naziv proizvoda mora sadržavati najmanje tri slova.',
+        'productName.regex' => 'Naziv proizvoda smije sadržavati samo slova.',
+        // Product description validation messages
+        'productDescription.required' => 'Molimo unesite opis proizvoda.',
+        'productDescription.string' => 'Opis proizvoda mora biti ispravan tekst.',
+        'productDescription.min' => 'Opis proizvoda mora imati najmanje 10 karaktera.',
+        'productDescription.max' => 'Opis proizvoda ne smije prelaziti 1000 karaktera.',
+        // Product Price validation messages
+        'productPrice.required' => 'Početna cijena proizvoda je obavezna.',
+        'productPrice.numeric' => 'Cijena proizvoda mora biti broj.',
+        'productPrice.regex' => 'Cijena mora biti ispravan broj sa dvije decimale (npr. 25.45, 100.00).',
+        'product_price.gt' => 'Cijena mora biti veća od 0.',
+        // Product discount validation messages
+        'productDiscount.numeric' => 'Popust mora biti ispravan broj.',
+        'productDiscount.between' => 'Procenat popusta mora biti između 0 i 100.',
+        'productDiscount.regex' => 'Popust mora biti ispravan broj sa najviše dvije decimale.',
+        // Discount start and end date validation messages
+        'startDate' => 'Uneseni datum početka popusta nije ispravan.',
+        'endDate' => 'Uneseni datum završetka popusta nije ispravan.',
+        // Category select validation messages
+        'colorSelect.required' => 'Molimo odaberite boju za vaš proizvod.',
+        'genderSelect.required' => 'Molimo odaberite odgovarajući spol za vaš proizvod.',
+        'typeSelect.required' => 'Molimo odaberite tip proizvoda.',
+        'materialSelect.required' => 'Molimo odaberite materijal proizvoda.',
+        'sizeSelect.required' => 'Molimo odaberite veličinu proizvoda.',
+        // Product image upload validation messages
+        'productImage.*.required' => 'Slika proizvoda je obavezna.',
+        'productImage.*.image' => 'Pogrešna datoteka! Učitana datoteka mora biti slika.',
+        'productImage.*.mimes' => 'Pogrešan tip slike! Slika mora biti u formatu: jpeg, webp, png, jpg, gif ili svg.',
+        'productImage.*.max' => 'Pogrešna veličina datoteke! Veličina slike mora biti manja od 1 MB.',
+        'productImage.*.dimensions' => 'Pogrešne dimenzije slike! Dimenzije slike moraju biti između 300x300 i 1200x1200.',
 
     ];
 
     //Real life validation of image
-    public function updatedproductImage():void
+    public function updatedproductImage(): void
     {
         $this->validateOnly("productImage.*");
     }
@@ -287,9 +288,9 @@ class AddProduct extends Component
     /*
     Product insert
     */
-    public function uploadProduct():?RedirectResponse
+    public function uploadProduct(): ?RedirectResponse
     {
-       Gate::authorize('create', Product::class);
+        Gate::authorize('create', Product::class);
         /*
         General preparations
         */
@@ -394,7 +395,7 @@ class AddProduct extends Component
             });
             //...getting size id
             $idsSizes = $sortedResultsSizes->pluck('id')->toArray();
-    
+
 
 
             //Getting material id from the selected material name
@@ -446,7 +447,7 @@ class AddProduct extends Component
             }
 
             $colors = [($this->colorSelect)];
-            
+
             $results = Color::whereIn('color', $colors[0])->get();
 
             //Some sorting to get correct results.
@@ -461,17 +462,15 @@ class AddProduct extends Component
             //Loop for adding ids in products_color pivot table
             foreach ($ids as $key => $itemIds) {
                 $product->colors()->attach($itemIds, ['category_image_id' => $finalIds[$key]]);
-               
             }
-            
+
             //Final loop for adding ids in the product_variants pivot table
             foreach ($idsSizes as  $idsSizes) {
-              
-             $product->colorsVariant()->attach($ids, ['category_size_id'=>  $idsSizes]);
-               
+
+                $product->colorsVariant()->attach($ids, ['category_size_id' =>  $idsSizes]);
             }
-            
-           
+
+
             /*
         Part III - inserting price data, and displaying correct price regarding the used discount.
         */
@@ -502,7 +501,7 @@ class AddProduct extends Component
 
 
     //Method to reset input fields
-    public function resetProduct():void
+    public function resetProduct(): void
     {
 
         $this->reset([
@@ -514,7 +513,7 @@ class AddProduct extends Component
     }
 
     //Opening and closing product preview
-    public function toggleLightBox():void
+    public function toggleLightBox(): void
     {
         if ($this->lightBox == false) {
 

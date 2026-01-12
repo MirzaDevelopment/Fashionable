@@ -10,6 +10,7 @@ This is a backend class in livewire framework used for category management (add 
 - Method to reset input fields.
 It's frontend component is also used a child component in categories.blade.php view.
 */
+
 namespace App\Livewire;
 
 use App\Models\Gender;
@@ -27,18 +28,18 @@ class GenderManagement extends Component
     public array $genders = [''];
 
     // Method to add a new blank input field for another gender
-    public function addGenderInput():void
+    public function addGenderInput(): void
     {
         $this->genders[] = '';
     }
 
     //Remove input
-    public function removeGenderInput(string $index):void
+    public function removeGenderInput(string $index): void
     {
         unset($this->genders[$index]);
     }
     //Validation
-    protected function rules():array
+    protected function rules(): array
     {
 
         return [
@@ -49,27 +50,28 @@ class GenderManagement extends Component
     }
     //Custom messages for validation
     protected $messages = [
-        'genders.required' => 'Please provide at least one gender type.',
-        'genders.*.required' => 'Each added input must be filled.',
-        'genders.*.string' => 'Each gender must be a valid string.',
-        'genders.*.min' => 'Each gender must be contain at least three letters.',
-        'genders.*.unique' => 'Duplicate entry detected.',
-        'genders.*.regex' => 'Gender must contain only letters.',
+        'genders.required' => 'Molimo unesite barem jedan tip spola.',
+        'genders.*.required' => 'Svako dodano polje mora biti popunjeno.',
+        'genders.*.string' => 'Svaki spol mora biti ispravan tekst.',
+        'genders.*.min' => 'Svaki spol mora sadržavati najmanje tri slova.',
+        'genders.*.unique' => 'Otkriven je duplirani unos.',
+        'genders.*.regex' => 'Spol smije sadržavati samo slova.',
+
     ];
 
     //Inserting category in db
-    public function insertGender():RedirectResponse
+    public function insertGender(): RedirectResponse
     {
         Gate::authorize('create', Gender::class);
         //Checking if gender is already present but soft deleted (to prevent unique validation error)
         foreach ($this->genders as $genders) {
             if ($gendersDeleted = Gender::onlyTrashed()->where('gender', $genders)->first()) {
                 $gendersDeleted->restore();
-                return redirect()->back()->with("status", "Gender types added successfully!");
+                return redirect()->back()->with("status", "Spolovi su dodani uspješno.");
             } else {
                 //...if not, continue with regular insert
                 $this->validate();
-                
+
                 //Beginning transaction
                 DB::beginTransaction();
                 try {
@@ -80,25 +82,25 @@ class GenderManagement extends Component
                         ]);
                     }
                     DB::commit();
-                    return redirect()->back()->with("status", "Gender types added successfully!");
+                    return redirect()->back()->with("status", "Spolovi su dodani uspješno.");
                 } catch (\Exception $e) {
                     DB::rollBack(); // Rollback the transaction on error
                     Log::error('Error occurred: ' . $e->getMessage());
-                    return redirect()->back()->with("errorException", "There was an issue adding gender category. Please try again");
+                    return redirect()->back()->with("errorException", "Nastao je problem prilikom ažuriranja kategorije spola. Molimo pokušajte ponovo.");
                 }
             }
         }
     }
 
     // Method to delete category from db (soft method not used)
-    public function deleteGenderCategory(int $id):void
+    public function deleteGenderCategory(int $id): void
     {
         Gate::authorize('delete', Gender::class, $id);
         $gender = Gender::find($id);
         $gender->delete();
     }
     //Method to reset input fields
-    public function resetGender():void
+    public function resetGender(): void
     {
 
         $this->reset('genders');

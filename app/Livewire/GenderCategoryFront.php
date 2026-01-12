@@ -1,9 +1,6 @@
 <?php
 /*
-This is a backend class in livewire framework used for rendering the product genders on the first commercial page. It includes:
-
-
-    
+This is a backend class in livewire framework used for rendering the product genders on the first commercial page.   
 */
 
 namespace App\Livewire;

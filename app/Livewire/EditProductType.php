@@ -61,7 +61,7 @@ class EditProductType extends Component
             $this->typeSelect[] = $parameter;
             if (count(($this->typeSelect)) > 1) {
                 array_pop($this->typeSelect);
-                session()->flash('errorType', 'Please select only one NEW product type!');
+                session()->flash('errorType', 'Molimo odaberite SAMO JEDNU novu vrstu proizvoda');
             }
         }
     }
@@ -101,7 +101,7 @@ class EditProductType extends Component
         if ($this->typeDeSelect == $currentTypeArray && empty($this->typeSelect)) {
 
 
-            return session()->flash('emptyTypes', 'Please select at least one type category.');
+            return session()->flash('emptyTypes', 'Molimo odaberite barem jednu vrstu proizvoda');
         }
          Gate::authorize('update', Type::class);
         //Beginning transaction
@@ -128,7 +128,7 @@ class EditProductType extends Component
                 //Small check to make sure user actually changes something in type panel
             } else if ((count(array_intersect($this->typeDeSelect, $currentTypeArray)) == 0)) {
 
-                return session()->flash('errorTypes', 'Types already present for selected product');
+                return session()->flash('errorTypes', 'Odabrana vrsta proizvoda je već prisutna kod ovog proizvoda');
             }
 
 
@@ -136,12 +136,12 @@ class EditProductType extends Component
             DB::commit();
             $this->isUploading = true;
 
-            return redirect()->back()->with("status", "You edited product types successfully!");
+            return redirect()->back()->with("status", "Uspješno ste ažurirali vrstu proizvoda.");
         } catch (\Exception $e) {
             DB::rollBack(); // Rollback the transaction on error
             $this->isUploading = false;
             Log::error('Error occurred: ' . $e->getMessage());
-            return redirect()->back()->with("errorException", "There was an issue editing the product types. Please try again.");
+            return redirect()->back()->with("errorException", "Nastao je problem prilikom ažuriranja vrste proizvoda. Molimo pokušajte ponovo.");
         }
     }
 

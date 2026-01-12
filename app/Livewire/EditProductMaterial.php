@@ -93,7 +93,7 @@ class EditProductMaterial extends Component
         if ($this->materialDeSelect == $this->currentMaterialArray && empty($this->materialSelect)) {
 
 
-            return session()->flash('emptyMaterials', 'Please select at least one material category.');
+            return session()->flash('emptyMaterials', 'Molimo odaberite barem jednu kategoriju materijala proizvoda.');
         }
 
         //Beginning transaction
@@ -114,7 +114,7 @@ class EditProductMaterial extends Component
                 //Small check to make sure user actually changes something in material panel
             } else if ((count(array_intersect($this->materialDeSelect, $this->currentMaterialArray)) == 0)) {
 
-                return session()->flash('errorMaterials', 'Materials already present for selected product');
+                return session()->flash('errorMaterials', 'Odabrani materijal je već prisutan kod ovog proizvoda');
             }
 
             //Scenario two - admin deletes original categories (soft deletes)
@@ -131,12 +131,12 @@ class EditProductMaterial extends Component
             DB::commit();
             $this->isUploading = true;
 
-            return redirect()->back()->with("status", "You edited product materials successfully!");
+            return redirect()->back()->with("status", "Uspješno ste ažurirali kategoriju materijala kod proizvoda.");
         } catch (\Exception $e) {
             DB::rollBack(); // Rollback the transaction on error
             $this->isUploading = false;
             Log::error('Error occurred: ' . $e->getMessage());
-            return redirect()->back()->with("errorException", "There was an issue editing the product materials. Please try again.");
+            return redirect()->back()->with("errorException", "Nastao je problem prilikom ažuriranja materijala kod proizvoda. Molimo pokušajte kasnije.");
         }
     }
     //Method to reset edit fields

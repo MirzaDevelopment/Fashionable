@@ -70,8 +70,8 @@ class AddProductStock extends Component
 
 
         //Product stock validation messages
-        'productStocks.*.numeric' => 'The stock must be a valid number.',
-        'productStocks.*.min' => 'The product quantity must be positive number.',
+        'productStocks.*.numeric' => 'Količina artikala mora biti validan broj.',
+        'productStocks.*.min' => 'Količina artikala mora biti pozitivan broj.',
 
     ];
 
@@ -114,7 +114,7 @@ class AddProductStock extends Component
         } catch (\Exception $e) {
             DB::rollBack(); // Rollback the transaction on error
             Log::error('Error occurred: ' . $e->getMessage());
-            return redirect()->back()->with("errorException", "There was an issue updating product stock. Please try again.");
+            return redirect()->back()->with("errorException", "Nastao je problem tokom ažuriranja količine artikala. Molimo pokušajte ponovo.");
         }
     }
 

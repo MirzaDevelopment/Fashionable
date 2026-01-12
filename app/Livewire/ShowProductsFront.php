@@ -27,7 +27,7 @@ class ShowProductsFront extends Component
     public string $typeSelect = "";
     public array $genderSelect = [];
     public array $tagSelect = [];
-    public string $empty = "No products found...";
+    public string $empty = "Proizvodi nisu pronađeni...";
     public string $search = "";
     const DELIVERY = 9.50; //Shipping cost
     public string $sortinator = "type_name";

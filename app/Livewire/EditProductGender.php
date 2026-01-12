@@ -96,7 +96,7 @@ class EditProductGender extends Component
          if($this->genderDeSelect==$currentGenderArray && empty($this->genderSelect)){
 
              
-         return session()->flash('emptyGenders', 'Please select at least one gender category.');
+         return session()->flash('emptyGenders', 'Molimo odaberite barem jednu kategoriju spola.');
          }
      Gate::authorize('create', Gender::class);
      //Beginning transaction
@@ -116,7 +116,7 @@ class EditProductGender extends Component
              //Small check to make sure user actually changes something in gender panel
          } else if ((count(array_intersect($this->genderDeSelect, $currentGenderArray)) == 0)) {
 
-             return session()->flash('errorGenders', 'Genders already present for selected product');
+             return session()->flash('errorGenders', 'Spol je već prisutan za odabrani proizvod');
          }
 
          //Scenario two - admin deletes original categories (soft deletes)
@@ -133,12 +133,12 @@ class EditProductGender extends Component
          DB::commit();
          $this->isUploading = true;
 
-         return redirect()->back()->with("status", "You edited product genders successfully!");
+         return redirect()->back()->with("status", "Uspješno ste ažurirali kategoriju spola kod proizvoda");
      } catch (\Exception $e) {
          DB::rollBack(); // Rollback the transaction on error
          $this->isUploading = false;
          Log::error('Error occurred: ' . $e->getMessage());
-         return redirect()->back()->with("errorException", "There was an issue editing the product genders. Please try again.");
+         return redirect()->back()->with("errorException", "Nastao je problem pri ažuriranju kategorije spola kod proizvoda. Molimo pokušajte ponovo.");
      }
  }
 

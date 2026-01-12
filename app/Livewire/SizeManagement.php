@@ -10,6 +10,7 @@ This is a backend class in livewire framework used for category management (add 
 - Method to reset input fields.
 It's frontend component is also used a child component in categories.blade.php view.
 */
+
 namespace App\Livewire;
 
 use App\Models\Size;
@@ -25,19 +26,19 @@ class SizeManagement extends Component
     public array $sizes = [''];
 
     // Method to add a new blank input field for another material
-    public function addSizeInput():void
+    public function addSizeInput(): void
     {
         $this->sizes[] = '';
     }
 
     //Remove input
-    public function removeSizeInput(int $index):void
+    public function removeSizeInput(int $index): void
     {
         unset($this->sizes[$index]);
     }
 
     //Validation
-    protected function rules():array
+    protected function rules(): array
     {
 
         return [
@@ -53,27 +54,27 @@ class SizeManagement extends Component
     }
     //Custom messages for validation
     protected $messages = [
-        'sizes.required' => 'Please provide at least one size.',
-        'sizes.*.required' => 'Each added input must be filled.',
-        'sizes.*.min' => 'Each size must contain at least one letter.',
-        'sizes.*.unique' => 'Duplicate entry detected.',
-        'sizes.*.regex' => 'Size must contain only letters or numbers.',
+        'sizes.required' => 'Molimo unesite barem jednu veličinu.',
+        'sizes.*.required' => 'Svako dodano polje mora biti popunjeno.',
+        'sizes.*.min' => 'Svaka veličina mora sadržavati najmanje jedno slovo.',
+        'sizes.*.unique' => 'Otkriven je duplirani unos.',
+        'sizes.*.regex' => 'Veličina smije sadržavati samo slova ili brojeve.',
     ];
 
     //Inserting category in db
-    public function insertSize():RedirectResponse
+    public function insertSize(): RedirectResponse
     {
-         Gate::authorize('create', Size::class);
+        Gate::authorize('create', Size::class);
         //Checking if size is already present but soft deleted (to prevent unique validation error)
         foreach ($this->sizes as $sizes) {
 
             if ($sizesDeleted = Size::onlyTrashed()->where('size', $sizes)->first()) {
                 $sizesDeleted->restore();
-                return redirect()->back()->with("status", "Size types added successfully!");
+                return redirect()->back()->with("status", "Veličine su uspješno dodane.");
             } else {
                 //...if not, continue with regular insert
                 $this->validate();
-               
+
                 //Beginning transaction
                 DB::beginTransaction();
                 try {
@@ -92,24 +93,24 @@ class SizeManagement extends Component
                         }
                     }
                     DB::commit();
-                    return redirect()->back()->with("status", "Size types added successfully!");
+                    return redirect()->back()->with("status", "Veličine su uspješno dodane.");
                 } catch (\Exception $e) {
                     DB::rollBack(); // Rollback the transaction on error
                     Log::error('Error occurred: ' . $e->getMessage());
-                    return redirect()->back()->with("errorException", "There was an issue adding size category. Please try again");
+                    return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja kategorije veličine. Molimo pokušajte kasnije.");
                 }
             }
         }
     }
     // Method to delete category from db (soft method not used)
-    public function deleteSizeCategory(int $id):void
+    public function deleteSizeCategory(int $id): void
     {
         Gate::authorize('delete', Size::class);
         $size = Size::find($id);
         $size->delete();
     }
     //Method to reset input fields
-    public function resetSize():void
+    public function resetSize(): void
     {
 
         $this->reset('sizes');
