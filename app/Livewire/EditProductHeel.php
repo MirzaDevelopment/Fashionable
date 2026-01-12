@@ -60,7 +60,7 @@ class EditProductHeel extends Component
             $this->heelSelect[] = $parameter;
             if (count(($this->heelSelect)) > 1) {
                 array_pop($this->heelSelect);
-               session()->flash('errorHeel', 'Please select only one NEW product heel type!');
+               session()->flash('errorHeel', 'Molimo odaberite SAMO JEDNU novu kategoriju štikli');
                
             }
         }
@@ -103,7 +103,7 @@ class EditProductHeel extends Component
      if ($this->heelDeSelect == $currentHeelArray && empty($this->heelSelect)) {
 
 
-         return session()->flash('emptyHeels', 'Please select at least one heel category.');
+         return session()->flash('emptyHeels', 'Molimo odaberite barem jednu kategoriju štikli');
      }
      Gate::authorize('update', Heel::class);
      //Beginning transaction
@@ -130,7 +130,7 @@ class EditProductHeel extends Component
              //Small check to make sure user actually changes something in heel panel
          } else if ((count(array_intersect($this->heelDeSelect, $currentHeelArray)) == 0)) {
 
-             return session()->flash('errorHeels', 'Heels already present for selected product');
+             return session()->flash('errorHeels', 'Ova štikla je već prisutna kod odabranog proizvoda');
          }
 
 
@@ -138,12 +138,12 @@ class EditProductHeel extends Component
          DB::commit();
          $this->isUploading = true;
 
-         return redirect()->back()->with("status", "You edited product heels successfully!");
+         return redirect()->back()->with("status", "Uspješno ste ažurirali kategoriju štikli.");
      } catch (\Exception $e) {
          DB::rollBack(); // Rollback the transaction on error
          $this->isUploading = false;
          Log::error('Error occurred: ' . $e->getMessage());
-         return redirect()->back()->with("errorException", "There was an issue editing the product heels. Please try again.");
+         return redirect()->back()->with("errorException", "Nastao je problem prilikom ažuriranja kategorije štikli kod proizvoda. Molimo pokušajte kasnije.");
      }
  }
 

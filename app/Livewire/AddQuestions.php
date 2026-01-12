@@ -4,7 +4,9 @@ This is a backend livewire component for question upload by users on first produ
 It contains simple validation for user name, message/question body, and email
 It also contains a simple question upload function, wrapped in transaction with sucessful or failed messages
 */
+
 namespace App\Livewire;
+
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
@@ -40,47 +42,47 @@ class AddQuestions extends Component
     */
     protected $messages = [
         //User name validation messages
-        'userName.required' => 'Please provide a user name.',
-        'userName.string' => 'User name must contain only letters.',
-        'userName.min' => 'User name must contain at least three letters.',
-        'userName.regex' => 'User name name must contain only letters.',
-        //Question body validation messages
-        'question.required' => 'Please provide a comment or a question.',
-        'question.string' => 'The question must be in text format.',
-        'question.min' => 'The question must be at least 10 characters.',
-        'question.max' => 'The question must not exceed 1000 characters.',
-        //Email validation messages
-        'email.required' => 'Please provide a valid email adress, so we can replay as soon as possible',
-        'email.email' => 'Please provide a valid email adress format',
+        'userName.required' => 'Molimo unesite korisničko ime.',
+        'userName.string' => 'Korisničko ime smije sadržavati samo slova.',
+        'userName.min' => 'Korisničko ime mora sadržavati najmanje tri slova.',
+        'userName.regex' => 'Korisničko ime smije sadržavati samo slova.',
+        // Question body validation messages
+        'question.required' => 'Molimo unesite komentar ili pitanje.',
+        'question.string' => 'Pitanje mora biti u tekstualnom formatu.',
+        'question.min' => 'Pitanje mora sadržavati najmanje 10 karaktera.',
+        'question.max' => 'Pitanje ne smije prelaziti 1000 karaktera.',
+        // Email validation messages
+        'email.required' => 'Molimo unesite važeću email adresu kako bismo mogli odgovoriti što je prije moguće.',
+        'email.email' => 'Molimo unesite ispravan format email adrese.',
 
     ];
 
     public function uploadQuestion()
     {
 
-        
+
         $this->validate();
-         //Beginning transaction
+        //Beginning transaction
         DB::beginTransaction();
         try {
             //Inserting into question main table;
             Question::create([
                 'user_name' => ucfirst($this->userName),
-                'user_email'=>$this->email,
+                'user_email' => $this->email,
                 'question' => $this->question,
                 'status' => "unanswered",
                 'g-recaptcha-response' => 'required|recaptchav3:register,0.5'
 
             ]);
             DB::commit();
-            $this->userName="";
-            $this->email="";
-            $this->question="";
-            return redirect()->back()->with("status", "Message sent! We will respond to you shortly.");
-             } catch (\Exception $e) {
+            $this->userName = "";
+            $this->email = "";
+            $this->question = "";
+            return redirect()->back()->with("status", "Poruka uspješno poslana. Odgovorićemo u najkraćem mogućem roku.");
+        } catch (\Exception $e) {
             DB::rollBack(); // Rollback the transaction on error
             Log::error('Error occurred: ' . $e->getMessage());
-            return redirect()->back()->with("errorException", "There was an issue sending your message. Please try again later.");
+            return redirect()->back()->with("errorException", "Nastao je problem tokom slanja poruke. Molimo pokušajte ponovo.");
         }
     }
 

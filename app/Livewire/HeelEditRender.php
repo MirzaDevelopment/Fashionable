@@ -44,7 +44,7 @@ class HeelEditRender extends Component
     
 
         if (empty($this->heelNames)) {
-            return view('livewire.heel-edit-render', ["emptyHeels" => "No heels suitable for this product."]);
+            return view('livewire.heel-edit-render', ["emptyHeels" => "Kategorije štikle nisu prisutne kod ove vrste proizvoda"]);
         } else {
             $heels = Heel::with("product")->get();
             return view('livewire.heel-edit-render', ["heelsAll" => $heels]);

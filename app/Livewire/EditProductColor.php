@@ -124,7 +124,7 @@ class EditProductColor extends Component
         if ($this->colorDeSelect == $currentColorArray && empty($this->colorSelect)) {
 
 
-            return session()->flash('emptyColors', 'Please select at least one color category.');
+            return session()->flash('emptyColors', 'Molimo odaberite barem jednu boju iz kategorije.');
         }
         Gate::authorize('create', Color::class);
         //Beginning transaction
@@ -181,7 +181,7 @@ class EditProductColor extends Component
                 //Small check to make sure user actually changes something in color panel
             } else if ((count(array_intersect($this->colorDeSelect, $currentColorArray)) == 0)) {
 
-                return session()->flash('errorColors', 'Colors already present for selected product');
+                return session()->flash('errorColors', 'Ova boja je već prisutna za ovaj proizvod');
             }
             if ($this->colorDeSelect) {
                 //Scenario two - admin deletes original categories (soft deletes)
@@ -236,12 +236,12 @@ class EditProductColor extends Component
             DB::commit();
             $this->isUploading = true;
 
-            return redirect()->back()->with("status", "You edited product colors successfully!");
+            return redirect()->back()->with("status", "Ažurirali ste kategoriju boja uspješno.");
         } catch (\Exception $e) {
             DB::rollBack(); // Rollback the transaction on error
             $this->isUploading = false;
             Log::error('Error occurred: ' . $e->getMessage());
-            return redirect()->back()->with("errorException", "There was an issue editing the product colors. Make sure default image is already uploaded and try again.");
+            return redirect()->back()->with("errorException", "Nastao je problem pri ažuriranju boja proizvoda.  Make sure default image is already uploaded and try again.");
         }
     }
 

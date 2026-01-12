@@ -10,6 +10,7 @@ This is a backend class in livewire framework used for category management (add 
 - Method to reset input fields.
 It's frontend component is also used a child component in categories.blade.php view.
 */
+
 namespace App\Livewire;
 
 use App\Models\Type;
@@ -26,17 +27,17 @@ class TypeManagement extends Component
     public array $types = [''];
 
     // Method to add a new blank input field for another material
-    public function addTypeInput():void
+    public function addTypeInput(): void
     {
         $this->types[] = '';
     }
     //Remove input
-    public function removeTypeInput(int $index):void
+    public function removeTypeInput(int $index): void
     {
         unset($this->types[$index]);
     }
     //Validation
-    protected function rules():array
+    protected function rules(): array
     {
 
         return [
@@ -48,16 +49,16 @@ class TypeManagement extends Component
 
     //Custom messages for validation
     protected $messages = [
-        'types.required' => 'Please provide at least one clothing type.',
-        'types.*.required' => 'Each added input must be filled.',
-        'types.*.string' => 'Each clothing type must be a valid string.',
-        'types.*.min' => 'Each clothing type must contain at least three letters.',
-        'types.*.unique' => 'Duplicate entry detected.',
-        'types.*.regex' => 'Clothing type must contain only letters.',
+        'types.required' => 'Molimo unesite barem jednu vrstu odjeće.',
+        'types.*.required' => 'Svako dodano polje mora biti popunjeno.',
+        'types.*.string' => 'Svaka vrsta odjeće mora biti ispravan tekst.',
+        'types.*.min' => 'Svaka vrsta odjeće mora sadržavati najmanje tri slova.',
+        'types.*.unique' => 'Otkriven je duplirani unos.',
+        'types.*.regex' => 'Vrsta odjeće smije sadržavati samo slova.',
     ];
 
     //Inserting category in db
-    public function insertType():RedirectResponse
+    public function insertType(): RedirectResponse
     {
         Gate::authorize('create', Type::class);
         //Checking if type is already present but soft deleted (to prevent unique validation error)
@@ -65,12 +66,12 @@ class TypeManagement extends Component
 
             if ($typesDeleted = Type::onlyTrashed()->where('type_name', $types)->first()) {
                 $typesDeleted->restore();
-                return redirect()->back()->with("status", "Product type added successfully!");
+                return redirect()->back()->with("status", "Vrsta proizvoda je dodana uspješno!");
             } else {
-                 //...if not, continue with regular insert
+                //...if not, continue with regular insert
                 $this->validate();
                 //Beginning transaction
-                
+
                 DB::beginTransaction();
                 try {
                     foreach ($this->types as $types) {
@@ -79,11 +80,11 @@ class TypeManagement extends Component
                         ]);
                     }
                     DB::commit();
-                    return redirect()->back()->with("status", "Product type added successfully!");
+                    return redirect()->back()->with("status", "Vrsta proizvoda je dodana uspješno!");
                 } catch (\Exception $e) {
                     DB::rollBack(); // Rollback the transaction on error
                     Log::error('Error occurred: ' . $e->getMessage());
-                    return redirect()->back()->with("errorException", "There was an issue adding type category. Please try again");
+                    return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja kategorija vrste proizvoda. Molimo pokušajte kasnije.");
                 }
             }
         }
@@ -91,14 +92,14 @@ class TypeManagement extends Component
 
 
     // Method to delete category from db (soft method not used)
-    public function deleteTypeCategory(int $id, User $user):void
+    public function deleteTypeCategory(int $id, User $user): void
     {
         Gate::authorize('delete', Type::class);; //Authorisation for admin
         $type = Type::find($id);
         $type->delete();
     }
     //Method to reset input fields
-    public function resetType():void
+    public function resetType(): void
     {
 
         $this->reset('types');

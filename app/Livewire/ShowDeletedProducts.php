@@ -23,7 +23,7 @@ class ShowDeletedProducts extends Component
 
     use WithPagination;
 
-    public string $empty = "No products found...";
+    public string $empty = "Proizvodi nisu pronađeni...";
     public string $search = "";
     public User $user;
     public string $count = "";

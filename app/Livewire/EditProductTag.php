@@ -95,7 +95,7 @@ public function editTags():?RedirectResponse
         if($this->tagDeSelect==$currentTagArray && empty($this->tagSelect)){
 
             
-        return session()->flash('emptyTags', 'Please select at least one tag category.');
+        return session()->flash('emptyTags', 'Molimo odaberite barem jednu oznaku za proizvod');
         }
     Gate::authorize('create', Tag::class);
     //Beginning transaction
@@ -115,7 +115,7 @@ public function editTags():?RedirectResponse
             //Small check to make sure user actually changes something in tag panel
         } else if ((count(array_intersect($this->tagDeSelect, $currentTagArray)) == 0)) {
 
-            return session()->flash('errorTags', 'Tags already present for selected product');
+            return session()->flash('errorTags', 'Odabrana oznaka je već prisutan za ovaj proizvod.');
         }
 
         //Scenario two - admin deletes original categories (soft deletes)
@@ -132,12 +132,12 @@ public function editTags():?RedirectResponse
         DB::commit();
         $this->isUploading = true;
 
-        return redirect()->back()->with("status", "You edited product tags successfully!");
+        return redirect()->back()->with("status", "Uspješno ste ažurirali oznake za ovaj proizvod");
     } catch (\Exception $e) {
         DB::rollBack(); // Rollback the transaction on error
         $this->isUploading = false;
         Log::error('Error occurred: ' . $e->getMessage());
-        return redirect()->back()->with("errorException", "There was an issue editing the product tags. Please try again.");
+        return redirect()->back()->with("errorException", "Nastao je problem prilikom ažuriranja oznaka. Molimo pokušajte ponovo.");
     }
 }
 

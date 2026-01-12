@@ -19,7 +19,7 @@ class ShowUsers extends Component
 
  
     use WithPagination;
-    public string $empty = "No users found...";
+    public string $empty = "Korisnici nisu pronađeni...";
     public string $search = "";
     public User $user;
     public string $count = "";

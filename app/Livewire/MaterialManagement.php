@@ -10,6 +10,7 @@ This is a backend class in livewire framework used for category management (add 
 - Method to reset input fields.
 It's frontend component is also used a child component in categories.blade.php view.
 */
+
 namespace App\Livewire;
 
 use App\Models\Material;
@@ -25,19 +26,19 @@ class MaterialManagement extends Component
     public array $materials = [''];
 
     // Method to add a new blank input field for another material
-    public function addMaterialInput():void
+    public function addMaterialInput(): void
     {
         $this->materials[] = '';
     }
 
     //Remove input
-    public function removeMaterialInput(int $index):void
+    public function removeMaterialInput(int $index): void
     {
         unset($this->materials[$index]);
     }
 
     //Validation
-    protected function rules():array
+    protected function rules(): array
     {
 
         return [
@@ -49,29 +50,29 @@ class MaterialManagement extends Component
 
     //Custom messages for validation
     protected $messages = [
-        'materials.required' => 'Please provide at least one material type.',
-        'materials.*.required' => 'Each added input must be filled.',
-        'materials.*.string' => 'Each material must be a valid string.',
-        'materials.*.min' => 'Each material must contain at least three letters.',
-        'materials.*.unique' => 'Duplicate entry detected.',
-        'materials.*.regex' => 'Material type must contain only letters.',
+        'materials.required' => 'Molimo unesite barem jedan tip materijala.',
+        'materials.*.required' => 'Svako dodano polje mora biti popunjeno.',
+        'materials.*.string' => 'Svaki materijal mora biti ispravan tekst.',
+        'materials.*.min' => 'Svaki materijal mora sadržavati najmanje tri slova.',
+        'materials.*.unique' => 'Otkriven je duplirani unos.',
+        'materials.*.regex' => 'Tip materijala smije sadržavati samo slova.',
     ];
 
     //Inserting category in db
-    public function insertMaterial():RedirectResponse
+    public function insertMaterial(): RedirectResponse
     {
-         Gate::authorize('create', Material::class);
+        Gate::authorize('create', Material::class);
         //Checking if material is already present but soft deleted (to prevent unique validation error)
 
         foreach ($this->materials as $materials) {
 
             if ($materialsDeleted = Material::onlyTrashed()->where('material', $materials)->first()) {
                 $materialsDeleted->restore();
-                return redirect()->back()->with("status", "Material types  added successfully!");
+                return redirect()->back()->with("status", "Vrste materijala su dodane uspješno.");
             } else {
                 //...if not, continue with regular insert
                 $this->validate();
-                
+
                 //Beginning transaction
                 DB::beginTransaction();
                 try {
@@ -81,11 +82,11 @@ class MaterialManagement extends Component
                         ]);
                     }
                     DB::commit();
-                    return redirect()->back()->with("status", "Material types added successfully!");
+                    return redirect()->back()->with("status", "Vrste materijala su dodane uspješno.");
                 } catch (\Exception $e) {
                     DB::rollBack(); // Rollback the transaction on error
                     Log::error('Error occurred: ' . $e->getMessage());
-                    return redirect()->back()->with("errorException", "There was an issue adding material category. Please try again");
+                    return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja kategorije materijala. Molimo pokušajte kasnije.");
                 }
             }
         }
@@ -93,14 +94,14 @@ class MaterialManagement extends Component
 
 
     // Method to delete category from db (soft method not used)
-    public function deleteMaterialCategory(int $id):void
+    public function deleteMaterialCategory(int $id): void
     {
-         Gate::authorize('delete', Material::class);
+        Gate::authorize('delete', Material::class);
         $material = Material::find($id);
         $material->delete();
     }
     //Method to reset input fields
-    public function resetMaterial():void
+    public function resetMaterial(): void
     {
 
         $this->reset('materials');

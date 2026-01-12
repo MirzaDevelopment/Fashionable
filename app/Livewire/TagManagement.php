@@ -10,6 +10,7 @@ This is a backend class in livewire framework used for category management (add 
 - Method to reset input fields.
 It's frontend component is also used a child component in categories.blade.php view.
 */
+
 namespace App\Livewire;
 
 use App\Models\Tag;
@@ -27,20 +28,20 @@ class TagManagement extends Component
 
 
     // Method to add a new blank input field for another tag
-    public function addTagInput():void
+    public function addTagInput(): void
     {
         $this->tags[] = '';
     }
 
 
     //Remove input
-    public function removeTagInput(int $index):void
+    public function removeTagInput(int $index): void
     {
         unset($this->tags[$index]);
     }
 
     //Validation
-    protected function rules():array
+    protected function rules(): array
     {
 
         return [
@@ -52,30 +53,30 @@ class TagManagement extends Component
 
     //Custom messages for validation
     protected $messages = [
-        'tags.required' => 'Please provide at least one tag type.',
-        'tags.*.required' => 'Each added input must be filled.',
-        'tags.*.string' => 'Each tag must be a valid string.',
-        'tags.*.min' => 'Each tag must be contain at least three letters.',
-        'tags.*.unique' => 'Duplicate entry detected.',
-        'tags.*.regex' => 'Tag must contain only letters.',
+        'tags.required' => 'Molimo unesite barem jednu oznaku.',
+        'tags.*.required' => 'Svako dodano polje mora biti popunjeno.',
+        'tags.*.string' => 'Svaka oznaka mora biti ispravan tekst.',
+        'tags.*.min' => 'Svaka oznaka mora sadržavati najmanje tri slova.',
+        'tags.*.unique' => 'Otkriven je duplirani unos.',
+        'tags.*.regex' => 'Oznaka smije sadržavati samo slova.',
     ];
 
     //Inserting category in db
-    public function insertTag():RedirectResponse
+    public function insertTag(): RedirectResponse
     {
         Gate::authorize('create', Tag::class);
         //Checking if tag is already present but soft deleted (to prevent unique validation error)
         foreach ($this->tags as $tags) {
             if ($tagsDeleted = Tag::onlyTrashed()->where('tag', $tags)->first()) {
                 $tagsDeleted->restore();
-                return redirect()->back()->with("status", "Tag added successfully!");
+                return redirect()->back()->with("status", "Oznaka je dodana uspješno!");
             } else {
                 //...if not, continue with regular insert
 
                 $this->validate();
 
                 //Beginning transaction
-                
+
                 DB::beginTransaction();
                 try {
                     foreach ($this->tags as $tags) {
@@ -84,11 +85,11 @@ class TagManagement extends Component
                         ]);
                     }
                     DB::commit();
-                    return redirect()->back()->with("status", "Tag added successfully!");
+                    return redirect()->back()->with("status", "Oznaka je dodana uspješno!");
                 } catch (\Exception $e) {
                     DB::rollBack(); // Rollback the transaction on error
                     Log::error('Error occurred: ' . $e->getMessage());
-                    return redirect()->back()->with("errorException", "There was an issue adding tag. Please try again");
+                    return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja oznaka. Molimo pokušaje ponovo.");
                 }
             }
         }
@@ -97,7 +98,7 @@ class TagManagement extends Component
 
     // Method to delete category from db (soft method not used)
 
-    public function deleteTagCategory(int $id, User $user):void
+    public function deleteTagCategory(int $id, User $user): void
     {
         Gate::authorize('delete', Tag::class); //Authorisation for admin
         $tag = Tag::find($id);
@@ -105,7 +106,7 @@ class TagManagement extends Component
     }
 
     //Method to reset input fields
-    public function resetTag():void
+    public function resetTag(): void
     {
 
         $this->reset('tags');

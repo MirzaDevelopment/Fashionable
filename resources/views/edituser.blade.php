@@ -4,7 +4,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-center">
                 <div class="p-6 text-gray-900">
-                    {{ __("Change credentials of existing user") }}
+                    {{ __("Promjenite podatke odabranog korisnika") }}
                 </div>
             </div>
         </div>
@@ -15,7 +15,7 @@
             @method('PUT')
             <!-- Name -->
             <div>
-                <x-input-label for="name" :value="__('Name')" />
+                <x-input-label for="name" :value="__('Ime')" />
                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" placeholder="{{$name}}" value="" autofocus autocomplete="name" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
             </div>
@@ -28,10 +28,10 @@
             </div>
             <div class="mt-4">
                 <!-- User role -->
-                <x-input-label for="role" :value="__('Role')" />
+                <x-input-label for="role" :value="__('Uloga')" />
                 <select name="role" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="role">
-                    <option disabled selected>Change user role</option>
-                    <option value="guest">Guest</option>
+                    <option disabled selected>Promjenite ulogu korisnika</option>
+                    <option value="guest">Gost</option>
                     <option value="admin">Admin</option>
                 </select>
             </div>
@@ -39,7 +39,7 @@
                 <a class="ms-4 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" href="{{ route('users') }}" wire:navigate>Back to users</a>
 
                 <x-primary-button class="ms-4">
-                    {{ __('Change') }}
+                    {{ __('Promjeni') }}
                 </x-primary-button>
             </div>
             <!-- Successfull user modify message -->

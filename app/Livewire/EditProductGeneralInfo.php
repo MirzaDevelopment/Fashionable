@@ -32,15 +32,14 @@ class EditProductGeneralInfo extends Component
 
 
 
-    public function mount(Request $request):void
+    public function mount(Request $request): void
     {
         //Mostly important to show the admin current product data
-        $this->newProduct = Product::with("sizesVariant","colorsVariant")->find($request->id);
+        $this->newProduct = Product::with("sizesVariant", "colorsVariant")->find($request->id);
         //Making it available through other livewire components
         session(['newProductModel' => $this->newProduct]);
         $this->productName = $this->newProduct->product_name;
         $this->productDescription = $this->newProduct->description;
-
     }
 
 
@@ -48,7 +47,7 @@ class EditProductGeneralInfo extends Component
     Validation
     */
 
-    protected function rules():array
+    protected function rules(): array
     {
 
         $rules = [
@@ -69,22 +68,21 @@ class EditProductGeneralInfo extends Component
     Custom messages for validation
     */
     protected $messages = [
-        //Product name validation messages
-        'productName.required' => 'Please provide a product name.',
-        'productName.string' => 'Product name must contain only letters.',
-        'productName.min' => 'Product name must contain at least three letters.',
-        'productName.regex' => 'Product name must contain only letters.',
-        //Product description validation messages
-        'productDescription.required' => 'Please provide a product description.',
-        'productDescription.string' => 'Product name must be valid string.',
-        'productDescription.min' => 'The product description must be at least 10 characters.',
-        'productDescription.max' => 'The product description must not exceed 1000 characters.',
+        'productName.required' => 'Molimo unesite naziv proizvoda.',
+        'productName.string' => 'Naziv proizvoda smije sadržavati samo slova.',
+        'productName.min' => 'Naziv proizvoda mora sadržavati najmanje tri slova.',
+        'productName.regex' => 'Naziv proizvoda smije sadržavati samo slova.',
+        // Product description validation messages
+        'productDescription.required' => 'Molimo unesite opis proizvoda.',
+        'productDescription.string' => 'Opis proizvoda mora biti ispravan tekst.',
+        'productDescription.min' => 'Opis proizvoda mora imati najmanje 10 karaktera.',
+        'productDescription.max' => 'Opis proizvoda ne smije prelaziti 1000 karaktera.',
 
 
     ];
 
     //Edit product general info
-    public function editProduct():?RedirectResponse
+    public function editProduct(): ?RedirectResponse
     {
 
         if ($this->isUploading) {
@@ -108,19 +106,19 @@ class EditProductGeneralInfo extends Component
 
             DB::commit();
             $this->isUploading = true;
-            return redirect()->back()->with("status", "Your product info updated successfully!");
+            return redirect()->back()->with("status", "Podaci o proizvodu su uspješno ažurirani!");
         } catch (\Exception $e) {
             DB::rollBack(); // Rollback the transaction on error
             $this->isUploading = false;
             Log::error('Error occurred: ' . $e->getMessage());
-            return redirect()->back()->with("errorException", "There was an issue updating the product info. Please try again.");
+            return redirect()->back()->with("errorException", "Nastao je problem prilikom ažuriranja podataka o proizvodu. Molimo pokušajte ponovo.");
         }
     }
 
 
 
     //Method to reset edit fields
-    public function resetGeneralInfo():void
+    public function resetGeneralInfo(): void
     {
 
         $this->reset([

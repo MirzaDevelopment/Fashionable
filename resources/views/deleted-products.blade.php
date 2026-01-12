@@ -4,7 +4,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-center">
                 <div class="text-lg p-6 text-gray-900">
-                    {{ __("Deleted products") }}
+                    {{ __("Obrisani proizvodi") }}
                 </div>
             </div>
         </div>

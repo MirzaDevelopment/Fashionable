@@ -98,7 +98,7 @@ public function editSizes():?RedirectResponse
         if($this->sizeDeSelect==$currentSizeArray && empty($this->sizeSelect)){
 
             
-        return session()->flash('emptySizes', 'Please select at least one size category.');
+        return session()->flash('emptySizes', 'Molimo odaberite barem jednu veličinu.');
         }
      Gate::authorize('create', Size::class);
     //Beginning transaction
@@ -124,7 +124,7 @@ public function editSizes():?RedirectResponse
             //Small check to make sure user actually changes something in size panel
         } else if ((count(array_intersect($this->sizeDeSelect, $currentSizeArray)) == 0)) {
 
-            return session()->flash('errorSizes', 'Sizes already present for selected product');
+            return session()->flash('errorSizes', 'Odabrane veličine su već prisutne za ovaj proizvod');
         }
 
         //Scenario two - admin deletes original categories (soft deletes)
@@ -141,12 +141,12 @@ public function editSizes():?RedirectResponse
         DB::commit();
         $this->isUploading = true;
 
-        return redirect()->back()->with("status", "You edited product sizes successfully!");
+        return redirect()->back()->with("status", "Veličine proizvoda su uspješno ažurirane.");
     } catch (\Exception $e) {
         DB::rollBack(); // Rollback the transaction on error
         $this->isUploading = false;
         Log::error('Error occurred: ' . $e->getMessage());
-        return redirect()->back()->with("errorException", "There was an issue editing the product sizes. Please try again.");
+        return redirect()->back()->with("errorException", "Nastala je greška prilikom ažuriranja veličine proizvoda. Molimo pokušajte kasnije.");
     }
 }
 

@@ -46,13 +46,13 @@ class EditProductImage extends Component
 
 
 
-    public function mount():void
+    public function mount(): void
     {
-        
+
         $this->newProduct = session("newProductModel");
         $this->activeImages = $this->newProduct->images()->get();
         $this->activeColors = $this->newProduct->colors()->get();
-    
+
 
         foreach ($this->activeImages as $key => $images) {
 
@@ -60,16 +60,12 @@ class EditProductImage extends Component
             $this->imageNames[] = $images->image_200x200;
             $this->colorNames[] = $this->activeColors[$key]->color;
             $this->hexCode[] = $this->activeColors[$key]->hex_code;
-           
         }
-
-        
-        
     }
 
 
     //Small funciton to retrieve data of selected image - current active image admin clicked on (required for final update)
-    public function selectImageName(string $parameter):void
+    public function selectImageName(string $parameter): void
     {
 
         $this->imageId = DB::table('category_images')
@@ -83,7 +79,7 @@ class EditProductImage extends Component
     Validation
     */
 
-    protected function rules():array
+    protected function rules(): array
     {
 
         $rules = [
@@ -102,17 +98,18 @@ class EditProductImage extends Component
     protected $messages = [
 
         //Product image upload validation messages
-        'productImage.*.required' => 'Product image is required.',
-        'productImage.*.image' => 'Wrong file uploaded! The uploaded file must be an image.',
-        'productImage.*.mimes' => 'Wrong image type uploaded! The image must be a file of type: jpeg, webp, png, jpg, gif, svg.',
-        'productImage.*.max' => 'Wrong file size! The image size must be less than 1MB.',
-        'productImage.*.dimensions' => 'Wrong file dimensions! The image dimensions must be between 300x300 and 1200x1200.',
+        'productImage.*.required' => 'Slika proizvoda je obavezna.',
+        'productImage.*.image' => 'Pogrešna datoteka! Učitana datoteka mora biti slika.',
+        'productImage.*.mimes' => 'Pogrešan tip slike! Slika mora biti u formatu: jpeg, webp, png, jpg, gif ili svg.',
+        'productImage.*.max' => 'Pogrešna veličina datoteke! Veličina slike mora biti manja od 1 MB.',
+        'productImage.*.dimensions' => 'Pogrešne dimenzije slike! Dimenzije slike moraju biti između 300x300 i 1200x1200.',
+
 
     ];
 
 
     //To prevent users to edit images if no new images are selected (toggle), also "live" validation is implemented here.
-    public function updatedProductimage():void
+    public function updatedProductimage(): void
     {
 
         $this->toggle = true;
@@ -123,7 +120,7 @@ class EditProductImage extends Component
    Image edit function
     */
 
-    public function editImage():?RedirectResponse
+    public function editImage(): ?RedirectResponse
     {
         /*
         Preparations
@@ -133,7 +130,7 @@ class EditProductImage extends Component
         }
         if ($this->toggle == false) {
 
-            return session()->flash('emptyImages', 'Please select new images first.');
+            return session()->flash('emptyImages', 'Molimo odaberite nove slike proizvoda prvo');
         }
         Gate::authorize('create', Image::class);
         $this->validate();
@@ -161,8 +158,8 @@ class EditProductImage extends Component
                 $image_400x400->save(storage_path("app/public/images/400x400/{$hashedWebPName}"));
                 $image_800x800->save(storage_path("app/public/images/800x800/{$hashedWebPName}"));
                 $image_1200x1200->save(storage_path("app/public/images/1200x1200/{$hashedWebPName}"));
-                
-                $obsoleteImageOnDisk=Image::find($this->oldImage->id);
+
+                $obsoleteImageOnDisk = Image::find($this->oldImage->id);
                 if (Storage::disk('public')->exists($obsoleteImageOnDisk->image_200x200)) {
                     if (!str_contains($obsoleteImageOnDisk->image_path, 'default')) {
                         Storage::disk('public')->delete($obsoleteImageOnDisk->image_path);
@@ -177,7 +174,7 @@ class EditProductImage extends Component
                         Storage::disk('public')->delete($obsoleteImageOnDisk->image_1200x1200);
                     }
                 }
-                     
+
                 //Finally saving the path to database
                 $this->oldImage->update([
                     'image_path' => $realPath, //Default image size
@@ -191,13 +188,13 @@ class EditProductImage extends Component
 
             DB::commit();
             $this->isUploading = true;
-            return redirect()->back()->with("status", "Your product image changed successfully!");
+            return redirect()->back()->with("status", "Slika proizvoda je ažurirana uspješno!");
         } catch (\Exception $e) {
 
             DB::rollBack(); // Rollback the transaction on error
             $this->isUploading = false;
             Log::error('Error occurred: ' . $e->getMessage());
-            return redirect()->back()->with("errorException", "There was an issue changing the product image. Please try again.");
+            return redirect()->back()->with("errorException", "Nastao je problem prilikom ažuriranja slike proizvoda. Molimo pokušajte kasnije.");
         }
     }
 

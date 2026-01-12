@@ -8,6 +8,7 @@ This is a backend livewire component mostly used to edit product prices and disc
 - Main price edit method wrapped in transaction. 
 - Method to reset input fields.
 */
+
 namespace App\Livewire;
 
 use Livewire\Attributes\Validate;
@@ -30,12 +31,12 @@ class EditProductPrice extends Component
     #[Validate]
     public ?float $productDiscount;
     #[Validate]
-    public ?string $startDate=null;
+    public ?string $startDate = null;
     #[Validate]
-    public  ?string $endDate=null;
+    public  ?string $endDate = null;
 
 
-    public function mount(Request $request):void
+    public function mount(Request $request): void
     {
         //Mostly important to show the admin current product data
 
@@ -45,13 +46,12 @@ class EditProductPrice extends Component
         $this->productDiscount = $this->newPrice->discount;
         $this->startDate = $this->newPrice->start_date;
         $this->endDate = $this->newPrice->end_date;
-
     }
 
-       /*
+    /*
     Validation
     */
-    protected function rules():array
+    protected function rules(): array
     {
 
         $rules = [
@@ -74,87 +74,88 @@ class EditProductPrice extends Component
     */
     protected $messages = [
         //Product name validation messages
-       
-        //Product Price validation messages
-        'productPrice.required' => 'Starting product price is required.',
-        'productPrice.numeric' => 'Product price must be a number.',
-        'productPrice.regex' => 'The price must be a valid number with two decimal places (e.g., 25.45, 100.00).',
-        'product_price.gt' => 'The price must be greater than 0.',
-        //Product discount validation messages
-        'productDiscount.numeric' => 'The discount must be a valid number.',
-        'productDiscount.between' => 'The discount percentage must be between 0 and 100.',
-        'productDiscount.regex' => 'The discount must be a valid number with up to two decimal places.',
-        //Discount start and end date validation messages
-        'startDate' => 'The provided discount start date is not valid.',
-        'endDate' => 'The provided discount end date is not valid.',
+
+        // Product Price validation messages
+        'productPrice.required' => 'Početna cijena proizvoda je obavezna.',
+        'productPrice.numeric' => 'Cijena proizvoda mora biti broj.',
+        'productPrice.regex' => 'Cijena mora biti ispravan broj sa dvije decimale (npr. 25.45, 100.00).',
+        'product_price.gt' => 'Cijena mora biti veća od 0.',
+        // Product discount validation messages
+        'productDiscount.numeric' => 'Popust mora biti ispravan broj.',
+        'productDiscount.between' => 'Procenat popusta mora biti između 0 i 100.',
+        'productDiscount.regex' => 'Popust mora biti ispravan broj sa najviše dvije decimale.',
+        // Discount start and end date validation messages
+        'startDate' => 'Uneseni datum početka popusta nije ispravan.',
+        'endDate' => 'Uneseni datum završetka popusta nije ispravan.',
+
 
     ];
 
 
 
     //Unsetting date if discount changed
-    public function updatedproductDiscount():void
+    public function updatedproductDiscount(): void
     {
         unset($this->endDate);
         unset($this->startDate);
     }
 
-//Edit product price and discount
-public function editPrice():?RedirectResponse
-{
+    //Edit product price and discount
+    public function editPrice(): ?RedirectResponse
+    {
 
-    if ($this->isUploading) {
-        return null; // Prevent further submissions if already uploading
+        if ($this->isUploading) {
+            return null; // Prevent further submissions if already uploading
+        }
+
+        Gate::authorize('create', Price::class);
+        $priceArray = ["productPrice", "productDiscount", "startDate", "endDate"];
+        foreach ($priceArray as $validate) {
+            $this->validateOnly($validate);
+        }
+        //Making sure both discount and dates are selected
+        if (!(empty($this->productDiscount)) && empty($this->startDate) && empty($this->endDate)) {
+
+            return session()->flash('errorDates', 'Molimo odaberite početni i kranji datum trajanja vašeg popusta.');
+        }
+        DB::beginTransaction();
+
+        if (empty($this->productDiscount)) {
+            $this->productDiscount = null;
+        }
+
+        try {
+            $this->newPrice->create([
+                'product_id' => $this->newProduct->id,
+                'price' => $this->productPrice,
+                'discount' => $this->productDiscount = empty($this->productDiscount) ? null : $this->productDiscount,
+                'start_date' => $this->startDate,
+                'end_date' => $this->endDate,
+
+            ]);
+            //Soft deleting previous price
+            Price::destroy($this->newPrice->id);
+
+
+            DB::commit();
+            $this->isUploading = true;
+            return redirect()->back()->with("status", "Informacije o cijenu su uspješno ažurirane.");
+        } catch (\Exception $e) {
+            DB::rollBack(); // Rollback the transaction on error
+            $this->isUploading = false;
+            Log::error('Error occurred: ' . $e->getMessage());
+            return redirect()->back()->with("errorException", "Nastao je problem prilikom ažuriranja podataka o cijeni. Molimo pokušajte ponovo.");
+        }
     }
-
-     Gate::authorize('create', Price::class);
-    $priceArray = ["productPrice", "productDiscount", "startDate", "endDate"];
-    foreach ($priceArray as $validate) {
-        $this->validateOnly($validate);
-    }
-    //Making sure both discount and dates are selected
-    if (!(empty($this->productDiscount)) && empty($this->startDate) && empty($this->endDate)) {
-
-        return session()->flash('errorDates', 'Please select start and end date for your discount!');
-    }
-    DB::beginTransaction();
-
-    if (empty($this->productDiscount)) {
-        $this->productDiscount = null;
-    } 
-
-    try {
-        $this->newPrice->create([
-            'product_id' => $this->newProduct->id,
-            'price' => $this->productPrice,
-            'discount' => $this->productDiscount = empty($this->productDiscount) ? null : $this->productDiscount,
-            'start_date' => $this->startDate,
-            'end_date' => $this->endDate,
-
-        ]);
-        //Soft deleting previous price
-        Price::destroy($this->newPrice->id);
-
-
-        DB::commit();
-        $this->isUploading = true;
-        return redirect()->back()->with("status", "Your price info updated successfully!");
-    } catch (\Exception $e) {
-        DB::rollBack(); // Rollback the transaction on error
-        $this->isUploading = false;
-        Log::error('Error occurred: ' . $e->getMessage());
-        return redirect()->back()->with("errorException", "There was an issue updating the price info. Please try again.");
-    }
-}
 
 
     //Method to reset edit fields
-    public function resetPrice():void
+    public function resetPrice(): void
     {
 
         $this->reset([
             'productPrice', 'productDiscount',
-            'startDate', 'endDate', 
+            'startDate', 'endDate',
         ]);
         $this->isUploading = false;
     }
