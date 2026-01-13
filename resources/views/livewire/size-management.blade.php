@@ -1,7 +1,7 @@
 <div class="flex flex-col items-center" x-data="{ open: false }"><!-- Livewire frontend component for size management - delete and insert -->
     <!-- Button to toggle categories -->
     <button class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800 p-2 text-gray-900 mb-6" x-on:click="open = ! open" x-data="{ red: false }" x-bind:class="red ? ' bg-gray-900 text-white' : ''" @click="red = ! red">
-        Size type
+        Veličine
     </button>
     <div class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 p-4" x-show="open" x-transition>
         <!-- Category representation icon -->
@@ -27,7 +27,7 @@
                     <path d="M256 512A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM232 344l0-64-64 0c-13.3 0-24-10.7-24-24s10.7-24 24-24l64 0 0-64c0-13.3 10.7-24 24-24s24 10.7 24 24l0 64 64 0c13.3 0 24 10.7 24 24s-10.7 24-24 24l-64 0 0 64c0 13.3-10.7 24-24 24s-24-10.7-24-24z" />
                 </svg></button>
             <x-primary-button wire:click="insertSize" class="mt-2">
-                {{ __('Insert') }}
+                {{ __('Ubaci') }}
             </x-primary-button>
 
         </div>
@@ -39,7 +39,7 @@
             </div>
             <!-- Resetting input -->
             <x-primary-button wire:click="resetSize" class="mt-2">
-                {{ __('Clear') }}
+                {{ __('Očisti') }}
             </x-primary-button>
             <!-- Failed insert message -->
             @elseif(session('errorException'))
@@ -48,11 +48,11 @@
             </div>
             <!-- Resetting input -->
             <x-primary-button wire:click="resetSize" class="mt-2">
-                {{ __('Clear') }}
+                {{ __('Očisti') }}
             </x-primary-button>
             @endif
             @isset($sizesAll)
-            <h3 class="mt-6">Size types currently in database:</h3>
+            <h3 class="mt-6">Trenutno zastupljene veličine:</h3>
             <!-- Showing size categories -->
             <div class="mt-6 grid grid-cols-4 gap-3 gap-x-0 justify-items-center">
                 @foreach ($sizesAll as $name)

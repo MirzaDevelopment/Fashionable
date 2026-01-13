@@ -1,8 +1,8 @@
 <div id="special-prices" class="p-[0.5rem] bg-gray-100  mt-[3rem] z-[10]"><!--Livewire frontend component for showing discounted products on commerce page-->
   <div class="bg-gray-800 text-white py-6 px-8 rounded-lg shadow-lg max-w-6xl mx-auto">
-    <h2 class="text-4xl lg:text-5xl font-extrabold text-center mb-4">Special Prices</h2>
+    <h2 class="text-4xl lg:text-5xl font-extrabold text-center mb-4">Akcijske cijene</h2>
     <p class="text-center text-xl max-w-lg lg:text-2xl mx-auto mb-6">
-      Enjoy exclusive offers on top-rated products. Hurry, limited-time deals!
+      Uživajte u ekskluzivnim ponudama na najbolje ocijenjenim proizvodima. Požurite, ponude su vremenski ograničene!
     </p>
   </div>
   <section class="grid grid-rows-1  relative bg-gray-100 relative justify-center items-center">
@@ -25,7 +25,7 @@
             </div>
             @endforeach
           </span>
-          <span class="text-gray-900 font-bold text-[1.2rem] lg:text-[calc(1rem+1vw)] xl:text-[1.6rem] 2xl:text-[2rem]  md:text-[1.5rem]">Made from:
+          <span class="text-gray-900 font-bold text-[1.2rem] lg:text-[calc(1rem+1vw)] xl:text-[1.6rem] 2xl:text-[2rem]  md:text-[1.5rem]">Napravljeno od:
             @foreach ($product->materials as $key=> $materials)
             @if($key==0)
             {{ $materials->material}}
@@ -36,12 +36,12 @@
             @endif
             @endforeach
           </span>
-          <span class="text-gray-900 text-[1.2rem] md:text-[1.5rem] font-bold lg:text-[calc(1rem+1vw)] 2xl:text-[2rem]  xl:text-[1.6rem]">Gender:
+          <span class="text-gray-900 text-[1.2rem] md:text-[1.5rem] font-bold lg:text-[calc(1rem+1vw)] 2xl:text-[2rem]  xl:text-[1.6rem]">Spol:
             @foreach($product->genders as $gender)
             {{$gender->gender}}
             @endforeach
           </span>
-          <span class="text-gray-900 text-[1.2rem] md:text-[1.5rem] font-bold lg:text-[calc(1rem+1vw)] xl:text-[1.6rem] 2xl:text-[2rem]">Sizes:
+          <span class="text-gray-900 text-[1.2rem] md:text-[1.5rem] font-bold lg:text-[calc(1rem+1vw)] xl:text-[1.6rem] 2xl:text-[2rem]">Veličine:
             @php
             $uniqueSizes=collect($product->sizesVariant)->unique('size')
             @endphp
@@ -50,10 +50,10 @@
             @endforeach
           </span>
           @if(isset($product->discount) && !empty($product->discount))
-          <span class="lg:text-[calc(1rem+1vw)] text-[1.2rem] md:text-[1.5rem] text-[#9E1B32] xl:text-[1.6rem] 2xl:text-[2rem]"> Current Discount: - {{$product->discount}} %</span>
+          <span class="lg:text-[calc(1rem+1vw)] text-[1.2rem] md:text-[1.5rem] text-[#9E1B32] xl:text-[1.6rem] 2xl:text-[2rem]"> Trenutni popust: - {{$product->discount}} %</span>
           <hr class="border-t-1 self-center row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[20%] col-span-1">
-          <span class="text-[1.2rem] md:text-[1.5rem] lg:text-[calc(1.5rem+1vw)] xl:text-[2rem] 2xl:text-[2.5rem] inline-flex items-center border border-amber-300 text-amber-700 font-medium px-3 py-1 rounded-full bg-amber-50 w-fit self-center">Price: {{number_format ($product->price-($product->price*($product->discount/100)), 2,'.',' ')}} $</span>
-          <p class="line-through mt-[1rem] md:text-[1.2rem] xl:text-[1.5rem] lg:text-[calc(1rem+1vw)] 2xl:text-[1.8rem]">From: {{number_format($product->price, 2, '.', ' ')}} $</p>
+          <span class="text-[1.2rem] md:text-[1.5rem] lg:text-[calc(1.5rem+1vw)] xl:text-[2rem] 2xl:text-[2.5rem] inline-flex items-center border border-amber-300 text-amber-700 font-medium px-3 py-1 rounded-full bg-amber-50 w-fit self-center">Cijena: {{number_format ($product->price-($product->price*($product->discount/100)), 2,'.',' ')}} $</span>
+          <p class="line-through mt-[1rem] md:text-[1.2rem] xl:text-[1.5rem] lg:text-[calc(1rem+1vw)] 2xl:text-[1.8rem]">Stara cijena: {{number_format($product->price, 2, '.', ' ')}} $</p>
           @endif
 
           <hr class="border-t-1 row-start-1 col-span-2 lg:mt-4 2xl:mt-8 border-gray-800 w-[100%] col-span-1">
@@ -62,7 +62,7 @@
       </div>
       @endforeach
       @else
-      <span class="text-xl bg-red-100 text-gray-800 lg:text-2xl rounded-xl shadow-lg p-[3rem]">Our special offers have ended for now. Keep an eye out — new deals will be announced soon!</span>
+      <span class="text-xl bg-red-100 text-gray-800 lg:text-2xl rounded-xl shadow-lg p-[3rem]">Naše posebne ponude su trenutno završene. Pratite nas — uskoro najavljujemo nove!</span>
       @endif
     </div>
     <button class="nav-btn nav-right lg:text-[2rem] text-white bg-gray-800">&#10095;</button>
