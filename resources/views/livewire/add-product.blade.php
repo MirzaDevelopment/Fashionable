@@ -60,9 +60,9 @@
             </section>
             <!--Select product categories section-->
             <section class="p-6 mt-10 max-h-[845px] sm:col-span-2 lg2:col-span-1 bg-white sm:grid-cols-subgrid gap-4  border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col gap-6">
-                <h2 class="text-xl">3. Kategorije proizvoda i tagovi</h2>
+                <h2 class="text-xl">3. Kategorije proizvoda i oznake</h2>
                 <hr>
-                <p class="font-medium">Odaberite kategorije i tagove za vaš proizvod.</p>
+                <p class="font-medium">Odaberite kategorije i oznake za vaš proizvod.</p>
                 <div class="overflow-scroll lg2:overflow-auto sm:grid grid-cols-2 gap-6 w-full bg-white overflow-hidden">
                     <!--Livewire components for material, heel, color, gender, tags, size and product type-->
                     <div @if ($errors->has('materialSelect')) class="p-2 border border-[#D32F2F]" @endif class="mb-10">
@@ -134,7 +134,7 @@
                     <!--Input fields for colors-->
                     @isset($colorSelect)
                     @foreach ($colorSelect as $index => $color)
-                    <p class="font-bold"> Upload your {{$color}} {{ implode(', ', $typeSelect) }} image </p>
+                    <p class="font-bold"> Umetnite vašu {{$color}} {{ implode(', ', $typeSelect) }} image </p>
                     <div x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true" x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-cancel="uploading = false" x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                         <input wire:model="productImage.{{ $index }}" wire:key="{{$index}}" @if ($errors->has
                         ('productImage.'.$index)) class="w-full text-gray-500 font-medium text-base bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2.5 file:px-4 file:mr-4 file:bg-gray-800 file:hover:bg-gray-700 file:text-white rounded border border-[#D32F2F] w-4/5 sm:w-fit 2xl:w-4/5" @endif class="w-full text-gray-500 font-medium text-base bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2.5 file:px-4 file:mr-4 file:bg-gray-800 file:hover:bg-gray-700 file:text-white rounded" accept="image/jpeg, image/png, image/webp" type="file" id="productImage"></input>
@@ -218,7 +218,7 @@
                     <div class="lg2:grid xl:grid lg2:p-[5rem] xl:p-[5rem] row-start-1 gap-6 mt-8">
                         @if(!empty($colorRender))
                         <div class="row-span-1 justify-center items-center flex">
-                            Available in:
+                            Dostupno u:
                             @foreach ($colorRender as $index => $bgColor)
                             <div wire:model="colorRender.{{ $index }}" class="m-1 border-2" wire:key="{{$index}}" style="width: 25px; height: 25px; background-color:{{$bgColor}}; border-radius: 50%;"></div>
                             @endforeach
@@ -251,16 +251,16 @@
                             <p>{{ implode(', ', $genderSelect) }}</p>
                             @endif
                             @if(!empty($heelSelect))
-                            <p>Heel type: {{ implode(', ', $heelSelect) }}</p>
+                            <p>Vrsta štikle: {{ implode(', ', $heelSelect) }}</p>
                             @endif
                             @if(!empty($materialSelect))
-                            <p>Made from: {{ implode(', ', $materialSelect) }}</p>
+                            <p>Napravljen od: {{ implode(', ', $materialSelect) }}</p>
                             @endif
                             @if(!empty($sizeSelect))
                             <p class="p-[1rem] text-lg text-gray-900">Dostupne veličine: {{ implode(', ', $sizeSelect) }}</p>
                             @endif
                             @if(!empty($typeSelect))
-                            <p>Type: {{ implode(', ', $typeSelect) }}</p>
+                            <p>Vrsta: {{ implode(', ', $typeSelect) }}</p>
                             @endif
                             <hr class="mt-2 mb-2">
                             @if(isset($productPrice) && isset($startDate) && !empty($productDiscount))
@@ -270,7 +270,7 @@
                             @if(!empty($tagSelect))
                             <p class="mb-4 flex items-center justify-center"> <svg xmlns="http://www.w3.org/2000/svg" id="Layer_1" data-name="Layer 1" viewBox="0 0 24 24" width="25" height="25">
                                     <path d="M21.526,8.284L13.937,.879C13.278,.219,12.33-.104,11.409,.028L4.521,.97c-.547,.075-.93,.579-.855,1.126,.075,.547,.578,.929,1.127,.855l6.889-.942c.306-.042,.622,.063,.851,.292l7.59,7.405c1.045,1.045,1.147,2.68,.323,3.847-.234-.467-.523-.912-.911-1.3l-7.475-7.412c-.658-.658-1.597-.975-2.528-.851l-6.889,.942c-.454,.062-.808,.425-.858,.881l-.765,6.916c-.1,.911,.214,1.804,.864,2.453l7.416,7.353c.944,.945,2.199,1.464,3.534,1.464h.017c1.342-.004,2.6-.532,3.543-1.487l3.167-3.208c.927-.939,1.393-2.159,1.423-3.388l.577-.576c1.925-1.95,1.914-5.112-.032-7.057Zm-15.526,1.716c-.552,0-1-.448-1-1,.006-1.308,1.994-1.307,2,0,0,.552-.448,1-1,1Z" />
-                                </svg> Tagovi:</p>
+                                </svg> Oznake:</p>
                             <div class="flex flex-wrap gap-y-2 gap-x-2 justify-center">
                                 @foreach ($tagSelect as $tagSelect)
                                 <span class="bg-gray-900 text-[#FFFFFF] p-[0.5rem] rounded-lg">{{ $tagSelect }}</span>

@@ -10,14 +10,14 @@
         </div>
         <table class="table-auto md:table-fixed border-collapse border border-slate-400 mb-1  sm:rounded-lg text-center">
             <tr class="bg-slate-100">
-                <th class="border border-slate-300 p-[1rem]">Slike proizvoda</th>
-                <th style="cursor: pointer" wire:click="sortProduct('product_name')" class="border border-slate-300 p-[1rem]">Naziv proizvoda</th>
+                <th class="border border-slate-300 p-[1rem]">Slike</th>
+                <th style="cursor: pointer" wire:click="sortProduct('product_name')" class="border border-slate-300 p-[1rem]">Naziv</th>
                 <th class="border border-slate-300 p-[1rem] min-w-[500px]">Opis proizvoda</th>
                 <th style="cursor: pointer" wire:click="sortProduct('price')" class="border border-slate-300 p-[1rem]">Cijena</th>
                 <th style="cursor: pointer" wire:click="sortProduct('discount')" class="border border-slate-300 p-[1rem]">Popust</th>
                 <th style="cursor: pointer" wire:click="sortProduct('end_date')" class="border border-slate-300 p-[1rem]">Stanje popusta</th>
                 <th style="cursor: pointer" wire:click="sortProduct('total_stock')" class="border border-slate-300 p-[1rem]">Ukupan broj artikala</th>
-                <th style="cursor: pointer" wire:click="sortProduct('type_name')" class="border border-slate-300">Vrsta proizvoda</th>
+                <th style="cursor: pointer" wire:click="sortProduct('type_name')" class="border border-slate-300">Vrsta</th>
                 <th style="cursor: pointer" wire:click="sortProduct('products.created_at')" class="border border-slate-300 p-[1rem]">Kreiran</th>
                 <th colspan="2" class="border border-slate-300 p-[1rem]">Akcija</th>
             </tr>

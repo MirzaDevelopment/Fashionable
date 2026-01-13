@@ -6,21 +6,21 @@
             <div class="relative -top-10">
                 @if($count>=2)
                 <!--Showing number of selected items-->
-                <div class="text-[#ed143d] absolute w-fit p-2">Selected: {{$count}}</div>
+                <div class="text-[#ed143d] absolute w-fit p-2">Odabrano: {{$count}}</div>
                 @endif
             </div>
             <table class="table-auto md:table-fixed border-collapse border border-slate-400 mb-1  sm:rounded-lg text-center">
                 <tr class="bg-slate-100">
-                    <th class="border border-slate-300 p-[1rem]">Product images</th>
-                    <th style="cursor: pointer" wire:click="sortProduct('product_name')" class="border border-slate-300 p-[1rem]">Product name</th>
-                    <th class="border border-slate-300 p-[1rem] min-w-[500px]">Product description</th>
+                    <th class="border border-slate-300 p-[1rem]">Slike proizvoda</th>
+                    <th style="cursor: pointer" wire:click="sortProduct('product_name')" class="border border-slate-300 p-[1rem]">Naziv</th>
+                    <th class="border border-slate-300 p-[1rem] min-w-[500px]">Opis</th>
                     <th style="cursor: pointer" wire:click="sortProduct('price')" class="border border-slate-300 p-[1rem]">Price</th>
-                    <th style="cursor: pointer" wire:click="sortProduct('discount')" class="border border-slate-300 p-[1rem]">Discount</th>
-                    <th style="cursor: pointer" wire:click="sortProduct('end_date')" class="border border-slate-300 p-[1rem]">Discount status</th>
-                    <th style="cursor: pointer" wire:click="sortProduct('stock')" class="border border-slate-300 p-[1rem]">Stock</th>
-                    <th style="cursor: pointer" wire:click="sortProduct('type_name')" class="border border-slate-300">Type</th>
-                    <th style="cursor: pointer" wire:click="sortProduct('products.created_at')" class="border border-slate-300 p-[1rem]">Deleted at</th>
-                    <th colspan="2" class="border border-slate-300 p-[1rem]">Action</th>
+                    <th style="cursor: pointer" wire:click="sortProduct('discount')" class="border border-slate-300 p-[1rem]">Popust</th>
+                    <th style="cursor: pointer" wire:click="sortProduct('end_date')" class="border border-slate-300 p-[1rem]">Status popusta</th>
+                    <th style="cursor: pointer" wire:click="sortProduct('stock')" class="border border-slate-300 p-[1rem]">Količina</th>
+                    <th style="cursor: pointer" wire:click="sortProduct('type_name')" class="border border-slate-300">Vrsta</th>
+                    <th style="cursor: pointer" wire:click="sortProduct('products.created_at')" class="border border-slate-300 p-[1rem]">Obrisano</th>
+                    <th colspan="2" class="border border-slate-300 p-[1rem]">Akcija</th>
                 </tr>
                 @isset($products)
                 @foreach ($products as $product)
@@ -35,7 +35,7 @@
                     <td class="p-3 border border-slate-300">{{ $product->total_stock }}</td>
                     <td class="p-3 border border-slate-300">{{ $product->type->type_name }}</td>
                     <td class="p-3 min-w-[150px] border border-slate-300">{{date('d-m-Y', strtotime($product->deleted_at))}}</td>
-                    <td class="{{ in_array($product->id, $checkBox) ? 'p-3 sm:p-6 border border-slate-300 bg-red-600 text-white ': 'p-3 sm:p-6 border border-slate-300'}}"><button wire:click="restoreProduct" class="bg-red-700 text-white font-medium px-5 py-2.5 rounded-lg shadow-sm hover:bg-red-800 transition-colors duration-200 disabled:opacity-5 disabled:opacity-25" wire:confirm="Are you sure you want to restore selected product/s?" wire:offline.attr="disabled" type="submit" @if(!in_array($product->id, $checkBox)) disabled @endif>Restore</button></td> <!--Disabled if offline-->
+                    <td class="{{ in_array($product->id, $checkBox) ? 'p-3 sm:p-6 border border-slate-300 bg-red-600 text-white ': 'p-3 sm:p-6 border border-slate-300'}}"><button wire:click="restoreProduct" class="bg-red-700 text-white font-medium px-5 py-2.5 rounded-lg shadow-sm hover:bg-red-800 transition-colors duration-200 disabled:opacity-5 disabled:opacity-25" wire:confirm="Are you sure you want to restore selected product/s?" wire:offline.attr="disabled" type="submit" @if(!in_array($product->id, $checkBox)) disabled @endif>Vrati</button></td> <!--Disabled if offline-->
                 </tr>
                 </input>
                 @endforeach
@@ -44,9 +44,9 @@
             <!--Clear selected back and pagination links-->
             {{ $products->links() }}
             <div class="shadow-sm sm:rounded-lg border-transparent w-fit p-2 mb-4 mt-4 hover:bg-slate-100">
-                <button wire:click="clearCheckbox">Clear selected</button>
+                <button wire:click="clearCheckbox">Očisti odabrano</button>
             </div>
-            <a class="ms-4 mb-6 md:mb-0 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 w-fit" href="{{ route('dashboard') }}" wire:navigate>Back</a>
+            <a class="ms-4 mb-6 md:mb-0 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 w-fit" href="{{ route('dashboard') }}" wire:navigate>Natrag</a>
         </section>
         <!--Rendering message if no products are found-->
         @if(count($products)==0)

@@ -16,8 +16,8 @@
                 <hr>
                 </hr>
 
-                <p>Color: {{$color[$key]->color}}</p><input type="color" value="{{$color[$key]->hex_code}}" disabled></input>
-                <p>Current quantity:</p>
+                <p>Boja: {{$color[$key]->color}}</p><input type="color" value="{{$color[$key]->hex_code}}" disabled></input>
+                <p>Trenutna količina:</p>
                 <div @if ($errors->has('productStocks.' . $key)) class="p-2 border border-[#D32F2F]" @endif class="mb-10">
                     <input @if(($variantStocks[$key]->stock_quantity)<=\App\Livewire\AddProductStock::minQuantity && $this->toggle==false)class="bg-[#f8d7da] text-[#721c24]" @endif wire:key="{{ $key }}" wire:model="productStocks.{{$key}}" id="productStock" type="number" min="0" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" placeholder="{{$variantStocks[$key]->stock_quantity}}">
                 </div>
@@ -37,11 +37,11 @@
 
         <section class="mt-10 flex gap-4" x-data="{open:true}">
             <!-- Back button with backend method to transfer correct url parameter to last page (backToProduct) -->
-            <a wire:click="backToProduct" class="col-start-1 min-w-[206.15px] cursor-pointer lg:col-span-2 lg2:col-start-1 lg2:col-span-1 justify-center inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" wire:navigate>Return</a>
+            <a wire:click="backToProduct" class="col-start-1 min-w-[206.15px] cursor-pointer lg:col-span-2 lg2:col-start-1 lg2:col-span-1 justify-center inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" wire:navigate>Natrag</a>
 
             <x-primary-button wire:click="updateStock" wire:offline.attr="disabled" @click="open = ! open" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="justify-center col-start-2 lg2:col-start-4">
 
-                {{ __('Update product stock') }}
+                {{ __('Ažuriraj') }}
 
             </x-primary-button>
 

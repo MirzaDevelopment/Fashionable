@@ -1,10 +1,10 @@
 <div>
     {!! RecaptchaV3::initJs() !!}
     <div class="p-4 w-[300px] mx-auto  bg-white shadow-lg max-w-[300px]">
-        <h2 class="text-3xl text-slate-900 font-bold">How can we help?</h2>
+        <h2 class="text-3xl text-slate-900 font-bold">Kako Vam možemo pomoći?</h2>
         <form class="mt-8 space-y-5">
             <div>
-                <label class='text-sm text-slate-900 font-medium mb-2 block'>Name</label>
+                <label class='text-sm text-slate-900 font-medium mb-2 block'>Ime</label>
                 <input wire:model="userName" type='text' placeholder='Enter Name' class="w-full py-2.5 px-4 text-slate-800 bg-gray-100 border border-gray-200 focus:border-slate-900 focus:bg-transparent text-sm outline-0 transition-all" />
             </div>
             @error('userName')
@@ -21,7 +21,7 @@
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
             @enderror
             <div>
-                <label class='text-sm text-slate-900 font-medium mb-2 block'>Message</label>
+                <label class='text-sm text-slate-900 font-medium mb-2 block'>Poruka</label>
                 <textarea wire:model="question" placeholder='Enter Message' rows="6" class="w-full px-4 text-slate-800 bg-gray-100 border border-gray-200 focus:border-slate-900 focus:bg-transparent text-sm pt-3 outline-0 transition-all"></textarea>
 
             </div>
@@ -30,7 +30,7 @@
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
             @enderror
             {!! RecaptchaV3::field('register') !!}
-            <button type='button' wire:click="uploadQuestion" class="text-white bg-slate-900 font-medium hover:bg-slate-800 tracking-wide text-sm px-4 py-2.5 w-full border-0 outline-0 cursor-pointer">Send message</button>
+            <button type='button' wire:click="uploadQuestion" class="text-white bg-slate-900 font-medium hover:bg-slate-800 tracking-wide text-sm px-4 py-2.5 w-full border-0 outline-0 cursor-pointer">Pošalji</button>
 
         </form>
         @if (session('status'))
