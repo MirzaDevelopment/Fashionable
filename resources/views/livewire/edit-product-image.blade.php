@@ -4,7 +4,7 @@
         Slike proizvoda
     </button>
     <div class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 p-4" x-show="open" x-transition>
-        <h3 class="mt-6">Promjeni slike proizvoda:</h3>
+        <h3 class="mt-6">Promijeni slike proizvoda:</h3>
         <!-- Showing image categories -->
         <div  class="mt-6 grid grid-cols-1 gap-2 gap-x-10 justify-items-center">
             @foreach ($imageNames as $index => $name)

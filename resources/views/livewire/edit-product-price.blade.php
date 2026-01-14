@@ -43,7 +43,7 @@
             @endif
             <x-primary-button wire:click="editPrice" wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="lg:col-span-2 justify-center col-start-2 lg2:col-start-4">
 
-                {{ __('Promjeni cijenu i popust') }}
+                {{ __('Promijeni cijenu i popust') }}
             </x-primary-button>
             <!-- Resetting input -->
             <x-primary-button wire:click="resetPrice" class="justify-center mt-2 xl:col-span-1 lg2:col-span-1 lg2:col-start-4">

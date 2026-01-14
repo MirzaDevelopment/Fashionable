@@ -19,7 +19,7 @@
             <!-- Edit product general info -->
             <x-primary-button wire:click="editProduct" wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="lg:col-span-2 justify-center col-start-2 lg2:col-start-4">
 
-                {{ __('Promjeni opšte podatke') }}
+                {{ __('Promijeni opšte podatke') }}
 
             </x-primary-button>
             <!-- Resetting input -->

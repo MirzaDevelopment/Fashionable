@@ -52,7 +52,7 @@ class EditProductGeneralInfo extends Component
 
         $rules = [
             //Product name validation
-            'productName' => "required|min:3|string|regex:/^[A-Za-z\s']+( [A-Za-z\s']+)?$/",
+            'productName' => "required|min:3|string|regex:/^[\p{L}\s']+( [\p{L}\s']+)?$/u",
             //Product description validation
             'productDescription' => 'required|string|min:10|max:1000',
 

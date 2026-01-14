@@ -10,7 +10,7 @@
         </svg>
         @isset($typesAll)
 
-        <h3 class="mt-6">Promjeni vrstu proizvoda:</h3>
+        <h3 class="mt-6">Promijeni vrstu proizvoda:</h3>
         <!-- Showing type categories -->
         <div class="mt-6 grid grid-cols-2 gap-2 gap-x-10 justify-items-center">
             @foreach ($typesAll as $index => $name)

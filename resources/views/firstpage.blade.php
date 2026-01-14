@@ -39,7 +39,7 @@
                 <img class="col-span-1 shadow-[0_8px_30px_rgba(0,0,0,0.12)] row-start-2 brightness-[70%] w-full  h-auto" loading="lazy" src="{{ asset('storage/images/200x200/shop_female_200x300.webp') }}" width=200 height=300 alt="women_models">
             </picture>
             <!--Navigation towards discounted items-->
-            <span class="absolute text-[calc(5rem+4vw)] sm:text-[5rem] md:text-[calc(6rem+2vw)] lg:text-[calc(8rem+2vw)] xl:text-[calc(10rem+1vw)] 2xl:text-[12rem] lg2:text-[15rem] text-white"><a href="/shop#special-prices">Odlične cijene</a></span>
+            <span class="absolute text-[calc(5rem+4vw)] sm:text-[5rem] md:text-[calc(6rem+2vw)] lg:text-[calc(8rem+2vw)] xl:text-[calc(10rem+1vw)] 2xl:text-[12rem] lg2:text-[15rem] text-white"><a href="/shop#special-prices">Akcijske cijene</a></span>
         </div>
     </div>
     <!--Show all paginated products-->

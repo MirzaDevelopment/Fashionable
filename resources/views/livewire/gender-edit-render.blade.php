@@ -10,7 +10,7 @@
         </svg>
         @isset($gendersAll)
 
-        <h3 class="mt-6">Promjeni spolove kod proizvoda:</h3>
+        <h3 class="mt-6">Promijeni spolove kod proizvoda:</h3>
         <!-- Showing gender categories -->
         <div class="mt-6 grid grid-cols-2 gap-2 gap-x-10 justify-items-center">
             @foreach ($gendersAll as $index => $name)
