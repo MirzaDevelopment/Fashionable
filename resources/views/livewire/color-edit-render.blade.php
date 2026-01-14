@@ -10,7 +10,7 @@
         </svg>
         @isset($colorsAll)
 
-        <h3 class="mt-6">Promjeni boje proizvoda:</h3>
+        <h3 class="mt-6">Promijeni boje proizvoda:</h3>
         <!-- Showing color categories -->
         <div class="mt-6 grid grid-cols-2 gap-2 gap-x-10 justify-items-center">
         
@@ -51,7 +51,7 @@
         <div class="mt-6">
     <x-primary-button wire:click="$parent.editColors" wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="lg:col-span-2 justify-center col-start-2 lg2:col-start-4">
 
-        {{ __('Promjeni') }}
+        {{ __('Promijeni') }}
 
     </x-primary-button>
     </div>

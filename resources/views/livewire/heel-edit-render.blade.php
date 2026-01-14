@@ -11,7 +11,7 @@
         @if (isset(($emptyHeels)))
         <p class="mt-6">{{$emptyHeels}}</p>
         @elseif(isset($heelsAll))
-        <h3 class="mt-6">Promjeni vrstu štikle (dostupno samo za obuću):</h3>
+        <h3 class="mt-6">Promijeni vrstu štikle (dostupno samo za obuću):</h3>
         <!-- Showing heel categories -->
         <div class="mt-6 grid grid-cols-2 gap-2 gap-x-10 justify-items-center">
             @foreach ($heelsAll as $index => $name)

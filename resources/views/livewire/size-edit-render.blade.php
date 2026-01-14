@@ -10,7 +10,7 @@
         </svg>
         @isset($sizesAll)
 
-        <h3 class="mt-6">Promjeni veličine proizvoda:</h3>
+        <h3 class="mt-6">Promijeni veličine proizvoda:</h3>
         <!-- Showing size categories -->
         <div class="mt-6 grid grid-cols-2 gap-2 gap-x-10 justify-items-center">
             @foreach ($sizesAll as $index => $name)

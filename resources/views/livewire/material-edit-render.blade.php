@@ -10,7 +10,7 @@
         </svg>
         @isset($materialsAll)
 
-        <h3 class="mt-6">Promjeni materijal proizvoda:</h3>
+        <h3 class="mt-6">Promijeni materijal proizvoda:</h3>
         <!-- Showing material categories -->
         <div class="mt-6 grid grid-cols-2 gap-2 gap-x-10 justify-items-center">
             @foreach ($materialsAll as $index => $name)

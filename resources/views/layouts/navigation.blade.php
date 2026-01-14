@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="mt-1">
                 <a href="/">
-                <img src="{{ asset('storage/images/logo-no-background.svg') }}" alt="shop-logo" class ="w-21 h-14 fill-current text-gray-500"/></a>
+                <img src="{{ asset('storage/images/logo-no-background.svg') }}" alt="shop-logo" width="180" height="200" class ="fill-current text-gray-500"/></a>
             </div>
 
                 <!-- Navigation Links -->
