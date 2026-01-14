@@ -1,6 +1,6 @@
 
     <div> <!--Livewire frontend component for deleted products search (soft-delete)-->
-        <input class="shadow-sm sm:rounded-lg border-transparent mb-4" type="text" wire:model.live="search" placeholder="Search..."></input>
+        <input class="shadow-sm sm:rounded-lg border-transparent mb-4" type="text" wire:model.live="search" placeholder="Pretraži..."></input>
         @error('name') <span class="error">{{ $message }}</span> @enderror
         <section class="pt-10 max-w-[1920px] flex flex-col bg-white overflow-auto shadow-sm sm:rounded-lg sm:p-12 m-auto w-full flex justify-center">
             <div class="relative -top-10">

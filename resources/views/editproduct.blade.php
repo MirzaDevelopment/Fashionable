@@ -34,7 +34,7 @@
             <label class="font-medium" for="productImage">Trenutne slike za odabrani proizvod.</label>
             <div class="overflow-scroll lg2:overflow-auto flex flex-col gap-6">
                 <p class="text-xs text-gray-400">PNG, JPG SVG, WEBP, and GIF su dopuštene.</p>
-                <p class="text-xs text-gray-400">Upozorenje: dodavanja nove slike, zahtjeva da se prvo odabere boja za pripadajuću sliku.</p>
+                <p class="text-xs text-gray-400">Upozorenje: dodavanja nove slike, zahtijeva da se prvo odabere boja za pripadajuću sliku.</p>
                 <!--Livewire components for edit product (images)-->
                 <livewire:edit-product-image />
             </div>

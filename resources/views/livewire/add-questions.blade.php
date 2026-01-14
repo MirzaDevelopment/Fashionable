@@ -5,7 +5,7 @@
         <form class="mt-8 space-y-5">
             <div>
                 <label class='text-sm text-slate-900 font-medium mb-2 block'>Ime</label>
-                <input wire:model="userName" type='text' placeholder='Enter Name' class="w-full py-2.5 px-4 text-slate-800 bg-gray-100 border border-gray-200 focus:border-slate-900 focus:bg-transparent text-sm outline-0 transition-all" />
+                <input wire:model="userName" type='text' placeholder='Unesi ime' class="w-full py-2.5 px-4 text-slate-800 bg-gray-100 border border-gray-200 focus:border-slate-900 focus:bg-transparent text-sm outline-0 transition-all" />
             </div>
             @error('userName')
             <!-- Validation failed message -->
@@ -13,7 +13,7 @@
             @enderror
             <div>
                 <label class='text-sm text-slate-900 font-medium mb-2 block'>Email</label>
-                <input wire:model="email" type='email' placeholder='Enter Email' class="w-full py-2.5 px-4 text-slate-800 bg-gray-100 border border-gray-200 focus:border-slate-900 focus:bg-transparent text-sm outline-0 transition-all" />
+                <input wire:model="email" type='email' placeholder='Unesi Email' class="w-full py-2.5 px-4 text-slate-800 bg-gray-100 border border-gray-200 focus:border-slate-900 focus:bg-transparent text-sm outline-0 transition-all" />
 
             </div>
             @error('email')
@@ -22,7 +22,7 @@
             @enderror
             <div>
                 <label class='text-sm text-slate-900 font-medium mb-2 block'>Poruka</label>
-                <textarea wire:model="question" placeholder='Enter Message' rows="6" class="w-full px-4 text-slate-800 bg-gray-100 border border-gray-200 focus:border-slate-900 focus:bg-transparent text-sm pt-3 outline-0 transition-all"></textarea>
+                <textarea wire:model="question" placeholder='Unesi poruku' rows="6" class="w-full px-4 text-slate-800 bg-gray-100 border border-gray-200 focus:border-slate-900 focus:bg-transparent text-sm pt-3 outline-0 transition-all"></textarea>
 
             </div>
             @error('question')
