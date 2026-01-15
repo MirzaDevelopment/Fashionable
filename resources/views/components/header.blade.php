@@ -73,15 +73,28 @@
                 </form>
                 <div><a class="text-gray-800 hover:text-gray-900 rounded-md relative lg:text-[2rem]  w-fit" href="">Cart (0)</a></div>
                 @else
-                <div><a class="text-gray-800 hover:text-gray-900 rounded-md relative lg:text-[2rem]  w-fit" href="{{ route('login') }}">
-                        {{ __('Prijava') }}
-
-                    </a></div>
-                <div> <a class="text-gray-800  hover:text-gray-900 rounded-md relative  w-fit lg:text-[2rem] " href="{{ route('register') }}">
-                        {{ __('Registracija') }}
-
-                    </a></div>
-                <div><a class=" text-gray-800 hover:text-gray-900 rounded-md relative lg:text-[2rem]  w-fit" href="">Korpa (0) </a></div>
+                <div class="flex flex-col gap-[0.5rem] items-center">
+                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="{{ route('login') }}">
+                            <img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/loginicon.svg') }}" alt="messages_icon" width="25" height="25">
+                        </a></div>
+                     <div>
+                        <p>Prijavi se</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-[0.5rem] items-center">
+                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"> <a href="{{ route('register') }}">
+                            <img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/newuser.svg') }}" alt="messages_icon" width="25" height="25">
+                        </a></div>
+                    <div>
+                        <p>Registracija</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-[0.5rem] items-center">
+                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href=""><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/carticon.svg') }}" alt="messages_icon" width="25" height="25"></a></div>
+                        <div>
+                        <p>Korpa</p>
+                    </div>
+                </div>
                 @endif
             </div>
         </div>
