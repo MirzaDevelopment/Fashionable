@@ -16,7 +16,7 @@
         @endforeach
         <div class="flex flex-col items-center min-w-[100%] lg:min-w-fit lg:w-[100%]">
           <h3 class="text-[1.8rem] max-w-[90%] md:text-[2.5rem] lg:max-w-[55%] lg:text-[3rem] xl:text-[2rem] 2xl:text-[3rem] font-semibold text-gray-800 mb-[1rem]">{{ $product->product_name }}</h3>
-          <span class="lg:text-[calc(1rem+1vw)] text-[1.2rem] md:text-[1.5rem] xl:text-[1.6rem] 2xl:text-[2rem]">Discount valid till: <span class="text-[#9E1B32]"> {{date('d-m-Y', strtotime($product->end_date))}}</span></span>
+          <span class="lg:text-[calc(1rem+1vw)] text-[1.2rem] md:text-[1.5rem] xl:text-[1.6rem] 2xl:text-[2rem]">Popust vrijedi do: <span class="text-[#9E1B32]"> {{date('d-m-Y', strtotime($product->end_date))}}</span></span>
           <hr class="border-t-1 self-center row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[20%] col-span-1">
           <span class="text-[1.2rem] flex text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem]">
             @foreach ($product->colors as $index => $colors)
@@ -25,7 +25,7 @@
             </div>
             @endforeach
           </span>
-          <span class="text-gray-900 font-bold text-[1.2rem] lg:text-[calc(1rem+1vw)] xl:text-[1.6rem] 2xl:text-[2rem]  md:text-[1.5rem]">Napravljeno od:
+          <span class="text-gray-900 font-bold text-[1.2rem] lg:text-[calc(1rem+1vw)] xl:text-[1.6rem] 2xl:text-[2rem]  md:text-[1.5rem]">
             @foreach ($product->materials as $key=> $materials)
             @if($key==0)
             {{ $materials->material}}

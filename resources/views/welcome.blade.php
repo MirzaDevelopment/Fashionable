@@ -25,7 +25,7 @@
         </div>
         
         <div class="carousel-container">
-            <button class="text-base text-[2rem] nav-btn opacity-[50%] nav-left">&#10094;</button>
+            <button class="text-[2rem] nav-btn opacity-[50%] nav-left">&#10094;</button>
             <div class="carousel-track" id="carouselTrack">
                 <!-- Brand logos-->
                 <div class="carousel-item">

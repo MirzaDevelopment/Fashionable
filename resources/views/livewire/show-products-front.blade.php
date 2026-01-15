@@ -76,7 +76,7 @@
             </div>
             <hr class="border-t-1 row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[100%] col-span-1">
             <h3 class="text-[1.8rem] lg:text-[2.2rem] 2xl:text-[3rem] font-semibold text-gray-800">{{ $product->product_name }}</h3>
-            <span class="text-[1.2rem] text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem]">Napravljeno od:
+            <span class="text-[1.2rem] text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem]">
                 @foreach ($product->materials as $key=> $materials)
                 @if($key==0)
                 {{ $materials->material}}
