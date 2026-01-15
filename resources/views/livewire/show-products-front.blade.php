@@ -63,7 +63,7 @@
         @foreach ($products as $product)
         <div class="flex flex-col cursor-pointer place-content-evenly hover:-translate-y-1 hover:shadow-lg shadow-black/10 transition-all duration-300 ease-out  items-center min-w-[100%] min-h-[100%] gap-2 max-w-xs  overflow-hidden bg-white p-[1rem]">
             <div class="">
-                <span class="flex flex-row text-[1.2rem] text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem]">
+                <span class="flex flex-row text-[1.2rem] mb-[1rem] text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem]">
                     @foreach ($product->colors as $index => $colors)
                     <div class="m-1 border-2 shadow-md" wire:key="{{$index}}" style="width: 25px; height: 25px; background-color: {{$colors->hex_code}};
             border-radius: 50%;">
