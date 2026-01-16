@@ -16,21 +16,32 @@
                             {{ __('Log Out') }}
                             <a></div>
                 </form>
-                <div><a class="text-[calc(1.25rem+1vw)] text-gray-800 hover:text-gray-900 rounded-md relative lg:text-[2rem]   w-fit" href="">Korpa (0) <span class="absolute bottom-0  lg:top-11 2xl:top-14 left-0 w-0 h-[2px] lg:h-[3px] 2xl:h-[4px] bg-gray-900 transition-all"></span></a></div>
+                <div class="flex flex-col gap-[0.5rem] items-center">
+                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href=""><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/carticon.svg') }}" alt="messages_icon" width="25" height="25"></a></div>
+                    <div>
+                        <p>Korpa</p>
+                    </div>
+                </div>
                 @elseif(Auth::user() && Auth::user()->role=="guest")
                 <div>
                     <p class="text-[calc(1.25rem+1vw)]  lg:text-[2rem]">Dobrodošli natrag, <a class="underline lg:underline-offset-[0.5rem] 2xl:underline-offset-[0.8rem] underline-offset-4 w-fit" href="{{ route('dashboardusers') }}">{{Auth::user()->name}}.</a></p>
                 </div>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-
-                    <div><a href="route('logout')" class="text-[calc(1.25rem+1vw)]  lg:text-[2rem]  relative " onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                            {{ __('Odjava') }}
-
-                        </a></div>
+                    <div class="flex flex-col gap-[0.5rem] items-center">
+                        <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="route('logout')"><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/logouticon.svg') }}" onclick="event.preventDefault();
+                                                this.closest('form').submit();" alt="messages_icon" width="25" height="25"></a></div>
+                        <div>
+                            <p>Odjava</p>
+                        </div>
+                    </div>
                 </form>
-                <div><a class="text-[calc(1.25rem+1vw)] text-gray-800 hover:text-gray-900 rounded-md relative  lg:text-[2rem]  w-fit" href="">Cart (0)</a></div>
+                <div class="flex flex-col gap-[0.5rem] items-center">
+                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href=""><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/carticon.svg') }}" alt="messages_icon" width="25" height="25"></a></div>
+                    <div>
+                        <p>Korpa</p>
+                    </div>
+                </div>
                 @else
                 <div><a class="text-[calc(1.25rem+1vw)] text-gray-800 hover:text-gray-900 rounded-md relative  lg:text-[2rem]  w-fit" href="{{ route('login') }}">
                         {{ __('Prijava') }}
@@ -39,7 +50,12 @@
                         {{ __('Registracija') }}
 
                     </a></div>
-                <div><a class="text-[calc(1.25rem+1vw)] text-gray-800 hover:text-gray-900 rounded-md relative  lg:text-[2rem]   w-fit" href="">Cart (0)</a></div>
+                <div class="flex flex-col gap-[0.5rem] items-center">
+                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href=""><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/carticon.svg') }}" alt="messages_icon" width="25" height="25"></a></div>
+                    <div>
+                        <p>Korpa</p>
+                    </div>
+                </div>
                 @endif
             </div>
         </div>
@@ -51,13 +67,21 @@
                 </div>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <div><a href="route('logout')" class="text-[calc(1.25rem+1vw)]  lg:text-[2rem]  relative  " onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                            {{ __('Odjava') }}
 
-                            <a></div>
+                    <div class="flex flex-col gap-[0.5rem] items-center">
+                        <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="route('logout')"><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/logouticon.svg') }}" onclick="event.preventDefault();
+                                                this.closest('form').submit();" alt="messages_icon" width="25" height="25"></a></div>
+                        <div>
+                            <p>Odjava</p>
+                        </div>
+                    </div>
                 </form>
-                <div><a class="text-[calc(1.25rem+1vw)] text-gray-800 hover:text-gray-900 rounded-md relative  lg:text-[2rem]  w-fit" href="">Korpa (0) </a></div>
+                <div class="flex flex-col gap-[0.5rem] items-center">
+                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href=""><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/carticon.svg') }}" alt="messages_icon" width="25" height="25"></a></div>
+                    <div>
+                        <p>Korpa</p>
+                    </div>
+                </div>
                 @elseif(Auth::user() && Auth::user()->role=="guest")
                 <div>
                     <p class="text-[calc(1.25rem+1vw)]  lg:text-[2rem]">Dobrodošli natrag, <a class="underline  lg:underline-offset-[0.5rem] 2xl:underline-offset-[0.8rem] underline-offset-4 w-fit" href="{{ route('dashboardusers') }}">{{Auth::user()->name}}.</a></p>
@@ -65,19 +89,26 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <div><a href="route('logout')" class="text-[calc(1.25rem+1vw)]  lg:text-[2rem]  relative " onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                            {{ __('Odjava') }}
-
-                        </a></div>
+                    <div class="flex flex-col gap-[0.5rem] items-center">
+                        <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="route('logout')"><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/logouticon.svg') }}" onclick="event.preventDefault();
+                                                this.closest('form').submit();" alt="messages_icon" width="25" height="25"></a></div>
+                        <div>
+                            <p>Odjava</p>
+                        </div>
+                    </div>
                 </form>
-                <div><a class="text-gray-800 hover:text-gray-900 rounded-md relative lg:text-[2rem]  w-fit" href="">Cart (0)</a></div>
+                <div class="flex flex-col gap-[0.5rem] items-center">
+                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href=""><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/carticon.svg') }}" alt="messages_icon" width="25" height="25"></a></div>
+                    <div>
+                        <p>Korpa</p>
+                    </div>
+                </div>
                 @else
                 <div class="flex flex-col gap-[0.5rem] items-center">
                     <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="{{ route('login') }}">
                             <img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/loginicon.svg') }}" alt="messages_icon" width="25" height="25">
                         </a></div>
-                     <div>
+                    <div>
                         <p>Prijavi se</p>
                     </div>
                 </div>
@@ -91,7 +122,7 @@
                 </div>
                 <div class="flex flex-col gap-[0.5rem] items-center">
                     <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href=""><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/carticon.svg') }}" alt="messages_icon" width="25" height="25"></a></div>
-                        <div>
+                    <div>
                         <p>Korpa</p>
                     </div>
                 </div>
