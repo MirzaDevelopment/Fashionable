@@ -25,7 +25,7 @@
                 <source media="(max-width: 640px)" srcset="{{ asset('storage/images/640x640/shop_male_640x960.webp') }}">
                 <source media="(max-width: 1024px)" srcset="{{ asset('storage/images/800x800/shop_male_800x1200.webp') }}">
                 <source media="(min-width: 1024px)" srcset="{{ asset('storage/images/1200x1200/shop_male_1200x1800.webp') }}">
-                <img class="col-span-1 shadow-[0_8px_30px_rgba(0,0,0,0.12)] row-start-2 brightness-[70%] w-full  h-auto" loading="lazy" src="{{ asset('storage/images/200x200/shop_male_200x300.webp') }}" width=200 height=300 alt="men_models">
+                <img class="col-span-1 shadow-[0_8px_30px_rgba(0,0,0,0.12)] row-start-2 brightness-[70%] w-full  h-auto" fetchpriority="high" loading="eager" src="{{ asset('storage/images/200x200/shop_male_200x300.webp') }}" width=200 height=300 alt="men_models">
             </picture>
             <!--Navigation towards search and category-->
             <span class="absolute text-[calc(5rem+4vw)] sm:text-[5rem] md:text-[calc(6rem+2vw)] lg:text-[calc(8rem+2vw)] xl:text-[calc(10rem+1vw)] 2xl:text-[12rem] lg2:text-[15rem] text-white"><a href="/shop#explore">Istraži</a></span>
@@ -36,7 +36,7 @@
                 <source media="(max-width: 640px)" srcset="{{ asset('storage/images/640x640/shop_female_640x960.webp') }}">
                 <source media="(max-width: 1024px)" srcset="{{ asset('storage/images/800x800/shop_female_800x1200.webp') }}">
                 <source media="(min-width: 1024px)" srcset="{{ asset('storage/images/1200x1200/shop_female_1200x1800.webp') }}">
-                <img class="col-span-1 shadow-[0_8px_30px_rgba(0,0,0,0.12)] row-start-2 brightness-[70%] w-full  h-auto" loading="lazy" src="{{ asset('storage/images/200x200/shop_female_200x300.webp') }}" width=200 height=300 alt="women_models">
+                <img class="col-span-1 shadow-[0_8px_30px_rgba(0,0,0,0.12)] row-start-2 brightness-[70%] w-full  h-auto" fetchpriority="high" loading="eager" src="{{ asset('storage/images/200x200/shop_female_200x300.webp') }}" width=200 height=300 alt="women_models">
             </picture>
             <!--Navigation towards discounted items-->
             <span class="absolute text-[calc(5rem+4vw)] sm:text-[5rem] md:text-[calc(6rem+2vw)] lg:text-[calc(8rem+2vw)] xl:text-[calc(10rem+1vw)] 2xl:text-[12rem] lg2:text-[15rem] text-white"><a href="/shop#special-prices">Akcijske cijene</a></span>

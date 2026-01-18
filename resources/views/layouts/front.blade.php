@@ -9,23 +9,35 @@
     <link rel="preload" as="image" href="/storage/images/logo-no-background.svg" type="image/webp" />
     <title>{{ config('app.name', 'Webshop') }}</title>
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link rel="stylesheet" href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Scripts -->
-     
-    @livewireScripts
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+    <link rel="preload" href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap">
+    </noscript>
+
+
+
+    <!-- Livewire styles ONLY (small, safe) -->
+    @livewireStyles
+
+    <!-- Vite CSS only -->
+    @vite('resources/css/app.css')
 </head>
+
 <body class="font-sans antialiased max-w-[1920px] m-auto">
     <!-- Page header component -->
-    <x-header/>
+    <x-header />
     <!-- Page Content -->
     <main class="text-center">
         {{ $slot }}
     </main>
     <!-- Page footer component -->
-    <x-footer/>
+    <x-footer />
+    <!-- Scripts -->
+    @vite('resources/js/app.js')
+
+    <!-- Livewire scripts LAST -->
+    @livewireScripts
 </body>
 
 </html>

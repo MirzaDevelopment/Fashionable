@@ -9,13 +9,19 @@
     <title>{{ config('app.name', 'Webshop') }}</title>
 
     <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.bunny.net">
-    <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
+    <link rel="preload" href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap">
+    </noscript>
 
-    <!-- Scripts -->
-    @livewireScripts
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    <!-- Livewire styles ONLY (small, safe) -->
+    @livewireStyles
+
+    <!-- Vite CSS only -->
+    @vite('resources/css/app.css')
 </head>
+
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-gray-100">
         @include('layouts.navigation')
@@ -36,5 +42,11 @@
     <footer class="flex items-center flex-col p-3.5 text-center">
         {{$footerContent}}
     </footer>
+    <!-- Vite JS (deferred automatically) -->
+    @vite('resources/js/app.js')
+
+    <!-- Livewire scripts LAST -->
+    @livewireScripts
 </body>
+
 </html>
