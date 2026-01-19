@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
@@ -34,13 +33,15 @@ class RegisteredUserController extends Controller
 
         
         $request->validate([
-            
+
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'policy' => ['accepted'],
             'g-recaptcha-response' => 'required|recaptchav3:register,0.5'
         ]);
-   
+    
+        
 
         $user = User::create([
             'name' => $request->name,
@@ -48,7 +49,7 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        $user->role = 'guest';  
+        $user->role = 'guest';
         $user->save();
 
         event(new Registered($user));

@@ -34,9 +34,14 @@
 
             <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
         </div>
-        <div class="mt-6 flex items-center flex-col gap-2">
-        <label for="policyCheckbox"> Slažem se s Uvjetima korištenja i Politikom privatnosti.</label>
-        <input id="policyCheckbox" type="checkbox" wire:model="acceptPolicies">
+        <div class="mt-6 grid grid-cols-2 items-center justify-items-center mb-[2rem] grid-rows-1 gap-y-[0.5rem]">
+            <input class="ml-[8rem]" id="policyCheckbox" type="checkbox" name="policy">
+            <label for="policyCheckbox"> Slažem se s <a href="/#footer" class="underline text-cornflowerblue">Uvjetima korištenja i Politikom privatnosti.</a></label>
+            @error('policy')
+            <!-- Validation failed message -->
+            <span class="error text-[#D32F2F] mt-1 col-start-2">{{ $message }}</span>
+            @enderror
+
         </div>
         <!-- Register and recaptcha part -->
         <div class="flex items-center justify-end mt-4">
