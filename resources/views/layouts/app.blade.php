@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap">
     </noscript>
 
-    <!-- Livewire styles ONLY (small, safe) -->
+    <!-- Livewire styles ONLY -->
     @livewireStyles
 
     <!-- Vite CSS only -->
