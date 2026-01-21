@@ -3,7 +3,7 @@
     <x-slot name="header">
         <h2 class="font-semibold flex gap-x-[0.5rem] flex-row text-xl text-gray-800 leading-tight">
             {{ __('Poruke od korisnika') }}
-            <a class="flex flex-row" href="{{ route('questions') }}" wire:navigate><img class="cursor-pointer" src="{{ asset('storage/images/message.svg') }}" alt="messages_icon" width="25" height="20">(2)</a>
+            <a class="flex flex-row" href="{{ route('questions') }}" wire:navigate><img class="cursor-pointer" src="{{ asset('storage/images/message.svg') }}" alt="messages_icon" width="25" height="20"><span class="text-[#D32F2F] ml-[5px]">@if($questionsCount)({{$questionsCount}}) Novih poruka @elseif($questionsCount==0) <span class="text-[#28a745] ml-[5px]">Nemate novih poruka @endif <span></span></a>
         </h2>
     </x-slot>
     

@@ -70,7 +70,7 @@ class AddQuestions extends Component
                 'user_name' => ucfirst($this->userName),
                 'user_email' => $this->email,
                 'question' => $this->question,
-                'status' => "unanswered",
+                'status' => "neodgovoreno",
                 'g-recaptcha-response' => 'required|recaptchav3:register,0.5'
 
             ]);
