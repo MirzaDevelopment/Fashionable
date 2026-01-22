@@ -35,15 +35,15 @@ class QuestionPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, Question $question): void
+    public function update(User $user): bool
     {
-        //
+        return $user->role === 'admin';
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Question $question): bool
+    public function delete(User $user): bool
     {
         return $user->role === 'admin';
     }
