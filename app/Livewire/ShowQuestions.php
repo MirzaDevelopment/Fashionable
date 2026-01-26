@@ -7,7 +7,7 @@ Finally it has the render method to render the questions mentioned in to the sho
 */
 
 namespace App\Livewire;
-
+use Illuminate\Support\Facades\Mail;//Za slanje maila
 use App\Models\Question;
 use Livewire\Component;
 use Illuminate\Support\Facades\Gate;
@@ -54,6 +54,11 @@ class ShowQuestions extends Component
     }
 
 
+    public function sendQuestionReply(){
+
+     Mail::to("sallyg104@hotmail.com")->send("ovo je test!");
+     return redirect()->back()->with("status", "Mail je uspješno poslan korisniku!.");
+    }
 
     public function render()
     {

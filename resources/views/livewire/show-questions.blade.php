@@ -14,7 +14,7 @@
             </span>
             <span class="" x-show="open" x-transition>
                 <textarea wire:model="replyArea" placeholder='Unesite vaš odgovor.' rows="6" class="w-full px-4 text-slate-800 bg-gray-100 border border-gray-200 focus:border-slate-900 focus:bg-transparent text-sm pt-3 outline-0 transition-all"></textarea>
-                <button wire:click="sendReply" class="bg-sky-600 text-white font-medium px-5 py-2.5 rounded-lg shadow-sm hover:bg-sky-700 transition-colors duration-200 disabled:opacity-5" wire:offline.attr="disabled" type="submit">Pošalji</button>
+                <button wire:click="sendQuestionReply" class="bg-sky-600 text-white font-medium px-5 py-2.5 rounded-lg shadow-sm hover:bg-sky-700 transition-colors duration-200 disabled:opacity-5" wire:offline.attr="disabled" type="submit">Pošalji</button>
             </span>
 
         </section>
