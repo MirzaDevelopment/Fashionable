@@ -1,7 +1,7 @@
 <div>
     <div class="grid grid-cols-1 max-w-[420px] m-auto sm:grid-cols-2 sm:max-w-[100%]  lg:m-auto lg:max-w-[100%]  xl:grid-cols-3 xl:max-w-[100%] 2xl:grid-cols-4  gap-[1rem] p-5">
-        @foreach($questions as $question)
-        <section x-data="{ open: false }" class="flex bg-white rounded flex-col p-[2rem] gap-[1rem]">
+        @foreach($questions as $index=>$question)
+        <section wire:key="{{$question->id}}" x-data="{ open: false }" class="flex bg-white rounded flex-col p-[2rem] gap-[1rem]">
             <span class="text-lg"><span class="underline font-medium">Od:</span> {{$question->user_name}}</span>
             <span class="text-lg"><span class="underline font-medium">Email:</span> {{$question->user_email}} </span>
             <span><span class="underline font-medium">Komentar:</span> {{$question->question}}</span>
@@ -12,11 +12,16 @@
             <button x-on:click="open = ! open" wire:click="" class="bg-sky-600 text-white font-medium px-5 py-2.5 rounded-lg shadow-sm hover:bg-sky-700 transition-colors duration-200 disabled:opacity-5" wire:offline.attr="disabled" type="submit">Odgovori (pošalji mail)</button>
             <span class="fixed bottom-[8rem] lg:bottom-[10rem] right-4  bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl z-[5000] transition-all duration-300 p-2 group">
             </span>
-            <span class="" x-show="open" x-transition>
-                <textarea wire:model="replyArea" placeholder='Unesite vaš odgovor.' rows="6" class="w-full px-4 text-slate-800 bg-gray-100 border border-gray-200 focus:border-slate-900 focus:bg-transparent text-sm pt-3 outline-0 transition-all"></textarea>
-                <button wire:click="sendQuestionReply" class="bg-sky-600 text-white font-medium px-5 py-2.5 rounded-lg shadow-sm hover:bg-sky-700 transition-colors duration-200 disabled:opacity-5" wire:offline.attr="disabled" type="submit">Pošalji</button>
+            <span  x-show="open" x-transition>
+                <textarea wire:model="replyArea.{{ $index }}" placeholder='Unesite vaš odgovor.' rows="6" class="w-full px-4 text-slate-800 bg-gray-100 border border-gray-200 focus:border-slate-900 focus:bg-transparent text-sm pt-3 outline-0 transition-all"></textarea>
+                <button wire:click="sendQuestionReply({{$question->id}})" class="bg-sky-600 text-white font-medium px-5 py-2.5 rounded-lg shadow-sm hover:bg-sky-700 transition-colors duration-200 disabled:opacity-5" wire:offline.attr="disabled" type="submit">Pošalji</button>
             </span>
-
+            <!--Successful message-->
+            @if (!empty($replySuccess[$question->id]))
+            <div x-data="{ open: true }" x-show="open" x-transition x-on:click.outside="open = false" class="mt-3 rounded-md bg-[#cce5ff] text-[#004085] p-2.5">
+                {{ $replySuccess[$question->id] }}
+            </div>
+            @endif
         </section>
         @endforeach
 
