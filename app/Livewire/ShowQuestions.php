@@ -7,7 +7,9 @@ Finally it has the render method to render the questions mentioned in to the sho
 */
 
 namespace App\Livewire;
-use Illuminate\Support\Facades\Mail;//Za slanje maila
+
+use Illuminate\Support\Facades\Mail; //Za slanje maila
+use App\Mail\QuestionReplies;
 use App\Models\Question;
 use Livewire\Component;
 use Illuminate\Support\Facades\Gate;
@@ -19,7 +21,8 @@ class ShowQuestions extends Component
     use WithPagination;
     public string $sortinator = "created_at";
     public string $sortToggle = "DESC";
-
+    public array $replyArea;
+    public array $replySuccess = [];
 
     //Deleting a question 
     public function deleteQuestion(string $parameter): void
@@ -54,10 +57,13 @@ class ShowQuestions extends Component
     }
 
 
-    public function sendQuestionReply(){
+    public function sendQuestionReply($parameter)
+    {
 
-     Mail::to("sallyg104@hotmail.com")->send("ovo je test!");
-     return redirect()->back()->with("status", "Mail je uspješno poslan korisniku!.");
+
+        $question = Question::find($parameter);
+        Mail::to($question->user_email)->send(new QuestionReplies($question, $this->replyArea));
+        $this->replySuccess[$parameter] = 'Mail je uspješno poslan korisniku!';;
     }
 
     public function render()
