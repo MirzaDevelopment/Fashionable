@@ -43,6 +43,8 @@ class QuestionReplies extends Mailable
             view: 'mail.questionreplies',
                 with: [
                 'questionReply' => $this->replayArea,
+                'userName' => $this->question->user_name,
+                'question' => $this->question->question,
 
             ],
         );
