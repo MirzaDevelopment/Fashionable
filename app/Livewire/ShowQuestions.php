@@ -23,6 +23,7 @@ class ShowQuestions extends Component
     public string $sortToggle = "DESC";
     public array $replyArea;
     public array $replySuccess = [];
+    public array $replyFailed = [];
 
     //Deleting a question 
     public function deleteQuestion(string $parameter): void
@@ -59,11 +60,20 @@ class ShowQuestions extends Component
 
     public function sendQuestionReply($parameter)
     {
+        if (count($this->replyArea) == 1) {
+            $question = Question::find($parameter);
+
+            Mail::to($question->user_email)->send(new QuestionReplies($question, $this->replyArea));
+            $question->update([
+                'status' => "odgovoreno",
 
 
-        $question = Question::find($parameter);
-        Mail::to($question->user_email)->send(new QuestionReplies($question, $this->replyArea));
-        $this->replySuccess[$parameter] = 'Mail je uspješno poslan korisniku!';;
+
+            ]);
+            $this->replySuccess[$parameter] = 'Mail je uspješno poslan korisniku!';
+        } else {
+            $this->replyFailed[$parameter] = 'Nešto je pošlo po zlu, molimo osvježite stranicu i pokušajte ponovo.';
+        }
     }
 
     public function render()
