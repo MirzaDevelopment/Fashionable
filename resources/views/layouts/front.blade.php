@@ -9,19 +9,24 @@
     <link rel="preload" as="image" href="/storage/images/logo-no-background.svg" type="image/webp" />
     <title>{{ config('app.name', 'Webshop') }}</title>
     <!-- Fonts -->
+    <!-- Livewire styles ONLY (small, safe) -->
+    @livewireStyles
     <link rel="preconnect" href="https://fonts.bunny.net" crossorigin>
     <link rel="preload" href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
     <noscript>
         <link rel="stylesheet" href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap">
     </noscript>
 
+    <!-- Critical CSS -->
+    <style>
+        body {
+            font-family: Figtree, system-ui, sans-serif;
+        }
+    </style>
 
-
-    <!-- Livewire styles ONLY (small, safe) -->
-    @livewireStyles
 
     <!-- Vite CSS only -->
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="font-sans antialiased max-w-[1920px] m-auto">
@@ -33,9 +38,6 @@
     </main>
     <!-- Page footer component -->
     <x-footer />
-    <!-- Scripts -->
-    @vite('resources/js/app.js')
-
     <!-- Livewire scripts LAST -->
     @livewireScripts
 </body>
