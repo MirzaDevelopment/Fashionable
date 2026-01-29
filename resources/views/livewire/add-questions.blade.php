@@ -1,7 +1,8 @@
 <div>
-    {!! RecaptchaV3::initJs() !!}
+    
     <div class="p-4 w-[300px] mx-auto  bg-white shadow-lg max-w-[300px]">
         <h2 class="text-3xl text-slate-900 font-bold">Kako Vam možemo pomoći?</h2>
+        {!! RecaptchaV3::initJs(['async' => true, 'defer' => true]) !!}
         <form class="mt-8 space-y-5">
             <div>
                 <label class='text-sm text-slate-900 font-medium mb-2 block'>Ime</label>

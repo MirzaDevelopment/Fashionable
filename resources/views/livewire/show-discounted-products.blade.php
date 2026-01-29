@@ -11,7 +11,7 @@
       @if($discountedProducts->isNotEmpty())
       @foreach ($discountedProducts as $product)
       <div id="discountedItem" class="lg:flex gap-[1rem] xl:flex-row flex flex-col place-content-evenly items-center min-w-[100%] snap-start rounded-xl overflow-hidden bg-white shadow-md  p-[1rem] rounded-lg  transform transition duration-300">
-        @foreach ($product->images as $images) <img class="w-fit xl:w-[40%] lg:h-[700px] object-contain" loading="lazy" src="{{asset('storage/'.$images->image_800x800)}}" width="200" height=200 alt="product image">
+        @foreach ($product->images as $images) <img class="w-fit xl:w-[40%] lg:h-[700px] object-contain" loading="lazy" src="{{asset('storage/'.$images->image_800x800)}}" width="300" height=200 alt="product image">
         @break
         @endforeach
         <div class="flex flex-col items-center min-w-[100%] lg:min-w-fit lg:w-[100%]">

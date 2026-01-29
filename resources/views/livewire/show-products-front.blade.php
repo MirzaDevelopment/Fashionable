@@ -70,7 +70,7 @@
                     </div>
                     @endforeach
                 </span>
-                @foreach ($product->images as $images) <img class="object-cover" loading="lazy" src="{{asset('storage/'.$images->image_400x400)}}" width="400" height="auto" alt="product image">
+                @foreach ($product->images as $images) <img class="object-cover" loading="lazy" src="{{asset('storage/'.$images->image_400x400)}}" width="400" height="600" alt="product image">
                 @break
                 @endforeach
             </div>
