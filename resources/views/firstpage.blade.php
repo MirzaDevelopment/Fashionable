@@ -5,7 +5,7 @@
         <div class="relative flex 2xl:group relative transition-all duration-300 ease-in-out transform 2xl:hover:scale-105 ">
             <picture class="w-fit row-start-2 h-auto">
                 <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/shop_male_320x480.webp') }}">
-                <source media="(max-width: 460px)" srcset="{{ asset('storage/images/400x400/shop_male_400x600.webp') }}">
+                <source media="(max-width: 480px)" srcset="{{ asset('storage/images/400x400/shop_male_400x600.webp') }}">
                 <source media="(max-width: 640px)" srcset="{{ asset('storage/images/640x640/shop_male_640x960.webp') }}">
                 <source media="(max-width: 1024px)" srcset="{{ asset('storage/images/800x800/shop_male_800x1200.webp') }}">
                 <source media="(min-width: 1024px)" srcset="{{ asset('storage/images/1200x1200/shop_male_1200x1800.webp') }}">
@@ -17,7 +17,7 @@
         <div class="relative flex 2xl:group relative transition-all 2xl:duration-300 ease-in-out transform 2xl:hover:scale-105 ">
             <picture class="w-fit row-start-2 h-auto">
                 <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/shop_female_320x480.webp') }}">
-                <source media="(max-width: 460px)" srcset="{{ asset('storage/images/400x400/shop_female_400x600.webp') }}">
+                <source media="(max-width: 480px)" srcset="{{ asset('storage/images/400x400/shop_female_400x600.webp') }}">
                 <source media="(max-width: 640px)" srcset="{{ asset('storage/images/640x640/shop_female_640x960.webp') }}">
                 <source media="(max-width: 1024px)" srcset="{{ asset('storage/images/800x800/shop_female_800x1200.webp') }}">
                 <source media="(min-width: 1024px)" srcset="{{ asset('storage/images/1200x1200/shop_female_1200x1800.webp') }}">
