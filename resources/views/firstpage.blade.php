@@ -6,7 +6,7 @@
                 <picture class="w-full row-start-2 h-auto">
                 <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/shop_male_320x480.webp') }}">
                 <source media="(max-width: 480px)" srcset="{{ asset('storage/images/400x400/shop_male_400x600.webp') }}">
-                <source media="(max-width: 640px)" srcset="{{ asset('storage/images/640x640/shop_male_640x960.webp') }}">
+                <source media="(max-width: 768px)" srcset="{{ asset('storage/images/640x640/shop_male_640x960.webp') }}">
                 <source media="(max-width: 1024px)" srcset="{{ asset('storage/images/800x800/shop_male_800x1200.webp') }}">
                 <source media="(min-width: 1280px)" srcset="{{ asset('storage/images/1200x1200/shop_male_1200x1800.webp') }}">
                 <img class="col-span-1 shadow-[0_8px_30px_rgba(0,0,0,0.12)] row-start-2 brightness-[70%] w-full  h-auto" fetchpriority="high" loading="eager" src="{{ asset('storage/images/200x200/shop_male_200x300.webp') }}" width=200 height=300 alt="men_models">
@@ -19,7 +19,7 @@
             <picture class="w-full row-start-2 h-auto">
                 <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/shop_female_320x480.webp') }}">
                 <source media="(max-width: 480px)" srcset="{{ asset('storage/images/400x400/shop_female_400x600.webp') }}">
-                <source media="(max-width: 640px)" srcset="{{ asset('storage/images/640x640/shop_female_640x960.webp') }}">
+                <source media="(max-width: 768px)" srcset="{{ asset('storage/images/640x640/shop_female_640x960.webp') }}">
                 <source media="(max-width: 1024px)" srcset="{{ asset('storage/images/800x800/shop_female_800x1200.webp') }}">
                 <source media="(min-width: 1280px)" srcset="{{ asset('storage/images/1200x1200/shop_female_1200x1800.webp') }}">
                 <img class="col-span-1 shadow-[0_8px_30px_rgba(0,0,0,0.12)] row-start-2 brightness-[70%] w-full  h-auto" fetchpriority="high" loading="eager" src="{{ asset('storage/images/200x200/shop_female_200x300.webp') }}" width=200 height=300 alt="women_models">

@@ -70,9 +70,15 @@
                     </div>
                     @endforeach
                 </span>
-                @foreach ($product->images as $images) <img class="object-cover" loading="lazy" src="{{asset('storage/'.$images->image_400x400)}}" width="400" height="600" alt="product image">
-                @break
-                @endforeach
+                @foreach ($product->images as $images) 
+                    <picture>
+                    <source media="(max-width: 320px)" srcset="{{ asset('storage/'.$images->image_200x200) }}">
+                    <source media="(max-width: 640px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
+                    <source media="(max-width: 1023px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
+                    <source media="(min-width: 1024px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
+                    <img class="object-cover"  loading="lazy" src="{{ asset('storage/'.$images->image_400x400)}}" width="400" height="600" alt="product image"></picture>
+                    @break
+                    @endforeach
             </div>
             <hr class="border-t-1 row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[100%] col-span-1">
             <h3 class="text-[1.8rem] lg:text-[2.2rem] 2xl:text-[3rem] font-semibold text-gray-800">{{ $product->product_name }}</h3>
