@@ -19,6 +19,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+            if (app()->runningUnitTests() && ! app()->environment('testing')) {
+        throw new \RuntimeException(
+            '❌ Tests are NOT running in the testing environment!'
+        );
+    }
     }
 }

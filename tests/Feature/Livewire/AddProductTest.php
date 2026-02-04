@@ -1,6 +1,6 @@
 <?php
 /*
-Simple test of the AddDefaultImage livewire component. Component is used in adding the placeholder image when user changes/adds the new product color, untill the user picks the correct image for the product.
+Simple test of the AddProduct livewire component. It tests the rendering of the component, It's existance in the view, and the upload functionality of the component.
 */
 
 namespace Tests\Feature\Livewire;
@@ -88,11 +88,11 @@ class AddProductTest extends TestCase
             "end_date" => $fakePrice->end_date
         ]);
 
-            $this->assertDatabaseHas("products_variants", [
+        $this->assertDatabaseHas("products_variants", [
             "product_id" => $fakeProduct->id,
             "category_color_id" => $fakeColor->id,
             "category_size_id" => $fakeSize->id,
-            "stock_quantity"=>0,
+            "stock_quantity" => 0,
         ]);
     }
 
@@ -100,7 +100,7 @@ class AddProductTest extends TestCase
     public function test_product_is_uploaded_in_database_only_by_admin()
     {
 
-        $fakeProduct=Product::factory()->create(['product_name' => 'Test Name', 'description' => 'Test description', 'total_stock' => 0]);
+        $fakeProduct = Product::factory()->create(['product_name' => 'Test Name', 'description' => 'Test description', 'total_stock' => 0]);
         $fakePrice = Price::factory()->create(['product_id' => $fakeProduct->id]);
         $fakeColor = Color::factory()->create();
         $fakeSize = Size::factory()->create();
@@ -127,7 +127,7 @@ class AddProductTest extends TestCase
 
         ]);
 
-                $this->assertDatabaseHas("prices", [
+        $this->assertDatabaseHas("prices", [
             "product_id" => $fakeProduct->id,
             "price" => $fakePrice->price,
             "discount" => $fakePrice->discount,
@@ -135,11 +135,11 @@ class AddProductTest extends TestCase
             "end_date" => $fakePrice->end_date
         ]);
 
-            $this->assertDatabaseHas("products_variants", [
+        $this->assertDatabaseHas("products_variants", [
             "product_id" => $fakeProduct->id,
             "category_color_id" => $fakeColor->id,
             "category_size_id" => $fakeSize->id,
-            "stock_quantity"=>0,
+            "stock_quantity" => 0,
         ]);
     }
 }
