@@ -1,6 +1,8 @@
 <?php
+/*
+Simple test of the AddQuestion livewire component. It tests the rendering of the component, It's existance in the view and DB, and the upload functionality of the component.
+*/
 namespace Tests\Feature\Livewire;
-
 use App\Livewire\AddQuestions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
