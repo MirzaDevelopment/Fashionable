@@ -25,7 +25,9 @@ class RegistrationTest extends TestCase
         RecaptchaV3::shouldReceive('verify')
             ->once()
             ->andReturn(1.0);
+
         $response = $this->post('/register', [
+            'policy'=>true,
             'name' => 'Test User',
             'email' => 'test@example.com',
             'password' => 'password',

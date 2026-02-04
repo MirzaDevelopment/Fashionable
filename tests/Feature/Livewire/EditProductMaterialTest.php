@@ -28,7 +28,7 @@ class EditProductMaterialTest extends TestCase
     public function test_component_exists_on_the_page()
     {
         Livewire::test('edit-product-material')
-            ->assertSee('Product material'); //A button in the component that opens the material categories in
+            ->assertSee('Materijal proizvoda'); //A button in the component that opens the material categories in
 
         Product::factory()->create(['id' => 1, 'product_name' => 'Test Name', 'description' => 'Test description', 'total_stock' => 34]);
         $user = User::factory()->create([
