@@ -9,14 +9,17 @@
                 <div>
                     <p class="text-[calc(1.25rem+1vw)]  lg:text-[2rem]">Dobrodošli natrag, <a class="underline underline-offset-4 w-fit lg:underline-offset-[0.5rem] 2xl:underline-offset-[0.8rem] " href="{{ route('dashboard') }}">{{Auth::user()->name}}.</a></p>
                 </div>
-                <form method="POST" action="{{ route('logout') }}">
+                <form method="POST" action="{{ route('logout') }}"> 
                     @csrf
-                    <div><a href="route('logout')" class="text-[calc(1.25rem+1vw)]  relative  lg:text-[2rem]   relative " onclick="event.preventDefault();
-                                                this.closest('form').submit();">
-                            {{ __('Log Out') }}
-                            <a></div>
+                    <div class="flex flex-col gap-[0.5rem] items-start">
+                        <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="route('logout')"><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/logouticon.svg') }}" onclick="event.preventDefault();
+                                                this.closest('form').submit();" alt="messages_icon" width="25" height="25"></a></div>
+                        <div>
+                            <p>Odjava</p>
+                        </div>
+                    </div>
                 </form>
-                <div class="flex flex-col gap-[0.5rem] items-center">
+                <div class="flex flex-col gap-[0.5rem] items-start">
                     <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href=""><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/carticon.svg') }}" alt="messages_icon" width="25" height="25"></a></div>
                     <div>
                         <p>Korpa</p>
@@ -43,13 +46,22 @@
                     </div>
                 </div>
                 @else
-                <div><a class="text-[calc(1.25rem+1vw)] text-gray-800 hover:text-gray-900 rounded-md relative  lg:text-[2rem]  w-fit" href="{{ route('login') }}">
-                        {{ __('Prijava') }}
-                    </a></div>
-                <div><a class="text-[calc(1.25rem+1vw)] text-gray-800  hover:text-gray-900 rounded-md relative  w-fit lg:text-[2rem] " href="{{ route('register') }}">
-                        {{ __('Registracija') }}
-
-                    </a></div>
+                <div class="flex flex-col gap-[0.5rem] items-center">
+                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="{{ route('login') }}">
+                            <img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/loginicon.svg') }}" alt="messages_icon" width="25" height="25">
+                        </a></div>
+                    <div>
+                        <p>Prijavi se</p>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-[0.5rem] items-center">
+                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"> <a href="{{ route('register') }}">
+                            <img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/newuser.svg') }}" alt="messages_icon" width="25" height="25">
+                        </a></div>
+                    <div>
+                        <p>Registracija</p>
+                    </div>
+                </div>
                 <div class="flex flex-col gap-[0.5rem] items-center">
                     <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href=""><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/carticon.svg') }}" alt="messages_icon" width="25" height="25"></a></div>
                     <div>
