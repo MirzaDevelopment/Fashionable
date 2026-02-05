@@ -131,15 +131,17 @@ class MaterialManagementTest extends TestCase
     {
         $user = User::factory()->create(['name' => 'Kenan Hikmetov', 'role' => "guest"]);
         $material2 = Material::factory()->create(['material' => 'Silk',]);
+
+        $material2Id = $material2["id"];
         $this->actingAs($user);
+
+        Livewire::test(MaterialManagement::class)->call('deleteMaterialCategory', $material2Id)->assertStatus(403);
+
         $this->assertDatabaseHas("category_materials", [
             "id" => $material2->id,
             "material" => "Silk",
             "deleted_at" => null,
 
         ]);
-
-        $material2Id = $material2["id"];
-        Livewire::test(MaterialManagement::class)->call('deleteMaterialCategory', $material2Id);
     }
 }

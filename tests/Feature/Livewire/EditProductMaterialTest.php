@@ -94,7 +94,7 @@ class EditProductMaterialTest extends TestCase
 
         $this->actingAs($userAdmin);
 
-        Livewire::withQueryParams(['id' => $fakeProduct->id])->test(EditProductMaterial::class, ['product' => $fakeProduct])->set("currentMaterialArray", $currentMaterialArray)->set("materialSelect", $materialSelect)->call('editMaterials')->assertStatus(200);
+        Livewire::withQueryParams(['id' => $fakeProduct->id])->test(EditProductMaterial::class, ['product' => $fakeProduct])->set("currentMaterialArray", $currentMaterialArray)->set("materialSelect", $materialSelect)->call('editMaterials')->assertHasNoErrors();
 
         $this->assertDatabaseHas("products_materials", [
             "product_id" =>  $fakeProduct->id,
