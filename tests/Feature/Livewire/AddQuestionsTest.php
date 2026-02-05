@@ -1,13 +1,14 @@
 <?php
 namespace Tests\Feature\Livewire;
-
+/*
+Simple test of the AddQuestions livewire component. It tests the rendering of the component, It's existance in the view, database, and the upload functionality of the component.
+*/
 use App\Livewire\AddQuestions;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Livewire\Livewire;
 use App\Models\User;
 use App\Models\Question;
 use Tests\TestCase;
-use Lunaweb\RecaptchaV3\Facades\RecaptchaV3;
 
 class AddQuestionsTest extends TestCase
 {
@@ -69,7 +70,7 @@ class AddQuestionsTest extends TestCase
             ->set('email', 'john@example.com')
             ->set('question', 'This is a test question.')
             ->set('status', 'neodgovoreno')
-            ->call('uploadQuestion')          // call the method
+            ->call('uploadQuestion')          
             ->assertHasNoErrors();   
         
      
