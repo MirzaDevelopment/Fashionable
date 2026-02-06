@@ -31,7 +31,7 @@
                 <x-input-label for="role" :value="__('Uloga')" />
                 <select name="role" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="role">
                     <option disabled selected>Promijenite ulogu korisnika</option>
-                    <option value="guest">Gost</option>
+                    <option value="gost">Gost</option>
                     <option value="admin">Admin</option>
                 </select>
             </div>
