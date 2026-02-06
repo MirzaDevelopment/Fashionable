@@ -56,7 +56,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
     //Guest route
     Route::get('/dashboardusers', function () {
-        if(auth()->user()->role=="guest"){
+        if(auth()->user()->role=="gost"){
         return view("dashboardusers");
         }
    

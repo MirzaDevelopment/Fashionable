@@ -25,7 +25,7 @@
                         <p>Korpa</p>
                     </div>
                 </div>
-                @elseif(Auth::user() && Auth::user()->role=="guest")
+                @elseif(Auth::user() && Auth::user()->role=="gost")
                 <div>
                     <p class="text-[calc(1.25rem+1vw)]  lg:text-[2rem]">Dobrodošli natrag, <a class="underline lg:underline-offset-[0.5rem] 2xl:underline-offset-[0.8rem] underline-offset-4 w-fit" href="{{ route('dashboardusers') }}">{{Auth::user()->name}}.</a></p>
                 </div>
@@ -94,7 +94,7 @@
                         <p>Korpa</p>
                     </div>
                 </div>
-                @elseif(Auth::user() && Auth::user()->role=="guest")
+                @elseif(Auth::user() && Auth::user()->role=="gost")
                 <div>
                     <p class="text-[calc(1.25rem+1vw)]  lg:text-[2rem]">Dobrodošli natrag, <a class="underline  lg:underline-offset-[0.5rem] 2xl:underline-offset-[0.8rem] underline-offset-4 w-fit" href="{{ route('dashboardusers') }}">{{Auth::user()->name}}.</a></p>
                 </div>
