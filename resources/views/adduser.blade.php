@@ -47,8 +47,8 @@
                 <!-- New user role (guest is by default) -->
                 <x-input-label for="role" :value="__('Uloga korisnika')" />
                 <select name="role" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm block mt-1 w-full" id="role">
-                    <option value="guest">Gost</option>
-                    <option value="admin">Administrator</option>
+                    <option value="gost">Gost</option>
+                    <option value="admin">Admin</option>
                 </select>
             </div>
             <div class="flex items-center justify-end mt-4">
