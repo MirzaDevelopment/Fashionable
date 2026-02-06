@@ -13,7 +13,7 @@
             </picture>
 
             <!--Navigation towards search and category-->
-            <span class="absolute text-[calc(5rem+3vw)] sm:text-[5rem] md:text-[calc(6rem+2vw)] lg:text-[calc(7rem+2vw)] xl:text-[calc(9rem+1vw)] 2xl:text-[12rem] lg2:text-[15rem] text-white"><a href="/shop#explore">Istraži</a></span>
+            <span class="absolute text-[calc(5rem+3vw)] sm:text-[5rem] md:text-[calc(5rem+2vw)] lg:text-[calc(7rem+2vw)] xl:text-[calc(9rem+1vw)] 2xl:text-[12rem] lg2:text-[15rem] text-white"><a href="/shop#explore">Istraži</a></span>
         </div>
         <div class="relative flex 2xl:group relative transition-all 2xl:duration-300 ease-in-out max-w-[1920px] transform 2xl:hover:scale-105 ">
             <picture class="w-full row-start-2 h-auto">
@@ -25,7 +25,7 @@
                 <img class="col-span-1 shadow-[0_8px_30px_rgba(0,0,0,0.12)] row-start-2 brightness-[70%] w-full  h-auto" fetchpriority="high" loading="eager" src="{{ asset('storage/images/200x200/shop_female_200x300.webp') }}" width=200 height=300 alt="women_models">
             </picture>
             <!--Navigation towards discounted items-->
-            <span class="absolute text-[calc(5rem+2vw)] sm:text-[5rem] md:text-[calc(6rem+2vw)] lg:text-[calc(7rem+2vw)] xl:text-[calc(9rem+1vw)] 2xl:text-[12rem] lg2:text-[15rem] text-white"><a href="/shop#special-prices">Akcijske cijene</a></span>
+            <span class="absolute text-[calc(5rem+2vw)] sm:text-[5rem] md:text-[calc(5rem+2vw)] lg:text-[calc(7rem+2vw)] xl:text-[calc(9rem+1vw)] 2xl:text-[12rem] lg2:text-[15rem] text-white"><a href="/shop#special-prices">Akcijske cijene</a></span>
         </div>
     </div>
     <!--Back to top button and contact form-->
