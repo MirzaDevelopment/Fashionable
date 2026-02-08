@@ -32,7 +32,7 @@ class ShowQuestionsTest extends TestCase
             'role' => "admin",
         ]);
         $user = User::factory()->create([
-            'role' => "guest",
+            'role' => "gost",
         ]);
         $response = $this->actingAs($userAdmin)->get('questions');
         $response->assertStatus(200);

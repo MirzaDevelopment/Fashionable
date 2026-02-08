@@ -155,7 +155,9 @@
                     ('productImage.'.$index))
                     <div class="ml-auto mr-auto">
                         <p>Pregled slike</p>
+                       
                         <img wire:key="{{$index}}" src="{{ $imageField->temporaryUrl()}}" width="200" />
+                        
                     </div>
                     @endif
                     @endforeach
@@ -209,8 +211,10 @@
                     <!-- div for Images -->
                     <div class="lg2:grid xl:grid flex justify-center gap-x-4 gap-y-4 flex-wrap flex-row content-center lg2:col-span-2 xl:col-span-2 lg2:row-span-3 xl:row-span-3">
                         @foreach ($productImage as $image)
+                        @if ($image instanceof \Livewire\TemporaryUploadedFile)
                         <img class="rounded-lg" src="{{$image->temporaryUrl()}}" width="200">
                         <hr class="mt-2 mb-2 hidden lg2:block xl:block">
+                        @endif
                         @endforeach
 
                     </div>

@@ -28,7 +28,7 @@ class ShowUsersTest extends TestCase
             'role' => "admin",
         ]);
         $user = User::factory()->create([
-            'role' => "guest",
+            'role' => "gost",
         ]);
         $response = $this->actingAs($userAdmin)->get('users');
         $response->assertStatus(200);
@@ -79,7 +79,7 @@ class ShowUsersTest extends TestCase
     public function test_only_admin_can_delete_users()
     {
 
-        $user = User::factory()->create(['name' => 'Kenan Hikmetov', 'role' => "guest"]);
+        $user = User::factory()->create(['name' => 'Kenan Hikmetov', 'role' => "gost"]);
 
         $userId = $user["id"];
         $arrayUsers = [$userId];
@@ -90,8 +90,8 @@ class ShowUsersTest extends TestCase
     public function test_deleting_users()
     {
 
-        $user1 = User::factory()->create(['name' => 'Kenan Hikmetov', 'role' => "guest"]);
-        $user2 = User::factory()->create(['name' => 'Kemal Nijazov', 'role' => "guest"]);
+        $user1 = User::factory()->create(['name' => 'Kenan Hikmetov', 'role' => "gost"]);
+        $user2 = User::factory()->create(['name' => 'Kemal Nijazov', 'role' => "gost"]);
         $userAdmin = User::factory()->create([
             'role' => "admin",
         ]);

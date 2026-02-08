@@ -29,7 +29,7 @@ class ShowDeletedUsersTest extends TestCase
             'role' => "admin",
         ]);
         $user = User::factory()->create([
-            'role' => "guest",
+            'role' => "gost",
         ]);
         $response = $this->actingAs($userAdmin)->get('deleted-users');
         $response->assertStatus(200);
@@ -64,7 +64,7 @@ class ShowDeletedUsersTest extends TestCase
     public function test_only_admin_can_restore_users()
     {
 
-        $user = User::factory()->create(['name' => 'Kenan Hikmetov', 'role' => "guest"]);
+        $user = User::factory()->create(['name' => 'Kenan Hikmetov', 'role' => "gost"]);
 
         $userId = $user["id"];
         $arrayUsers = [$userId];
@@ -74,8 +74,8 @@ class ShowDeletedUsersTest extends TestCase
     public function test_restoring_deleted_users()
     {
 
-        $user1 = User::factory()->create(['name' => 'Kenan Hikmetov', 'role' => "guest", 'deleted_at' => date("Y-m-d H:i:s")]);
-        $user2 = User::factory()->create(['name' => 'Kemal Nijazov', 'role' => "guest", 'deleted_at' => date("Y-m-d H:i:s")]);
+        $user1 = User::factory()->create(['name' => 'Kenan Hikmetov', 'role' => "gost", 'deleted_at' => date("Y-m-d H:i:s")]);
+        $user2 = User::factory()->create(['name' => 'Kemal Nijazov', 'role' => "gost", 'deleted_at' => date("Y-m-d H:i:s")]);
         $userAdmin = User::factory()->create([
             'role' => "admin",
         ]);

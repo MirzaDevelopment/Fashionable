@@ -11,8 +11,10 @@ use App\Models\Product;
 use App\Models\Price;
 use App\Models\User;
 use App\Models\Color;
+use App\Models\Image;
 use App\Models\Size;
 use Livewire\Livewire;
+use Illuminate\Http\UploadedFile;
 use Tests\TestCase;
 
 class AddProductTest extends TestCase
@@ -63,6 +65,9 @@ class AddProductTest extends TestCase
         $fakePrice = Price::factory()->create(['product_id' => $fakeProduct->id]);
         $fakeColor = Color::factory()->create();
         $fakeSize = Size::factory()->create();
+        $fakeImage = UploadedFile::fake()
+            ->image('product.jpg', 800, 800) // width x height
+            ->size(500); // size in KB
         $fakeProduct->colorsVariant()->attach($fakeColor->id, [
             'category_size_id' => $fakeSize->id,
             'stock_quantity' => 0
@@ -71,9 +76,9 @@ class AddProductTest extends TestCase
             'role' => "admin",
         ]);
 
-        Livewire::actingAs($userAdmin)->test(AddProduct::class)->call('uploadProduct')->assertStatus(200);
+        Livewire::actingAs($userAdmin)->test(AddProduct::class)->set("productName", "Test Name")->set("productDescription", "Test description")->set("productPrice", $fakePrice->price)->set("colorSelect", ["blue"])->set("genderSelect", ["male"])->set("typeSelect", ["Boots"])->set("materialSelect", ["Leather"])->set("sizeSelect", [$fakeSize])->set("productImage", $fakeImage)->call('uploadProduct')->assertHasNoErrors();
 
-        $this->assertDatabaseHas("products", [
+          $this->assertDatabaseHas("products", [
             "product_name" => "Test Name",
             "description" => "Test description",
             "total_stock" => 0,
@@ -113,7 +118,7 @@ class AddProductTest extends TestCase
             'role' => "admin",
         ]);
         $userGuest = User::factory()->create([
-            'role' => "guest",
+            'role' => "gost",
         ]);
 
 

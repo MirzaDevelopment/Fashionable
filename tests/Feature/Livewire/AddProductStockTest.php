@@ -141,7 +141,7 @@ class AddProductStockTest extends TestCase
             'role' => "admin",
         ]);
         $userGuest = User::factory()->create([
-            'role' => "guest",
+            'role' => "gost",
         ]);
 
         $this->actingAs($userGuest);

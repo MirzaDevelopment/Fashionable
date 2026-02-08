@@ -60,7 +60,7 @@ class MaterialManagementTest extends TestCase
         $arrayMaterials = [$material1, $material2];
 
         $userGuest = User::factory()->create([
-            'role' => "guest",
+            'role' => "gost",
         ]);
 
         Livewire::actingAs($userGuest)->test(MaterialManagement::class)->set('materials',  $arrayMaterials)->call('insertMaterial')->assertStatus(403);
@@ -129,7 +129,7 @@ class MaterialManagementTest extends TestCase
     /** @test */
     public function test_only_admin_can_delete_material_categories()
     {
-        $user = User::factory()->create(['name' => 'Kenan Hikmetov', 'role' => "guest"]);
+        $user = User::factory()->create(['name' => 'Kenan Hikmetov', 'role' => "gost"]);
         $material2 = Material::factory()->create(['material' => 'Silk',]);
 
         $material2Id = $material2["id"];

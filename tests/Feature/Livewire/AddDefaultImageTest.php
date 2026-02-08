@@ -81,7 +81,7 @@ class AddDefaultImageTest extends TestCase
             'role' => "admin",
          ]);
                       $userGuest = User::factory()->create([
-            'role' => "guest",
+            'role' => "gost",
          ]);
 
           Livewire::actingAs($userAdmin)->test(AddDefaultImage::class)->call('defaultImageUpload')->assertStatus(200);

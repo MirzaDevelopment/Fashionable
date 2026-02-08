@@ -143,7 +143,7 @@ class EditProductMaterialTest extends TestCase
         ]);
 
         $userGuest = User::factory()->create([
-            'role' => "guest",
+            'role' => "gost",
         ]);
 
         $this->actingAs($userAdmin);
@@ -171,7 +171,7 @@ class EditProductMaterialTest extends TestCase
         ]);
 
         $userGuest = User::factory()->create([
-            'role' => "guest",
+            'role' => "gost",
         ]);
         $this->actingAs($userAdmin);
 

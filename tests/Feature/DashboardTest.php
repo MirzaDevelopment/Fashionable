@@ -18,7 +18,7 @@ class DashboardTest extends TestCase
             'role' => "admin",
         ]);
         $user = User::factory()->create([
-            'role' => "guest",
+            'role' => "gost",
         ]);
         $response = $this->actingAs($userAdmin)->get('dashboard');
         $response->assertViewIs('dashboard');
