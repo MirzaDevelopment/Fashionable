@@ -3,6 +3,7 @@
 Livewire tests that test the ShowQuestions livewire component. The component is responsible for rendering comments and questions from user on the admin dashboard.
 Tests include standard component render tests, questions delete and modify questions from "odgovoreno" to "neodgovoreno" and vice versa.
 */
+
 namespace Tests\Feature\Livewire;
 
 use App\Livewire\ShowQuestions;
@@ -25,7 +26,7 @@ class ShowQuestionsTest extends TestCase
             ->assertStatus(200);
     }
 
-  /** @test */
+    /** @test */
     public function test_only_admins_can_view_component()
     {
         $userAdmin = User::factory()->create([
@@ -41,7 +42,7 @@ class ShowQuestionsTest extends TestCase
         $response->assertStatus(403);
     }
 
-        /** @test */
+    /** @test */
     public function test_component_exists_on_the_page()
     {
         $user = User::factory()->create([
@@ -52,11 +53,11 @@ class ShowQuestionsTest extends TestCase
         $response->assertStatus(200);
     }
 
-     /** @test */
+    /** @test */
     public function test_displays_questions()
     {
 
-   $fakeQuestion=Question::factory()->create(["status"=>"neodgovoreno"]);
+        $fakeQuestion = Question::factory()->create(["status" => "neodgovoreno"]);
 
 
         Livewire::test(ShowQuestions::class)
@@ -64,30 +65,76 @@ class ShowQuestionsTest extends TestCase
             ->assertSee($fakeQuestion->user_email);
     }
 
-      /** @test */
-    public function test_deleting_questions()
+    /** @test */
+    public function test_delete_questions()
     {
 
-        $fakeQuestion=Question::factory()->create(["status"=>"neodgovoreno"]);
+        $fakeQuestion = Question::factory()->create(["status" => "neodgovoreno"]);
         $userAdmin = User::factory()->create([
             'role' => "admin",
         ]);
-        
-        $this->assertDatabaseHas("questions", 
-        [ "id" => $fakeQuestion->id, 
-        "user_name" => $fakeQuestion->user_name, 
-        "user_email" => $fakeQuestion->user_email, 
-        "question" => $fakeQuestion->question, 
-        "status"=>"neodgovoreno",
+
+        $this->assertDatabaseHas(
+            "questions",
+            [
+                "id" => $fakeQuestion->id,
+                "user_name" => $fakeQuestion->user_name,
+                "user_email" => $fakeQuestion->user_email,
+                "question" => $fakeQuestion->question,
+                "status" => "neodgovoreno",
+            ]
+        );
+        $this->actingAs($userAdmin);
+        Livewire::test(ShowQuestions::class)->call('deleteQuestion', $fakeQuestion->id);
+
+        $this->assertDatabaseMissing(
+            "questions",
+            [
+                "id" => $fakeQuestion->id,
+
+            ]
+        );
+    }
+
+    /** @test */
+    public function test_only_admin_can_delete_questions()
+    {
+
+        $fakeQuestion = Question::factory()->create(["status" => "neodgovoreno"]);
+        $userAdmin = User::factory()->create([
+            'role' => "admin",
+        ]);
+            $userGuest = User::factory()->create([
+            'role' => "gost",
+        ]);
+
+
+        Livewire::actingAs($userAdmin)->test(ShowQuestions::class)->call('deleteQuestion', $fakeQuestion->id)->assertHasNoErrors();
+        Livewire::actingAs($userGuest)->test(ShowQuestions::class)->call('deleteQuestion', $fakeQuestion->id)->assertStatus(403);
+
+    }
+
+
+    /** @test */
+    public function test_change_status_questions()
+    {
+
+        $fakeQuestion = Question::factory()->create(["status" => "neodgovoreno"]);
+        $userAdmin = User::factory()->create([
+            'role' => "admin",
         ]);
         $this->actingAs($userAdmin);
-        Livewire::test(ShowQuestions::class)->call('deleteQuestion',$fakeQuestion->id);
+        Livewire::test(ShowQuestions::class)->call('updateQuestion', $fakeQuestion->id)->assertHasNoErrors();
 
-        $this->assertDatabaseMissing("questions", 
-        [ 
-            "id" => $fakeQuestion->id,  
-     
-        ]);
+        $this->assertDatabaseHas(
+            "questions",
+            [
+                "id" => $fakeQuestion->id,
+                "user_name" => $fakeQuestion->user_name,
+                "user_email" => $fakeQuestion->user_email,
+                "question" => $fakeQuestion->question,
+                "status" => "odgovoreno",
+            ]
+        );
     }
-    
-      }
+}
