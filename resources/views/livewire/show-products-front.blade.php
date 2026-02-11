@@ -49,7 +49,7 @@
         </div>
         <!--Sorting products from database-->
         <div class="relative flex items-center 2xl:justify-end">
-            <span class="text-lg lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem] mr-[1rem]"> Sort by: </span>
+            <span class="text-lg lg:text-[calc(1rem+1vw)] lg2:text-[2rem] mr-[1rem]"> Poredaj: </span>
             <img class="lg:w-[60px]" style="cursor: pointer" wire:click="sortProduct('product_name')" src="http://melisa.test/storage/images/sortIcon.svg" alt="sort_by_name" width="40" height="40">
             <img class="lg:w-[60px]" style="cursor: pointer" wire:click="sortProduct('price')" src="http://melisa.test/storage/images/sortIconPrice.svg" alt="sort_by_price_icon" width="40" height="40">
         </div>
@@ -69,16 +69,27 @@
             border-radius: 50%;">
                     </div>
                     @endforeach
+                    <div class="ml-auto">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="black">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+           2 5.42 4.42 3 7.5 3 
+           c1.74 0 3.41 0.81 4.5 2.09 
+           C13.09 3.81 14.76 3 16.5 3 
+           19.58 3 22 5.42 22 8.5 
+           c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                        </svg>
+                    </div>
                 </span>
-                @foreach ($product->images as $images) 
-                    <picture>
+                @foreach ($product->images as $images)
+                <picture>
                     <source media="(max-width: 320px)" srcset="{{ asset('storage/'.$images->image_200x200) }}">
                     <source media="(max-width: 640px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
                     <source media="(max-width: 1023px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
                     <source media="(min-width: 1024px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
-                    <img class="object-cover"  loading="lazy" src="{{ asset('storage/'.$images->image_400x400)}}" width="400" height="600" alt="product image"></picture>
-                    @break
-                    @endforeach
+                    <img class="object-cover" loading="lazy" src="{{ asset('storage/'.$images->image_400x400)}}" width="400" height="600" alt="product image">
+                </picture>
+                @break
+                @endforeach
             </div>
             <hr class="border-t-1 row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[100%] col-span-1">
             <h3 class="text-[1.8rem] lg:text-[2.2rem] 2xl:text-[3rem] font-semibold text-gray-800">{{ $product->product_name }}</h3>
