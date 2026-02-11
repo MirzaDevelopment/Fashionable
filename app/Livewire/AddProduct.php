@@ -132,7 +132,7 @@ class AddProduct extends Component
         if (count($this->heelSelect) > 1) {
             $index = array_search($parameter, $this->heelSelect);
             unset($this->heelSelect[$index]);
-            session()->flash('errorHeel', 'Please select only one heel type!');
+            session()->flash('errorHeel', 'Molimo odaberite samo jedan tip štikle!');
         };
     }
 
@@ -177,7 +177,7 @@ class AddProduct extends Component
         if (count($this->typeSelect) > 1) {
             $index = array_search($parameter, $this->typeSelect);
             unset($this->typeSelect[$index]);
-            session()->flash('errorType', 'Please select only one product type!');
+            session()->flash('errorType', 'Molimo odaberite samo jedan tip proizvoda!');
         };
     }
 
@@ -303,7 +303,7 @@ class AddProduct extends Component
         //Making sure both discount and dates are selected
         if (!(empty($this->productDiscount)) && empty($this->startDate) && empty($this->endDate)) {
 
-            return session()->flash('errorDates', 'Please select start and end date for your discount!');
+            return session()->flash('errorDates', 'Molimo odaberite početni i završni datum trajanja popusta!');
         }
 
         //Beginning transaction
@@ -482,20 +482,20 @@ class AddProduct extends Component
                 'start_date' => $this->startDate,
                 'end_date' => $this->endDate,
             ]);
-
-
+          //  $newProduct = Product::with("sizesVariant", "colorsVariant")->find($this->productId);
+            session(['newProductModel' =>$product]);
 
             /*
         Part IV - return message
         */
             DB::commit();
             $this->isUploading = true;
-            return redirect()->back()->with("status", "Your product added successfully!");
+            return redirect()->back()->with("status", "Uspješno ste dodali vaš proizvod!");
         } catch (\Exception $e) {
             DB::rollBack(); // Rollback the transaction on error
             $this->isUploading = false;
             Log::error('Error occurred: ' . $e->getMessage());
-            return redirect()->back()->with("errorException", "There was an issue adding the product. Please try again.");
+            return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja proizvoda. Molimo pokušajte ponovo.");
         }
     }
 

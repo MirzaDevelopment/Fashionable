@@ -40,7 +40,7 @@ class AddProductStock extends Component
     public function mount(Request $request): void
     {
 
-        //Mostly important to show the admin current product data
+        
         $this->requestId = $request->id; //Used to make sure user gets back to correct page after update
         $this->requestRoute = $request->route; //...also to make sure user gets back to correct page after update
         $this->product =  session("newProductModel");
@@ -110,7 +110,7 @@ class AddProductStock extends Component
 
             DB::commit();
 
-            return redirect()->back()->with("status", "Updated...");
+            return redirect()->back()->with("status", "Ažurirano...");
         } catch (\Exception $e) {
             DB::rollBack(); // Rollback the transaction on error
             Log::error('Error occurred: ' . $e->getMessage());

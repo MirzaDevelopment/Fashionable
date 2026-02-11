@@ -13,7 +13,7 @@
             <!-- Showing size categories -->
             <div class="mt-6 grid grid-cols-2 gap-2 gap-x-10 justify-items-center">
                 @foreach ($typesAll as $name)
-                <p wire:click="$parent.TypeSelect('{{$name->type_name}}')" class="{{in_array($name->type_name, $typeSelect)? 'p-1 min-w-16  self-center bg-[#EDE8D0] border border-gray-200 rounded-lg shadow' : 'p-1 min-w-16  self-center bg-white border border-gray-200 rounded-lg shadow'}}" style="cursor: pointer" wire:key="{{$name->id}}">{{$name->type_name}}</p>
+                <p wire:click="$parent.TypeSelect('{{$name->type_name}}')" class="{{in_array($name->type_name, $typeSelect)? 'p-1 min-w-16 break-words max-w-[10%] self-center bg-[#EDE8D0] border border-gray-200 rounded-lg shadow' : 'p-1 min-w-16 break-words max-w-[10%]  self-center bg-white border border-gray-200 rounded-lg shadow'}}" style="cursor: pointer" wire:key="{{$name->id}}">{{$name->type_name}}</p>
                 @endforeach
                 @endisset
             </div>
