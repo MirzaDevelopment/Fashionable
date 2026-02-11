@@ -40,7 +40,7 @@ class AddQuestionsTest extends TestCase
 
 
     /** @test */
-    public function test_product_exists_in_database()
+    public function test_question_exists_in_database()
     {
 
         $fakeQuestion=Question::factory()->create(["status"=>"neodgovoreno"]);

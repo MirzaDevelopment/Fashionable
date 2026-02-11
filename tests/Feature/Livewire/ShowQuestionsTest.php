@@ -54,7 +54,7 @@ class ShowQuestionsTest extends TestCase
     }
 
     /** @test */
-    public function test_displays_questions()
+    public function test_questions_can_be_displayed()
     {
 
         $fakeQuestion = Question::factory()->create(["status" => "neodgovoreno"]);
@@ -66,7 +66,7 @@ class ShowQuestionsTest extends TestCase
     }
 
     /** @test */
-    public function test_delete_questions()
+    public function test_questions_can_be_deleted()
     {
 
         $fakeQuestion = Question::factory()->create(["status" => "neodgovoreno"]);
@@ -116,7 +116,7 @@ class ShowQuestionsTest extends TestCase
 
 
     /** @test */
-    public function test_change_status_questions()
+    public function test_question_status_can_be_changed()
     {
 
         $fakeQuestion = Question::factory()->create(["status" => "neodgovoreno"]);
