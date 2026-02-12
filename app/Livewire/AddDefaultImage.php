@@ -104,7 +104,7 @@ public function defaultImageUpload():?RedirectResponse
         ]);
         DB::commit();
         $this->isUploading = true;
-        return redirect()->back()->with("statusDefault", "Zadana slika je uspješno učitana! Ova slika će se koristiti kada ne bude pronađena slika za odgovarajuću boju.");
+        return redirect()->back()->with("statusDefault", "Zamjenska slika je uspješno učitana! Ova slika će se koristiti kada ne bude pronađena slika za odgovarajuću boju.");
     } catch (\Exception $e) {
         DB::rollBack(); // Rollback the transaction on error
         $this->isUploading = false;

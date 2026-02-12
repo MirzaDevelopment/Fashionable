@@ -236,12 +236,12 @@ class EditProductColor extends Component
             DB::commit();
             $this->isUploading = true;
 
-            return redirect()->back()->with("status", "Ažurirali ste kategoriju boja uspješno.");
+            return redirect()->back()->with("status", "Ažurirali ste kategoriju boja uspješno. Molimo da osvježite stranicu i da odaberete odgovarajuću sliku za vašu novu boju.");
         } catch (\Exception $e) {
             DB::rollBack(); // Rollback the transaction on error
             $this->isUploading = false;
             Log::error('Error occurred: ' . $e->getMessage());
-            return redirect()->back()->with("errorException", "Nastao je problem pri ažuriranju boja proizvoda.  Make sure default image is already uploaded and try again.");
+            return redirect()->back()->with("errorException", "Nastao je problem pri ažuriranju boja proizvoda.");
         }
     }
 

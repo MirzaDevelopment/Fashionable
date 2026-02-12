@@ -130,11 +130,11 @@
                 <hr>
                 <label class="font-medium" for="productImage">Umetnite sliku vašeg proizvoda koji odgovara odabranoj boji.</label>
                 <div class="overflow-scroll lg2:overflow-auto flex flex-col gap-6">
-                    <p class="text-xs text-gray-400">Ekstenzije PNG, JPG SVG, WEBP, and GIF su dozvoljene.</p>
+                    <p class="text-xs text-gray-400">*Ekstenzije PNG, JPG SVG, WEBP, and GIF su dozvoljene.<br> Program automatski optimizira slike i slaže ih u odgovarajuće veličine. Nije potrebna prethodna optimizacija od strane korisnika.</p>
                     <!--Input fields for colors-->
                     @isset($colorSelect)
                     @foreach ($colorSelect as $index => $color)
-                    <p class="font-bold"> Umetnite vašu {{$color}} {{ implode(', ', $typeSelect) }} image </p>
+                    <p class="font-bold"> Umetnite vašu sliku za {{mb_substr($color, 0, -1) . "u"}} boju</p>
                     <div x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true" x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-cancel="uploading = false" x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                         <input wire:model="productImage.{{ $index }}" wire:key="{{$index}}" @if ($errors->has
                         ('productImage.'.$index)) class="w-full text-gray-500 font-medium text-base bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2.5 file:px-4 file:mr-4 file:bg-gray-800 file:hover:bg-gray-700 file:text-white rounded border border-[#D32F2F] w-4/5 sm:w-fit 2xl:w-4/5" @endif class="w-full text-gray-500 font-medium text-base bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2.5 file:px-4 file:mr-4 file:bg-gray-800 file:hover:bg-gray-700 file:text-white rounded" accept="image/jpeg, image/png, image/webp" type="file" id="productImage"></input>
@@ -199,9 +199,9 @@
             </section>
         </div>
         <!-- Product preview -->
-        <section @if($lightBox) class="mt-10 rounded-lg absolute p-4 lg2:max-h-screen xl:max-h-screen overflow-scroll mb-10 lg2:w-1/2 sm:max-w-fit lg2:px-6 xl:px-6 lg2:py-4 xl:py-4 bg-[#D1A15D] overflow-hidden sm:rounded-lg m-auto" @endif class="mt-10 rounded-lg  mb-10 w-1/2 sm:max-w-fit px-6 py-4 bg-[#D1A15D] overflow-hidden sm:rounded-lg m-auto" x-data="{ open: false }">
+        <section @if($lightBox) class="mt-10 rounded-lg  absolute lg2:max-h-screen xl:max-h-screen overflow-scroll mb-10 lg2:w-1/2 sm:max-w-fit bg-[#D1A15D] overflow-hidden sm:rounded-lg m-auto" @endif class="mt-10 rounded-lg mr-[1.5rem] relative top-[-13.5rem] mb-10 w-1/2 sm:max-w-fit  bg-[#D1A15D] overflow-hidden sm:rounded-lg m-auto" x-data="{ open: false }">
             <!-- Product preview button -->
-            <button id="previewProduct" wire:click="toggleLightBox" class="col-start-1 lg:col-span-2 lg2:col-start-1 xl:col-start-1 lg2:col-span-1 xl:col-span-1 justify-center inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" x-on:click="open = ! open" x-data="{ toggle: false }" x-bind:class="toggle ? ' bg-gray-900 text-white' : ''" @click="toggle = ! toggle">
+            <button id="previewProduct" wire:click="toggleLightBox" class="col-start-1 m-[1rem] lg:col-span-2 lg2:col-start-1 xl:col-start-1 lg2:col-span-1 xl:col-span-1 justify-center inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" x-on:click="open = ! open" x-data="{ toggle: false }" x-bind:class="toggle ? ' bg-gray-900 text-white' : ''" @click="toggle = ! toggle">
                 Pregledajte vaš proizvod
             </button>
             <div class="p-6 items-center rounded-s-full mt-10 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 gap-6" x-show="open" x-transition>
@@ -211,10 +211,10 @@
                     <!-- div for Images -->
                     <div class="lg2:grid xl:grid flex justify-center gap-x-4 gap-y-4 flex-wrap flex-row content-center lg2:col-span-2 xl:col-span-2 lg2:row-span-3 xl:row-span-3">
                         @foreach ($productImage as $image)
-                        @if ($image instanceof \Livewire\TemporaryUploadedFile)
+                        
                         <img class="rounded-lg" src="{{$image->temporaryUrl()}}" width="200">
                         <hr class="mt-2 mb-2 hidden lg2:block xl:block">
-                        @endif
+                        
                         @endforeach
 
                     </div>
