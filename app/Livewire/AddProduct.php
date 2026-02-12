@@ -68,6 +68,7 @@ class AddProduct extends Component
     public array $productImage = [];
     public array $colorRender = [];
     public int $productDiscountedPrice;
+    public string $validationFailedExtraMessage;
 
 
     /*
@@ -298,8 +299,11 @@ class AddProduct extends Component
             return null; // Prevent further submissions if already uploading
         }
 
-
+        if(!empty($this->messages)){
+          $this->validationFailedExtraMessage="Greška! Molimo provjerite da li ste popunili sve obavezne kategorije!";
+        }
         $this->validate();
+ 
         //Making sure both discount and dates are selected
         if (!(empty($this->productDiscount)) && empty($this->startDate) && empty($this->endDate)) {
 

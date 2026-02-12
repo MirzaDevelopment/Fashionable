@@ -173,6 +173,11 @@
                     {{ __('Dodaj proizvod') }}
 
                 </x-primary-button>
+                @if(!empty($validationFailedExtraMessage))
+                <div class="lg:col-span-2 lg2:col-span-1 lg2:col-start-4 lg:col-start-3 lg:row-start-3 row-start-2" x-data="{open:true}">
+                    <div class="text-[#721c24] rounded-md bg-[#f8d7da] p-2.5 justify-center" x-show="open" x-on:click.outside="open=false" x-transition>{{$validationFailedExtraMessage}}</div>
+                </div>
+               @endif
                 @if (session('status'))
                 <!-- Moving towards stock management -->
                 <a class="col-start-1 lg:col-span-2 lg:col-start-3 bg-sky-500 lg2:col-start-4 row-start-3 lg:row-start-4 lg2:col-span-1 justify-center inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" href="/stock-management/{{$productId}}" wire:navigate>Ažuriraj broj dostupnih artikala</a>
