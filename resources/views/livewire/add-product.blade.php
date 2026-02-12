@@ -199,7 +199,7 @@
             </section>
         </div>
         <!-- Product preview -->
-        <section @if($lightBox) class="mt-10 rounded-lg  absolute lg2:max-h-screen xl:max-h-screen overflow-scroll mb-10 lg2:w-1/2 sm:max-w-fit bg-[#D1A15D] overflow-hidden sm:rounded-lg m-auto" @endif class="mt-10 rounded-lg mr-[1.5rem] relative top-[-13.5rem] mb-10 w-1/2 sm:max-w-fit  bg-[#D1A15D] overflow-hidden sm:rounded-lg m-auto" x-data="{ open: false }">
+        <section @if($lightBox) class="mt-10 rounded-lg  absolute lg2:max-h-screen xl:max-h-screen overflow-scroll mb-10 lg2:w-1/2 sm:max-w-fit bg-[#D1A15D] overflow-hidden sm:rounded-lg m-auto" @endif class="mt-10 rounded-lg lg:mr-[1.5rem] relative lg:top-[-13.4rem] xl:top-[-12.4rem] mb-10 w-1/2 sm:max-w-fit  bg-[#D1A15D] overflow-hidden sm:rounded-lg m-auto" x-data="{ open: false }">
             <!-- Product preview button -->
             <button id="previewProduct" wire:click="toggleLightBox" class="col-start-1 m-[1rem] lg:col-span-2 lg2:col-start-1 xl:col-start-1 lg2:col-span-1 xl:col-span-1 justify-center inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" x-on:click="open = ! open" x-data="{ toggle: false }" x-bind:class="toggle ? ' bg-gray-900 text-white' : ''" @click="toggle = ! toggle">
                 Pregledajte vaš proizvod
