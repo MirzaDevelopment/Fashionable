@@ -1,6 +1,6 @@
 <!--Header component used in pages-->
-<header class="mx-auto py-6 px-4 sm:px-6 lg:px-8">
-    <a href="/"><img src="{{ asset('storage/images/logo-no-background.svg') }}" alt="web_shop_logo" width="200" height="300" class=" sm:w-[300px] sm:h-[100px] lg:w-[600px] lg:h-[200px] 2xl:w-[900px] 2xl:h-[300px]"></a>
+<header class="mx-auto py-6 px-4 sm:px-6 w-fit lg:px-8">
+    <a href="/"><img src="{{ asset('storage/images/melisa_fashion_logo_header.svg') }}" alt="web_shop_logo" width="600" height="auto" class=" sm:w-[300px] sm:h-[100px] lg:w-[600px] lg:h-[200px] 2xl:w-[900px] 2xl:h-[300px]"></a>
     <nav class="flex flex-row mt-[0.5rem] mb-[0.5rem]  2xl:mt-[0rem] 2xl:mb-[0rem] lg:flex-row-reverse flex-wrap" x-data="{ open: false }">
         <div class="lg:hidden">
             <img class="cursor-pointer lg:w-[100px]" src="{{ asset('storage/images/burger.svg') }}" alt="burger_menu" width="35" height="60" x-on:click="open = ! open" x-data="{ red: false }" x-bind:class="red ? ' bg-gray-100 text-white' : ''" @click="red = ! red">
