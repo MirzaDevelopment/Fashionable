@@ -86,7 +86,7 @@
                     <source media="(max-width: 640px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
                     <source media="(max-width: 1023px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
                     <source media="(min-width: 1024px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
-                    <img class="object-cover" loading="lazy" src="{{ asset('storage/'.$images->image_400x400)}}" width="400" height="600" alt="product image">
+                    <img class="object-cover" loading="lazy" fetchpriority="low" decoding="async" src="{{ asset('storage/'.$images->image_400x400)}}" width="400" height="600" alt="product image">
                 </picture>
                 @break
                 @endforeach

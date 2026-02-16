@@ -2,13 +2,14 @@
     <!--Header part-->
     <!--Main content-->
     <div class="">
-        <div class="relative flex 2xl:group relative">
+        <div class="relative flex 2xl:group relative min-h-[38vh]">
                 <picture class="w-full row-start-2 h-auto relative">
                 <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/shop_female_320x213.webp') }}">
                 <source media="(max-width: 480px)" srcset="{{ asset('storage/images/400x400/shop_female_400x267.webp') }}">
                 <source media="(max-width: 768px)" srcset="{{ asset('storage/images/640x640/shop_female_640x427.webp') }}">
                 <source media="(max-width: 1024px)" srcset="{{ asset('storage/images/800x800/shop_female_800x533.webp') }}">
-                <source media="(min-width: 1280px)" srcset="{{ asset('storage/images/1200x1200/shop_female_1200x800.webp') }}">
+                <source media="(max-width: 1280px)" srcset="{{ asset('storage/images/1200x1200/shop_female_1200x800.webp') }}">
+                <source media="(min-width: 1536px)" srcset="{{ asset('storage/images/1400x1400/shop_female_1400x933.webp') }}">
                 <img class="col-span-1 shadow-[0_8px_30px_rgba(0,0,0,0.12)] row-start-2  w-full h-auto" fetchpriority="high" loading="eager" src="{{ asset('storage/images/200x200/shop_female_200x134.webp') }}" width=200 height=300 alt="men_models">
                 </picture>
             <!--Navigation towards search and category-->
@@ -34,7 +35,6 @@
     </div>
     <!--Show all paginated products-->
     <livewire:show-products-front />
-    <!--Show top 5 discounted products-->
     <div class="">
         <div class="relative flex 2xl:group relative">
                <picture class="w-full row-start-2 h-auto relative">
@@ -43,7 +43,8 @@
                 <source media="(max-width: 768px)" srcset="{{ asset('storage/images/640x640/shop_male_640x427.webp') }}">
                 <source media="(max-width: 1024px)" srcset="{{ asset('storage/images/800x800/shop_male_800x533.webp') }}">
                 <source media="(min-width: 1280px)" srcset="{{ asset('storage/images/1200x1200/shop_male_1200x800.webp') }}">
-                <img class="col-span-1 shadow-[0_8px_30px_rgba(0,0,0,0.12)] row-start-2  w-full  h-640px" fetchpriority="high" loading="eager" src="{{ asset('storage/images/200x200/shop_male_200x134.webp') }}" width=200 height=300 alt="men_models">
+                <source media="(min-width: 1536px)" srcset="{{ asset('storage/images/1400x1400/shop_male_1400x933.webp') }}">
+                <img class="col-span-1 shadow-[0_8px_30px_rgba(0,0,0,0.12)] row-start-2  w-full  h-640px" loading="lazy" src="{{ asset('storage/images/200x200/shop_male_200x134.webp') }}" width=200 height=300 alt="men_models">
             </picture>
             </picture>
             <!--Navigation towards discounted items-->
@@ -51,6 +52,7 @@
         </div>
        
     </div>
+     <!--Show top 5 discounted products-->
     <livewire:show-discounted-products />
     <hr class="border-t-4 row-start-1 col-span-2 mt-2 lg:mt-4 2xl:mt-8 border-gray-800 w-[100%] col-span-1">
     <!--Footer part-->

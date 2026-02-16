@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Dreams to wear">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="preload" as="image" href="/storage/images/logo-no-background.svg" type="image/webp" />
+    <link rel="preload" as="image" href="/storage/images/melisa_fashion_logo_header.svg" type="image/webp" />
     <title>{{ config('app.name', 'Webshop') }}</title>
     <!-- Fonts -->
     <!-- Livewire styles ONLY (small, safe) -->
