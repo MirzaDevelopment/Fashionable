@@ -39,6 +39,7 @@
 
         </div>
         <div class="relative 2xl:col-span-2">
+            <!--Product search-->
             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                 <svg class="w-4 h-4 lg:w-5 lg:h-5  text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
@@ -69,17 +70,34 @@
             border-radius: 50%;">
                     </div>
                     @endforeach
-                    <div class="ml-auto">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="black">
-                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+                    <!--Wishlist button-->
+                    <div class="ml-auto relative">
+                        @if(!in_array($product->id, $wishListArray))
+                        <button wire:key="{{$index}}" wire:click="wishListItem({{$product->id}})"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="black" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3 c1.74 0 3.41 0.81 4.5 2.09 C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5 c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                            </svg></button>
+                        @else
+                        <button wire:key="{{$index}}" wire:click="wishListItem({{$product->id}})"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="black">
+                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
            2 5.42 4.42 3 7.5 3 
            c1.74 0 3.41 0.81 4.5 2.09 
            C13.09 3.81 14.76 3 16.5 3 
            19.58 3 22 5.42 22 8.5 
            c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                        </svg>
+                            </svg></button>
+                        <div class="mt-3 rounded-lg w-[200px] right-[25px] absolute border border-gray-200 bg-white p-3">
+                            <p class="text-sm text-gray-700">
+                                Za korištenje liste želja potrebno je da se
+                                <a href="/register" class="font-large text-black underline hover:opacity-70">
+                                    registrujete
+                                </a>
+                                tako da možete putem emaila da primite obavijesti o sniženjima.
+                            </p>
+                        </div>
+                        @endif
                     </div>
                 </span>
+                <!--Images-->
                 @foreach ($product->images as $images)
                 <picture>
                     <source media="(max-width: 320px)" srcset="{{ asset('storage/'.$images->image_200x200) }}">

@@ -9,7 +9,7 @@
     <button class="nav-btn nav-left absolute lg:text-[2rem] bg-gray-800 text-white">&#10094;</button>
     <div class="flex lg:mt-8 items-center w-[100%] md:w-[99%] lg:w-[100%] scroll-smooth snap-x snap-mandatory transition-transform m-auto duration-300 ease-in-out gap-[25px] py-5 overflow-y-auto  [scrollbar-width:none] [-ms-overflow-style:none]" id="carouselTrackDiscounted">
       @if($discountedProducts->isNotEmpty())
-      @foreach ($discountedProducts as $product)
+      @foreach ($discountedProducts as $index=> $product)
       <div id="discountedItem" class="lg:flex gap-[1rem]  flex flex-col xl:flex-row place-content-evenly items-center min-w-[100%] snap-start rounded-xl overflow-hidden bg-white shadow-md  p-[1rem] rounded-lg  transform transition duration-300">
         @foreach ($product->images as $images)
         <picture>
@@ -30,6 +30,32 @@
         @endforeach
         <div class="flex flex-col items-center min-w-[100%] lg:min-w-fit lg:w-[100%]">
           <h3 class="text-[1.8rem] max-w-[90%] md:text-[2.5rem] lg:max-w-[55%] lg:text-[3rem] xl:text-[2rem] 2xl:text-[3rem] font-semibold text-gray-800 mb-[1rem]">{{ $product->product_name }}</h3>
+          <!--Wishlist button-->
+          <div class="relative">
+            @if(!in_array($product->id, $wishListArray))
+            <button wire:key="{{$index}}" wire:click="wishListItem({{$product->id}})"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="black" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3 c1.74 0 3.41 0.81 4.5 2.09 C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5 c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+              </svg></button>
+            @else
+            <button wire:key="{{$index}}" wire:click="wishListItem({{$product->id}})"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="black">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+           2 5.42 4.42 3 7.5 3 
+           c1.74 0 3.41 0.81 4.5 2.09 
+           C13.09 3.81 14.76 3 16.5 3 
+           19.58 3 22 5.42 22 8.5 
+           c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+              </svg></button>
+            <div class="mt-3 rounded-lg w-[200px] right-[-80px] absolute border border-gray-200 bg-white p-3">
+              <p class="text-sm text-gray-700">
+                Za korištenje liste želja potrebno je da se
+                <a href="/register" class="font-large text-black underline hover:opacity-70">
+                  registrujete
+                </a>
+                tako da možete putem emaila da primite obavijesti o sniženjima.
+              </p>
+            </div>
+            @endif
+          </div>
           <span class="lg:text-[calc(1rem+1vw)] text-[1.2rem] md:text-[1.5rem] xl:text-[1.6rem] 2xl:text-[2rem]">Popust vrijedi do: <span class="text-[#9E1B32]"> {{date('d-m-Y', strtotime($product->end_date))}}</span></span>
           <hr class="border-t-1 self-center row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[20%] col-span-1">
           <span class="text-[1.2rem] flex text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem]">
@@ -38,6 +64,7 @@
             border-radius: 50%;">
             </div>
             @endforeach
+
           </span>
           <span class="text-gray-900 font-bold text-[1.2rem] lg:text-[calc(1rem+1vw)] xl:text-[1.6rem] 2xl:text-[2rem]  md:text-[1.5rem]">
             @foreach ($product->materials as $key=> $materials)

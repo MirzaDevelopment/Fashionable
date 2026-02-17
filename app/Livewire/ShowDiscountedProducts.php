@@ -2,6 +2,7 @@
 /*This is a livewire backend component used for rendering products with ACTIVE discount.
 - Products are sorted by from the highest to lowest discount %.
 -It uses mount method that incorporates Carbon library for date manipulation in Laravel.
+- It allows users to add discounted items the wishlist.
 */
 
 namespace App\Livewire;
@@ -14,7 +15,7 @@ class ShowDiscountedProducts extends Component
 {
 public Carbon $currentDate;
 public string $sortinator = "discount";
-
+public array $wishListArray=[""];
 
 
     public function mount(): void
@@ -25,7 +26,18 @@ public string $sortinator = "discount";
 
 
 
+    //Adding item to wishlist
+    public function wishListItem(int $parameter): void
+    {
+        if(in_array($parameter, $this->wishListArray)){
+        $index=array_search($parameter, $this->wishListArray);
+        unset($this->wishListArray[$index]);
+       }else {
+        $this->wishListArray[] = $parameter;
+        
+    }
 
+    }
 
 
     public function render()

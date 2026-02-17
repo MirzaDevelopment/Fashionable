@@ -8,6 +8,7 @@ This is a livewire backend component used for rendering ACTIVE products dependin
 - Render method that returns different products in views depending on the chosen filters (explained more there)
 Pagination is also used
 $sortinator - sort by asc or desc (product name) or price.
+- Method that adds the chosen product in user wishlist.
 */
 
 namespace App\Livewire;
@@ -32,6 +33,8 @@ class ShowProductsFront extends Component
     const DELIVERY = 9.50; //Shipping cost
     public string $sortinator = "type_name";
     public string $sortToggle = "ASC";
+    public array $wishListArray=[""];
+
 
   public function mount(): void
     {
@@ -120,7 +123,18 @@ class ShowProductsFront extends Component
     }
 
 
+    //Adding item to wishlist
+    public function wishListItem(int $parameter): void
+    {
+        if(in_array($parameter, $this->wishListArray)){
+        $index=array_search($parameter, $this->wishListArray);
+        unset($this->wishListArray[$index]);
+       }else {
+        $this->wishListArray[] = $parameter;
+        
+    }
 
+    }
 
 
     public function render()
