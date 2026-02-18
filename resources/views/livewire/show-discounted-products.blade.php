@@ -6,11 +6,11 @@
     </p>
   </div>
   <section class="grid grid-rows-1  relative bg-gray-100 relative justify-center items-center">
-    <button class="nav-btn nav-left absolute lg:text-[2rem] bg-gray-800 text-white">&#10094;</button>
+    <button class="nav-btn nav-left absolute lg:text-3xl bg-gray-800 text-white">&#10094;</button>
     <div class="flex lg:mt-8 items-center w-[100%] md:w-[99%] lg:w-[100%] scroll-smooth snap-x snap-mandatory transition-transform m-auto duration-300 ease-in-out gap-[25px] py-5 overflow-y-auto  [scrollbar-width:none] [-ms-overflow-style:none]" id="carouselTrackDiscounted">
       @if($discountedProducts->isNotEmpty())
       @foreach ($discountedProducts as $index=> $product)
-      <div id="discountedItem" class="lg:flex gap-[1rem]  flex flex-col xl:flex-row place-content-evenly items-center min-w-[100%] snap-start rounded-xl overflow-hidden bg-white shadow-md  p-[1rem] rounded-lg  transform transition duration-300">
+      <div id="discountedItem" class="lg:flex gap-[1rem] flex flex-col xl:flex-row place-content-evenly items-center min-w-[100%] snap-start rounded-xl overflow-hidden bg-white shadow-md  p-[1rem] rounded-lg  transform transition duration-300">
         @foreach ($product->images as $images)
         <picture>
           <source media="(max-width: 320px)" srcset="{{ asset('storage/'.$images->image_200x200) }}">
@@ -28,8 +28,8 @@
         </picture>
         @break
         @endforeach
-        <div class="flex flex-col items-center min-w-[100%] lg:min-w-fit lg:w-[100%]">
-          <h3 class="text-[1.8rem] max-w-[90%] md:text-[2.5rem] lg:max-w-[55%] lg:text-[3rem] xl:text-[2rem] 2xl:text-[3rem] font-semibold text-gray-800 mb-[1rem]">{{ $product->product_name }}</h3>
+        <div class="flex flex-col  gap-[1rem] xl:p-12 items-center min-w-[100%] lg:min-w-fit lg:w-[100%]">
+          <h3 class="text-3xl max-w-[90%] md:text-4xl lg:max-w-[55%] lg:text-5xl xl:text-4xl 2xl:text-5xl font-semibold text-gray-800 mb-[1rem]">{{ $product->product_name }}</h3>
           <!--Wishlist button-->
           <div class="relative">
             @if(!in_array($product->id, $wishListArray))
@@ -56,7 +56,7 @@
             </div>
             @endif
           </div>
-          <span class="lg:text-[calc(1rem+1vw)] text-[1.2rem] md:text-[1.5rem] xl:text-[1.6rem] 2xl:text-[2rem]">Popust vrijedi do: <span class="text-[#9E1B32]"> {{date('d-m-Y', strtotime($product->end_date))}}</span></span>
+          <span class="text-xl md:text-2xl 2xl:text-4xl">Popust vrijedi do: <span class="text-[#9E1B32]"> {{date('d-m-Y', strtotime($product->end_date))}}</span></span>
           <hr class="border-t-1 self-center row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[20%] col-span-1">
           <span class="text-[1.2rem] flex text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem]">
             @foreach ($product->colors as $index => $colors)
@@ -66,7 +66,7 @@
             @endforeach
 
           </span>
-          <span class="text-gray-900 font-bold text-[1.2rem] lg:text-[calc(1rem+1vw)] xl:text-[1.6rem] 2xl:text-[2rem]  md:text-[1.5rem]">
+          <span class="text-gray-900 font-bold text-xl md:text-2xl 2xl:text-4xl">
             @foreach ($product->materials as $key=> $materials)
             @if($key==0)
             {{ $materials->material}}
@@ -77,12 +77,12 @@
             @endif
             @endforeach
           </span>
-          <span class="text-gray-900 text-[1.2rem] md:text-[1.5rem] font-bold lg:text-[calc(1rem+1vw)] 2xl:text-[2rem]  xl:text-[1.6rem]">Spol:
+          <span class="text-gray-900 text-xl md:text-2xl 2xl:text-4xl font-bold">Spol:
             @foreach($product->genders as $gender)
             {{$gender->gender}}
             @endforeach
           </span>
-          <span class="text-gray-900 text-[1.2rem] md:text-[1.5rem] font-bold lg:text-[calc(1rem+1vw)] xl:text-[1.6rem] 2xl:text-[2rem]">Veličine:
+          <span class="text-gray-900 font-bold ltext-xl md:text-2xl 2xl:text-4xl">Veličine:
             @php
             $uniqueSizes=collect($product->sizesVariant)->unique('size')
             @endphp
@@ -91,10 +91,10 @@
             @endforeach
           </span>
           @if(isset($product->discount) && !empty($product->discount))
-          <span class="lg:text-[calc(1rem+1vw)] text-[1.2rem] md:text-[1.5rem] text-[#9E1B32] xl:text-[1.6rem] 2xl:text-[2rem]"> Trenutni popust: - {{$product->discount}} %</span>
+          <span class="text-[#9E1B32] text-xl md:text-2xl 2xl:text-4xl"> Trenutni popust: - {{$product->discount}} %</span>
           <hr class="border-t-1  self-center row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[20%] col-span-1">
-          <span class="text-[1.2rem] md:text-[1.5rem] lg:text-[calc(1.5rem+1vw)] xl:text-[2rem] 2xl:text-[2.5rem] inline-flex items-center border border-amber-300 text-amber-700 font-medium px-3 py-1 rounded-full bg-amber-50 w-fit self-center">Cijena: {{number_format ($product->price-($product->price*($product->discount/100)), 2,'.',' ')}} $</span>
-          <p class="line-through mt-[1rem] md:text-[1.2rem] xl:text-[1.5rem] lg:text-[calc(1rem+1vw)] 2xl:text-[1.8rem]">Stara cijena: {{number_format($product->price, 2, '.', ' ')}} $</p>
+          <span class="text-xl md:text-2xl lg:text-4xl 2xl:text-5xl inline-flex items-center border border-amber-300 text-amber-700 font-medium px-3 py-1 rounded-full bg-amber-50 w-fit self-center">Cijena: {{number_format ($product->price-($product->price*($product->discount/100)), 2,'.',' ')}} $</span>
+          <p class="line-through text-base mt-[1rem] md:text-sm  lg:text-2xl 2xl:text-3xl">Stara cijena: {{number_format($product->price, 2, '.', ' ')}} $</p>
           @endif
           <hr class="border-t-1 xl:w-[75%] row-start-1 col-span-2 lg:mt-4 2xl:mt-8 border-gray-800 w-[20%] col-span-1">
           </hr>
@@ -105,7 +105,7 @@
       <span class="text-xl bg-red-100 text-gray-800 lg:text-2xl rounded-xl shadow-lg p-[3rem]">Naše posebne ponude su trenutno završene. Pratite nas — uskoro najavljujemo nove!</span>
       @endif
     </div>
-    <button class="nav-btn nav-right lg:text-[2rem] text-white bg-gray-800">&#10095;</button>
+    <button class="nav-btn nav-right lg:text-3xl text-white bg-gray-800">&#10095;</button>
   </section>
 </div>
 <script>
