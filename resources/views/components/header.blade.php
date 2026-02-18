@@ -7,7 +7,7 @@
             <div class="flex flex-col gap-1 lg:gap-5 xl:gap-6 lg:mt-6  xl:mt-6 2xl:gap-8 mt-[1rem] 2xl:mt-12 2xl:mb-[1.5rem] " x-show="open" x-transition>
                 @if(Auth::user() && Auth::user()->role=="admin")
                 <div>
-                    <p class="text-[calc(1.25rem+1vw)]  lg:text-[2rem]">Dobrodošli natrag, <a class="underline underline-offset-4 w-fit lg:underline-offset-[0.5rem] 2xl:underline-offset-[0.8rem] " href="{{ route('dashboard') }}">{{Auth::user()->name}}.</a></p>
+                    <p class="text-2xl  lg:text-4xl">Dobrodošli natrag, <a class="underline underline-offset-4 w-fit lg:underline-offset-[0.5rem] 2xl:underline-offset-[0.8rem] " href="{{ route('dashboard') }}">{{Auth::user()->name}}.</a></p>
                 </div>
                 <form method="POST" action="{{ route('logout') }}"> 
                     @csrf
@@ -27,7 +27,7 @@
                 </div>
                 @elseif(Auth::user() && Auth::user()->role=="gost")
                 <div>
-                    <p class="text-[calc(1.25rem+1vw)]  lg:text-[2rem]">Dobrodošli natrag, <a class="underline lg:underline-offset-[0.5rem] 2xl:underline-offset-[0.8rem] underline-offset-4 w-fit" href="{{ route('dashboardusers') }}">{{Auth::user()->name}}.</a></p>
+                    <p class="text-2xl  lg:text-4xl">Dobrodošli natrag, <a class="underline lg:underline-offset-[0.5rem] 2xl:underline-offset-[0.8rem] underline-offset-4 w-fit" href="{{ route('dashboardusers') }}">{{Auth::user()->name}}.</a></p>
                 </div>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -75,7 +75,7 @@
             <div class="flex flex-row gap-1 lg:gap-5 xl:gap-6  xl:mt-6  2xl:gap-8  items-end  2xl:mb-[1.5rem]">
                 @if(Auth::user() && Auth::user()->role=="admin")
                 <div>
-                    <p class="text-[calc(1.25rem+1vw)]  lg:text-[2rem] text-gray-800">Dobrodošli natrag, <a class="underline text-gray-800  underline-offset-4 w-fit lg:underline-offset-[0.5rem] 2xl:underline-offset-[0.8rem] " href="{{ route('dashboard') }}">{{Auth::user()->name}}.</a></p>
+                    <p class="text-2xl  lg:text-4xl text-gray-800">Dobrodošli natrag, <a class="underline text-gray-800  underline-offset-4 w-fit lg:underline-offset-[0.5rem] 2xl:underline-offset-[0.8rem] " href="{{ route('dashboard') }}">{{Auth::user()->name}}.</a></p>
                 </div>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
@@ -96,7 +96,7 @@
                 </div>
                 @elseif(Auth::user() && Auth::user()->role=="gost")
                 <div>
-                    <p class="text-[calc(1.25rem+1vw)]  lg:text-[2rem]">Dobrodošli natrag, <a class="underline  lg:underline-offset-[0.5rem] 2xl:underline-offset-[0.8rem] underline-offset-4 w-fit" href="{{ route('dashboardusers') }}">{{Auth::user()->name}}.</a></p>
+                    <p class="text-2xl  lg:text-4xl">Dobrodošli natrag, <a class="underline  lg:underline-offset-[0.5rem] 2xl:underline-offset-[0.8rem] underline-offset-4 w-fit" href="{{ route('dashboardusers') }}">{{Auth::user()->name}}.</a></p>
                 </div>
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf

@@ -3,31 +3,31 @@
         <div class="relative 2xl:self-baseline 2xl:min-w-[400px] h-[68px] 2xl:max-w-[400px] h-auto flex justify-center 2xl:justify-normal 2xl:items-center" id="explore">
             <aside class="flex flex-col top-0  absolute  lg:min-w-[400px] lg:max-w-[400px]" x-data="{ open: false, red: false }">
                 <!--Frontend livewire components that render category filters-->
-                <button class="w-[15rem] lg:w-[400px] h-[35px] lg:h-[auto] lg:p-[1rem] lg:text-[calc(0.8rem+1vw)] xl:text-[1.5rem] 2xl:max-w-[90%] text-white" :class="red ? 'bg-gray-400' : 'bg-gray-900'" @click="red = !red; open = !open">Kategorije proizvoda</button>
+                <button class="w-[15rem] lg:w-[400px] h-[35px] lg:h-[auto] lg:p-[1rem] text-base lg:text-2xl 2xl:max-w-[90%] text-white" :class="red ? 'bg-gray-400' : 'bg-gray-900'" @click="red = !red; open = !open">Kategorije proizvoda</button>
                 <section class="overflow-scroll 2xl:overflow-auto max-h-[300px] 2xl:max-h-fit" x-show="open" x-transition>
                     <div class="flex flex-col items-center p-[1px]" x-data="{ openType: false, red: false }">
-                        <button class="w-[80%] h-[35px] lg:h-[auto] lg:text-[calc(0.8rem+1vw)] xl:text-[1.5rem] lg:p-[1rem] text-white" :class="red ? 'bg-gray-400' : 'bg-gray-900'" @click="red = !red; openType = !openType">Vrste</button>
+                        <button class="w-[80%] h-[35px] lg:h-[auto] text-base lg:text-2xl lg:p-[1rem] text-white" :class="red ? 'bg-gray-400' : 'bg-gray-900'" @click="red = !red; openType = !openType">Vrste</button>
                         <div x-show="openType" x-transition>
                             <!--Product type categories-->
                             <livewire:type-category-front :typeSelect="$typeSelect" :selectedTypesContainer="$selectedTypesContainer" />
                         </div>
                     </div>
                     <div class="flex flex-col items-center p-[1px]" x-data="{ openGender: false, red: false }">
-                        <button class="w-[80%] h-[35px] lg:h-[auto] text-white lg:text-[calc(0.8rem+1vw)] xl:text-[1.5rem]  lg:p-[1rem]" :class="red ? 'bg-gray-400 z-[5]' : 'bg-gray-900 z-[5]'" @click="red = !red; openGender = !openGender">Spol</button>
+                        <button class="w-[80%] h-[35px] lg:h-[auto] text-white text-base lg:text-2xl  lg:p-[1rem]" :class="red ? 'bg-gray-400 z-[5]' : 'bg-gray-900 z-[5]'" @click="red = !red; openGender = !openGender">Spol</button>
                         <div x-show="openGender" x-transition>
                             <!--Product gender categories-->
                             <livewire:gender-category-front :genderSelect="$genderSelect" />
                         </div>
                     </div>
                     <div class="flex flex-col items-center p-[1px] relative z-[5]" x-data="{ openTag: false, red: false }">
-                        <button class="w-[80%] h-[35px] lg:h-[auto] text-white lg:text-[calc(0.8rem+1vw)] xl:text-[1.5rem]  lg:p-[1rem]" :class="red ? 'bg-gray-400 z-[5]' : 'bg-gray-900 z-[5]'" @click="red = !red; openTag = !openTag"> Oznake</button>
+                        <button class="w-[80%] h-[35px] lg:h-[auto] text-white text-base lg:text-2xl  lg:p-[1rem]" :class="red ? 'bg-gray-400 z-[5]' : 'bg-gray-900 z-[5]'" @click="red = !red; openTag = !openTag"> Oznake</button>
                         <div x-show="openTag" x-transition>
                             <!--Product tag categories-->
                             <livewire:tag-category-front :tagSelect="$tagSelect" />
                         </div>
                     </div>
                     <div class="flex justify-evenly">
-                        <button wire:click="clearAll" class="bg-white z-[5] text-gray-700 border border-[#cccccc] text-sm px-3 py-1.5 rounded flex items-center gap-1 hover:bg-[#fbeaea] hover:text-red-700 transition-colors duration-150 lg:h-[auto] lg:text-[calc(0.8rem+1vw)] xl:text-[1.5rem] lg:p-[1rem]">
+                        <button wire:click="clearAll" class="bg-white z-[5] text-gray-700 border border-[#cccccc] text-base px-3 py-1.5 rounded flex items-center gap-1 hover:bg-[#fbeaea] hover:text-red-700 transition-colors duration-150 lg:h-[auto] lg:text-2xl lg:p-[1rem]">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 lg:h-8 lg:w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
                             </svg>
@@ -50,7 +50,7 @@
         </div>
         <!--Sorting products from database-->
         <div class="relative flex items-center 2xl:justify-end">
-            <span class="text-lg lg:text-[calc(1rem+1vw)] lg2:text-[2rem] mr-[1rem]"> Poredaj: </span>
+            <span class="text-base lg:text-2xl mr-[1rem]"> Poredaj: </span>
             <img class="lg:w-[60px]" style="cursor: pointer" wire:click="sortProduct('product_name')" src="http://melisa.test/storage/images/sortIcon.svg" alt="sort_by_name" width="40" height="40">
             <img class="lg:w-[60px]" style="cursor: pointer" wire:click="sortProduct('price')" src="http://melisa.test/storage/images/sortIconPrice.svg" alt="sort_by_price_icon" width="40" height="40">
         </div>
@@ -62,7 +62,7 @@
         <!--Rendering all products from database-->
         @isset($products)
         @foreach ($products as $product)
-        <div class="flex flex-col cursor-pointer place-content-evenly  hover:shadow-lg shadow-black/10 transition-all duration-300 ease-out  items-center min-w-[100%] min-h-[100%] gap-2 max-w-xs overflow-hidden bg-white p-[1rem]">
+        <div class="flex flex-col cursor-pointer place-content-evenly  hover:shadow-lg shadow-black/10 transition-all duration-300 ease-out  items-center min-w-[100%] min-h-[100%] gap-[1rem] xl:gap-[2rem] max-w-xs overflow-hidden bg-white p-[1rem]">
             <div class="">
                 <span class="flex flex-row text-[1.2rem] mb-[1rem] text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem]">
                     @foreach ($product->colors as $index => $colors)
@@ -107,11 +107,11 @@
                     <img class="object-cover" loading="lazy" fetchpriority="low" decoding="async" src="{{ asset('storage/'.$images->image_400x400)}}" width="400" height="600" alt="product image">
                 </picture>
                 @break
-                @endforeach
+                @endforeach 
             </div>
             <hr class="border-t-1 row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[100%] col-span-1">
-            <h3 class="text-[1.8rem] lg:text-[2.2rem] 2xl:text-[3rem] font-semibold text-gray-800">{{ $product->product_name }}</h3>
-            <span class="text-[1.2rem] text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem]">
+            <h3 class="text-xl lg:text-3xl 2xl:text-4xl font-semibold text-gray-800">{{ $product->product_name }}</h3>
+            <span class="text-sm text-gray-900 font-bold lg:text-2xl lg2:text-3xl">
                 @foreach ($product->materials as $key=> $materials)
                 @if($key==0)
                 {{ $materials->material}}
@@ -122,7 +122,7 @@
                 @endif
                 @endforeach
             </span>
-            <span class="text-gray-900 text-[1.2rem] font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem]">Veličine:
+            <span class="text-gray-900 font-bold text-sm lg:text-2xl lg2:text-3xl">Veličine:
                 @php
                 $uniqueSizes=collect($product->sizesVariant)->unique('size')
                 @endphp
@@ -131,11 +131,11 @@
                 @endforeach
             </span>
             @if(isset($product->discount) && !empty($product->discount) && $currentDate->lte($product->end_date))
-            <span class="text-[1.2rem] lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem] text-[#9E1B32]"> Trenutni popust: - {{$product->discount}} %</span>
-            <span class="text-[1.2rem] lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem] font-bold text-gray-900">Cijena: {{number_format ($product->price-($product->price*($product->discount/100)), 2,'.',' ')}} $</span>
-            <p class="line-through lg:text-xl 2xl:text-[1.8rem]">Stara cijena: {{number_format($product->price, 2, '.', ' ')}} $</p>
+            <span class="text-sm lg:text-2xl lg2:text-3xl text-[#9E1B32]"> Trenutni popust: - {{$product->discount}} %</span>
+            <span class="text-sm lg:text-2xl lg2:text-3xl font-bold text-gray-900">Cijena: {{number_format ($product->price-($product->price*($product->discount/100)), 2,'.',' ')}} $</span>
+            <p class="line-through text-base lg:text-xl 2xl:text-2xl">Stara cijena: {{number_format($product->price, 2, '.', ' ')}} $</p>
             @else
-            <span class="text-[1.2rem] text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem]">Cijena: {{$product->price}} $</span>
+            <span class="text-sm lg:text-2xl lg2:text-3xl text-gray-900 font-bold ">Cijena: {{$product->price}} $</span>
             @endif
 
             <hr class="border-t-1 row-start-1 col-span-2 lg:mt-4 2xl:mt-8 border-gray-800 w-[25%] col-span-1">
