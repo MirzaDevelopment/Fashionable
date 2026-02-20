@@ -17,7 +17,9 @@ use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Product;
+use App\Models\Wishlist;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Gate;
 
 class ShowProductsFront extends Component
 {
@@ -123,9 +125,10 @@ class ShowProductsFront extends Component
     }
 
 
-    //Adding item to wishlist
+    //Adding item to wishlist array
     public function wishListItem(int $parameter): void
     {
+        
         if(in_array($parameter, $this->wishListArray)){
         $index=array_search($parameter, $this->wishListArray);
         unset($this->wishListArray[$index]);
@@ -136,6 +139,8 @@ class ShowProductsFront extends Component
 
     }
 
+
+   
 
     public function render()
     {

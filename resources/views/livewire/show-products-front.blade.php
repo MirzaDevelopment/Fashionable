@@ -85,6 +85,7 @@
            19.58 3 22 5.42 22 8.5 
            c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                             </svg></button>
+                        @cannot('create', App\Models\Wishlist::class)
                         <div class="mt-3 rounded-lg w-[200px] right-[25px] absolute border border-gray-200 bg-white p-3">
                             <p class="text-sm text-gray-700">
                                 Za korištenje liste želja potrebno je da se
@@ -94,6 +95,7 @@
                                 tako da možete putem emaila da primite obavijesti o sniženjima.
                             </p>
                         </div>
+                        @endcan
                         @endif
                     </div>
                 </span>
