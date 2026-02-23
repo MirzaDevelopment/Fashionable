@@ -17,13 +17,14 @@ use Illuminate\Support\Facades\DB;
 use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Product;
-use App\Models\Wishlist;
+use App\Models\Price;
+use Illuminate\Http\RedirectResponse;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Log;
 
 class ShowProductsFront extends Component
 {
-    
+
     use WithPagination;
     public Carbon $currentDate;
     public array $selectedTypesContainer = []; //Container array used to store selected items for better visual clarity
@@ -35,12 +36,12 @@ class ShowProductsFront extends Component
     const DELIVERY = 9.50; //Shipping cost
     public string $sortinator = "type_name";
     public string $sortToggle = "ASC";
-    public array $wishListArray=[""];
+    public array $wishListArray = [""];
 
 
-  public function mount(): void
+    public function mount(): void
     {
-        $this->currentDate=Carbon::today();
+        $this->currentDate = Carbon::today();
     }
 
     //Storing the user search in variable and resetting the component
@@ -126,21 +127,32 @@ class ShowProductsFront extends Component
 
 
     //Adding item to wishlist array
-    public function wishListItem(int $parameter): void
+    public function wishListItem(int $parameter): ?RedirectResponse
     {
-        
-        if(in_array($parameter, $this->wishListArray)){
+        DB::beginTransaction();
+        try {
+            $product = Product::find($parameter);
+            $price = Price::where("product_id", $parameter)->first();
+            $product->users()->attach(auth()->user()->id, ["price_when_added" => $price->price]);
+             DB::commit();
+            return redirect()->back()->with("status", "Proizvod je dodan na listu želja");
+        } catch (\Exception $e) {
+            Log::error('Error occurred: ' . $e->getMessage());
+            return redirect()->back()->with("errorException", "Proizvod se već nalazi na listi želja.");
+        }
+
+
+        /* if(in_array($parameter, $this->wishListArray)){
         $index=array_search($parameter, $this->wishListArray);
         unset($this->wishListArray[$index]);
        }else {
         $this->wishListArray[] = $parameter;
         
+    }*/
     }
 
-    }
 
 
-   
 
     public function render()
     {
@@ -150,55 +162,55 @@ class ShowProductsFront extends Component
         */
         if ($this->tagSelect && !$this->typeSelect && !$this->genderSelect) {
             $this->resetPage();
-            $products = Product::with('type', 'prices', "images", "materials","colorsVariant","colors","sizesVariant")->whereIn('category_tags.tag', $this->tagSelect)->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_tags", "products_tags.product_id", "=", "products.id")->join("category_tags", "products_tags.category_tag_id", "=", "category_tags.id")->select('products.*', 'types.type_name', DB::raw('MAX(end_date) as end_date'), DB::raw('MAX(prices.price) as price'), DB::raw('MAX(prices.discount) as discount'))->distinct(["product_name"])->orderBy($this->sortinator, $this->sortToggle)->groupBy("products.id")->havingRaw('count(DISTINCT category_tags.tag)=?', [count($this->tagSelect)])->paginate(15);
+            $products = Product::with('type', 'prices', "images", "materials", "colorsVariant", "colors", "sizesVariant")->whereIn('category_tags.tag', $this->tagSelect)->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_tags", "products_tags.product_id", "=", "products.id")->join("category_tags", "products_tags.category_tag_id", "=", "category_tags.id")->select('products.*', 'types.type_name', DB::raw('MAX(end_date) as end_date'), DB::raw('MAX(prices.price) as price'), DB::raw('MAX(prices.discount) as discount'))->distinct(["product_name"])->orderBy($this->sortinator, $this->sortToggle)->groupBy("products.id")->havingRaw('count(DISTINCT category_tags.tag)=?', [count($this->tagSelect)])->paginate(15);
             return view('livewire.show-products-front', ["products" => $products]);
             /*
             2. Show products for situation when user selects one product type from type category
             */
         } else if ($this->typeSelect && !$this->tagSelect && !$this->genderSelect) {
             $this->resetPage();
-            $products = Product::with('type', 'prices', "images", "tags","materials","colorsVariant", "colors", "sizesVariant")->where('types.type_name', $this->typeSelect)->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_tags", "products_tags.product_id", "=", "products.id")->join("category_tags", "products_tags.category_tag_id", "=", "category_tags.id")->select('products.*', 'types.type_name', DB::raw('MAX(end_date) as end_date'), DB::raw('MAX(prices.price) as price'), DB::raw('MAX(prices.discount) as discount'))->distinct(["product_name"])->orderBy($this->sortinator, $this->sortToggle)->groupBy("products.id")->paginate(15);
+            $products = Product::with('type', 'prices', "images", "tags", "materials", "colorsVariant", "colors", "sizesVariant")->where('types.type_name', $this->typeSelect)->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_tags", "products_tags.product_id", "=", "products.id")->join("category_tags", "products_tags.category_tag_id", "=", "category_tags.id")->select('products.*', 'types.type_name', DB::raw('MAX(end_date) as end_date'), DB::raw('MAX(prices.price) as price'), DB::raw('MAX(prices.discount) as discount'))->distinct(["product_name"])->orderBy($this->sortinator, $this->sortToggle)->groupBy("products.id")->paginate(15);
             return view('livewire.show-products-front', ["products" => $products]);
             /*
             3. Show products for situation when user selects one or more genders from gender category
             */
         } else if ($this->genderSelect && !$this->typeSelect && !$this->tagSelect) {
             $this->resetPage();
-            $products = Product::with('type', 'prices', "images", "tags", "materials","colorsVariant", "colors", "sizesVariant")->whereIn('category_genders.gender', $this->genderSelect)->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_tags", "products_tags.product_id", "=", "products.id")->join("category_tags", "products_tags.category_tag_id", "=", "category_tags.id")->join("products_genders", "products_genders.product_id", "=", "products.id")->join("category_genders", "products_genders.category_gender_id", "=", "category_genders.id")->select('products.*', 'types.type_name', DB::raw('MAX(end_date) as end_date'), DB::raw('MAX(prices.price) as price'), DB::raw('MAX(prices.discount) as discount'))->distinct(["product_name"])->orderBy($this->sortinator, $this->sortToggle)->groupBy("products.id")->havingRaw('count(DISTINCT category_genders.gender)=?', [count($this->genderSelect)])->paginate(15);
+            $products = Product::with('type', 'prices', "images", "tags", "materials", "colorsVariant", "colors", "sizesVariant")->whereIn('category_genders.gender', $this->genderSelect)->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_tags", "products_tags.product_id", "=", "products.id")->join("category_tags", "products_tags.category_tag_id", "=", "category_tags.id")->join("products_genders", "products_genders.product_id", "=", "products.id")->join("category_genders", "products_genders.category_gender_id", "=", "category_genders.id")->select('products.*', 'types.type_name', DB::raw('MAX(end_date) as end_date'), DB::raw('MAX(prices.price) as price'), DB::raw('MAX(prices.discount) as discount'))->distinct(["product_name"])->orderBy($this->sortinator, $this->sortToggle)->groupBy("products.id")->havingRaw('count(DISTINCT category_genders.gender)=?', [count($this->genderSelect)])->paginate(15);
             return view('livewire.show-products-front', ["products" => $products]);
             /*
             4. Show products for situation when user selects one or more genders from gender category AND one or more tags from tag category
             */
         } else if ($this->genderSelect  && $this->tagSelect && !$this->typeSelect) {
             $this->resetPage();
-            $products = Product::with('type', 'prices', "images", "tags", "materials","colorsVariant","colors","sizesVariant")->whereIn('category_genders.gender', $this->genderSelect)->whereIn('category_tags.tag', $this->tagSelect)->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_tags", "products_tags.product_id", "=", "products.id")->join("category_tags", "products_tags.category_tag_id", "=", "category_tags.id")->join("products_genders", "products_genders.product_id", "=", "products.id")->join("category_genders", "products_genders.category_gender_id", "=", "category_genders.id")->select('products.*', 'types.type_name', DB::raw('MAX(prices.price) as price'), DB::raw('MAX(end_date) as end_date'), DB::raw('MAX(prices.discount) as discount'))->distinct(["product_name"])->orderBy($this->sortinator, $this->sortToggle)->groupBy("products.id")->havingRaw('count(DISTINCT category_tags.tag)=? AND count(DISTINCT category_genders.gender)=?', [count($this->tagSelect), count($this->genderSelect)])->paginate(15);
+            $products = Product::with('type', 'prices', "images", "tags", "materials", "colorsVariant", "colors", "sizesVariant")->whereIn('category_genders.gender', $this->genderSelect)->whereIn('category_tags.tag', $this->tagSelect)->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_tags", "products_tags.product_id", "=", "products.id")->join("category_tags", "products_tags.category_tag_id", "=", "category_tags.id")->join("products_genders", "products_genders.product_id", "=", "products.id")->join("category_genders", "products_genders.category_gender_id", "=", "category_genders.id")->select('products.*', 'types.type_name', DB::raw('MAX(prices.price) as price'), DB::raw('MAX(end_date) as end_date'), DB::raw('MAX(prices.discount) as discount'))->distinct(["product_name"])->orderBy($this->sortinator, $this->sortToggle)->groupBy("products.id")->havingRaw('count(DISTINCT category_tags.tag)=? AND count(DISTINCT category_genders.gender)=?', [count($this->tagSelect), count($this->genderSelect)])->paginate(15);
             return view('livewire.show-products-front', ["products" => $products]);
             /*
             4. Show products for situation when user selects one type from from type category AND one or more tags from tag category
             */
         } else if ($this->typeSelect  && $this->tagSelect && !$this->genderSelect) {
             $this->resetPage();
-            $products = Product::with('type', 'prices', "images", "tags", "materials","colorsVariant","colors","sizesVariant")->whereIn('category_tags.tag', $this->tagSelect)->where('types.type_name', $this->typeSelect)->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_tags", "products_tags.product_id", "=", "products.id")->join("category_tags", "products_tags.category_tag_id", "=", "category_tags.id")->select('products.*', DB::raw('MAX(end_date) as end_date'), DB::raw('MAX(prices.price) as price'), DB::raw('MAX(prices.discount) as discount'))->distinct(["product_name"])->orderBy($this->sortinator, $this->sortToggle)->groupBy("products.id")->havingRaw('count(DISTINCT category_tags.tag)=?', [count($this->tagSelect)])->paginate(15);
+            $products = Product::with('type', 'prices', "images", "tags", "materials", "colorsVariant", "colors", "sizesVariant")->whereIn('category_tags.tag', $this->tagSelect)->where('types.type_name', $this->typeSelect)->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_tags", "products_tags.product_id", "=", "products.id")->join("category_tags", "products_tags.category_tag_id", "=", "category_tags.id")->select('products.*', DB::raw('MAX(end_date) as end_date'), DB::raw('MAX(prices.price) as price'), DB::raw('MAX(prices.discount) as discount'))->distinct(["product_name"])->orderBy($this->sortinator, $this->sortToggle)->groupBy("products.id")->havingRaw('count(DISTINCT category_tags.tag)=?', [count($this->tagSelect)])->paginate(15);
             return view('livewire.show-products-front', ["products" => $products]);
             /*
             5. Show products for situation when user selects one type from type category AND one or more genders from gender category
             */
         } else if ($this->typeSelect  && $this->genderSelect && !$this->tagSelect) {
             $this->resetPage();
-            $products = Product::with('type', 'prices', "images", "tags", "materials","colorsVariant","colors","sizesVariant")->whereIn('category_genders.gender', $this->genderSelect)->where('types.type_name', $this->typeSelect)->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_genders", "products_genders.product_id", "=", "products.id")->join("category_genders", "products_genders.category_gender_id", "=", "category_genders.id")->select('products.*', 'types.type_name', DB::raw('MAX(end_date) as end_date'), DB::raw('MAX(prices.price) as price'), DB::raw('MAX(prices.discount) as discount'))->distinct(["product_name"])->orderBy($this->sortinator, $this->sortToggle)->groupBy("products.id")->havingRaw('count(DISTINCT category_genders.gender)=?', [count($this->genderSelect)])->paginate(15);
+            $products = Product::with('type', 'prices', "images", "tags", "materials", "colorsVariant", "colors", "sizesVariant")->whereIn('category_genders.gender', $this->genderSelect)->where('types.type_name', $this->typeSelect)->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_genders", "products_genders.product_id", "=", "products.id")->join("category_genders", "products_genders.category_gender_id", "=", "category_genders.id")->select('products.*', 'types.type_name', DB::raw('MAX(end_date) as end_date'), DB::raw('MAX(prices.price) as price'), DB::raw('MAX(prices.discount) as discount'))->distinct(["product_name"])->orderBy($this->sortinator, $this->sortToggle)->groupBy("products.id")->havingRaw('count(DISTINCT category_genders.gender)=?', [count($this->genderSelect)])->paginate(15);
             return view('livewire.show-products-front', ["products" => $products]);
             /*
             6. Show products for situation when user selects one type from type category AND one or more genders from gender category AND one or more tags from tag category
             */
         } else if ($this->typeSelect && $this->genderSelect && $this->tagSelect) {
             $this->resetPage();
-            $products = Product::with('type', 'prices', "images", "tags", "materials","colorsVariant","colors","sizesVariant")->whereIn('category_genders.gender', $this->genderSelect)->whereIn('category_tags.tag', $this->tagSelect)->where('types.type_name', $this->typeSelect)->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_tags", "products_tags.product_id", "=", "products.id")->join("category_tags", "products_tags.category_tag_id", "=", "category_tags.id")->join("products_genders", "products_genders.product_id", "=", "products.id")->join("category_genders", "products_genders.category_gender_id", "=", "category_genders.id")->select('products.*', 'types.type_name', DB::raw('MAX(end_date) as end_date'), DB::raw('MAX(prices.price) as price'), DB::raw('MAX(prices.discount) as discount'))->distinct(["product_name"])->orderBy($this->sortinator, $this->sortToggle)->groupBy("products.id")->havingRaw('count(DISTINCT category_tags.tag)=? AND count(DISTINCT category_genders.gender)=?', [count($this->tagSelect), count($this->genderSelect)])->paginate(15);
+            $products = Product::with('type', 'prices', "images", "tags", "materials", "colorsVariant", "colors", "sizesVariant")->whereIn('category_genders.gender', $this->genderSelect)->whereIn('category_tags.tag', $this->tagSelect)->where('types.type_name', $this->typeSelect)->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_tags", "products_tags.product_id", "=", "products.id")->join("category_tags", "products_tags.category_tag_id", "=", "category_tags.id")->join("products_genders", "products_genders.product_id", "=", "products.id")->join("category_genders", "products_genders.category_gender_id", "=", "category_genders.id")->select('products.*', 'types.type_name', DB::raw('MAX(end_date) as end_date'), DB::raw('MAX(prices.price) as price'), DB::raw('MAX(prices.discount) as discount'))->distinct(["product_name"])->orderBy($this->sortinator, $this->sortToggle)->groupBy("products.id")->havingRaw('count(DISTINCT category_tags.tag)=? AND count(DISTINCT category_genders.gender)=?', [count($this->tagSelect), count($this->genderSelect)])->paginate(15);
             return view('livewire.show-products-front', ["products" => $products]);
             /*
             7. Show products for situation when user searches for product name, product type or tag in search field
             */
         } else {
-            $products = Product::with('type', 'prices', "images", "tags", "materials","colorsVariant","colors","sizesVariant")->whereAny(["product_name", "prices.price", "end_date", "prices.discount", "type_name", "tag"], "like", "%" . $this->search . "%")->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_tags", "products_tags.product_id", "=", "products.id")->join("category_tags", "products_tags.category_tag_id", "=", "category_tags.id")->select('products.*', 'types.type_name', "price", "end_date", "discount")->distinct(["product_name"])->orderBy($this->sortinator, $this->sortToggle)->paginate(25);
+            $products = Product::with('type', 'prices', "images", "tags", "materials", "colorsVariant", "colors", "sizesVariant")->whereAny(["product_name", "prices.price", "end_date", "prices.discount", "type_name", "tag"], "like", "%" . $this->search . "%")->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_tags", "products_tags.product_id", "=", "products.id")->join("category_tags", "products_tags.category_tag_id", "=", "category_tags.id")->select('products.*', 'types.type_name', "price", "end_date", "discount")->distinct(["product_name"])->orderBy($this->sortinator, $this->sortToggle)->paginate(25);
             return view('livewire.show-products-front', ["products" => $products]);
         }
     }
