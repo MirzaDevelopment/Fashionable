@@ -76,4 +76,10 @@ class Product extends Model
             ->withPivot('stock_quantity') // Stock quantity for the product-size variant
             ->withTimestamps();
     }
+
+   /***Wishlist pivot table ("wishlist_items")***/
+       public function users()
+    {
+        return $this->belongsToMany(User::class, "wishlist_items", "product_id", "user_id")->withPivot("price_when_added", "notified_of_discount")->withTimestamps();
+    }
 }

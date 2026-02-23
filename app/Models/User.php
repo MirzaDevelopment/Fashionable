@@ -43,4 +43,10 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+     /***Wishlist pivot table ("wishlist_items")***/
+    public function products() 
+    { 
+        return $this->belongsToMany(Product::class, "wishlist_items", "user_id", "product_id")->withPivot("price_when_added", "notified_of_discount")->withTimestamps(); 
+    }
 }

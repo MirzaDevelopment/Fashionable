@@ -93,7 +93,7 @@
           @if(isset($product->discount) && !empty($product->discount))
           <span class="text-[#9E1B32] text-xl md:text-2xl 2xl:text-4xl"> Trenutni popust: - {{$product->discount}} %</span>
           <hr class="border-t-1  self-center row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[20%] col-span-1">
-          <span class="text-xl md:text-2xl lg:text-4xl 2xl:text-5xl inline-flex items-center border border-amber-300 text-amber-700 font-medium px-3 py-1 rounded-full bg-amber-50 w-fit self-center">Cijena: {{number_format ($product->price-($product->price*($product->discount/100)), 2,'.',' ')}} $</span>
+          <span class="text-xl xl:p-[1rem] md:text-2xl lg:text-4xl 2xl:text-5xl inline-flex items-center border border-amber-300 text-amber-700 font-medium px-3 py-1 rounded-full bg-amber-50 w-fit self-center">Cijena: {{number_format ($product->price-($product->price*($product->discount/100)), 2,'.',' ')}} $</span>
           <p class="line-through text-base mt-[1rem] md:text-sm  lg:text-2xl 2xl:text-3xl">Stara cijena: {{number_format($product->price, 2, '.', ' ')}} $</p>
           @endif
           <hr class="border-t-1 xl:w-[75%] row-start-1 col-span-2 lg:mt-4 2xl:mt-8 border-gray-800 w-[20%] col-span-1">
