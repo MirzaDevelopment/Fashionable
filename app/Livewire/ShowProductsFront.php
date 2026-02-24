@@ -18,6 +18,7 @@ use Livewire\WithPagination;
 use Livewire\Component;
 use App\Models\Product;
 use App\Models\Price;
+use App\Models\Wishlist;
 use Illuminate\Http\RedirectResponse;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
@@ -37,10 +38,20 @@ class ShowProductsFront extends Component
     public string $sortinator = "type_name";
     public string $sortToggle = "ASC";
     public array $wishListArray = [""];
+    public array $wishListSuccess=[];
+    public array $wishListFailed=[];
+    public array $authErrorMessage = [];
 
 
     public function mount(): void
     {
+        if (auth()->user()) {
+        $wishListproduct=Wishlist::where("user_id", auth()->user()->id)->get();
+        foreach ($wishListproduct as $wishlistItem){
+         $this->wishListArray[]=$wishlistItem->product_id;
+          }
+        }
+        
         $this->currentDate = Carbon::today();
     }
 
@@ -127,28 +138,26 @@ class ShowProductsFront extends Component
 
 
     //Adding item to wishlist array
-    public function wishListItem(int $parameter): ?RedirectResponse
+    public function wishListItem(int $parameter)
     {
-        DB::beginTransaction();
-        try {
-            $product = Product::find($parameter);
-            $price = Price::where("product_id", $parameter)->first();
-            $product->users()->attach(auth()->user()->id, ["price_when_added" => $price->price]);
-             DB::commit();
-            return redirect()->back()->with("status", "Proizvod je dodan na listu želja");
-        } catch (\Exception $e) {
-            Log::error('Error occurred: ' . $e->getMessage());
-            return redirect()->back()->with("errorException", "Proizvod se već nalazi na listi želja.");
+ 
+        if (auth()->user()) {
+            DB::beginTransaction();
+            try {
+                $product = Product::find($parameter);
+                $price = Price::where("product_id", $parameter)->first();
+                $product->users()->attach(auth()->user()->id, ["price_when_added" => $price->price]);
+                DB::commit();
+                $this->wishListArray[] = $parameter;
+                $this->wishListSuccess[$parameter]="Proizvod je dodan na listu želja";
+            } catch (\Exception $e) {
+                Log::error('Error occurred: ' . $e->getMessage());
+                $this->wishListFailed[$parameter]="Proizvod se već nalazi na listi želja.";
+            }
+        } else {
+
+            $this->authErrorMessage[$parameter]=true;
         }
-
-
-        /* if(in_array($parameter, $this->wishListArray)){
-        $index=array_search($parameter, $this->wishListArray);
-        unset($this->wishListArray[$index]);
-       }else {
-        $this->wishListArray[] = $parameter;
-        
-    }*/
     }
 
 

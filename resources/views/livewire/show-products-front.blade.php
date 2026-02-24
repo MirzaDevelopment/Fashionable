@@ -85,7 +85,9 @@
            19.58 3 22 5.42 22 8.5 
            c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                             </svg></button>
+                            @endif
                         @cannot('create', App\Models\Wishlist::class)
+                        @if (!empty($authErrorMessage[$product->id]))
                         <div class="mt-3 rounded-lg w-[200px] right-[25px] absolute border border-gray-200 bg-white p-3">
                             <p class="text-sm text-gray-700">
                                 Za korištenje liste želja potrebno je da se
@@ -95,10 +97,22 @@
                                 tako da možete putem emaila da primite obavijesti o sniženjima.
                             </p>
                         </div>
-                        @endcan
                         @endif
+                        @endcan
+                        
                     </div>
                 </span>
+                 <!-- Successful insert message -->
+            @if (!empty($wishListSuccess[$product->id]))
+            <div x-data="{ open: true }" x-show="open" x-transition x-on:click.outside="open = false" class="mt-3 rounded-md bg-[#cce5ff] text-[#004085] p-2.5">
+                {{ $wishListSuccess[$product->id] }}
+            </div>
+            @endif
+            @if (!empty($wishListFailed[$product->id]))
+            <div x-data="{ open: true }" x-show="open" x-transition x-on:click.outside="open = false" class="mt-3 rounded-md bg-[#f8d7da] text-[#721c24] p-2.5">
+                {{ $wishListFailed[$product->id] }}
+            </div>
+            @endif
                 <!--Images-->
                 @foreach ($product->images as $images)
                 <picture>
