@@ -1,4 +1,4 @@
-<div>
+<div> <!--Livewire frontend component rendering user questions in admin panel-->
     <div class="grid grid-cols-1 max-w-[420px] m-auto sm:grid-cols-2 sm:max-w-[100%]  lg:m-auto lg:max-w-[100%]  xl:grid-cols-3 xl:max-w-[100%] 2xl:grid-cols-4  gap-[1rem] p-5">
         @foreach($questions as $index=>$question)
         <section wire:key="{{$question->id}}" x-data="{ open: false }" class="flex bg-white rounded flex-col p-[2rem] gap-[1rem]">
