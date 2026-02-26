@@ -21,7 +21,7 @@ class Wishlist extends Model
     'notified_of_discount' => 'boolean',
 ];
 
-    //Wishlist relationships
+    /***Wishlist relationships***/
 
    
     public function user()
@@ -29,7 +29,7 @@ class Wishlist extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
 
-    //Wishlist relationships
+    /***Wishlist relationships***/
 
     public function product()
     {
