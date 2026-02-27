@@ -20,6 +20,7 @@ use App\Models\Product;
 use App\Models\Price;
 use App\Models\Wishlist;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Gate;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
@@ -138,10 +139,11 @@ class ShowProductsFront extends Component
 
 
     //Adding item to wishlist array
-    public function wishListItem(int $parameter)
+    public function wishListItem(int $parameter):void
     {
  
         if (auth()->user()) {
+            Gate::authorize('create', Wishlist::class);
             DB::beginTransaction();
             try {
                 $product = Product::find($parameter);

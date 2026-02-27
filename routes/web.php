@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Product;
 use App\Models\Question;
+use App\Models\Wishlist;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Gate;
@@ -110,6 +111,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Gate::authorize('view', Question::class);; //Authorisation for admin
         return view('questions'); 
     })->name('questions');
+
+    //User routes (wishlist and purhchase history)
+    Route::get('/wishlist', function () {
+    Gate::authorize('view', Wishlist::class,); //Authorisation for admin
+        return view('wishlist'); 
+    })->name('wishlist');
+
 });
 
 /***Breeze middleware***/
@@ -124,7 +132,7 @@ require __DIR__ . '/auth.php';
 //Route::get('createAdmin', [CreateAdminController::class, 'createAdmin']); Single use only
 
 
-//Statistics route
+//Statistics route (planned for tenant)
 Route::get('/statistics', function () {
     return view('statistics');
 })->middleware(['auth', 'verified'])->name('statistics');

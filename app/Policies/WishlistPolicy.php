@@ -19,9 +19,9 @@ class WishlistPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Wishlist $wishlist): void
+    public function view(User $user): bool
     {
-        //
+        return ($user->role === "gost");
     }
 
     /**
@@ -43,9 +43,9 @@ class WishlistPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, Wishlist $wishlist): bool
+    public function delete(User $user, Wishlist $wishlist): void
     {
-        return $user->id === $wishlist->user_id;
+        return;
     }
 
     /**
