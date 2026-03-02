@@ -19,7 +19,6 @@ use Livewire\Component;
 use App\Models\Product;
 use App\Models\Price;
 use App\Models\Wishlist;
-use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Gate;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;

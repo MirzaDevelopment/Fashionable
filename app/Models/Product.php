@@ -69,7 +69,7 @@ class Product extends Model
             ->withPivot('stock_quantity') // Stock quantity for the product-color variant
             ->withTimestamps();
     }
-    // Relationship with CategorySize via products_variants pivot table
+    /*** Relationship with CategorySize via products_variants pivot table***/
     public function sizesVariant()
     {
         return $this->belongsToMany(Size::class, 'products_variants', 'product_id', 'category_size_id')

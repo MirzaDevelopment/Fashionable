@@ -17,21 +17,11 @@
         <div class="p-6 gap-4 flex items-center flex-row gap-4 justify-center bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="flex flex-col items-center">
             <a href="{{ route('wishlist') }}" wire:navigate>
-            <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z" />
-                <line x1="9" y1="8" x2="15" y2="8" />
-                <line x1="9" y1="12" x2="15" y2="12" />
-            </svg></a>
+            <img src="{{ asset('storage/images/wishlist-user-icon.svg') }}" alt="wishlist_logo" width="75" height="75"></a>
             <h3>Lista željenih artikala</h3>
         </div>
         <div class="flex flex-col items-center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="75" height="75" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M3 4h2.8l2.4 10.5a1.6 1.6 0 0 0 1.6 1.3h7.7a1.6 1.6 0 0 0 1.6-1.2l1.9-7.8H7.2" />
-                <circle cx="10" cy="19" r="1.6" />
-                <circle cx="18" cy="19" r="1.6" />
-                <circle cx="18.8" cy="6.2" r="3.8" fill="white" stroke-width="1.6" />
-                <path d="M17.9 6.4l0.9 0.9 1.7-1.8" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+             <img src="{{ asset('storage/images/finished-items.svg') }}" alt="wishlist_logo" width="75" height="75"></a>
             <h3>Završene kupovine</h3>
             </div>
         </div>

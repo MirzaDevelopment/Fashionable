@@ -149,7 +149,7 @@
             @if(isset($product->discount) && !empty($product->discount) && $currentDate->lte($product->end_date))
             <span class="text-sm lg:text-2xl lg2:text-3xl text-[#9E1B32]"> Trenutni popust: - {{$product->discount}} %</span>
             <span class="text-sm lg:text-2xl lg2:text-3xl font-bold text-gray-900">Cijena: {{number_format ($product->price-($product->price*($product->discount/100)), 2,'.',' ')}} $</span>
-            <p class="line-through text-base lg:text-xl 2xl:text-2xl">Stara cijena: {{number_format($product->price, 2, '.', ' ')}} $</p>
+            <p class="line-through text-sm lg:text-xl 2xl:text-2xl">Stara cijena: {{number_format($product->price, 2, '.', ' ')}} $</p>
             @else
             <span class="text-sm lg:text-2xl lg2:text-3xl text-gray-900 font-bold ">Cijena: {{$product->price}} $</span>
             @endif
