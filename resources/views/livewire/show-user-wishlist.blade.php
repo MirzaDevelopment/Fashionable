@@ -1,7 +1,7 @@
 <div>
    <section class="flex flex-col bg-white  justify-items-center items-center mt-[1rem] p-[0.5rem] mb-[3rem]">
       @isset($products)
-      @foreach ($products as $product)
+      @foreach ($products as $key=> $product)
       <div class="flex flex-col cursor-pointer place-content-evenly  hover:shadow-lg shadow-black/10 transition-all duration-300 ease-out  items-center min-w-[100%] min-h-[100%] gap-[1rem] xl:gap-[2rem] max-w-xs overflow-hidden bg-white p-[1rem]">
          <div class="">
             <span class="flex flex-row text-[1.2rem] mb-[1rem] text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem]">
@@ -23,6 +23,7 @@
          </picture>
          @break
          @endforeach
+         <button wire:click="deleteWishlistedItem" class="bg-red-700 text-white font-medium px-5 py-2.5 rounded-lg shadow-sm hover:bg-red-800 transition-colors duration-200 disabled:opacity-5" wire:offline.attr="disabled" type="submit">Ukloni sa liste želja</button>
       </div>
       <hr class="border-t-1 row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[25%] col-span-1">
       <h3 class="text-xl lg:text-3xl 2xl:text-4xl font-semibold text-gray-800">{{ $product->product_name }}</h3>

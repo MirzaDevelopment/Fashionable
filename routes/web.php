@@ -50,23 +50,24 @@ Route::get('/shop', function () {
 //User management resource route
 Route::resource("users", UserController::class)->only(['store', 'edit', 'update'])->middleware(['auth', 'verified']);
 
+
+
 /***Custom routes***/
 Route::middleware(['auth', 'verified'])->group(function () {
     //Admin route (authorised in controller)
     Route::get('/dashboard', [DashboardController::class, 'countUsersAndProducts'], function () {
     })->name('dashboard');
-    //Guest route
-    Route::get('/dashboardusers', function () {
-        if(auth()->user()->role=="gost"){
-        return view("dashboardusers");
-        }
-   
-    })->name('dashboardusers');
 
+    //Guest route
+Route::get('/dashboardusers', function () {
+    if (auth()->user() && auth()->user()->role == "gost") {
+        return view("dashboardusers");
+    }
+})->name('dashboardusers');
     //Livewire users search route
     Route::get('/users', function () {
         Gate::authorize('view', User::class); //Authorisation for admin
-        return view('users'); 
+        return view('users');
     })->name('users');
     //Add user by Admin view (safety route)
     Route::get('/add-user', function () {
@@ -75,49 +76,48 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('adduser');
     Route::get('/deleted-users', function () {
         Gate::authorize('delete', User::class); //Authorisation for admin
-        return view('deleted-users'); 
+        return view('deleted-users');
     })->name('deleted-users');
     //Small category route (using product view policy here)
     Route::get('/categories', function () {
         Gate::authorize('view', Product::class); //Authorisation for admin
-        return view('categories'); 
+        return view('categories');
     })->name('categories');
     //Livewire product routes
     Route::get('/addproduct', function () {
         Gate::authorize('create', Product::class); //Authorisation for admin
-        return view('addproduct'); 
+        return view('addproduct');
     })->name('addproduct');
     //Stock management 
     Route::get('/stock-management/{id}', function () {
         Gate::authorize('view', Product::class); //Authorisation for admin
-        return view('stock-management'); 
+        return view('stock-management');
     })->name('stock-management');
     //Show, modify and delete products
     Route::get('/products', function () {
         Gate::authorize('view', Product::class); //Authorisation for admin
-        return view('products'); 
+        return view('products');
     })->name('products');
     Route::get('/deleted-products', function () {
         Gate::authorize('delete', Product::class); //Authorisation for admin
-        return view('deleted-products'); 
+        return view('deleted-products');
     })->name('deleted-products');
     Route::get('/edit-products/{id}', function () {
         Gate::authorize('view', Product::class); //Authorisation for admin
-        return view('editproduct'); 
+        return view('editproduct');
     })->name('editproduct');
 
-        //Livewire show questions route
+    //Livewire show questions route
     Route::get('/questions', function () {
         Gate::authorize('view', Question::class);; //Authorisation for admin
-        return view('questions'); 
+        return view('questions');
     })->name('questions');
 
     //User routes (wishlist and purhchase history)
     Route::get('/wishlist', function () {
-    Gate::authorize('view', Wishlist::class,); //Authorisation for admin
-        return view('wishlist'); 
+        Gate::authorize('view', Wishlist::class,); //Authorisation for admin
+        return view('wishlist');
     })->name('wishlist');
-
 });
 
 /***Breeze middleware***/
