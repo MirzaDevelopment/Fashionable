@@ -23,7 +23,7 @@
          </picture>
          @break
          @endforeach
-         <button wire:click="deleteWishlistedItem" class="bg-red-700 text-white font-medium px-5 py-2.5 rounded-lg shadow-sm hover:bg-red-800 transition-colors duration-200 disabled:opacity-5" wire:offline.attr="disabled" type="submit">Ukloni sa liste želja</button>
+         <button wire:click="deleteWishlistItem({{$product->id}})" class="bg-red-700 text-white font-medium px-5 py-2.5 rounded-lg shadow-sm hover:bg-red-800 transition-colors duration-200 disabled:opacity-5" wire:offline.attr="disabled" type="submit">Ukloni sa liste želja</button>
       </div>
       <hr class="border-t-1 row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[25%] col-span-1">
       <h3 class="text-xl lg:text-3xl 2xl:text-4xl font-semibold text-gray-800">{{ $product->product_name }}</h3>
