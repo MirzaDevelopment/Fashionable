@@ -17,6 +17,7 @@ class ShowUserWishlist extends Component
     public $user_id;
     private $user;
     public Carbon $currentDate;
+    public string $empty = "Vaša lista željenih proizvoda je trenutno prazna.";
 
     public function mount(): void
     {

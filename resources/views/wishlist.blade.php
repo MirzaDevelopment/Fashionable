@@ -10,6 +10,7 @@
                 <div class="p-6 text-gray-900">
                     {{ __("Lista željenih proizvoda") }}
                 </div>
+                 <p>Poslaćemo Vam email obaviještenje kada neki od ovih proizvoda bude na popustu.</p>
             </div>
         </div>
     </div>

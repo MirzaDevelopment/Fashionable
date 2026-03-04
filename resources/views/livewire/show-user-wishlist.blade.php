@@ -1,5 +1,8 @@
 <div>
    <section class="flex flex-col bg-white  justify-items-center items-center mt-[1rem] p-[0.5rem] mb-[3rem]">
+         @if(count($products)==0)
+        <p class="text-xl lg:text-2xl text-[#D32F2F]">{{$empty}}</p>
+        @endif
       @isset($products)
       @foreach ($products as $key=> $product)
       <div class="flex flex-col cursor-pointer place-content-evenly  hover:shadow-lg shadow-black/10 transition-all duration-300 ease-out  items-center min-w-[100%] min-h-[100%] gap-[1rem] xl:gap-[2rem] max-w-xs overflow-hidden bg-white p-[1rem]">

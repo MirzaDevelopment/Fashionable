@@ -18,7 +18,7 @@
             <div class="flex flex-col items-center">
             <a href="{{ route('wishlist') }}" wire:navigate>
             <img src="{{ asset('storage/images/wishlist-user-icon.svg') }}" alt="wishlist_logo" width="75" height="75"></a>
-            <h3>Lista željenih artikala</h3>
+            <h3>Lista željenih proizvoda</h3>
         </div>
         <div class="flex flex-col items-center">
              <img src="{{ asset('storage/images/finished-items.svg') }}" alt="wishlist_logo" width="75" height="75"></a>
