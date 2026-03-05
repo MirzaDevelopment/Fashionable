@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
+use App\Models\Product;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -12,14 +13,14 @@ use Illuminate\Queue\SerializesModels;
 class NotifyWishlistUsersAboutDiscount implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
-    public $product;
+    public int $productId;
 
     /**
      * Create a new job instance.
      */
-    public function __construct($newProduct)
+    public function __construct($productId)
     {
-        $this->product = $newProduct;
+       $this->productId = $productId;
     }
 
     /**
@@ -27,7 +28,8 @@ class NotifyWishlistUsersAboutDiscount implements ShouldQueue
      */
     public function handle(): void
     {
-        $users = $this->product->users;
+        $product = Product::find($this->productId);
+        $users = $product->users;
             foreach ($users as $user) {
             Mail::to($user->email)
             ->queue(new ProductDiscountMail($this->product)); //ovo popraviti
