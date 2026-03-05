@@ -18,6 +18,7 @@ use Livewire\Component;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Price;
+use App\Jobs\NotifyWishlistUsersAboutDiscount;
 use Illuminate\Support\Facades\Log;
 
 
@@ -135,8 +136,7 @@ class EditProductPrice extends Component
             ]);
             //Soft deleting previous price
             Price::destroy($this->newPrice->id);
-
-
+            NotifyWishlistUsersAboutDiscount::dispatch($this->newProduct);
             DB::commit();
             $this->isUploading = true;
             return redirect()->back()->with("status", "Informacije o cijenu su uspješno ažurirane.");
