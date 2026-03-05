@@ -136,7 +136,7 @@ class EditProductPrice extends Component
             ]);
             //Soft deleting previous price
             Price::destroy($this->newPrice->id);
-            NotifyWishlistUsersAboutDiscount::dispatch($this->newProduct);
+            NotifyWishlistUsersAboutDiscount::dispatch($this->newProduct->id);
             DB::commit();
             $this->isUploading = true;
             return redirect()->back()->with("status", "Informacije o cijenu su uspješno ažurirane.");
