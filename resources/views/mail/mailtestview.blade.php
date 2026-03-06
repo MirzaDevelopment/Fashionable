@@ -1,0 +1,1 @@
+<p>This is a discount test mail </p>

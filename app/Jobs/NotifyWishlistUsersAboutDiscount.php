@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
 use App\Models\Product;
+use App\Mail\ProductDiscountMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
@@ -32,7 +33,7 @@ class NotifyWishlistUsersAboutDiscount implements ShouldQueue
         $users = $product->users;
             foreach ($users as $user) {
             Mail::to($user->email)
-            ->queue(new ProductDiscountMail($this->product)); //ovo popraviti
+            ->queue(new ProductDiscountMail()); //ovo popraviti
         }
     }
 }
