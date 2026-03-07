@@ -31,9 +31,12 @@ class NotifyWishlistUsersAboutDiscount implements ShouldQueue
     {
         $product = Product::find($this->productId);
         $users = $product->users;
+        if($users != null){
             foreach ($users as $user) {
             Mail::to($user->email)
             ->queue(new ProductDiscountMail()); //ovo popraviti
-        }
+
+             }
+        } else return;
     }
 }

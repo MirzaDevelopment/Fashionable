@@ -96,9 +96,10 @@ class EditProductPrice extends Component
 
     //Unsetting date if discount changed
     public function updatedproductDiscount(): void
-    {
-        unset($this->endDate);
+    {   
         unset($this->startDate);
+        unset($this->endDate);
+       
     }
 
     //Edit product price and discount
@@ -136,6 +137,7 @@ class EditProductPrice extends Component
             ]);
             //Soft deleting previous price
             Price::destroy($this->newPrice->id);
+            //Dispatching event to send mail to users that wishlisted this product
             NotifyWishlistUsersAboutDiscount::dispatch($this->newProduct->id);
             DB::commit();
             $this->isUploading = true;
