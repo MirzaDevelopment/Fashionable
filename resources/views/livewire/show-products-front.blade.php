@@ -157,13 +157,13 @@
             <hr class="border-t-1 row-start-1 col-span-2 lg:mt-4 2xl:mt-8 border-gray-800 w-[25%] col-span-1">
             </hr>
             <!--Buy button-->
-            <button type="button" wire:click="buyProduct" class="text-white bg-slate-900 hover:bg-slate-800 
+            <button type="button" wire:click="buyProduct" class="text-white bg-gray-900 hover:bg-gray-800 
            font-semibold tracking-wide text-base 
            p-2.5 w-[25%] 
            rounded-lg 
            transition-all duration-200 ease-in-out
            shadow-md hover:shadow-lg
-           focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2
+           focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
            cursor-pointer">
                 Kupi
             </button>

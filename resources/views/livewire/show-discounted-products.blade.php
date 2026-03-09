@@ -6,7 +6,7 @@
     </p>
   </div>
   <section class="grid grid-rows-1  relative bg-gray-100 relative justify-center items-center">
-    <button class="nav-btn nav-left absolute lg:text-3xl bg-gray-800 text-white">&#10094;</button>
+    <button class="nav-btn nav-left absolute lg:text-3xl bg-gray-900 text-white">&#10094;</button>
     <div class="flex lg:mt-8 items-center w-[100%] md:w-[99%] lg:w-[100%] scroll-smooth snap-x snap-mandatory transition-transform m-auto duration-300 ease-in-out gap-[25px] py-5 overflow-y-auto  [scrollbar-width:none] [-ms-overflow-style:none]" id="carouselTrackDiscounted">
       @if($discountedProducts->isNotEmpty())
       @foreach ($discountedProducts as $index=> $product)
@@ -98,13 +98,13 @@
           @endif
           <hr class="border-t-1 xl:w-[75%] row-start-1 col-span-2 lg:mt-4 2xl:mt-8 border-gray-800 w-[20%] col-span-1">
           </hr>
-          <button type="button" wire:click="buyProduct" class="text-white bg-slate-900 hover:bg-slate-800 
+          <button type="button" wire:click="buyProduct" class="text-white bg-gray-900 hover:bg-gray-800 
            font-semibold tracking-wide text-base 
            p-2.5 w-[25%] max-w-[25%]
            rounded-lg 
            transition-all duration-200 ease-in-out
            shadow-md hover:shadow-lg
-           focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2
+           focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2
            cursor-pointer">
             Kupi
           </button>
@@ -115,7 +115,7 @@
       <span class="text-xl bg-red-100 text-gray-800 lg:text-2xl rounded-xl shadow-lg p-[3rem]">Naše posebne ponude su trenutno završene. Pratite nas — uskoro najavljujemo nove!</span>
       @endif
     </div>
-    <button class="nav-btn nav-right lg:text-3xl text-white bg-gray-800">&#10095;</button>
+    <button class="nav-btn nav-right lg:text-3xl text-white bg-gray-900">&#10095;</button>
   </section>
 </div>
 <script>
