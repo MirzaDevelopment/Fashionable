@@ -82,7 +82,7 @@
             {{$gender->gender}}
             @endforeach
           </span>
-          <span class="text-gray-900 font-bold ltext-xl md:text-2xl 2xl:text-4xl">Veličine:
+          <span class="text-gray-900 font-bold text-xl md:text-2xl 2xl:text-4xl">Veličine:
             @php
             $uniqueSizes=collect($product->sizesVariant)->unique('size')
             @endphp
@@ -98,6 +98,16 @@
           @endif
           <hr class="border-t-1 xl:w-[75%] row-start-1 col-span-2 lg:mt-4 2xl:mt-8 border-gray-800 w-[20%] col-span-1">
           </hr>
+          <button type="button" wire:click="buyProduct" class="text-white bg-slate-900 hover:bg-slate-800 
+           font-semibold tracking-wide text-base 
+           p-2.5 w-[25%] max-w-[25%]
+           rounded-lg 
+           transition-all duration-200 ease-in-out
+           shadow-md hover:shadow-lg
+           focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2
+           cursor-pointer">
+            Kupi
+          </button>
         </div>
       </div>
       @endforeach

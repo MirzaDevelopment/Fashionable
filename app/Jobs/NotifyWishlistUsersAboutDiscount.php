@@ -34,7 +34,7 @@ class NotifyWishlistUsersAboutDiscount implements ShouldQueue
         if($users != null){
             foreach ($users as $user) {
             Mail::to($user->email)
-            ->queue(new ProductDiscountMail()); //ovo popraviti
+            ->queue(new ProductDiscountMail($product)); //ovo popraviti
 
              }
         } else return;

@@ -220,7 +220,7 @@ class ShowProductsFront extends Component
             7. Show products for situation when user searches for product name, product type or tag in search field
             */
         } else {
-            $products = Product::with('type', 'prices', "images", "tags", "materials", "colorsVariant", "colors", "sizesVariant")->whereAny(["product_name", "prices.price", "end_date", "prices.discount", "type_name", "tag"], "like", "%" . $this->search . "%")->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_tags", "products_tags.product_id", "=", "products.id")->join("category_tags", "products_tags.category_tag_id", "=", "category_tags.id")->select('products.*', 'types.type_name', "price", "end_date", "discount")->distinct(["product_name"])->orderBy($this->sortinator, $this->sortToggle)->paginate(25);
+            $products = Product::with('type', 'prices', "images", "tags", "materials", "colorsVariant", "colors", "sizesVariant")->whereAny(["product_name", "prices.price", "end_date", "prices.discount", "type_name", "tag"], "like", "%" . $this->search . "%")->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_tags", "products_tags.product_id", "=", "products.id")->join("category_tags", "products_tags.category_tag_id", "=", "category_tags.id")->select('products.*', 'types.type_name', "price", "end_date", "start_date", "discount")->distinct(["product_name"])->orderBy($this->sortinator, $this->sortToggle)->paginate(25);
             return view('livewire.show-products-front', ["products" => $products]);
         }
     }

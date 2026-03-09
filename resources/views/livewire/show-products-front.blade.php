@@ -85,7 +85,7 @@
            19.58 3 22 5.42 22 8.5 
            c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
                             </svg></button>
-                            @endif
+                        @endif
                         @cannot('create', App\Models\Wishlist::class)
                         @if (!empty($authErrorMessage[$product->id]))
                         <div class="mt-3 rounded-lg w-[200px] right-[25px] absolute border border-gray-200 bg-white p-3">
@@ -99,20 +99,20 @@
                         </div>
                         @endif
                         @endcan
-                        
+
                     </div>
                 </span>
-                 <!-- Successful insert message -->
-            @if (!empty($wishListSuccess[$product->id]))
-            <div x-data="{ open: true }" x-show="open" x-transition x-on:click.outside="open = false" class="mt-3 rounded-md bg-[#cce5ff] text-[#004085] p-2.5">
-                {{ $wishListSuccess[$product->id] }}
-            </div>
-            @endif
-            @if (!empty($wishListFailed[$product->id]))
-            <div x-data="{ open: true }" x-show="open" x-transition x-on:click.outside="open = false" class="mt-3 rounded-md bg-[#f8d7da] text-[#721c24] p-2.5">
-                {{ $wishListFailed[$product->id] }}
-            </div>
-            @endif
+                <!-- Successful insert message -->
+                @if (!empty($wishListSuccess[$product->id]))
+                <div x-data="{ open: true }" x-show="open" x-transition x-on:click.outside="open = false" class="mt-3 rounded-md bg-[#cce5ff] text-[#004085] p-2.5">
+                    {{ $wishListSuccess[$product->id] }}
+                </div>
+                @endif
+                @if (!empty($wishListFailed[$product->id]))
+                <div x-data="{ open: true }" x-show="open" x-transition x-on:click.outside="open = false" class="mt-3 rounded-md bg-[#f8d7da] text-[#721c24] p-2.5">
+                    {{ $wishListFailed[$product->id] }}
+                </div>
+                @endif
                 <!--Images-->
                 @foreach ($product->images as $images)
                 <picture>
@@ -123,7 +123,7 @@
                     <img class="object-cover" loading="lazy" fetchpriority="low" decoding="async" src="{{ asset('storage/'.$images->image_400x400)}}" width="400" height="600" alt="product image">
                 </picture>
                 @break
-                @endforeach 
+                @endforeach
             </div>
             <hr class="border-t-1 row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[100%] col-span-1">
             <h3 class="text-xl lg:text-3xl 2xl:text-4xl font-semibold text-gray-800">{{ $product->product_name }}</h3>
@@ -146,7 +146,7 @@
                 {{$sizes->size}}
                 @endforeach
             </span>
-            @if(isset($product->discount) && !empty($product->discount) && $currentDate->lte($product->end_date))
+            @if(isset($product->discount) && !empty($product->discount) && $currentDate->gte($product->start_date) && $currentDate->lte($product->end_date))
             <span class="text-sm lg:text-2xl lg2:text-3xl text-[#9E1B32]"> Trenutni popust: - {{$product->discount}} %</span>
             <span class="text-sm lg:text-2xl lg2:text-3xl font-bold text-gray-900">Cijena: {{number_format ($product->price-($product->price*($product->discount/100)), 2,'.',' ')}} $</span>
             <p class="line-through text-sm lg:text-xl 2xl:text-2xl">Stara cijena: {{number_format($product->price, 2, '.', ' ')}} $</p>
@@ -156,7 +156,19 @@
 
             <hr class="border-t-1 row-start-1 col-span-2 lg:mt-4 2xl:mt-8 border-gray-800 w-[25%] col-span-1">
             </hr>
+            <!--Buy button-->
+            <button type="button" wire:click="buyProduct" class="text-white bg-slate-900 hover:bg-slate-800 
+           font-semibold tracking-wide text-base 
+           p-2.5 w-[25%] 
+           rounded-lg 
+           transition-all duration-200 ease-in-out
+           shadow-md hover:shadow-lg
+           focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2
+           cursor-pointer">
+                Kupi
+            </button>
         </div>
+
         @endforeach
         @endisset
     </section>

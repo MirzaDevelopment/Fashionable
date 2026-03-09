@@ -5,6 +5,7 @@ namespace App\Mail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
+use App\Models\Product;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
@@ -16,7 +17,7 @@ class ProductDiscountMail extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public Product $product)
     {
         //
     }
@@ -37,7 +38,13 @@ class ProductDiscountMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'mail.mailtestview',
+            view: 'mail.productdiscount',
+             with: [
+                'productName' => $this->product->product_name,
+                'price' => $this->product->price,
+              //  'discount' => $this->question->question,
+
+            ],
         );
     }
 
