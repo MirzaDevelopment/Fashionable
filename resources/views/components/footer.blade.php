@@ -1,5 +1,5 @@
 <!--Footer component used in pages-->
-<footer id="footer" class="flex items-center bg-gray-100 md:p-[3rem]  flex-col xl:grid grid-flow-col xl:items-baseline  p-3.5 text-center">
+<footer id="footer" class="flex items-center bg-slate-100 md:p-[3rem] flex-col xl:grid grid-flow-col xl:items-baseline  p-3.5 text-center">
     <nav class="grid grid-flow-col grid-rows-3 sm:grid-rows-2 items-center xl:flex xl:flex-col gap-[1rem] xl:col-start-1 xl:row-start-1 lg:mb-[rem]">
         <a class="sm:text-2xl  font-bold lg:text-[1.8rem]  2xl:text-[2rem]" href="{{ asset('storage/terms.html') }}">Uslovi korištenja</a>
         <a class="sm:text-2xl font-bold lg:text-[1.8rem]  2xl:text-[2rem]" href="{{ asset('storage/privacypolicy.html') }}">Politika privatnosti</a>

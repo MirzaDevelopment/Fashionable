@@ -1,4 +1,4 @@
-<!--Product upload view component-->
+<!--Questions and comment panel-->
 <x-app-layout>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -11,6 +11,7 @@
     </div>
     <div>
         <div class="mt-10 mb-10">
+            <!--Rendered questions livewire component-->
            <livewire:show-questions/>
         </div>
     </div>

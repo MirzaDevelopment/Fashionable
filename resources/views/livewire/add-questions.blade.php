@@ -31,7 +31,7 @@
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
             @enderror
             {!! RecaptchaV3::field('register') !!}
-            <button type='button' wire:click="uploadQuestion" class="text-white bg-gray-900 font-medium hover:bg-gray-800 tracking-wide text-sm px-4 py-2.5 w-full border-0 outline-0 cursor-pointer">Pošalji</button>
+            <button type='button' wire:click="uploadQuestion" class="text-white bg-gray-800 font-medium hover:bg-gray-700 active:bg-gray-900 tracking-wide text-sm px-4 py-2.5 w-full border-0 outline-0 cursor-pointer">Pošalji</button>
 
         </form>
         @if (session('status'))

@@ -58,11 +58,11 @@
     <hr class="border-t-1 row-start-1 col-span-2 2xl:mt-8 border-gray-800 max-w-[5%] lg:mt-[6.5rem] m-auto mb-[4rem] lg:mb-[2rem] col-span-1">
     @foreach ($products->getUrlRange(1, $products->lastPage()) as $page => $url)
     @if ($page == $products->lastPage())
-    <section class="grid grid-rows-1 grid-cols-1 gap-y-[0.5rem] sm:grid-cols-2 xl:grid-cols-3 bg-gray-100  justify-items-center items-center mt-[1rem] p-[0.5rem] mb-[3rem]">
-        <!--Rendering all products from database-->
+    <!--Rendering all products from database-->
+    <section class="grid grid-rows-1 grid-cols-1 gap-y-[0.5rem] sm:grid-cols-2 xl:grid-cols-3 bg-slate-100  justify-items-center items-center mt-[1rem] p-[0.5rem] mb-[3rem]">
         @isset($products)
         @foreach ($products as $product)
-        <div class="flex flex-col cursor-pointer place-content-evenly  hover:shadow-lg shadow-black/10 transition-all duration-300 ease-out  items-center min-w-[100%] min-h-[100%] gap-[1rem] xl:gap-[2rem] max-w-xs overflow-hidden bg-white p-[1rem]">
+        <div class="flex flex-col cursor-pointer place-content-evenly hover:shadow-lg shadow-black/10 transition-all duration-300 ease-out  items-center min-w-[100%] min-h-[100%] gap-[1rem] xl:gap-[2rem] max-w-xs overflow-hidden bg-white p-[1rem]">
             <div class="">
                 <span class="flex flex-row text-[1.2rem] mb-[1rem] text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem]">
                     @foreach ($product->colors as $index => $colors)
@@ -157,7 +157,7 @@
             <hr class="border-t-1 row-start-1 col-span-2 lg:mt-4 2xl:mt-8 border-gray-800 w-[25%] col-span-1">
             </hr>
             <!--Buy button-->
-            <button type="button" wire:click="buyProduct" class="text-white bg-gray-900 hover:bg-gray-800 
+            <button type="button" wire:click="buyProduct" class="text-white bg-gray-800 active:bg-gray-900 hover:bg-gray-700 
            font-semibold tracking-wide text-base 
            p-2.5 w-[25%] 
            rounded-lg 

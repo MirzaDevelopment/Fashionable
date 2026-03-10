@@ -1,7 +1,7 @@
 <x-front-layout><!--Welcome page view with the front.blade structure component in layouts folder-->
      <!--Header part is here-->
     <!--Main content-->
-    <div class="xl:flex bg-white xl:hover:bg-gray-100 transition-colors duration-200 justify-center items-center gap-[2rem] flex-row">
+    <div class="xl:flex bg-white xl:hover:bg-slate-100 transition-colors duration-200 justify-center items-center gap-[2rem] flex-row">
             <div class="relative flex flex-col  justify-center items-center">
                 <picture class="w-full col-span-1 col-start-1 row-start-2 h-auto">
                     <source media="(max-width: 460px)" srcset="{{ asset('storage/images/640x640/torbice_600x401.webp') }}">
@@ -19,7 +19,7 @@
             <div class="sm:mt-[2rem]  xl:mt-0 min-w-[31%]">
                 <a class="text-gray-800 xl:leading-tight break-normal hover:text-gray-900 text-3xl sm:text-4xl rounded-md relative group w-fit lg:text-[3rem] xl:text-[4rem] 2xl:text-[6rem]" href="{{ route('firstpage') }}">
                     {{ __('Pretraži našu kolekciju') }}
-                    <span class="absolute top-[36px] left-0 lg:top-[3.5rem] xl:top-auto xl:left-5 w-0 h-[2px] lg:h-[3px] 2xl:h-[4px] bg-gray-900 transition-all group-hover:w-full"></span>
+                    <span class="absolute top-[36px] left-0 lg:top-[3.5rem] xl:top-auto xl:left-5 w-0 h-[2px] lg:h-[3px] 2xl:h-[4px] bg-gray-800 transition-all group-hover:w-full"></span>
                 </a>
             </div>
         </div>
