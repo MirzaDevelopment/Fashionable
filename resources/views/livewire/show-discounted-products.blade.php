@@ -58,7 +58,8 @@
           </div>
           <span class="text-xl md:text-2xl 2xl:text-4xl">Popust vrijedi do: <span class="text-[#9E1B32]"> {{date('d-m-Y', strtotime($product->end_date))}}</span></span>
           <hr class="border-t-1 self-center row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[20%] col-span-1">
-          <span class="text-[1.2rem] flex text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem]">
+          <span class="text-[1.2rem] flex text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem] items-center">
+            <p class="text-gray-900 font-bold text-xl md:text-2xl 2xl:text-4xl">Dostupno u:</p>
             @foreach ($product->colors as $index => $colors)
             <div class="m-1 border-2 shadow-md" wire:key="{{$index}}" style="width: 25px; height: 25px; background-color: {{$colors->hex_code}};
             border-radius: 50%;">
@@ -91,7 +92,7 @@
             @endforeach
           </span>
           @if(isset($product->discount) && !empty($product->discount))
-          <span class="text-[#9E1B32] text-xl md:text-2xl 2xl:text-4xl"> Trenutni popust: - {{$product->discount}} %</span>
+          <span class="text-[#9E1B32] text-xl md:text-2xl 2xl:text-4xl bg-white border border-[#9E1B32] font-semibold px-2.5 py-1 rounded-md shadow-md"> Trenutni popust: - {{$product->discount}} %</span>
           <hr class="border-t-1  self-center row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[20%] col-span-1">
           <span class="text-xl xl:p-[1rem] md:text-2xl lg:text-4xl 2xl:text-5xl inline-flex items-center border border-amber-300 text-amber-700 font-medium px-3 py-1 rounded-full bg-amber-50 w-fit self-center">Cijena: {{number_format ($product->price-($product->price*($product->discount/100)), 2,'.',' ')}} $</span>
           <p class="line-through text-base mt-[1rem] md:text-sm  lg:text-2xl 2xl:text-3xl">Stara cijena: {{number_format($product->price, 2, '.', ' ')}} $</p>
