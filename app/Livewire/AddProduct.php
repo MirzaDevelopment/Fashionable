@@ -426,19 +426,19 @@ class AddProduct extends Component
                 //Hash the new resized name
                 $hashedWebPName = md5(time() . $webPname) . ".webp";
                 //Using intervention package to resize and encode to webP
-                $image_200x200 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 200)->encode(new WebpEncoder(quality: 80));
+                $image_320x320 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 320)->encode(new WebpEncoder(quality: 80));
                 $image_400x400 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 400)->encode(new WebpEncoder(quality: 80));
                 $image_800x800 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 800)->encode(new WebpEncoder(quality: 80));
                 $image_1200x1200 = $manager->read(storage_path("app/public/{$realPath}"))->scale(width: 1200)->encode(new WebpEncoder(quality: 80));
                 //Saving in appropriate path
-                $image_200x200->save(storage_path("app/public/images/200x200/{$hashedWebPName}"));
+                $image_320x320->save(storage_path("app/public/images/320x320/{$hashedWebPName}"));
                 $image_400x400->save(storage_path("app/public/images/400x400/{$hashedWebPName}"));
                 $image_800x800->save(storage_path("app/public/images/800x800/{$hashedWebPName}"));
                 $image_1200x1200->save(storage_path("app/public/images/1200x1200/{$hashedWebPName}"));
                 //Finally saving the path to database
                 $imageIdArray[] = Image::create([
                     'image_path' => $realPath, //Default image size
-                    'image_200x200' => 'images/200x200/' . $hashedWebPName,
+                    'image_320x320' => 'images/320x320/' . $hashedWebPName,
                     'image_400x400' => 'images/400x400/' . $hashedWebPName,
                     'image_800x800' => 'images/800x800/' . $hashedWebPName,
                     'image_1200x1200' => 'images/1200x1200/' . $hashedWebPName,

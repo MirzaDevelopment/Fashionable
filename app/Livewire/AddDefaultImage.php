@@ -36,7 +36,7 @@ class AddDefaultImage extends Component
 
         $rules = [
 
-            'defaultImage'=> 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:1024|dimensions:min_width=300,min_height=300,max_width=1200,max_height=1200'
+            'defaultImage'=> 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:1024|dimensions:min_width=15,min_height=15,max_width=1200,max_height=1200'
         ];
 
 
@@ -52,7 +52,7 @@ class AddDefaultImage extends Component
         'defaultImage.image' => 'Odabrana pogrešna datoteka! Datoteka mora biti slika.',
         'defaultImage.mimes' => 'Odabrana pogrešna vrsta datoteke! Datoteka mora biti slika u formatu: jpeg, webp, png, jpg, gif, svg.',
         'defaultImage.max' => 'Pogrešna veličina slike! Veličina slike mora biti manja od 1 megabajta.',
-        'defaultImage.dimensions' => 'Pogrešne dimenzije slike! Dimenzije slike moraju biti između 300x300 and 1200x1200.',
+        'defaultImage.dimensions' => 'Pogrešne dimenzije slike! Dimenzije slike moraju biti između 320x320 and 1200x1200.',
 
     ];
 
@@ -84,19 +84,19 @@ public function defaultImageUpload():?RedirectResponse
         $webPname = str_replace($extensions, ".webp", $RawName);
         //Hash the new resized name
         //Using intervention package to resize and encode to webP
-        $image_200x200 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 200)->encode(new WebpEncoder(quality: 80));
+        $image_320x320 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 320)->encode(new WebpEncoder(quality: 80));
         $image_400x400 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 400)->encode(new WebpEncoder(quality: 80));
         $image_800x800 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 800)->encode(new WebpEncoder(quality: 80));
         $image_1200x1200 = $manager->read(storage_path("app/public/{$realPath}"))->scale(width: 1200)->encode(new WebpEncoder(quality: 80));
         //Saving in appropriate path
-        $image_200x200->save(storage_path("app/public/images/200x200/{$defaultImageName}"));
+        $image_320x320->save(storage_path("app/public/images/320x320/{$defaultImageName}"));
         $image_400x400->save(storage_path("app/public/images/400x400/{$defaultImageName}"));
         $image_800x800->save(storage_path("app/public/images/800x800/{$defaultImageName}"));
         $image_1200x1200->save(storage_path("app/public/images/1200x1200/{$defaultImageName}"));
         //Finally saving the path to database
         $imageIdArray[] = Image::create([
             'image_path' => $realPath, //Default image size
-            'image_200x200' => 'images/200x200/' . $defaultImageName,
+            'image_320x320' => 'images/320x320/' . $defaultImageName,
             'image_400x400' => 'images/400x400/' . $defaultImageName,
             'image_800x800' => 'images/800x800/' . $defaultImageName,
             'image_1200x1200' => 'images/1200x1200/' . $defaultImageName,

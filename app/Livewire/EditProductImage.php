@@ -57,7 +57,7 @@ class EditProductImage extends Component
         foreach ($this->activeImages as $key => $images) {
 
             //Rendered in blade template:
-            $this->imageNames[] = $images->image_200x200;
+            $this->imageNames[] = $images->image_320x320;
             $this->colorNames[] = $this->activeColors[$key]->color;
             $this->hexCode[] = $this->activeColors[$key]->hex_code;
         }
@@ -69,7 +69,7 @@ class EditProductImage extends Component
     {
 
         $this->imageId = DB::table('category_images')
-            ->where('image_200x200', $parameter)
+            ->where('image_320x320', $parameter)
             ->pluck('id')
             ->first();
 
@@ -149,26 +149,26 @@ class EditProductImage extends Component
                 //Hash the new resized name
                 $hashedWebPName = md5(time() . $webPname) . ".webp";
                 //Using intervention package to resize and encode to webP
-                $image_200x200 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 200)->encode(new WebpEncoder(quality: 80));
+                $image_320x320 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 320)->encode(new WebpEncoder(quality: 80));
                 $image_400x400 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 400)->encode(new WebpEncoder(quality: 80));
                 $image_800x800 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 800)->encode(new WebpEncoder(quality: 80));
                 $image_1200x1200 = $manager->read(storage_path("app/public/{$realPath}"))->scale(width: 1200)->encode(new WebpEncoder(quality: 80));
                 //Saving in appropriate path
-                $image_200x200->save(storage_path("app/public/images/200x200/{$hashedWebPName}"));
+                $image_320x320->save(storage_path("app/public/images/320x320/{$hashedWebPName}"));
                 $image_400x400->save(storage_path("app/public/images/400x400/{$hashedWebPName}"));
                 $image_800x800->save(storage_path("app/public/images/800x800/{$hashedWebPName}"));
                 $image_1200x1200->save(storage_path("app/public/images/1200x1200/{$hashedWebPName}"));
 
                 $obsoleteImageOnDisk = Image::find($this->oldImage->id);
-                if (Storage::disk('public')->exists($obsoleteImageOnDisk->image_200x200)) {
+                if (Storage::disk('public')->exists($obsoleteImageOnDisk->image_320x320)) {
                     if (!str_contains($obsoleteImageOnDisk->image_path, 'default')) {
                         Storage::disk('public')->delete($obsoleteImageOnDisk->image_path);
-                        Storage::disk('public')->delete($obsoleteImageOnDisk->image_200x200);
+                        Storage::disk('public')->delete($obsoleteImageOnDisk->image_320x320);
                         Storage::disk('public')->delete($obsoleteImageOnDisk->image_400x400);
                         Storage::disk('public')->delete($obsoleteImageOnDisk->image_800x800);
                         Storage::disk('public')->delete($obsoleteImageOnDisk->image_1200x1200);
                     } else {
-                        Storage::disk('public')->delete($obsoleteImageOnDisk->image_200x200);
+                        Storage::disk('public')->delete($obsoleteImageOnDisk->image_320x320);
                         Storage::disk('public')->delete($obsoleteImageOnDisk->image_400x400);
                         Storage::disk('public')->delete($obsoleteImageOnDisk->image_800x800);
                         Storage::disk('public')->delete($obsoleteImageOnDisk->image_1200x1200);
@@ -178,7 +178,7 @@ class EditProductImage extends Component
                 //Finally saving the path to database
                 $this->oldImage->update([
                     'image_path' => $realPath, //Default image size
-                    'image_200x200' => 'images/200x200/' . $hashedWebPName,
+                    'image_320x320' => 'images/320x320/' . $hashedWebPName,
                     'image_400x400' => 'images/400x400/' . $hashedWebPName,
                     'image_800x800' => 'images/800x800/' . $hashedWebPName,
                     'image_1200x1200' => 'images/1200x1200/' . $hashedWebPName,
