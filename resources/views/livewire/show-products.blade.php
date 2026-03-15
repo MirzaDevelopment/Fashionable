@@ -25,7 +25,7 @@
             @foreach ($products as $product)
             <!--Rendering products from database-->
             <tr class="{{ in_array($product->id, $checkBox) ? 'bg-[#f0f8ff]' : '' }}" wire:key="{{$product->id}}" style="cursor: pointer">
-                <td wire:click="RowCheckBox({{ $product->id}})" class="p-3  min-w-[300px] sm:p-6 border border-slate-300 gap-[5px] items-center flex overflow-auto">@foreach ($product->images as $images) <img class="max-h-[300px]" fetchpriority="high" loading="eager" src="{{asset('storage/'.$images->image_200x200)}}" width="200" height="200" alt="product image"> @endforeach</td>
+                <td wire:click="RowCheckBox({{ $product->id}})" class="p-3  min-w-[300px] sm:p-6 border border-slate-300 gap-[5px] items-center flex overflow-auto">@foreach ($product->images as $images) <img class="max-h-[300px]" fetchpriority="high" loading="eager" src="{{asset('storage/'.$images->image_320x320)}}" width="320" height="200" alt="product image"> @endforeach</td>
                 <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 border border-slate-300">{{ $product->product_name }}</td>
                 <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 border border-slate-300">{{ $product->description }}</td>
                 <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 border border-slate-300">{{$product->price}}</td>

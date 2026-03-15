@@ -56,7 +56,7 @@ class EditProductColor extends Component
             $this->activeSizesId[] = $sizes->category_size_id;
         }
 
-        $defaultImage = Image::where("image_200x200", 'like', "%default%")->orderBy("created_at", "desc")->first();
+        $defaultImage = Image::where("image_320x320", 'like', "%default%")->orderBy("created_at", "desc")->first();
         if (!empty($defaultImage)) {
             $this->defaultImageId = $defaultImage->id;
         } else {
@@ -147,10 +147,10 @@ class EditProductColor extends Component
                     //Image is copied to the same path but with different name
                     $defaultImageName = "default" . $key . ".webp";
 
-                    $originalImagePath = storage_path('app/public/images/200x200/default.webp');
+                    $originalImagePath = storage_path('app/public/images/320x320/default.webp');
 
 
-                    $newImagePath = storage_path('app/public/images/200x200/' . $defaultImageName);
+                    $newImagePath = storage_path('app/public/images/320x320/' . $defaultImageName);
 
 
 
@@ -159,7 +159,7 @@ class EditProductColor extends Component
                     //Finally corresponding entries are created in database
                     $imageIdArray[] = Image::create([
                         'image_path' =>  $this->imagePath, //Default image size
-                        'image_200x200' => 'images/200x200/' . $defaultImageName,
+                        'image_320x320' => 'images/320x320/' . $defaultImageName,
                         'image_400x400' => 'images/400x400/' . $defaultImageName,
                         'image_800x800' => 'images/800x800/' . $defaultImageName,
                         'image_1200x1200' => 'images/1200x1200/' . $defaultImageName,
@@ -204,15 +204,15 @@ class EditProductColor extends Component
                 }
                 $obsoleteImageOnDisk = Image::find($imageId);
                 foreach ($obsoleteImageOnDisk as $obsoleteImageOnDisk) {
-                    if (Storage::disk('public')->exists($obsoleteImageOnDisk->image_200x200)) {
+                    if (Storage::disk('public')->exists($obsoleteImageOnDisk->image_320x320)) {
                         if (!str_contains($obsoleteImageOnDisk->image_path, 'default')) {
                             Storage::disk('public')->delete($obsoleteImageOnDisk->image_path);
-                            Storage::disk('public')->delete($obsoleteImageOnDisk->image_200x200);
+                            Storage::disk('public')->delete($obsoleteImageOnDisk->image_320x320);
                             Storage::disk('public')->delete($obsoleteImageOnDisk->image_400x400);
                             Storage::disk('public')->delete($obsoleteImageOnDisk->image_800x800);
                             Storage::disk('public')->delete($obsoleteImageOnDisk->image_1200x1200);
                         } else {
-                            Storage::disk('public')->delete($obsoleteImageOnDisk->image_200x200);
+                            Storage::disk('public')->delete($obsoleteImageOnDisk->image_320x320);
                             Storage::disk('public')->delete($obsoleteImageOnDisk->image_400x400);
                             Storage::disk('public')->delete($obsoleteImageOnDisk->image_800x800);
                             Storage::disk('public')->delete($obsoleteImageOnDisk->image_1200x1200);

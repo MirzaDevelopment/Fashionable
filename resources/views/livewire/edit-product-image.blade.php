@@ -12,7 +12,7 @@
             @foreach ($productImage as $index => $productImage)
             @if (!$errors->has
             ('productImage.'.$index))
-            <img wire:key="{{$index}}" src="{{ $productImage->temporaryUrl()}}" width="200"  />
+            <img wire:key="{{$index}}" src="{{ $productImage->temporaryUrl()}}" width="320"  />
             <h3>Boja povezana sa slikom:</h3>
             <p class="text-xl text-gray-900 dark:text-white">{{$colorNames[$index]}}</p>
             <input type="color" value="{{$hexCode[$index]}}" disabled></input>
@@ -26,7 +26,7 @@
             @endforeach
             @else
             <input wire:model="productImage.{{ $index }}" wire:click="selectImageName('{{$name}}')" class="invisible" accept="image/jpeg, image/png, image/webp" type="file" id="fileInput-{{$index}}">
-            <img class="cursor-pointer"wire:key="{{$index}}" src="{{asset('storage/'.$name)}}" width="200" height="auto" alt="product_image" onclick="document.getElementById('fileInput-{{$index}}').click();"></img>
+            <img class="cursor-pointer"wire:key="{{$index}}" src="{{asset('storage/'.$name)}}" width="320" height="auto" alt="product_image" onclick="document.getElementById('fileInput-{{$index}}').click();"></img>
             <h3>Boja povezana sa slikom:</h3>
             <p class="text-xl text-gray-900 dark:text-white">{{$colorNames[$index]}}</p>
             <input type="color" value="{{$hexCode[$index]}}" disabled></input>

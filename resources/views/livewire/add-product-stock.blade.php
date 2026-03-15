@@ -6,7 +6,7 @@
         </hr>
         <div class="flex">
             @foreach($images as $images)
-            <img src="{{asset('storage/'.$images->image_200x200)}}" width=200 alt="product image">
+            <img src="{{asset('storage/'.$images->image_320x320)}}" width=320 alt="product image">
             @endforeach
         </div>
         <div class="mt-6 grid grid-cols-3 gap-[3rem] items-center justify-items-center border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">

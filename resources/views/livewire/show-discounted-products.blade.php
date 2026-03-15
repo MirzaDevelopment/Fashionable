@@ -13,7 +13,7 @@
       <div id="discountedItem" class="lg:flex gap-[1rem] flex flex-col xl:flex-row place-content-evenly items-center min-w-[100%] snap-start rounded-xl overflow-hidden bg-white shadow-md  p-[1rem] rounded-lg  transform transition duration-300">
         @foreach ($product->images as $images)
         <picture>
-          <source media="(max-width: 320px)" srcset="{{ asset('storage/'.$images->image_200x200) }}">
+          <source media="(max-width: 320px)" srcset="{{ asset('storage/'.$images->image_320x320) }}">
           <source media="(max-width: 640px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
           <source media="(max-width: 1023px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
           <source media="(max-width: 1279px)" srcset="{{ asset('storage/'.$images->image_800x800) }}">

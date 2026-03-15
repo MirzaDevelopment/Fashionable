@@ -119,7 +119,7 @@
                 <!--Images-->
                 @foreach ($product->images as $images)
                 <picture>
-                    <source media="(max-width: 320px)" srcset="{{ asset('storage/'.$images->image_200x200) }}">
+                    <source media="(max-width: 320px)" srcset="{{ asset('storage/'.$images->image_320x320) }}">
                     <source media="(max-width: 640px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
                     <source media="(max-width: 1023px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
                     <source media="(min-width: 1024px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
