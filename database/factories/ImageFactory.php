@@ -20,7 +20,7 @@ class ImageFactory extends Factory
     {
         return [
         'image_path' => fake()->word(),
-        'image_200x200' =>  fake()->word(),
+        'image_320x320' =>  fake()->word(),
         "image_400x400" => fake()->word(),
         "image_800x800"=>fake()->word(),
         "image_1200x1200"=>fake()->word(),
