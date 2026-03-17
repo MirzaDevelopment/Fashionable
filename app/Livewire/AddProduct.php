@@ -299,7 +299,7 @@ class AddProduct extends Component
             return null; // Prevent further submissions if already uploading
         }
 
-        if(!empty($this->messages)){
+        if(empty($this->productName) | empty($this->productDescription) | empty($this->productPrice) | empty($this->colorSelect) | empty($this->genderSelect) | empty($this->materialSelect) | empty ($this->sizesSelect) | empty($this->typeSelect)|empty($this->productImage)){
           $this->validationFailedExtraMessage="Greška! Molimo provjerite da li ste popunili sve obavezne kategorije!";
         }
         $this->validate();

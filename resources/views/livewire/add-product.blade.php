@@ -134,7 +134,7 @@
                     <!--Input fields for colors-->
                     @isset($colorSelect)
                     @foreach ($colorSelect as $index => $color)
-                    <p class="font-bold"> Umetnite vašu sliku za {{mb_substr($color, 0, -1) . "u"}} boju</p>
+                    <p class="font-bold">Umetnite vašu sliku za {{ mb_substr($color, -1) === 'a' ? mb_substr($color, 0, -1) . 'u' : $color }} boju</p>
                     <div x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true" x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-cancel="uploading = false" x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                         <input wire:model="productImage.{{ $index }}" wire:key="{{$index}}" @if ($errors->has
                         ('productImage.'.$index)) class="w-full text-gray-500 font-medium text-base bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2.5 file:px-4 file:mr-4 file:bg-gray-800 file:hover:bg-gray-700 file:text-white rounded border border-[#D32F2F] w-4/5 sm:w-fit 2xl:w-4/5" @endif class="w-full text-gray-500 font-medium text-base bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2.5 file:px-4 file:mr-4 file:bg-gray-800 file:hover:bg-gray-700 file:text-white rounded" accept="image/jpeg, image/png, image/webp" type="file" id="productImage"></input>
