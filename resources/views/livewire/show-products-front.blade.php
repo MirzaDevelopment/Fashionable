@@ -3,24 +3,24 @@
         <div class="relative 2xl:self-baseline 2xl:min-w-[400px] h-[68px] 2xl:max-w-[400px] h-auto flex justify-center 2xl:justify-normal 2xl:items-center" id="explore">
             <aside class="flex flex-col top-0  absolute  lg:min-w-[400px] lg:max-w-[400px]" x-data="{ open: false, red: false }">
                 <!--Frontend livewire components that render category filters-->
-                <button class="w-[15rem] lg:w-[400px] h-[35px] lg:h-[auto] lg:p-[1rem] text-base lg:text-2xl 2xl:max-w-[90%] text-white" :class="red ? 'bg-gray-400' : 'bg-gray-900'" @click="red = !red; open = !open">Kategorije proizvoda</button>
+                <button class="w-[15rem] lg:w-[400px] h-[35px] rounded-lg lg:h-[auto] lg:p-[1rem] text-base lg:text-2xl 2xl:max-w-[90%] text-white" :class="red ? 'bg-gray-400' : 'bg-gray-900'" @click="red = !red; open = !open">Kategorije proizvoda</button>
                 <section class="overflow-scroll 2xl:overflow-auto max-h-[300px] 2xl:max-h-fit" x-show="open" x-transition>
                     <div class="flex flex-col items-center p-[1px]" x-data="{ openType: false, red: false }">
-                        <button class="w-[80%] h-[35px] lg:h-[auto] text-base lg:text-2xl lg:p-[1rem] text-white" :class="red ? 'bg-gray-400' : 'bg-gray-900'" @click="red = !red; openType = !openType">Vrste</button>
+                        <button class="w-[80%] rounded-lg h-[35px] lg:h-[auto] text-base lg:text-2xl lg:p-[1rem] text-white" :class="red ? 'bg-gray-400' : 'bg-gray-900'" @click="red = !red; openType = !openType">Vrste</button>
                         <div x-show="openType" x-transition>
                             <!--Product type categories-->
                             <livewire:type-category-front :typeSelect="$typeSelect" :selectedTypesContainer="$selectedTypesContainer" />
                         </div>
                     </div>
                     <div class="flex flex-col items-center p-[1px]" x-data="{ openGender: false, red: false }">
-                        <button class="w-[80%] h-[35px] lg:h-[auto] text-white text-base lg:text-2xl  lg:p-[1rem]" :class="red ? 'bg-gray-400 z-[5]' : 'bg-gray-900 z-[5]'" @click="red = !red; openGender = !openGender">Spol</button>
+                        <button class="w-[80%] rounded-lg h-[35px] lg:h-[auto] text-white text-base lg:text-2xl  lg:p-[1rem]" :class="red ? 'bg-gray-400 z-[5]' : 'bg-gray-900 z-[5]'" @click="red = !red; openGender = !openGender">Spol</button>
                         <div x-show="openGender" x-transition>
                             <!--Product gender categories-->
                             <livewire:gender-category-front :genderSelect="$genderSelect" />
                         </div>
                     </div>
                     <div class="flex flex-col items-center p-[1px] relative z-[5]" x-data="{ openTag: false, red: false }">
-                        <button class="w-[80%] h-[35px] lg:h-[auto] text-white text-base lg:text-2xl  lg:p-[1rem]" :class="red ? 'bg-gray-400 z-[5]' : 'bg-gray-900 z-[5]'" @click="red = !red; openTag = !openTag"> Oznake</button>
+                        <button class="w-[80%] rounded-lg h-[35px] lg:h-[auto] text-white text-base lg:text-2xl  lg:p-[1rem]" :class="red ? 'bg-gray-400 z-[5]' : 'bg-gray-900 z-[5]'" @click="red = !red; openTag = !openTag"> Oznake</button>
                         <div x-show="openTag" x-transition>
                             <!--Product tag categories-->
                             <livewire:tag-category-front :tagSelect="$tagSelect" />
