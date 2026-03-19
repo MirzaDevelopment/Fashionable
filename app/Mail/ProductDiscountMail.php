@@ -16,12 +16,18 @@ class ProductDiscountMail extends Mailable
     use Queueable, SerializesModels;
     public $price;
     public $size;
+    public $images;
+    public array $path=[];
     /**
      * Create a new message instance.
      */
     public function __construct(public Product $product)
     {
         $this->size = $product->sizesVariant()->get();
+        $this->images = $product->images()->get();
+        foreach ($this->images as $imagePath){
+        $this->path[] = storage_path('app/public/'.$imagePath->image_320x320);
+        }
         $this->price=Price::where("product_id",$product ->id)->first();
        
     }
@@ -44,6 +50,7 @@ class ProductDiscountMail extends Mailable
         return new Content(
             view: 'mail.productdiscount',
              with: [
+                'imagePath'=>$this->path,
                 'productName' => $this->product->product_name,
                 'productMaterials'=>$this->product->materials,
                 'productSizes'=>$this->size,

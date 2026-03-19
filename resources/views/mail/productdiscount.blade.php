@@ -1,5 +1,7 @@
-
-<h2>Naziv proizvoda:</h2> 
+@foreach ($imagePath as $path)
+<img class="max-h-[300px]" fetchpriority="high" loading="eager" src="{{{ $message->embed($path) }}}" width="320" height="320" alt="product_image">
+@endforeach
+<h2>Naziv proizvoda:</h2>
 <p>{{$productName}}</p>
 <h2>Materijal:</h2>
 @foreach($productMaterials as $material)
@@ -12,7 +14,7 @@ $uniqueSizes=collect($productSizes)->unique('size')
 @foreach($uniqueSizes as $sizes)
 <p>{{$sizes->size}}</p>
 @endforeach
-<h2>Trenutni popust:</h2> 
+<h2>Trenutni popust:</h2>
 <p>-{{$discount}}%</p>
 <h2>Trenutna cijena (nakon popusta)</h2>
 <p>{{$price->price}}$</p>
