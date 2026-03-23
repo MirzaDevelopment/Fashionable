@@ -1,13 +1,13 @@
 <div>
-   <section class="flex flex-col bg-white  justify-items-center items-center mt-[1rem] p-[0.5rem] mb-[3rem]">
+   <section class="flex flex-col bg-white gap-[1rem]  justify-items-center items-center mt-[1rem] p-[0.5rem] mb-[3rem]">
          @if(count($products)==0)
         <p class="text-xl lg:text-2xl text-[#D32F2F]">{{$empty}}</p>
         @endif
       @isset($products)
       @foreach ($products as $key=> $product)
-      <div class="flex flex-col cursor-pointer place-content-evenly  hover:shadow-lg shadow-black/10 transition-all duration-300 ease-out  items-center min-w-[100%] min-h-[100%] gap-[1rem] xl:gap-[2rem] max-w-xs overflow-hidden bg-white p-[1rem]">
+      <div class="flex flex-col  cursor-pointer place-content-evenly  hover:shadow-lg shadow-black/10 transition-all duration-300 ease-out  items-center min-w-[100%] min-h-[100%] gap-[1rem] xl:gap-[2rem] max-w-xs overflow-hidden bg-white p-[1rem]">
          <div class="">
-            <span class="flex flex-row text-[1.2rem] mb-[1rem] text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem]">
+            <span class="flex flex-row  text-[1.2rem] mb-[1rem] text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem]">
                @foreach ($product->colors as $index => $colors)
                <div class="m-1 border-2 shadow-md" wire:key="{{$index}}" style="width: 25px; height: 25px; background-color: {{$colors->hex_code}};
             border-radius: 50%;">
@@ -46,7 +46,7 @@
          $uniqueSizes=collect($product->sizesVariant)->unique('size')
          @endphp
          @foreach($uniqueSizes as $sizes)
-         {{$sizes->size}}
+         <span class="bg-[#eee] p-2">{{$sizes->size}}</span>
          @endforeach
       </span>
       @if(isset($product->discount) && !empty($product->discount) && $currentDate->lte($product->end_date))

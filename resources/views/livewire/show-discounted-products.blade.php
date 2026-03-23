@@ -33,11 +33,11 @@
           <!--Wishlist button-->
           <div class="relative">
             @if(!in_array($product->id, $wishListArray))
-            <button wire:key="{{$index}}" wire:click="wishListItem({{$product->id}})"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="none" stroke="black" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+            <button wire:key="{{$index}}" wire:click="wishListItem({{$product->id}})"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="black" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3 c1.74 0 3.41 0.81 4.5 2.09 C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5 c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
               </svg></button>
             @else
-            <button wire:key="{{$index}}" wire:click="wishListItem({{$product->id}})"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="36" height="36" fill="black">
+            <button wire:key="{{$index}}" wire:click="wishListItem({{$product->id}})"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="black">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
            2 5.42 4.42 3 7.5 3 
            c1.74 0 3.41 0.81 4.5 2.09 
@@ -45,20 +45,36 @@
            19.58 3 22 5.42 22 8.5 
            c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
               </svg></button>
-            <div class="mt-3 rounded-lg w-[200px] right-[-80px] absolute border border-gray-200 bg-white p-3">
-              <p class="text-sm text-gray-700">
-                Za korištenje liste želja potrebno je da se
-                <a href="/register" class="font-large text-black underline hover:opacity-70">
-                  registrujete
-                </a>
-                tako da možete putem emaila da primite obavijesti o sniženjima.
-              </p>
-            </div>
             @endif
+                                    @cannot('create', App\Models\Wishlist::class)
+                        @if (!empty($authErrorMessage[$product->id]))
+                        <div class="mt-3 rounded-lg w-[200px] right-[25px] absolute border border-gray-200 bg-white p-3">
+                            <p class="text-sm text-gray-700">
+                                Za korištenje liste želja potrebno je da se
+                                <a href="/register" class="font-large text-black underline hover:opacity-70">
+                                    registrujete
+                                </a>
+                                tako da možete putem emaila da primite obavijesti o sniženjima.
+                            </p>
+                        </div>
+                        @endif
+                        @endcan
+            
+              <!-- Successful insert message -->
+                @if (!empty($wishListSuccess[$product->id]))
+                <div x-data="{ open: true }" x-show="open" x-transition x-on:click.outside="open = false" class="mt-3 rounded-md bg-[#cce5ff] text-[#004085] p-2.5">
+                    {{ $wishListSuccess[$product->id] }}
+                </div>
+                @endif
+                @if (!empty($wishListFailed[$product->id]))
+                <div x-data="{ open: true }" x-show="open" x-transition x-on:click.outside="open = false" class="mt-3 rounded-md bg-[#f8d7da] text-[#721c24] p-2.5">
+                    {{ $wishListFailed[$product->id] }}
+                </div>
+                @endif
           </div>
           <span class="text-xl md:text-2xl 2xl:text-4xl">Popust vrijedi do: <span class="text-[#9E1B32]"> {{date('d-m-Y', strtotime($product->end_date))}}</span></span>
           <hr class="border-t-1 self-center row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[20%] col-span-1">
-          <span class="text-[1.2rem] flex text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem] items-center">
+          <span class="text-[1.2rem] flex flex-wrap text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem] items-center">
             <p class="text-gray-900 font-bold text-xl md:text-2xl 2xl:text-4xl">Dostupno u:</p>
             @foreach ($product->colors as $index => $colors)
             <div class="m-1 border-2 shadow-md" wire:key="{{$index}}" style="width: 25px; height: 25px; background-color: {{$colors->hex_code}};
@@ -88,7 +104,7 @@
             $uniqueSizes=collect($product->sizesVariant)->unique('size')
             @endphp
             @foreach($uniqueSizes as $sizes)
-            {{$sizes->size}}
+            <span class="bg-[#eee] p-2">{{$sizes->size}}</span>
             @endforeach
           </span>
           @if(isset($product->discount) && !empty($product->discount))
