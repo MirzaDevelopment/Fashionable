@@ -74,8 +74,8 @@
           </div>
           <span class="text-xl md:text-2xl 2xl:text-4xl">Popust vrijedi do: <span class="text-[#9E1B32]"> {{date('d-m-Y', strtotime($product->end_date))}}</span></span>
           <hr class="border-t-1 self-center row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[20%] col-span-1">
-          <span class="text-[1.2rem] flex flex-wrap text-gray-900 font-bold lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem] items-center">
-            <p class="text-gray-900 font-bold text-xl md:text-2xl 2xl:text-4xl">Dostupno u:</p>
+          <span class="text-[1.2rem] justify-end flex flex-wrap text-gray-900  lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem] items-center">
+            <p class="text-gray-900 text-xl md:text-2xl 2xl:text-4xl">Dostupno u:</p>
             @foreach ($product->colors as $index => $colors)
             <div class="m-1 border-2 shadow-md" wire:key="{{$index}}" style="width: 25px; height: 25px; background-color: {{$colors->hex_code}};
             border-radius: 50%;">
@@ -83,7 +83,7 @@
             @endforeach
 
           </span>
-          <span class="text-gray-900 font-bold text-xl md:text-2xl 2xl:text-4xl">
+          <span class="text-gray-900 text-xl md:text-2xl 2xl:text-4xl">
             @foreach ($product->materials as $key=> $materials)
             @if($key==0)
             {{ $materials->material}}
@@ -94,17 +94,17 @@
             @endif
             @endforeach
           </span>
-          <span class="text-gray-900 text-xl md:text-2xl 2xl:text-4xl font-bold">Spol:
+          <span class="text-gray-900 text-xl md:text-2xl 2xl:text-4xl">Spol:
             @foreach($product->genders as $gender)
             {{$gender->gender}}
             @endforeach
           </span>
-          <span class="text-gray-900 font-bold text-xl md:text-2xl 2xl:text-4xl">Veličine:
+          <span class="text-gray-900 text-xl md:text-2xl 2xl:text-4xl">Veličine:
             @php
             $uniqueSizes=collect($product->sizesVariant)->unique('size')
             @endphp
             @foreach($uniqueSizes as $sizes)
-            <span class="bg-[#eee] p-2">{{$sizes->size}}</span>
+            <span class="bg-slate-200 text-black p-2">{{$sizes->size}}</span>
             @endforeach
           </span>
           @if(isset($product->discount) && !empty($product->discount))

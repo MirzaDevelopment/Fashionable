@@ -30,7 +30,7 @@
       </div>
       <hr class="border-t-1 row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[25%] col-span-1">
       <h3 class="text-xl lg:text-3xl 2xl:text-4xl font-semibold text-gray-800">{{ $product->product_name }}</h3>
-      <span class="text-sm text-gray-900 font-bold lg:text-2xl lg2:text-3xl">
+      <span class="text-sm text-gray-900 lg:text-2xl lg2:text-3xl">
          @foreach ($product->materials as $key=> $materials)
          @if($key==0)
          {{ $materials->material}}
@@ -41,12 +41,12 @@
          @endif
          @endforeach
       </span>
-      <span class="text-gray-900 font-bold text-sm lg:text-2xl lg2:text-3xl">Veličine:
+      <span class="text-gray-900  text-sm lg:text-2xl lg2:text-3xl">Veličine:
          @php
          $uniqueSizes=collect($product->sizesVariant)->unique('size')
          @endphp
          @foreach($uniqueSizes as $sizes)
-         <span class="bg-[#eee] p-2">{{$sizes->size}}</span>
+         <span class="bg-slate-200 p-2">{{$sizes->size}}</span>
          @endforeach
       </span>
       @if(isset($product->discount) && !empty($product->discount) && $currentDate->lte($product->end_date))
