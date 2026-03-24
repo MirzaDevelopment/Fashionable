@@ -83,23 +83,24 @@
             @endforeach
 
           </span>
+          <div class="gap-[1rem]">
           <span class="text-gray-900 text-xl md:text-2xl 2xl:text-4xl">
             @foreach ($product->materials as $key=> $materials)
             @if($key==0)
-            {{ $materials->material}}
+            <span class="bg-slate-200 text-black p-2">{{$materials->material}}</span>
             @elseif($key>0)
-            <span class="ml-[-4px]">,</span> {{$materials->material}}
+            <span class="ml-[-4px]">,</span> <span class="bg-slate-200 text-black p-2">{{$materials->material}}</span>
             @else
-            {{ $materials->material}}
+            <span class="bg-slate-200 text-black p-2">{{ $materials->material}}</span>
             @endif
             @endforeach
           </span>
-          <span class="text-gray-900 text-xl md:text-2xl 2xl:text-4xl">Spol:
+          <span class="text-gray-900 text-xl md:text-2xl 2xl:text-4xl">
             @foreach($product->genders as $gender)
-            {{$gender->gender}}
+            <span class="bg-slate-200 text-black p-2">{{$gender->gender}}</span>
             @endforeach
           </span>
-          <span class="text-gray-900 text-xl md:text-2xl 2xl:text-4xl">Veličine:
+          <span class="text-gray-900 text-xl md:text-2xl 2xl:text-4xl">
             @php
             $uniqueSizes=collect($product->sizesVariant)->unique('size')
             @endphp
@@ -107,6 +108,7 @@
             <span class="bg-slate-200 text-black p-2">{{$sizes->size}}</span>
             @endforeach
           </span>
+          </div>
           @if(isset($product->discount) && !empty($product->discount))
           <span class="text-[#9E1B32] text-xl md:text-2xl 2xl:text-4xl bg-white border border-[#9E1B32] font-semibold px-2.5 py-1 rounded-md shadow-md"> Trenutni popust: - {{$product->discount}} %</span>
           <hr class="border-t-1  self-center row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[20%] col-span-1">

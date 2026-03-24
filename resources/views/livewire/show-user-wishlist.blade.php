@@ -1,5 +1,5 @@
 <div>
-   <section class="flex flex-col bg-white gap-[1rem]  justify-items-center items-center mt-[1rem] p-[0.5rem] mb-[3rem]">
+   <section class="flex flex-col bg-white gap-[1rem] xl:gap-[2rem]  justify-items-center items-center mt-[1rem] p-[0.5rem] mb-[3rem]">
          @if(count($products)==0)
         <p class="text-xl lg:text-2xl text-[#D32F2F]">{{$empty}}</p>
         @endif
@@ -18,7 +18,7 @@
          <!--Images-->
          @foreach ($product->images as $images)
          <picture>
-            <source media="(max-width: 320px)" srcset="{{ asset('storage/'.$images->image_200x200) }}">
+            <source media="(max-width: 320px)" srcset="{{ asset('storage/'.$images->image_320x320) }}">
             <source media="(max-width: 640px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
             <source media="(max-width: 1023px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
             <source media="(min-width: 1024px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
@@ -33,11 +33,11 @@
       <span class="text-sm text-gray-900 lg:text-2xl lg2:text-3xl">
          @foreach ($product->materials as $key=> $materials)
          @if($key==0)
-         {{ $materials->material}}
+         <span class="bg-slate-200 text-black p-2">{{$materials->material}}</span>
          @elseif($key>0)
-         <span class="ml-[-4px]">,</span> {{$materials->material}}
+         <span class="ml-[-4px]">,</span> <span class="bg-slate-200 text-black p-2">{{$materials->material}}</span>
          @else
-         {{ $materials->material}}
+         <span class="bg-slate-200 text-black p-2">{{$materials->material}}</span>
          @endif
          @endforeach
       </span>
@@ -51,7 +51,8 @@
       </span>
       @if(isset($product->discount) && !empty($product->discount) && $currentDate->lte($product->end_date))
       <span class="text-sm lg:text-2xl lg2:text-3xl text-[#9E1B32]"> Trenutni popust: - {{$product->discount}} %</span>
-      <span class="text-sm lg:text-2xl lg2:text-3xl font-bold text-gray-900">Cijena: {{number_format ($product->price-($product->price*($product->discount/100)), 2,'.',' ')}} $</span>
+      <span class="text-sm lg:text-2xl lg2:text-3xl  border border-amber-300 text-amber-700 
+            medium px-3 py-1 rounded-full bg-amber-50">Cijena: {{number_format ($product->price-($product->price*($product->discount/100)), 2,'.',' ')}} $</span>
       <p class="line-through text-sm lg:text-xl 2xl:text-2xl">Stara cijena: {{number_format($product->price, 2, '.', ' ')}} $</p>
       @else
       <span class="text-sm lg:text-2xl lg2:text-3xl text-gray-900 font-bold ">Cijena: {{$product->price}} $</span>

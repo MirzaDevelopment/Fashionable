@@ -133,11 +133,11 @@
             <span class="text-sm text-gray-900  lg:text-2xl lg2:text-3xl">
                 @foreach ($product->materials as $key=> $materials)
                 @if($key==0)
-                {{ $materials->material}}
+                <span class="bg-slate-200 text-black p-2">{{$materials->material}}</span>
                 @elseif($key>0)
-                <span class="ml-[-4px]">,</span> {{$materials->material}}
+                <span class="ml-[-4px]">,</span> <span class="bg-slate-200 text-black p-2">{{$materials->material}}</span>
                 @else
-                {{ $materials->material}}
+                <span class="bg-slate-200 text-black p-2">{{$materials->material}}</span>
                 @endif
                 @endforeach
             </span>
