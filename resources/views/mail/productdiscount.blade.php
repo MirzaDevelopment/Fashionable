@@ -85,6 +85,7 @@
                 <!-- Footer -->
                 <tr>
                     <td style="padding-top: 20px; text-align: center; font-size: 12px; color: #999;">
+                        Vaša lista želja je dostupna na /*work in progress*/
                         Dobijate ovu notifikaciju jer ste pratili ovaj proizvod.
                     </td>
                 </tr>

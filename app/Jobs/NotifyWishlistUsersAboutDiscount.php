@@ -4,6 +4,7 @@ namespace App\Jobs;
 
 use Illuminate\Bus\Queueable;
 use App\Models\Product;
+use App\Models\Wishlist;
 use App\Mail\ProductDiscountMail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -33,10 +34,13 @@ class NotifyWishlistUsersAboutDiscount implements ShouldQueue
         $users = $product->users;
         if($users != null){
             foreach ($users as $user) {
+           if($user->pivot->notified_of_discount!=true){
             Mail::to($user->email)
             ->queue(new ProductDiscountMail($product)); //ovo popraviti
-
+            $user->products()->wherePivot('user_id', $user->id)->updateExistingPivot($product->id, ['notified_of_discount' =>   true]);
+           }
              }
+
         } else return;
     }
 }

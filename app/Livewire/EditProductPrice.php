@@ -15,6 +15,7 @@ use Livewire\Attributes\Validate;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Price;
@@ -27,6 +28,7 @@ class EditProductPrice extends Component
     public bool $isUploading = false;
     public object $newProduct;
     public ?object $newPrice;
+    public Carbon $currentDate;
     #[Validate]
     public float $productPrice;
     #[Validate]
@@ -47,6 +49,7 @@ class EditProductPrice extends Component
         $this->productDiscount = $this->newPrice->discount;
         $this->startDate = $this->newPrice->start_date;
         $this->endDate = $this->newPrice->end_date;
+        $this->currentDate=Carbon::today();
     }
 
     /*
@@ -137,8 +140,7 @@ class EditProductPrice extends Component
             //Soft deleting previous price
             Price::destroy($this->newPrice->id);
           //Dispatching event to send mail to users that wishlisted this product if discount changed.
-            if (!(empty($this->productDiscount))) {
-                
+            if (!(empty($this->productDiscount && $this->currentDate->between($this->startDate, $this->endDate)))) {
                 NotifyWishlistUsersAboutDiscount::dispatch($this->newProduct->id);
             }
 
