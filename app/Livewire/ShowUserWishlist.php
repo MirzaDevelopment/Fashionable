@@ -41,7 +41,7 @@ class ShowUserWishlist extends Component
     public function render()
     {
 
-        $products = Product::with('type', 'prices', "images", "tags", "materials", "colorsVariant", "colors", "sizesVariant", "users")->where("user_id", $this->user_id)->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_tags", "products_tags.product_id", "=", "products.id")->join("category_tags", "products_tags.category_tag_id", "=", "category_tags.id")->join("wishlist_items", "wishlist_items.product_id", "=", "products.id")->join("users", "wishlist_items.user_id", "=", "users.id")->select('products.*', 'types.type_name', "price", "end_date", "discount")->distinct(["product_name"])->paginate(5);
+        $products = Product::with('type', 'prices', "images", "tags", "materials", "colorsVariant", "colors", "sizesVariant", "users")->where("user_id", $this->user_id)->whereNull("prices.deleted_at")->join("prices", "prices.product_id", "=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->join("products_tags", "products_tags.product_id", "=", "products.id")->join("category_tags", "products_tags.category_tag_id", "=", "category_tags.id")->join("wishlist_items", "wishlist_items.product_id", "=", "products.id")->join("users", "wishlist_items.user_id", "=", "users.id")->select('products.*', 'types.type_name', "price", "end_date", "start_date", "discount")->distinct(["product_name"])->paginate(5);
         return view('livewire.show-user-wishlist', ["products" => $products]);
     }
 }

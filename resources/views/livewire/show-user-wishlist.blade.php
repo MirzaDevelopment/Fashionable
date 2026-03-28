@@ -49,7 +49,7 @@
          <span class="bg-slate-200 p-2">{{$sizes->size}}</span>
          @endforeach
       </span>
-      @if(isset($product->discount) && !empty($product->discount) && $currentDate->lte($product->end_date))
+      @if(isset($product->discount) && !empty($product->discount) && $currentDate->gte($product->start_date) && $currentDate->lte($product->end_date))
       <span class="text-sm lg:text-2xl lg2:text-3xl text-[#9E1B32]"> Trenutni popust: - {{$product->discount}} %</span>
       <span class="text-sm lg:text-2xl lg2:text-3xl  border border-amber-300 text-amber-700 
             medium px-3 py-1 rounded-full bg-amber-50">Cijena: {{number_format ($product->price-($product->price*($product->discount/100)), 2,'.',' ')}} $</span>
