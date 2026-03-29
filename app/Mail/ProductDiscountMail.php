@@ -1,7 +1,6 @@
 <?php
-
+/*Laravel mail class of the mail that is sent to user when product is on discount*/
 namespace App\Mail;
-
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -23,6 +22,7 @@ class ProductDiscountMail extends Mailable
      */
     public function __construct(public Product $product)
     {
+        //Getting the actual product data
         $this->size = $product->sizesVariant()->get();
         $this->images = $product->images()->get();
         foreach ($this->images as $imagePath){
