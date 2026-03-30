@@ -30,6 +30,30 @@
 </head>
 
 <body class="font-sans antialiased max-w-[1920px] m-auto">
+      <!-- Your page content -->
+
+    <!-- Place cookie consent script at the end of body -->
+    <script type="text/javascript" src="https://www.termsfeed.com/public/cookie-consent/4.2.0/cookie-consent.js" charset="UTF-8" async></script>
+    <script type="text/javascript" charset="UTF-8">
+        document.addEventListener('DOMContentLoaded', function () {
+            cookieconsent.run({
+                "notice_banner_type":"simple",
+                "consent_type":"express",
+                "palette":"light",
+                "language":"hr",
+                "page_load_consent_levels":["strictly-necessary"],
+                "notice_banner_reject_button_hide":false,
+                "preferences_center_close_button_hide":false,
+                "page_refresh_confirmation_buttons":false,
+                "website_name":"Fashionable"
+            });
+        });
+    </script>
+        <!-- Message for users with JavaScript disabled -->
+    <noscript>
+        Free cookie consent management tool by <a href="https://www.termsfeed.com/">TermsFeed Generator</a>
+    </noscript>
+    <a href="#" id="open_preferences_center">Update cookies preferences</a>
     <!-- Page header component -->
     <x-header />
     <!-- Page Content -->
