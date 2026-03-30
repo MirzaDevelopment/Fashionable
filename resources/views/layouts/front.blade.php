@@ -53,7 +53,6 @@
     <noscript>
         Free cookie consent management tool by <a href="https://www.termsfeed.com/">TermsFeed Generator</a>
     </noscript>
-    <a href="#" id="open_preferences_center">Update cookies preferences</a>
     <!-- Page header component -->
     <x-header />
     <!-- Page Content -->

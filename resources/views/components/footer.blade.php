@@ -3,6 +3,7 @@
     <nav class="grid grid-flow-col grid-rows-3 sm:grid-rows-2 items-center xl:flex xl:flex-col gap-[1rem] xl:col-start-1 xl:row-start-1 lg:mb-[rem]">
         <a class="sm:text-2xl  font-bold lg:text-[1.8rem]  2xl:text-[2rem]" href="{{ asset('storage/terms.html') }}">Uslovi korištenja</a>
         <a class="sm:text-2xl font-bold lg:text-[1.8rem]  2xl:text-[2rem]" href="{{ asset('storage/privacypolicy.html') }}">Politika privatnosti</a>
+         <a class="sm:text-2xl font-bold lg:text-[1.8rem]  2xl:text-[2rem]" href="#" id="open_preferences_center">Izmijeni preferencije kolačića</a>
         <a class="sm:text-2xl font-bold lg:text-[1.8rem]  2xl:text-[2rem]" href="{{ asset('storage/returnpolicy.html') }}">Politika naplate</a>
         <a class="sm:text-2xl font-bold lg:text-[1.8rem]  2xl:text-[2rem]" href="{{ asset('storage/cookiespolicy.html') }}">Politika kolačića</a>
         <a class="sm:text-2xl font-bold lg:text-[1.8rem]  2xl:text-[2rem]" href="{{ asset('storage/acceptableusepolicy.html') }}">Pravila prihvatljive upotrebe</a>
