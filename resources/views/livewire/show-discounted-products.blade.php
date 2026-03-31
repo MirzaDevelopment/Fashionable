@@ -29,7 +29,7 @@
         @break
         @endforeach
         <div class="flex flex-col  gap-[1rem] xl:p-12 items-center min-w-[100%] lg:min-w-fit lg:w-[100%]">
-          <h3 class="text-3xl max-w-[90%] md:text-4xl lg:max-w-[55%] lg:text-5xl xl:text-4xl 2xl:text-5xl font-semibold text-gray-800 mb-[1rem]">{{ $product->product_name }}</h3>
+          <h3 class="text-3xl max-w-[90%] md:text-4xl lg:max-w-[55%] lg:text-5xl xl:text-4xl 2xl:text-5xl font-semibold text-gray-900 mb-[1rem]">{{ $product->product_name }}</h3>
           <!--Wishlist button-->
           <div class="relative">
             @if(!in_array($product->id, $wishListArray))
@@ -74,8 +74,8 @@
           </div>
           <span class="text-xl md:text-2xl 2xl:text-4xl">Popust vrijedi do: <span class="text-[#9E1B32]"> {{date('d-m-Y', strtotime($product->end_date))}}</span></span>
           <hr class="border-t-1 self-center row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[20%] col-span-1">
-          <span class="text-[1.2rem] justify-end flex flex-wrap text-gray-900  lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem] items-center">
-            <p class="text-gray-900 text-xl md:text-2xl 2xl:text-4xl">Dostupno u:</p>
+          <span class="text-[1.2rem] justify-end flex flex-wrap text-gray-800  lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem] items-center">
+            <p class="text-gray-800 text-xl md:text-2xl 2xl:text-4xl">Dostupno u:</p>
             @foreach ($product->colors as $index => $colors)
             <div class="m-1 border-2 shadow-md" wire:key="{{$index}}" style="width: 25px; height: 25px; background-color: {{$colors->hex_code}};
             border-radius: 50%;">
@@ -84,28 +84,28 @@
 
           </span>
           <div class="gap-[1rem]">
-          <span class="text-gray-900 text-xl md:text-2xl 2xl:text-4xl">
+          <span class="text-gray-800 text-xl md:text-2xl 2xl:text-4xl">
             @foreach ($product->materials as $key=> $materials)
             @if($key==0)
-            <span class="bg-slate-200 text-black p-2">{{$materials->material}}</span>
+            <span class="bg-slate-200  p-2">{{$materials->material}}</span>
             @elseif($key>0)
-            <span class="ml-[-4px]">,</span> <span class="bg-slate-200 text-black p-2">{{$materials->material}}</span>
+            <span class="ml-[-4px]">,</span> <span class="bg-slate-200 p-2">{{$materials->material}}</span>
             @else
-            <span class="bg-slate-200 text-black p-2">{{ $materials->material}}</span>
+            <span class="bg-slate-200 p-2">{{ $materials->material}}</span>
             @endif
             @endforeach
           </span>
-          <span class="text-gray-900 text-xl md:text-2xl 2xl:text-4xl">
+          <span class="text-gray-800 text-xl md:text-2xl 2xl:text-4xl">
             @foreach($product->genders as $gender)
-            <span class="bg-slate-200 text-black p-2">{{$gender->gender}}</span>
+            <span class="bg-slate-200  p-2">{{$gender->gender}}</span>
             @endforeach
           </span>
-          <span class="text-gray-900 text-xl md:text-2xl 2xl:text-4xl">
+          <span class="text-gray-800 text-xl md:text-2xl 2xl:text-4xl">
             @php
             $uniqueSizes=collect($product->sizesVariant)->unique('size')
             @endphp
             @foreach($uniqueSizes as $sizes)
-            <span class="bg-slate-200 text-black p-2">{{$sizes->size}}</span>
+            <span class="bg-slate-200  p-2">{{$sizes->size}}</span>
             @endforeach
           </span>
           </div>
