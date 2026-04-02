@@ -19,7 +19,7 @@
                             <livewire:gender-category-front :genderSelect="$genderSelect" />
                         </div>
                     </div>
-                    <div class="flex flex-col items-center p-[1px] relative z-[5]" x-data="{ openTag: false, red: false }"> 
+                    <div class="flex flex-col items-center p-[1px] relative z-[5]" x-data="{ openTag: false, red: false }">
                         <button class="w-[80%]  h-[35px] lg:h-[auto] text-base lg:text-2xl  lg:p-[1rem] text-gray-800" :class="red ? 'text-gray-900 border-b border-gray-900 bg-gray-50 z-[5]' : 'border-b border-gray-200 bg-white z-[5]'" @click="red = !red; openTag = !openTag"> Oznake</button>
                         <div x-show="openTag" x-transition>
                             <!--Product tag categories-->
@@ -64,45 +64,45 @@
         @foreach ($products as $product)
         <div class="flex flex-col cursor-pointer relative place-content-evenly hover:shadow-lg shadow-black/10 transition-all duration-300 ease-out  items-center min-w-[100%] min-h-[100%] gap-[1rem] xl:gap-[2rem] max-w-xs overflow-hidden bg-white p-[1rem]">
             <div class="">
-                <p class="text-lg text-gray-800 font-bold w-fit">Dostupno u:</p>
-                <span class="flex flex-row  text-[1.2rem] mb-[1rem] text-gray-800  lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem] items-center">
+                <p class="text-base text-gray-800 font-bold w-fit">Dostupno u:</p>
+                <span class="flex flex-row flex-wrap text-sm mb-[1rem] text-gray-800 items-center">
                     @foreach ($product->colors as $index => $colors)
-                    <div class="m-1 border-2 shadow-md" wire:key="{{$index}}" style="width: 25px; height: 25px; background-color: {{$colors->hex_code}};
-            border-radius: 50%;">
-                    </div>
+                    <div class="mr-[0.5rem] text-sm" wire:key="{{$index}}">{{$colors->color}}</div>
                     @endforeach
-                    <!--Wishlist button-->
-                    <div class="ml-auto relative">
-                        @if(!in_array($product->id, $wishListArray))
-                        <button wire:key="{{$index}}" wire:click="wishListItem({{$product->id}})"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="black" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3 c1.74 0 3.41 0.81 4.5 2.09 C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5 c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                            </svg></button>
-                        @else
-                        <button wire:key="{{$index}}" wire:click="wishListItem({{$product->id}})"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="black">
-                                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+
+                </span>
+                <!--Wishlist button-->
+                <div class="transition-all duration-300 group relative flex">
+                    @if(!in_array($product->id, $wishListArray))
+                    <button wire:key="{{$index}}" wire:click="wishListItem({{$product->id}})"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="black" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3 c1.74 0 3.41 0.81 4.5 2.09 C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5 c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
+                        </svg></button>
+                    @else
+                    <button wire:key="{{$index}}" wire:click="wishListItem({{$product->id}})"> <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="black">
+                            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
            2 5.42 4.42 3 7.5 3 
            c1.74 0 3.41 0.81 4.5 2.09 
            C13.09 3.81 14.76 3 16.5 3 
            19.58 3 22 5.42 22 8.5 
            c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                            </svg></button>
-                        @endif
-                        @cannot('create', App\Models\Wishlist::class)
-                        @if (!empty($authErrorMessage[$product->id]))
-                        <div class="mt-3 rounded-lg w-[200px] right-[25px] absolute border border-gray-200 bg-white p-3">
-                            <p class="text-sm text-gray-700">
-                                Za korištenje liste želja potrebno je da se
-                                <a href="/register" class="font-large text-black underline hover:opacity-70">
-                                    registrujete
-                                </a>
-                                tako da možete putem emaila da primite obavijesti o sniženjima.
-                            </p>
-                        </div>
-                        @endif
-                        @endcan
-
+                        </svg></button>
+                    @endif
+                    <p class="text-base ml-[0.2rem] self-end group-hover:opacity-100 transition-opacity duration-300 opacity-0">Dodaj na listu želja!</p>
+                    @cannot('create', App\Models\Wishlist::class)
+                    @if (!empty($authErrorMessage[$product->id]))
+                    <div class="mt-3 rounded-lg w-[200px] right-[25px] absolute border border-gray-200 bg-white p-3">
+                        <p class="text-sm text-gray-700">
+                            Za korištenje liste želja potrebno je da se
+                            <a href="/register" class="font-large text-black underline hover:opacity-70">
+                                registrujete
+                            </a>
+                            tako da možete putem emaila da primite obavijesti o sniženjima.
+                        </p>
                     </div>
-                </span>
+                    @endif
+                    @endcan
+
+                </div>
                 <hr class="border-t-1 border-gray-800 mb-[10%] w-[50%]">
                 </hr>
                 <!-- Successful insert message -->

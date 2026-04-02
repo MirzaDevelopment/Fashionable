@@ -31,7 +31,7 @@
         <div class="flex flex-col  gap-[1rem] xl:p-12 items-center min-w-[100%] lg:min-w-fit lg:w-[100%]">
           <h3 class="text-3xl max-w-[90%] md:text-4xl lg:max-w-[55%] lg:text-5xl xl:text-4xl 2xl:text-5xl font-semibold text-gray-900 mb-[1rem]">{{ $product->product_name }}</h3>
           <!--Wishlist button-->
-          <div class="relative">
+          <div class="relative transition-all duration-300 group relative">
             @if(!in_array($product->id, $wishListArray))
             <button wire:key="{{$index}}" wire:click="wishListItem({{$product->id}})"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48" fill="none" stroke="black" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3 c1.74 0 3.41 0.81 4.5 2.09 C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5 c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
@@ -46,68 +46,66 @@
            c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
               </svg></button>
             @endif
-                                    @cannot('create', App\Models\Wishlist::class)
-                        @if (!empty($authErrorMessage[$product->id]))
-                        <div class="mt-3 rounded-lg w-[200px] right-[25px] absolute border border-gray-200 bg-white p-3">
-                            <p class="text-sm text-gray-700">
-                                Za korištenje liste želja potrebno je da se
-                                <a href="/register" class="font-large text-black underline hover:opacity-70">
-                                    registrujete
-                                </a>
-                                tako da možete putem emaila da primite obavijesti o sniženjima.
-                            </p>
-                        </div>
-                        @endif
-                        @endcan
-            
-              <!-- Successful insert message -->
-                @if (!empty($wishListSuccess[$product->id]))
-                <div x-data="{ open: true }" x-show="open" x-transition x-on:click.outside="open = false" class="mt-3 rounded-md bg-[#cce5ff] text-[#004085] p-2.5">
-                    {{ $wishListSuccess[$product->id] }}
-                </div>
-                @endif
-                @if (!empty($wishListFailed[$product->id]))
-                <div x-data="{ open: true }" x-show="open" x-transition x-on:click.outside="open = false" class="mt-3 rounded-md bg-[#f8d7da] text-[#721c24] p-2.5">
-                    {{ $wishListFailed[$product->id] }}
-                </div>
-                @endif
+            <p class="text-base ml-[0.2rem] self-end group-hover:opacity-100 transition-opacity duration-300 opacity-0">Dodaj na listu želja!</p>
+            @cannot('create', App\Models\Wishlist::class)
+            @if (!empty($authErrorMessage[$product->id]))
+            <div class="mt-3 rounded-lg w-[200px] right-[25px] absolute border border-gray-200 bg-white p-3">
+              <p class="text-sm text-gray-700">
+                Za korištenje liste želja potrebno je da se
+                <a href="/register" class="font-large text-black underline hover:opacity-70">
+                  registrujete
+                </a>
+                tako da možete putem emaila da primite obavijesti o sniženjima.
+              </p>
+            </div>
+            @endif
+            @endcan
+
+            <!-- Successful insert message -->
+            @if (!empty($wishListSuccess[$product->id]))
+            <div x-data="{ open: true }" x-show="open" x-transition x-on:click.outside="open = false" class="mt-3 rounded-md bg-[#cce5ff] text-[#004085] p-2.5">
+              {{ $wishListSuccess[$product->id] }}
+            </div>
+            @endif
+            @if (!empty($wishListFailed[$product->id]))
+            <div x-data="{ open: true }" x-show="open" x-transition x-on:click.outside="open = false" class="mt-3 rounded-md bg-[#f8d7da] text-[#721c24] p-2.5">
+              {{ $wishListFailed[$product->id] }}
+            </div>
+            @endif
           </div>
           <span class="text-xl md:text-2xl 2xl:text-4xl">Popust vrijedi do: <span class="text-[#9E1B32]"> {{date('d-m-Y', strtotime($product->end_date))}}</span></span>
           <hr class="border-t-1 self-center row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[20%] col-span-1">
-          <span class="text-[1.2rem] justify-end flex flex-wrap text-gray-800  lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem] items-center">
-            <p class="text-gray-800 text-xl md:text-2xl 2xl:text-4xl">Dostupno u:</p>
+          <span class="text-[1.2rem] max-w-[75%] sm:max-w-[45%] lg:max-w-[50%] justify-center flex flex-row flex-wrap text-gray-800  lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem] items-center">
+            <p class="text-gray-800 text-lg  font-bold mr-[0.5rem]">Dostupno u:</p>
             @foreach ($product->colors as $index => $colors)
-            <div class="m-1 border-2 shadow-md" wire:key="{{$index}}" style="width: 25px; height: 25px; background-color: {{$colors->hex_code}};
-            border-radius: 50%;">
-            </div>
+            <span class="mr-[0.5rem] text-base" wire:key="{{$index}}">{{$colors->color}}</span>
             @endforeach
-
           </span>
           <div class="gap-[1rem]">
-          <span class="text-gray-800 text-xl md:text-2xl 2xl:text-4xl">
-            @foreach ($product->materials as $key=> $materials)
-            @if($key==0)
-            <span class="bg-slate-200  p-2">{{$materials->material}}</span>
-            @elseif($key>0)
-            <span class="ml-[-4px]">,</span> <span class="bg-slate-200 p-2">{{$materials->material}}</span>
-            @else
-            <span class="bg-slate-200 p-2">{{ $materials->material}}</span>
-            @endif
-            @endforeach
-          </span>
-          <span class="text-gray-800 text-xl md:text-2xl 2xl:text-4xl">
-            @foreach($product->genders as $gender)
-            <span class="bg-slate-200  p-2">{{$gender->gender}}</span>
-            @endforeach
-          </span>
-          <span class="text-gray-800 text-xl md:text-2xl 2xl:text-4xl">
-            @php
-            $uniqueSizes=collect($product->sizesVariant)->unique('size')
-            @endphp
-            @foreach($uniqueSizes as $sizes)
-            <span class="bg-slate-200  p-2">{{$sizes->size}}</span>
-            @endforeach
-          </span>
+            <span class="text-gray-800 text-xl md:text-2xl 2xl:text-4xl">
+              @foreach ($product->materials as $key=> $materials)
+              @if($key==0)
+              <span class="bg-slate-200  p-2">{{$materials->material}}</span>
+              @elseif($key>0)
+              <span class="ml-[-4px]">,</span> <span class="bg-slate-200 p-2">{{$materials->material}}</span>
+              @else
+              <span class="bg-slate-200 p-2">{{ $materials->material}}</span>
+              @endif
+              @endforeach
+            </span>
+            <span class="text-gray-800 text-xl md:text-2xl 2xl:text-4xl">
+              @foreach($product->genders as $gender)
+              <span class="bg-slate-200  p-2">{{$gender->gender}}</span>
+              @endforeach
+            </span>
+            <span class="text-gray-800 text-xl md:text-2xl 2xl:text-4xl">
+              @php
+              $uniqueSizes=collect($product->sizesVariant)->unique('size')
+              @endphp
+              @foreach($uniqueSizes as $sizes)
+              <span class="bg-slate-200  p-2">{{$sizes->size}}</span>
+              @endforeach
+            </span>
           </div>
           @if(isset($product->discount) && !empty($product->discount))
           <span class="text-[#9E1B32] text-xl md:text-2xl 2xl:text-4xl bg-white border border-[#9E1B32] font-semibold px-2.5 py-1 rounded-md shadow-md"> Trenutni popust: - {{$product->discount}} %</span>
