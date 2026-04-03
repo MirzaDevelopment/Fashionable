@@ -1,6 +1,6 @@
 <?php
 /*
-Livewire tests that test the ShowProductsFront livewire component. The component is responsible for rendering the products on the first page (/shop).
+Livewire tests that test the ShowProductsFront livewire component. The component is responsible for rendering the products on the first page (/shop). It also includes the add product to wishlist functionality test
 */
 
 namespace Tests\Feature\Livewire;
@@ -72,5 +72,12 @@ class ShowProductsFrontTest extends TestCase
             Livewire::test(ShowProductsFront::class)
                 ->assertSee('Test Name');
         
+    }
+
+        /** @test */
+    public function add_product_to_wishlist()
+    {
+
+  
     }
 }
