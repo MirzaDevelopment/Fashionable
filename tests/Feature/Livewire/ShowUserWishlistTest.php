@@ -8,6 +8,7 @@ use App\Livewire\ShowUserWishlist;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Livewire\Livewire;
+use App\Models\User;
 use Tests\TestCase;
 
 class ShowUserWishlistTest extends TestCase
@@ -15,7 +16,19 @@ class ShowUserWishlistTest extends TestCase
     /** @test */
     public function renders_successfully()
     {
-        Livewire::test(ShowUserWishlist::class)
+        $user = User::factory()->create();
+        Livewire::actingAs($user)->test(ShowUserWishlist::class)
             ->assertStatus(200);
+    }
+
+        /** @test */
+    public function test_user_can_view_his_wishlist()
+    {
+        //Unifinished
+        $user = User::factory()->create();
+        
+        Livewire::actingAs($user)->test(ShowUserWishlist::class)->assertHasNoErrors();
+
+      
     }
 }
