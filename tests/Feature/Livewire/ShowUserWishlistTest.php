@@ -23,7 +23,7 @@ class ShowUserWishlistTest extends TestCase
 {
     use RefreshDatabase;
     /** @test */
-    public function renders_successfully()
+    public function test_renders_successfully()
     {
         $user = User::factory()->create();
         Livewire::actingAs($user)->test(ShowUserWishlist::class)
@@ -33,7 +33,6 @@ class ShowUserWishlistTest extends TestCase
         /** @test */
     public function test_user_can_view_his_wishlist()
     {
-        //Unifinished
         $user = User::factory()->create();
         //Creating fake variables
         $fakeProduct = Product::factory()->create(['product_name' => 'Test Name', 'description' => 'Test description', 'total_stock' => 0]);
