@@ -17,6 +17,7 @@ use App\Models\Material;
 use App\Models\Type;
 use App\Models\User;
 use App\Models\Color;
+use Illuminate\Http\UploadedFile;
 use App\Models\Size;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -75,8 +76,41 @@ class ShowProductsFrontTest extends TestCase
     }
 
         /** @test */
-    public function add_product_to_wishlist()
+    public function test_add_product_to_wishlist()
     {
+
+         //Creating fake variables
+        $fakeProduct = Product::factory()->create(['product_name' => 'Test Name', 'description' => 'Test description', 'total_stock' => 0]);
+        $fakePrice=Price::factory()->create(['product_id' => $fakeProduct->id, "deleted_at" => null]);
+        $fakeColor = Color::factory()->create();
+        $fakeType=Type::factory()->create();
+        $fakeTag=Tag::factory()->create();
+        $fakeMaterial = Material::factory()->create();
+        $fakeImage = Image::factory()->create();
+        $fakeSize = Size::factory()->create();
+        //Creating pivot tables
+        $fakeProduct->type($fakeType->id);
+        $fakeProduct->materials()->attach($fakeMaterial->id);
+        $fakeProduct->tags()->attach($fakeTag->id);
+        $fakeProduct->colors()->attach($fakeColor->id);
+        $fakeProduct->images()->attach($fakeImage->id, [
+            'category_color_id' => $fakeColor->id,
+        ]);
+
+        $fakeProduct->colorsVariant()->attach($fakeColor->id, [
+            'category_size_id' => $fakeSize->id,
+            'stock_quantity' => 25
+        ]);
+        $user = User::factory()->create();
+
+        Livewire::actingAs($user)->test(ShowProductsFront::class)->call('wishListItem', $fakeProduct->id)->assertHasNoErrors();
+
+            $this->assertDatabaseHas("wishlist_items", [
+            "user_id" => $user->id,
+            "product_id" => $fakeProduct->id,
+            "price_when_added" => $fakePrice->price,
+            "notified_of_discount" => 0,
+        ]);
 
   
     }
