@@ -7,7 +7,6 @@ namespace Tests\Feature\Livewire;
 
 use Livewire\Livewire;
 use App\Models\Product;
-use App\Livewire\AddProduct;
 use App\Livewire\ShowProductsFront;
 use Tests\TestCase;
 use App\Models\Price;
@@ -17,7 +16,6 @@ use App\Models\Material;
 use App\Models\Type;
 use App\Models\User;
 use App\Models\Color;
-use Illuminate\Http\UploadedFile;
 use App\Models\Size;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 

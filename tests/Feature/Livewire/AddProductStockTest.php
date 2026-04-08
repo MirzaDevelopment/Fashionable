@@ -52,14 +52,6 @@ class AddProductStockTest extends TestCase
                 'created_at' => now(),
                 'updated_at' => now(),
             ]);
-        
-      /*  $fakeVariantStocks = DB::table("products_variants")->where('product_id', 1)->get();
-        $fakeColors  = Color::findMany($fakeVariantStocks->pluck('category_color_id'));
-        $fakeSizes   = Size::findMany($fakeVariantStocks->pluck('category_size_id'));
-        foreach ($fakeVariantStocks as $fakeVariant) {
-        $fakeColor[] = $fakeColors->firstWhere('id', $fakeVariant->category_color_id);
-        $fakeSize[]  = $fakeSizes->firstWhere('id', $fakeVariant->category_size_id);
-        }*/
 
          Livewire::test(AddProductStock::class, ['product_id' => 1])
             ->assertSee('green')   // Check if 'green' color is visible in the component
