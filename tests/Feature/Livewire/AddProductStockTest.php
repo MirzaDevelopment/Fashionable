@@ -29,7 +29,7 @@ class AddProductStockTest extends TestCase
 
 
         
-        // Insert a row into the 'category_colors' table (assuming the 'category_colors' table exists)
+        // Insert a row into the 'category_colors' table
         $category_color_id = DB::table('category_colors')->insertGetId([
             'color' => "green",
             "hex_code"=>"#5bd742",
@@ -37,7 +37,7 @@ class AddProductStockTest extends TestCase
             'updated_at' => now(),
         ]);
 
-        // Insert a row into the 'category_sizes' table (assuming the 'category_sizes' table exists)
+        // Insert a row into the 'category_sizes' table
         $category_size_id = DB::table('category_sizes')->insertGetId([
             'size' => "medium",
             'size_type' => "shoe",
@@ -54,8 +54,8 @@ class AddProductStockTest extends TestCase
             ]);
 
          Livewire::test(AddProductStock::class, ['product_id' => 1])
-            ->assertSee('green')   // Check if 'green' color is visible in the component
-            ->assertSee('medium') // Check if 'medium' size is visible in the component
+            ->assertSee('green')   
+            ->assertSee('medium') 
             ->assertSeeLivewire('add-product-stock'); // Check if the Livewire component is rendered
     }
 
