@@ -140,8 +140,6 @@
                 <span class="bg-slate-200 p-2">{{$materials->material}}</span>
                 @endif
                 @endforeach
-            </span>
-            <span class="text-gray-800  text-sm lg:text-2xl lg2:text-3xl">Veličine:
                 @php
                 $uniqueSizes=collect($product->sizesVariant)->unique('size')
                 @endphp
