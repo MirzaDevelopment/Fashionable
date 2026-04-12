@@ -15,6 +15,7 @@ use Livewire\Attributes\Validate;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Tag;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
@@ -128,7 +129,15 @@ public function editTags():?RedirectResponse
         //...getting tag id
         $idsTags = $sortedResultsTags->pluck('id')->toArray();
         $this->newProduct->tags()->detach($idsTags);
-
+            // Invalidate the cache for the affected search result
+            Cache::forget('search_' . md5(
+                $this->search .
+                    $this->sortinator .
+                    $this->sortToggle .
+                    implode(',', $this->genderSelect) .
+                    implode(',', $this->tagSelect) .
+                    $this->typeSelect
+            ));
         DB::commit();
         $this->isUploading = true;
 

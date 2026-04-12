@@ -13,6 +13,7 @@ use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
 use Livewire\Component;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
@@ -103,7 +104,14 @@ class EditProductGeneralInfo extends Component
 
             ]);
 
-
+            Cache::forget('search_' . md5(
+                $this->search .
+                    $this->sortinator .
+                    $this->sortToggle .
+                    implode(',', $this->genderSelect) .
+                    implode(',', $this->tagSelect) .
+                    $this->typeSelect
+            ));
             DB::commit();
             $this->isUploading = true;
             return redirect()->back()->with("status", "Podaci o proizvodu su uspješno ažurirani!");

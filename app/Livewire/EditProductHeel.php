@@ -11,15 +11,19 @@ This is a backend livewire component mostly used to edit product heel categories
 A single product can have only a single HEEL category (ex. platform, stilleto, low, flat etc...)
 Selecting more will result in an error and prevent product update.
 */
+
 namespace App\Livewire;
+
 use Illuminate\Http\RedirectResponse;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use App\Models\Heel;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
+
 class EditProductHeel extends Component
 {
 
@@ -32,11 +36,10 @@ class EditProductHeel extends Component
     public array $heelDeSelect = [];
     public bool $toggle;
 
-    public function mount(Request $request):void
+    public function mount(Request $request): void
     {
         //Mostly important to show the admin current product data
-     $this->id = $request->id;
-       
+        $this->id = $request->id;
     }
 
 
@@ -47,7 +50,7 @@ class EditProductHeel extends Component
 
 
     //Visual change of selected heels
-    public function HeelSelect(string $parameter):void
+    public function HeelSelect(string $parameter): void
     {
         $this->toggle = false;
         $this->isUploading = false;
@@ -60,14 +63,13 @@ class EditProductHeel extends Component
             $this->heelSelect[] = $parameter;
             if (count(($this->heelSelect)) > 1) {
                 array_pop($this->heelSelect);
-               session()->flash('errorHeel', 'Molimo odaberite SAMO JEDNU novu kategoriju štikli');
-               
+                session()->flash('errorHeel', 'Molimo odaberite SAMO JEDNU novu kategoriju štikli');
             }
         }
     }
 
     //Visual change of deselected heels
-    public function HeelDeSelect(string $parameter):void
+    public function HeelDeSelect(string $parameter): void
     {
         $this->toggle = false;
         $this->isUploading = false;
@@ -81,71 +83,79 @@ class EditProductHeel extends Component
         }
     }
 
- //Edit product heels
- public function editHeels():?RedirectResponse
- {
-     if ($this->isUploading) {
-         return null; // Prevent further submissions if already uploading
-     }
-     $this->newProduct = session("newProductModel");
-    
-      $this->activeHeels = $this->newProduct->heel()->get()->toArray();
-    
-     foreach ($this->activeHeels as $heelName) {
+    //Edit product heels
+    public function editHeels(): ?RedirectResponse
+    {
+        if ($this->isUploading) {
+            return null; // Prevent further submissions if already uploading
+        }
+        $this->newProduct = session("newProductModel");
+
+        $this->activeHeels = $this->newProduct->heel()->get()->toArray();
+
+        foreach ($this->activeHeels as $heelName) {
 
 
-         $currentHeelArray[] = $heelName["heel_type"];
+            $currentHeelArray[] = $heelName["heel_type"];
         }
 
-     //to prevent updating without selecting at least one heel category
-     sort($this->heelDeSelect);
-     sort($currentHeelArray);
-     if ($this->heelDeSelect == $currentHeelArray && empty($this->heelSelect)) {
+        //to prevent updating without selecting at least one heel category
+        sort($this->heelDeSelect);
+        sort($currentHeelArray);
+        if ($this->heelDeSelect == $currentHeelArray && empty($this->heelSelect)) {
 
 
-         return session()->flash('emptyHeels', 'Molimo odaberite barem jednu kategoriju štikli');
-     }
-     Gate::authorize('update', Heel::class);
-     //Beginning transaction
-     DB::beginTransaction();
-     try {
-         //Scenario one - admin choses extra categories while keeping original ones
-         if (count(array_diff($this->heelSelect, $currentHeelArray)) > 0) {
-             $heels = [($this->heelSelect)];
-             $resultsHeels = Heel::whereIn('heel_type', $heels[0])->get();
-             //Sorting heels...
-             $sortedResultsHeels = $resultsHeels->sortBy(function ($heelArray) use ($heels) {
-                 return array_search($heelArray->heel, $heels[0]);  // Sort based on input array order
-             });
-             //...getting heel id
-             $idsHeels = $sortedResultsHeels->pluck('id')->toArray();
+            return session()->flash('emptyHeels', 'Molimo odaberite barem jednu kategoriju štikli');
+        }
+        Gate::authorize('update', Heel::class);
+        //Beginning transaction
+        DB::beginTransaction();
+        try {
+            //Scenario one - admin choses extra categories while keeping original ones
+            if (count(array_diff($this->heelSelect, $currentHeelArray)) > 0) {
+                $heels = [($this->heelSelect)];
+                $resultsHeels = Heel::whereIn('heel_type', $heels[0])->get();
+                //Sorting heels...
+                $sortedResultsHeels = $resultsHeels->sortBy(function ($heelArray) use ($heels) {
+                    return array_search($heelArray->heel, $heels[0]);  // Sort based on input array order
+                });
+                //...getting heel id
+                $idsHeels = $sortedResultsHeels->pluck('id')->toArray();
 
-             $this->newProduct->update([
-                 'heel_id' => $idsHeels[0],
-
-
-
-             ]);
-
-             //Small check to make sure user actually changes something in heel panel
-         } else if ((count(array_intersect($this->heelDeSelect, $currentHeelArray)) == 0)) {
-
-             return session()->flash('errorHeels', 'Ova štikla je već prisutna kod odabranog proizvoda');
-         }
+                $this->newProduct->update([
+                    'heel_id' => $idsHeels[0],
 
 
 
-         DB::commit();
-         $this->isUploading = true;
+                ]);
 
-         return redirect()->back()->with("status", "Uspješno ste ažurirali kategoriju štikli.");
-     } catch (\Exception $e) {
-         DB::rollBack(); // Rollback the transaction on error
-         $this->isUploading = false;
-         Log::error('Error occurred: ' . $e->getMessage());
-         return redirect()->back()->with("errorException", "Nastao je problem prilikom ažuriranja kategorije štikli kod proizvoda. Molimo pokušajte kasnije.");
-     }
- }
+                //Small check to make sure user actually changes something in heel panel
+            } else if ((count(array_intersect($this->heelDeSelect, $currentHeelArray)) == 0)) {
+
+                return session()->flash('errorHeels', 'Ova štikla je već prisutna kod odabranog proizvoda');
+            }
+
+
+            // Invalidate the cache for the affected search result
+            Cache::forget('search_' . md5(
+                $this->search .
+                    $this->sortinator .
+                    $this->sortToggle .
+                    implode(',', $this->genderSelect) .
+                    implode(',', $this->tagSelect) .
+                    $this->typeSelect
+            ));
+            DB::commit();
+            $this->isUploading = true;
+
+            return redirect()->back()->with("status", "Uspješno ste ažurirali kategoriju štikli.");
+        } catch (\Exception $e) {
+            DB::rollBack(); // Rollback the transaction on error
+            $this->isUploading = false;
+            Log::error('Error occurred: ' . $e->getMessage());
+            return redirect()->back()->with("errorException", "Nastao je problem prilikom ažuriranja kategorije štikli kod proizvoda. Molimo pokušajte kasnije.");
+        }
+    }
 
 
 

@@ -14,6 +14,7 @@ Selecting more and updating the product, will result in an error.
 
 namespace App\Livewire;
 
+use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
@@ -36,10 +37,8 @@ class EditProductType extends Component
 
 
 
-    public function mount():void
+    public function mount(): void
     {
-       
-        
     }
 
 
@@ -48,7 +47,7 @@ class EditProductType extends Component
     */
 
     //Visual change of selected types
-    public function TypeSelect(string $parameter):void
+    public function TypeSelect(string $parameter): void
     {
         $this->toggle = false;
         $this->isUploading = false;
@@ -67,7 +66,7 @@ class EditProductType extends Component
     }
 
     //Visual change of deselected types
-    public function TypeDeSelect(string $parameter):void
+    public function TypeDeSelect(string $parameter): void
     {
         $this->toggle = false;
         $this->isUploading = false;
@@ -82,7 +81,7 @@ class EditProductType extends Component
     }
 
     //Edit product types
-    public function editTypes():?RedirectResponse
+    public function editTypes(): ?RedirectResponse
     {
         if ($this->isUploading) {
             return null; // Prevent further submissions if already uploading
@@ -103,7 +102,7 @@ class EditProductType extends Component
 
             return session()->flash('emptyTypes', 'Molimo odaberite barem jednu vrstu proizvoda');
         }
-         Gate::authorize('update', Type::class);
+        Gate::authorize('update', Type::class);
         //Beginning transaction
         DB::beginTransaction();
         try {
@@ -131,8 +130,15 @@ class EditProductType extends Component
                 return session()->flash('errorTypes', 'Odabrana vrsta proizvoda je već prisutna kod ovog proizvoda');
             }
 
-
-
+            // Invalidate the cache for the affected search result
+            Cache::forget('search_' . md5(
+                $this->search .
+                    $this->sortinator .
+                    $this->sortToggle .
+                    implode(',', $this->genderSelect) .
+                    implode(',', $this->tagSelect) .
+                    $this->typeSelect
+            ));
             DB::commit();
             $this->isUploading = true;
 

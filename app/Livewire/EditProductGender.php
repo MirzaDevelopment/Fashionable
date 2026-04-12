@@ -8,11 +8,14 @@ This is a backend livewire component mostly used to edit product gender categori
 - Method to reset input(edit) fields.
 - Main product edit methods, that allows user to select new or deselect current categories, and upload the state as a current gender for chosen product. Wrapped in transaction.
 */
+
 namespace App\Livewire;
+
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use App\Models\Product;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Gender;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -31,12 +34,10 @@ class EditProductGender extends Component
     public array $genderDeSelect = [];
     public bool $toggle;
 
-    public function mount(Request $request):void
+    public function mount(Request $request): void
     {
         //Mostly important to show the admin current product data
         $this->id = $request->id;
-        
-       
     }
 
 
@@ -47,7 +48,7 @@ class EditProductGender extends Component
 
 
     //Visual change of selected genders
-    public function GenderSelect(string $parameter):void
+    public function GenderSelect(string $parameter): void
     {
         $this->toggle = false;
         $this->isUploading = false;
@@ -61,86 +62,94 @@ class EditProductGender extends Component
         }
     }
 
- //Visual change of deselected genders
- public function GenderDeSelect(string $parameter):void
- {
-     $this->toggle = false;
-     $this->isUploading = false;
-     if (in_array($parameter, $this->genderDeSelect)) {
-         $index = array_search($parameter, $this->genderDeSelect);
-         unset($this->genderDeSelect[$index]);
-     } else {
+    //Visual change of deselected genders
+    public function GenderDeSelect(string $parameter): void
+    {
+        $this->toggle = false;
+        $this->isUploading = false;
+        if (in_array($parameter, $this->genderDeSelect)) {
+            $index = array_search($parameter, $this->genderDeSelect);
+            unset($this->genderDeSelect[$index]);
+        } else {
 
 
-         $this->genderDeSelect[] = $parameter;
-     }
- }
- //Edit product genders
- public function editGenders():?RedirectResponse
- {
-     if ($this->isUploading) {
-         return null; // Prevent further submissions if already uploading
-     }
+            $this->genderDeSelect[] = $parameter;
+        }
+    }
+    //Edit product genders
+    public function editGenders(): ?RedirectResponse
+    {
+        if ($this->isUploading) {
+            return null; // Prevent further submissions if already uploading
+        }
         $this->newProduct = session("newProductModel");
 
-    $this->activeGenders = $this->newProduct->genders()->get()->toArray();
-     foreach ($this->activeGenders as $genderName) {
+        $this->activeGenders = $this->newProduct->genders()->get()->toArray();
+        foreach ($this->activeGenders as $genderName) {
 
 
-         $currentGenderArray[] = $genderName["gender"];
-     }
-   
-         //to prevent updating without selecting at least one gender category
-         sort($this->genderDeSelect);
-         sort($currentGenderArray);
-         if($this->genderDeSelect==$currentGenderArray && empty($this->genderSelect)){
+            $currentGenderArray[] = $genderName["gender"];
+        }
 
-             
-         return session()->flash('emptyGenders', 'Molimo odaberite barem jednu kategoriju spola.');
-         }
-     Gate::authorize('create', Gender::class);
-     //Beginning transaction
-     DB::beginTransaction();
-     try {
-         //Scenario one - admin choses extra categories while keeping original ones
-         if (count(array_diff($this->genderSelect, $currentGenderArray)) > 0) {
-             $genders = [($this->genderSelect)];
-             $resultsGenders = Gender::whereIn('gender', $genders[0])->get();
-             //Sorting genders...
-             $sortedResultsGenders = $resultsGenders->sortBy(function ($genderArray) use ($genders) {
-                 return array_search($genderArray->gender, $genders[0]);  // Sort based on input array order
-             });
-             //...getting gender id
-             $idsGenders = $sortedResultsGenders->pluck('id')->toArray();
-             $this->newProduct->genders()->attach($idsGenders);
-             //Small check to make sure user actually changes something in gender panel
-         } else if ((count(array_intersect($this->genderDeSelect, $currentGenderArray)) == 0)) {
+        //to prevent updating without selecting at least one gender category
+        sort($this->genderDeSelect);
+        sort($currentGenderArray);
+        if ($this->genderDeSelect == $currentGenderArray && empty($this->genderSelect)) {
 
-             return session()->flash('errorGenders', 'Spol je već prisutan za odabrani proizvod');
-         }
 
-         //Scenario two - admin deletes original categories (soft deletes)
-         $genders = [($this->genderDeSelect)];
-         $resultsGenders = Gender::whereIn('gender', $genders[0])->get();
-         //Sorting genders...
-         $sortedResultsGenders = $resultsGenders->sortBy(function ($genderArray) use ($genders) {
-             return array_search($genderArray->gender, $genders[0]);  // Sort based on input array order
-         });
-         //...getting gender id
-         $idsGenders = $sortedResultsGenders->pluck('id')->toArray();
-         $this->newProduct->genders()->detach($idsGenders);
+            return session()->flash('emptyGenders', 'Molimo odaberite barem jednu kategoriju spola.');
+        }
+        Gate::authorize('create', Gender::class);
+        //Beginning transaction
+        DB::beginTransaction();
+        try {
+            //Scenario one - admin choses extra categories while keeping original ones
+            if (count(array_diff($this->genderSelect, $currentGenderArray)) > 0) {
+                $genders = [($this->genderSelect)];
+                $resultsGenders = Gender::whereIn('gender', $genders[0])->get();
+                //Sorting genders...
+                $sortedResultsGenders = $resultsGenders->sortBy(function ($genderArray) use ($genders) {
+                    return array_search($genderArray->gender, $genders[0]);  // Sort based on input array order
+                });
+                //...getting gender id
+                $idsGenders = $sortedResultsGenders->pluck('id')->toArray();
+                $this->newProduct->genders()->attach($idsGenders);
+                //Small check to make sure user actually changes something in gender panel
+            } else if ((count(array_intersect($this->genderDeSelect, $currentGenderArray)) == 0)) {
 
-         DB::commit();
-         $this->isUploading = true;
+                return session()->flash('errorGenders', 'Spol je već prisutan za odabrani proizvod');
+            }
 
-         return redirect()->back()->with("status", "Uspješno ste ažurirali kategoriju spola kod proizvoda");
-     } catch (\Exception $e) {
-         DB::rollBack(); // Rollback the transaction on error
-         $this->isUploading = false;
-         Log::error('Error occurred: ' . $e->getMessage());
-         return redirect()->back()->with("errorException", "Nastao je problem pri ažuriranju kategorije spola kod proizvoda. Molimo pokušajte ponovo.");
-     }
- }
+            //Scenario two - admin deletes original categories (soft deletes)
+            $genders = [($this->genderDeSelect)];
+            $resultsGenders = Gender::whereIn('gender', $genders[0])->get();
+            //Sorting genders...
+            $sortedResultsGenders = $resultsGenders->sortBy(function ($genderArray) use ($genders) {
+                return array_search($genderArray->gender, $genders[0]);  // Sort based on input array order
+            });
+            //...getting gender id
+            $idsGenders = $sortedResultsGenders->pluck('id')->toArray();
+            $this->newProduct->genders()->detach($idsGenders);
+            // Invalidate the cache for the affected search result
+            Cache::forget('search_' . md5(
+                $this->search .
+                    $this->sortinator .
+                    $this->sortToggle .
+                    implode(',', $this->genderSelect) .
+                    implode(',', $this->tagSelect) .
+                    $this->typeSelect
+            ));
+            DB::commit();
+
+            $this->isUploading = true;
+            return redirect()->back()->with("status", "Uspješno ste ažurirali kategoriju spola kod proizvoda");
+        } catch (\Exception $e) {
+            DB::rollBack(); // Rollback the transaction on error
+            $this->isUploading = false;
+            Log::error('Error occurred: ' . $e->getMessage());
+            return redirect()->back()->with("errorException", "Nastao je problem pri ažuriranju kategorije spola kod proizvoda. Molimo pokušajte ponovo.");
+        }
+    }
 
     public function render()
     {
