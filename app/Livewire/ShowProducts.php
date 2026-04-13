@@ -94,7 +94,7 @@ class ShowProducts extends Component
     public function render()
     {
 
-        $products = Product::with('type', 'prices', "images", "colorsVariant", "colors","sizesVariant")->whereAny(["product_name", "total_stock", "products.created_at", "prices.price", "end_date", "prices.discount", "start_date",  "type_name"], "like", "%" . $this->search . "%")->whereNull("prices.deleted_at")->join("prices", "prices.product_id","=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->select('products.*', 'types.type_name', "price", "end_date", "start_date", "discount")->orderBy($this->sortinator, $this->sortToggle)->paginate(15);
+        $products = Product::with('type', 'prices', "images", "colorsVariant", "colors","sizesVariant")->whereAny(["product_name", "total_stock", "products.created_at", "prices.price", "end_date", "prices.discount", "start_date",  "type_name"], "like", $this->search . "%")->whereNull("prices.deleted_at")->join("prices", "prices.product_id","=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->select('products.*', 'types.type_name', "price", "end_date", "start_date", "discount")->orderBy($this->sortinator, $this->sortToggle)->paginate(15);
         return view('livewire.show-products', ["products"=>$products]);
     }
 }

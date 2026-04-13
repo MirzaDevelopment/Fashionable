@@ -16,7 +16,6 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use App\Models\Price;
@@ -144,15 +143,7 @@ class EditProductPrice extends Component
             if (!(empty($this->productDiscount && $this->currentDate->between($this->startDate, $this->endDate)))) {
                 NotifyWishlistUsersAboutDiscount::dispatch($this->newProduct->id);
             }
-            // Invalidate the cache for the affected search result
-            Cache::forget('search_' . md5(
-                $this->search .
-                    $this->sortinator .
-                    $this->sortToggle .
-                    implode(',', $this->genderSelect) .
-                    implode(',', $this->tagSelect) .
-                    $this->typeSelect
-            ));
+
             DB::commit();
             $this->isUploading = true;
             return redirect()->back()->with("status", "Informacije o cijenu su uspješno ažurirane.");

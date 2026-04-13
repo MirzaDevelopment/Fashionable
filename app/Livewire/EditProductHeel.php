@@ -19,7 +19,6 @@ use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use App\Models\Heel;
-use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Log;
@@ -136,15 +135,6 @@ class EditProductHeel extends Component
             }
 
 
-            // Invalidate the cache for the affected search result
-            Cache::forget('search_' . md5(
-                $this->search .
-                    $this->sortinator .
-                    $this->sortToggle .
-                    implode(',', $this->genderSelect) .
-                    implode(',', $this->tagSelect) .
-                    $this->typeSelect
-            ));
             DB::commit();
             $this->isUploading = true;
 

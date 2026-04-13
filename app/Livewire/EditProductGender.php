@@ -15,7 +15,6 @@ use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 use App\Models\Product;
-use Illuminate\Support\Facades\Cache;
 use App\Models\Gender;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
@@ -130,15 +129,6 @@ class EditProductGender extends Component
             //...getting gender id
             $idsGenders = $sortedResultsGenders->pluck('id')->toArray();
             $this->newProduct->genders()->detach($idsGenders);
-            // Invalidate the cache for the affected search result
-            Cache::forget('search_' . md5(
-                $this->search .
-                    $this->sortinator .
-                    $this->sortToggle .
-                    implode(',', $this->genderSelect) .
-                    implode(',', $this->tagSelect) .
-                    $this->typeSelect
-            ));
             DB::commit();
 
             $this->isUploading = true;

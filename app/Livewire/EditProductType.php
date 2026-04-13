@@ -14,7 +14,6 @@ Selecting more and updating the product, will result in an error.
 
 namespace App\Livewire;
 
-use Illuminate\Support\Facades\Cache;
 use Livewire\Attributes\Validate;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\RedirectResponse;
@@ -130,15 +129,6 @@ class EditProductType extends Component
                 return session()->flash('errorTypes', 'Odabrana vrsta proizvoda je već prisutna kod ovog proizvoda');
             }
 
-            // Invalidate the cache for the affected search result
-            Cache::forget('search_' . md5(
-                $this->search .
-                    $this->sortinator .
-                    $this->sortToggle .
-                    implode(',', $this->genderSelect) .
-                    implode(',', $this->tagSelect) .
-                    $this->typeSelect
-            ));
             DB::commit();
             $this->isUploading = true;
 
