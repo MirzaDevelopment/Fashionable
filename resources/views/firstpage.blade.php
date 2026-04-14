@@ -48,7 +48,7 @@
             </picture>
             </picture>
             <!--Navigation towards discounted items-->
-            <span class="absolute top-[25px] text-7xl sm:text-8xl lg:text-[calc(7rem+2vw)] xl:text-[calc(9rem+1vw)] 2xl:text-[12rem] lg2:text-[25rem] text-white"><a href="/shop#special-prices">Popusti</a></span>
+            <span class="absolute top-[25px] text-7xl sm:text-8xl lg:text-[calc(7rem+2vw)] xl:text-[calc(9rem+1vw)] 2xl:text-[12rem] lg2:text-[25rem] text-white"><a href="/shop#special-prices">Top cijene</a></span>
         </div>
        
     </div>

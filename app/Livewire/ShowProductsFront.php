@@ -127,7 +127,7 @@ class ShowProductsFront extends Component
     //Sorting products by different column names
     public function sortProduct(string $parameter): void
     {
-        if ($this->sortToggle == "ASC") {;
+        if ($this->sortToggle == "ASC") {
             $this->sortinator = $parameter;
             $this->sortToggle = "DESC";
         } else {
