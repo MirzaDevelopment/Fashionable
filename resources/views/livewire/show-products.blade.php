@@ -12,11 +12,12 @@
             <tr class="bg-slate-100">
                 <th class="border border-slate-300 p-[1rem]">Slike</th>
                 <th style="cursor: pointer" wire:click="sortProduct('product_name')" class="border border-slate-300 p-[1rem]">Naziv</th>
-                <th class="border border-slate-300 p-[1rem] min-w-[500px]">Opis proizvoda</th>
+                <th class="border border-slate-300 p-[1rem] min-w-[300px]">Opis proizvoda</th>
                 <th style="cursor: pointer" wire:click="sortProduct('price')" class="border border-slate-300 p-[1rem]">Cijena</th>
                 <th style="cursor: pointer" wire:click="sortProduct('discount')" class="border border-slate-300 p-[1rem]">Popust</th>
                 <th style="cursor: pointer" wire:click="sortProduct('end_date')" class="border border-slate-300 p-[1rem]">Stanje popusta</th>
                 <th style="cursor: pointer" wire:click="sortProduct('total_stock')" class="border border-slate-300 p-[1rem]">Ukupan broj artikala</th>
+                <th style="cursor: pointer" wire:click="sortProduct('total_stock')" class="border border-slate-300 p-[1rem]">U listi želja</th>
                 <th style="cursor: pointer" wire:click="sortProduct('type_name')" class="border border-slate-300">Vrsta</th>
                 <th style="cursor: pointer" wire:click="sortProduct('products.created_at')" class="border border-slate-300 p-[1rem]">Kreiran</th>
                 <th colspan="2" class="border border-slate-300 p-[1rem]">Akcija</th>
@@ -27,12 +28,13 @@
             <tr class="{{ in_array($product->id, $checkBox) ? 'bg-[#f0f8ff]' : '' }}" wire:key="{{$product->id}}" style="cursor: pointer">
                 <td wire:click="RowCheckBox({{ $product->id}})" class="p-3  min-w-[300px] sm:p-6 border border-slate-300 gap-[5px] items-center flex overflow-auto">@foreach ($product->images as $images) <img class="max-h-[300px]" fetchpriority="high" loading="eager" src="{{asset('storage/'.$images->image_320x320)}}" width="320" height="200" alt="product image"> @endforeach</td>
                 <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 border border-slate-300">{{ $product->product_name }}</td>
-                <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 border border-slate-300">{{ $product->description }}</td>
+                <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 border border-slate-300 ">{{ $product->description }}</td>
                 <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 border border-slate-300">{{$product->price}}</td>
                 <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 border border-slate-300">{{$product->discount}} </td>
                 <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 border border-slate-300"> @if(empty($product->end_date)) <p class="opacity-[0.25]">No discount</p> @elseif($currentDate->between($product->start_date, $product->end_date))<p class="text-[#28a745] font-semibold">Aktivan</p> @elseif($currentDate->gt($product->end_date)) <p class="text-[#D32F2F] font-semibold">Istekao</p>  @else <p class="text-[#fb923c] font-semibold">Uskoro</p> @endif </td>
                 <td x-data="{ show: false }" class="p-3 border border-slate-300">@foreach($product->sizesVariant as $colors)@if($colors->pivot->stock_quantity<$this->totalQuantityLowLimit) <p class="flex justify-center"><a  href="/stock-management/{{$product->id}}?route=search" wire:navigate><img @mouseenter="show = true" @mouseleave="show = false" src="{{asset('storage/images/warning.png')}}" width="20" alt="low stock warning"></a></p> <p x-show="show" x-transition class="absolute mb-2 mt-2 px-2 py-1 text-sm text-white bg-gray-800 rounded shadow-lg">Some of the product stock is below limit!</p>@break @endif @endforeach {{ $product->total_stock }}
                 </td>
+                <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 border border-slate-300">{{$product->wishlist}}</td>
                 <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 border border-slate-300">{{ $product->type->type_name }}</td>
                 <td  wire:click="RowCheckBox({{ $product->id}})" class="p-3 min-w-[150px] border border-slate-300">{{date('d-m-Y', strtotime($product->created_at))}}</td>
                 <td wire:click="RowCheckBox({{ $product->id}})" class="{{ in_array($product->id, $checkBox) ? 'text-xl p-3 sm:p-6 border border-slate-300 bg-red-600 text-white ': 'text-xl p-3 sm:p-6 border border-slate-300'}}"><button wire:click="deleteProduct" class="bg-red-700 text-white font-medium px-5 py-2.5 rounded-lg shadow-sm hover:bg-red-800 transition-colors duration-200 disabled:opacity-5" wire:confirm="Da li stvarno želite da obrišete proizvod/e" wire:offline.attr="disabled" type="submit" @if(!in_array($product->id, $checkBox)) disabled @endif>Obriši</button></td> <!--Disabled if offline-->

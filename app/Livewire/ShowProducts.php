@@ -12,6 +12,7 @@ $variable - sort by product_name by default, asc or desc. Also sort by stock, di
 */
 namespace App\Livewire;
 use Livewire\WithPagination;
+use Illuminate\Support\Facades\DB;
 use App\Models\Product;
 use App\Models\User;
 use Carbon\Carbon;
@@ -94,7 +95,7 @@ class ShowProducts extends Component
     public function render()
     {
 
-        $products = Product::with('type', 'prices', "images", "colorsVariant", "colors","sizesVariant")->whereAny(["product_name", "total_stock", "products.created_at", "prices.price", "end_date", "prices.discount", "start_date",  "type_name"], "like", $this->search . "%")->whereNull("prices.deleted_at")->join("prices", "prices.product_id","=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->select('products.*', 'types.type_name', "price", "end_date", "start_date", "discount")->orderBy($this->sortinator, $this->sortToggle)->paginate(15);
+        $products = Product::with('type', 'prices', "images", "colorsVariant", "colors","sizesVariant")->whereAny(["product_name", "total_stock", "products.created_at", "prices.price", "end_date", "prices.discount", "start_date",  "type_name"], "like", $this->search . "%")->whereNull("prices.deleted_at")->join("prices", "prices.product_id","=", "products.id")->join('types', 'types.id', '=', 'products.type_id')->leftjoin("wishlist_items", "wishlist_items.product_id","=","products.id")->select('products.*', 'types.type_name', DB::raw('MAX(end_date) as end_date'), DB::raw('MIN(start_date) as start_date'), DB::raw('MAX(prices.price) as price'), DB::raw('MAX(prices.discount) as discount'), DB::raw('count(wishlist_items.product_id) as wishlist'))->orderBy($this->sortinator, $this->sortToggle)->groupBy("melisa.products.id")->paginate(15);
         return view('livewire.show-products', ["products"=>$products]);
     }
 }
