@@ -17,7 +17,7 @@
                 <th style="cursor: pointer" wire:click="sortProduct('discount')" class="border border-slate-300 p-[1rem]">Popust</th>
                 <th style="cursor: pointer" wire:click="sortProduct('end_date')" class="border border-slate-300 p-[1rem]">Stanje popusta</th>
                 <th style="cursor: pointer" wire:click="sortProduct('total_stock')" class="border border-slate-300 p-[1rem]">Ukupan broj artikala</th>
-                <th style="cursor: pointer" wire:click="sortProduct('total_stock')" class="border border-slate-300 p-[1rem]">U listi želja</th>
+                <th style="cursor: pointer" wire:click="sortProduct('wishlist')" class="border border-slate-300 p-[1rem]">U listi želja</th>
                 <th style="cursor: pointer" wire:click="sortProduct('type_name')" class="border border-slate-300">Vrsta</th>
                 <th style="cursor: pointer" wire:click="sortProduct('products.created_at')" class="border border-slate-300 p-[1rem]">Kreiran</th>
                 <th colspan="2" class="border border-slate-300 p-[1rem]">Akcija</th>
