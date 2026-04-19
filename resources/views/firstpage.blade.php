@@ -29,6 +29,7 @@
                 Javite nam se!
             </span>
         </span>
+         <!--Add question livewire component (contact form for user)-->
         <span class="fixed bottom-[11.5rem] z-[5000] lg:bottom-[14rem] border border border-blue-500 right-4" x-show="open" x-transition>
             <livewire:add-questions />
         </span>

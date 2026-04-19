@@ -33,7 +33,6 @@
             </div>
         </header>
         @endif
-
         <!-- Page Content -->
         <main class="text-center">
             {{ $slot }}
