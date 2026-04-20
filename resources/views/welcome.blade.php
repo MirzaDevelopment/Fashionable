@@ -4,7 +4,6 @@
         <a href="/"><img src="{{ asset('storage/images/fashionable-logo.png') }}" alt="fashionable-logo" width="500" height="500" class=""></a>
     </section>
     <!--Main content-->
-    <!--Main content-->
     <hr class="border-t-2 border-gray-800 mb-[1rem]">
     </hr>
     <section class="bg-white">
