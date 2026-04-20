@@ -1,10 +1,50 @@
-<x-front-layout><!--Welcome page view with the front.blade structure component in layouts folder-->
-    <!--Header part is here-->
-    <!--Main content-->
+<x-welcome-layout><!--Welcome page view with the front.blade structure component in layouts folder-->
+    <!--Header fashionable-logo part is here-->
     <section>
-        <h1>Fashionable "hero" part here</h2>
-            <hr class="border-t-2 border-gray-800 mb-[1rem]">
-            </hr>
+        <a href="/"><img src="{{ asset('storage/images/fashionable-logo.png') }}" alt="fashionable-logo" width="500" height="500" class=""></a>
+    </section>
+    <!--Main content-->
+    <!--Main content-->
+    <hr class="border-t-2 border-gray-800 mb-[1rem]">
+    </hr>
+    <section class="bg-white">
+        <div class="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
+            <!-- TEXT -->
+            <div>
+                <h1 class="text-5xl text-gray-900 font-bold leading-tight">
+                    Kreiraj svoj modni webshop
+                </h1>
+
+                <p class="mt-6 text-gray-800 text-lg">
+                    Sve što ti treba za prodaju mode na jednom mjestu.
+                </p>
+                <p class="mt-6 text-gray-800 text-lg">
+                    Isključivo na ex-yu jezicima.
+                </p>
+
+                <a href="#" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
+                    Saznaj više
+                </a>
+                <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
+                    Pogledaj demo
+                </a>
+            </div>
+
+            <!-- IMAGE -->
+            <div class="grid grid-cols-3 grid-rows-2 gap-4 h-[600px] ">
+                <img src="{{ asset('storage/images/fashionable-hero-4.webp') }}" class=" shadow-xl rounded-xl object-cover w-full h-full row-span-2 col-span-1 hover:scale-105 transition duration-700">
+                <img src="{{ asset('storage/images/fashionable-hero-3.webp') }}" class="shadow-xl rounded-xl col-span-1 row-span-1 object-cover h-full w-full hover:scale-105 transition duration-700">
+                <img src="{{ asset('storage/images/fashionable-hero-1.webp') }}" class="shadow-xl rounded-xl object-cover col-span-1 row-span-1 h-full  w-full hover:scale-105 transition duration-700">
+                <img src="{{ asset('storage/images/fashionable-hero-2.webp') }}" class=" shadow-xl rounded-xl object-cover h-full w-full col-span-2 row-span-1 hover:scale-105 transition duration-700">
+
+            </div>
+
+        </div>
+    </section>
+    <hr class="border-t-2 border-gray-800 mb-[1rem]">
+    </hr>
+    <section id="demo" class="flex justify-center">
+        <a href="/"><img src="{{ asset('storage/images/melisa_fashion_logo_header.svg') }}" alt="web_shop_logo" width="300" height="200" class=" sm:w-[300px] sm:h-[100px] lg:w-[600px] lg:h-[200px] 2xl:w-[900px] 2xl:h-[300px]"></a>
     </section>
     <section class="xl:flex bg-white xl:hover:bg-slate-100 transition-colors duration-200 justify-center items-center gap-[2rem] flex-row">
         <div class="relative flex flex-col  justify-center items-center">
@@ -28,96 +68,6 @@
             </a>
         </div>
     </section>
-
-    <section class="carousel-container">
-        <button class="text-[2rem] nav-btn opacity-[50%] nav-left">&#10094;</button>
-        <div class="carousel-track" id="carouselTrack">
-            <!-- Brand logos-->
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/gucci-1-logo-svg-vector.svg') }}" alt="gucci-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/vogue-logo-svg-vector.svg') }}" alt="vogue-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/calvin-klein-logo.svg') }}" alt="calvin-klein-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/adidas-4-logo-svg-vector.svg') }}" alt="adidas-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/chanel-2-logo-svg-vector.svg') }}" alt="chanel-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/prada-logo.svg') }}" alt="prada-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/cartier-2-logo-svg-vector.svg') }}" alt="cartier-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" fetchpriority="low" src="{{ asset('storage/images/versace-medusa-logo-svg-vector.svg') }}" alt="versace-logo" width="200" height="300" />
-            </div>
-
-            <div class="carousel-item">
-                <img loading="lazy" fetchpriority="low" src="{{ asset('storage/images/tiffany-co-logo-svg-vector.svg') }}" alt="tiffany-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" fetchpriority="low" src="{{ asset('storage/images/louis-vuitton-1-logo-svg-vector.svg') }}" alt="louis-vuitton-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" fetchpriority="low" src="{{ asset('storage/images/zara-logo-svg-vector.svg') }}" alt="zara-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" fetchpriority="low" src="{{ asset('storage/images/vans-3-logo-svg-vector.svg') }}" alt="vans-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" fetchpriority="low" src="{{ asset('storage/images/hugo-boss-logo.svg') }}" alt="hugo-bos-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/gucci-1-logo-svg-vector.svg') }}" alt="gucci-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/vogue-logo-svg-vector.svg') }}" alt="vogue-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/calvin-klein-logo.svg') }}" alt="calvin-klein-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/adidas-4-logo-svg-vector.svg') }}" alt="adidas-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/chanel-2-logo-svg-vector.svg') }}" alt="chanel-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/prada-logo.svg') }}" alt="prada-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/cartier-2-logo-svg-vector.svg') }}" alt="cartier-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/versace-medusa-logo-svg-vector.svg') }}" alt="versace-logo" width="200" height="300" />
-            </div>
-
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/tiffany-co-logo-svg-vector.svg') }}" alt="tiffany-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/louis-vuitton-1-logo-svg-vector.svg') }}" alt="louis-vuitton-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/zara-logo-svg-vector.svg') }}" alt="zara-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/vans-3-logo-svg-vector.svg') }}" alt="vans-logo" width="200" height="300" />
-            </div>
-            <div class="carousel-item">
-                <img loading="lazy" src="{{ asset('storage/images/hugo-boss-logo.svg') }}" alt="hugo-bos-logo" width="200" height="300" />
-            </div>
-        </div>
-        <button class="nav-btn nav-right opacity-[50%] text-[2rem]">&#10095;</button>
-</section>
-    <hr>
-    </hr>
     <hr class="border-t-4 row-start-1 col-span-2 mt-2 lg:mt-4 2xl:mt-8 border-gray-800 w-[100%] col-span-1">
     <!--Footer part is here-->
-</x-front-layout>
+</x-welcome-layout>
