@@ -1,40 +1,71 @@
 <x-welcome-layout><!--Welcome page view with the front.blade structure component in layouts folder-->
     <!--Header fashionable-logo part is here-->
     <section>
-        <a href="/"><img src="{{ asset('storage/images/fashionable-logo.png') }}" alt="fashionable-logo" width="500" height="500" class=""></a>
+        <a href="/"><img src="{{ asset('storage/images/fashionable-logo.png') }}" alt="fashionable-logo" width="500" height="500" fetchpriority="high"></a>
     </section>
     <!--Main content-->
     <hr class="border-t-2 border-gray-800 mb-[1rem]">
     </hr>
     <section class="bg-white">
         <div class="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
-            <!-- TEXT -->
-            <div>
-                <h1 class="text-5xl text-gray-900 font-bold leading-tight">
-                    Kreiraj svoj modni webshop
-                </h1>
+<!-- TEXT -->
+<div>
+    <h1 class="text-5xl text-gray-900 font-bold leading-tight">
+        Kreiraj svoj modni webshop
+    </h1>
 
-                <p class="mt-6 text-gray-800 text-lg">
-                    Sve što ti treba za prodaju mode na jednom mjestu.
-                </p>
-                <p class="mt-6 text-gray-800 text-lg">
-                    Isključivo na ex-yu jezicima.
-                </p>
+<ul class="mt-6 text-gray-800 text-start text-lg list-disc list-inside space-y-4">
+    <li>Sve što ti treba za prodaju mode na jednom mjestu.</li>
+    <li>Kompletno softversko rješenje.</li>
+    <li>Isključivo na ex-yu jezicima.</li>
+</ul>
 
-                <a href="#" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
-                    Saznaj više
-                </a>
-                <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
-                    Pogledaj demo
-                </a>
-            </div>
+    <a href="#" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
+        Saznaj više
+    </a>
+    <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
+        Pogledaj demo
+    </a>
+</div>
 
             <!-- IMAGE -->
-            <div class="grid grid-cols-3 grid-rows-2 gap-4 h-[600px] ">
-                <img src="{{ asset('storage/images/fashionable-hero-4.webp') }}" class=" shadow-xl rounded-xl object-cover w-full h-full row-span-2 col-span-1 hover:scale-105 transition duration-700">
-                <img src="{{ asset('storage/images/fashionable-hero-3.webp') }}" class="shadow-xl rounded-xl col-span-1 row-span-1 object-cover h-full w-full hover:scale-105 transition duration-700">
-                <img src="{{ asset('storage/images/fashionable-hero-1.webp') }}" class="shadow-xl rounded-xl object-cover col-span-1 row-span-1 h-full  w-full hover:scale-105 transition duration-700">
-                <img src="{{ asset('storage/images/fashionable-hero-2.webp') }}" class=" shadow-xl rounded-xl object-cover h-full w-full col-span-2 row-span-1 hover:scale-105 transition duration-700">
+            <div class="grid grid-cols-3 grid-rows-2 gap-4 h-[600px]">
+                <picture class="object-cover w-full h-full sm:row-span-2 col-span-1 hover:scale-105 transition duration-700">
+                    <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/fashionable-hero-4_320x400.webp') }}">
+                    <source media="(max-width: 480px)" srcset="{{ asset('storage/images/400x400/fashionable-hero-4_400x500.webp') }}">
+                    <source media="(max-width: 768px)" srcset="{{ asset('storage/images/640x640/fashionable-hero-4_640x800.webp') }}">
+                    <source media="(max-width: 1024px)" srcset="{{ asset('storage/images/800x800/fashionable-hero-4_800x1000.webp') }}">
+                    <source media="(max-width: 1280px)" srcset="{{ asset('storage/images/1200x1200/fashionable-hero-4_1200x1500.webp') }}">
+                    <source media="(min-width: 1536px)" srcset="{{ asset('storage/images/1400x1400/fashionable-hero-4_1400x1750.webp') }}">
+                    <img class="shadow-xl rounded-xl object-cover w-full h-full row-span-2 col-span-1 hover:scale-105 transition duration-700" fetchpriority="high" loading="eager" src="{{ asset('storage/images/320x320/fashionable-hero-4_320x400.webp') }}" width=320 height=400 alt="female_model">
+                </picture>
+                <picture class="col-span-1 row-span-1 object-cover h-full w-full hover:scale-105 transition duration-700">
+                    <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/fashionable-hero-3_320x480.webp') }}">
+                    <source media="(max-width: 480px)" srcset="{{ asset('storage/images/400x400/fashionable-hero-3_400x600.webp') }}">
+                    <source media="(max-width: 768px)" srcset="{{ asset('storage/images/640x640/fashionable-hero-3_640x960.webp') }}">
+                    <source media="(max-width: 1024px)" srcset="{{ asset('storage/images/800x800/fashionable-hero-3_800x1200.webp') }}">
+                    <source media="(max-width: 1280px)" srcset="{{ asset('storage/images/1200x1200/fashionable-hero-3_1200x1800.webp') }}">
+                    <source media="(min-width: 1536px)" srcset="{{ asset('storage/images/1400x1400/fashionable-hero-3_1400x2100.webp') }}">
+                    <img class="shadow-xl rounded-xl col-span-1 row-span-1 object-cover h-full w-full hover:scale-105 transition duration-700" fetchpriority="high" loading="eager" src="{{ asset('storage/images/320x320/fashionable-hero-3_320x480.webp') }}" width=320 height=480 alt="female_male_model">
+                </picture>
+                <picture class="object-cover col-span-1 row-span-1 h-full w-full hover:scale-105 transition duration-700">
+                    <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/fashionable-hero-1_320x400.webp') }}">
+                    <source media="(max-width: 480px)" srcset="{{ asset('storage/images/400x400/fashionable-hero-1_400x500.webp') }}">
+                    <source media="(max-width: 768px)" srcset="{{ asset('storage/images/640x640/fashionable-hero-1_640x800.webp') }}">
+                    <source media="(max-width: 1024px)" srcset="{{ asset('storage/images/800x800/fashionable-hero-1_800x1000.webp') }}">
+                    <source media="(max-width: 1280px)" srcset="{{ asset('storage/images/1200x1200/fashionable-hero-1_1200x1500.webp') }}">
+                    <source media="(min-width: 1536px)" srcset="{{ asset('storage/images/1400x1400/fashionable-hero-1_1400x1750.webp') }}">
+                    <img class="shadow-xl rounded-xl object-cover col-span-1 row-span-1 h-full  w-full hover:scale-105 transition duration-700" fetchpriority="high" loading="eager" src="{{ asset('storage/images/320x320/fashionable-hero-3_320x400.webp') }}" width=320 height=400 alt="female_male_model">
+                </picture>
+                <picture class="object-cover h-full w-full col-span-3 sm:col-span-2 row-span-1 hover:scale-105 transition duration-700">
+                    <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/fashionable-hero-2_320x427.webp') }}">
+                    <source media="(max-width: 480px)" srcset="{{ asset('storage/images/400x400/fashionable-hero-2_400x533.webp') }}">
+                    <source media="(max-width: 768px)" srcset="{{ asset('storage/images/640x640/fashionable-hero-2_640x853.webp') }}">
+                    <source media="(max-width: 1024px)" srcset="{{ asset('storage/images/800x800/fashionable-hero-2_800x1067.webp') }}">
+                    <source media="(max-width: 1280px)" srcset="{{ asset('storage/images/1200x1200/fashionable-hero-2_1200x1600.webp') }}">
+                    <source media="(min-width: 1536px)" srcset="{{ asset('storage/images/1400x1400/fashionable-hero-2_1400x1867.webp') }}">
+                    <img class="shadow-xl rounded-xl object-cover h-full w-full col-span-2 row-span-1 hover:scale-105 transition duration-700" fetchpriority="high" loading="eager" src="{{ asset('storage/images/320x320/fashionable-hero-2_320x427.webp') }}" width=320 height=427 alt="fashion_accessories">
+                </picture>
 
             </div>
 
