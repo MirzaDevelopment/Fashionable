@@ -46,7 +46,7 @@ class SizeManagement extends Component
             'sizes.*' => [
                 'required',
                 'min:1',
-                'regex:/^[A-Za-z]+( [A-Za-z]+)?$|^\d+$/',
+                'regex:/^[A-Za-z]+( [A-Za-z]+)?$|^\d+(\.\d+)?(cm|mm|px)?$/i',
             ],
 
 
@@ -58,7 +58,7 @@ class SizeManagement extends Component
         'sizes.*.required' => 'Svako dodano polje mora biti popunjeno.',
         'sizes.*.min' => 'Svaka veličina mora sadržavati najmanje jedno slovo.',
         'sizes.*.unique' => 'Otkriven je duplirani unos.',
-        'sizes.*.regex' => 'Veličina smije sadržavati samo slova ili brojeve.',
+        'sizes.*.regex' => 'Veličina smije sadržavati slova, brojeve ili mjerne jedinice npr -> 2cm.',
     ];
 
     //Inserting category in db
