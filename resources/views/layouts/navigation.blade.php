@@ -5,7 +5,7 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="mt-1">
-                <a href="/">
+                <a href="/shop">
                 <img src="{{ asset('storage/images/melisa_fashion_logo_header.svg') }}" alt="shop-logo" width="180" height="200" class ="fill-current text-gray-500"/></a>
             </div>
 
