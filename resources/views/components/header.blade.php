@@ -144,4 +144,50 @@
     </nav>
     <hr class="border-t-2 border-gray-800">
     </hr>
+    <nav x-data="{ open: false }" class="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/70 backdrop-blur-md">
+        <div class="mx-auto max-w-7xl px-6">
+            <div class="flex h-16 items-center justify-between">
+
+                <!-- Logo -->
+                <a href="/" class="text-xl font-semibold tracking-wide text-gray-900">
+                    FASHIONABLE
+                </a>
+
+                <!-- Desktop Nav -->
+                <div class="hidden md:flex items-center space-x-10">
+                    <a href="/shop#explore" class="text-sm font-medium text-gray-800 hover:text-black transition">
+                        Kategorije i pretraga
+                    </a>
+                    <a href="/shop#special-prices" class="text-sm font-medium text-gray-800 hover:text-black transition">
+                        Posebne ponude
+                    </a>
+                    <a href="/shop#special-prices" class="text-sm font-medium text-gray-800 hover:text-black transition">
+                        Najnovija linija
+                    </a>
+                    <a href="/shop#special-prices" class="text-sm font-medium text-gray-800 hover:text-black transition">
+                        Najbolje cijene
+                    </a>
+                    <a href="/#footer" class="text-sm font-medium text-gray-800 hover:text-black transition">
+                        O nama
+                    </a>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="md:hidden py-4 space-y-4">
+
+                <a href="/shop#explore" class="block text-sm text-gray-800 hover:text-black">
+                    Kategorije i pretraga
+                </a>
+                <a href="/shop#special-prices" class="block text-sm text-gray-800 hover:text-black">
+                    Najbolje cijene
+                </a>
+                <a href="/shop/#footer" class="block text-sm text-gray-800 hover:text-black">
+                    O nama
+                </a>
+            </div>
+        </div>
+    </nav>
+    <hr class="border-t-2 border-gray-800">
+    </hr>
 </header>
