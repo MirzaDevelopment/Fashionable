@@ -167,17 +167,23 @@
                     <a href="/shop#special-prices" class="text-sm font-medium text-gray-800 hover:text-black transition">
                         Najbolje cijene
                     </a>
-                    <a href="/#footer" class="text-sm font-medium text-gray-800 hover:text-black transition">
+                    <a href="/sho#footer" class="text-sm font-medium text-gray-800 hover:text-black transition">
                         O nama
                     </a>
                 </div>
             </div>
 
             <!-- Mobile Menu -->
-            <div class="md:hidden py-4 space-y-4">
+            <div class="md:hidden py-4 space-y-4 flex flex-col">
 
                 <a href="/shop#explore" class="block text-sm text-gray-800 hover:text-black">
-                    Kategorije i pretraga
+                    Kategorije proizvoda
+                </a>
+                <a href="/shop#special-prices" class="text-sm font-medium text-gray-800 hover:text-black transition">
+                    Posebne ponude
+                </a>
+                <a href="/shop#special-prices" class="text-sm font-medium text-gray-800 hover:text-black transition">
+                    Najnovija linija
                 </a>
                 <a href="/shop#special-prices" class="block text-sm text-gray-800 hover:text-black">
                     Najbolje cijene
