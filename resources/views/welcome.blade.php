@@ -8,27 +8,29 @@
     </hr>
     <section class="bg-white">
         <div class="max-w-7xl mx-auto px-6 py-20 grid lg:grid-cols-2 gap-12 items-center">
-<!-- TEXT -->
-<div>
-    <h1 class="text-5xl text-gray-900 font-bold leading-tight">
-        Kreiraj svoj modni webshop
-    </h1>
+            <div>
+                <h1 class="text-5xl text-gray-900 font-bold leading-tight">
+                    Kreiraj svoj modni webshop
+                </h1>
 
-<ul class="mt-6 text-gray-800 text-start text-lg list-disc list-inside space-y-4">
-    <li>Sve što ti treba za prodaju mode na jednom mjestu.</li>
-    <li>Kompletno softversko rješenje.</li>
-    <li>Isključivo na ex-yu jezicima.</li>
-</ul>
+                <ul class="mt-6 text-gray-800 items-center  text-lg list-disc list-inside space-y-4">
+                    <li>Sve što ti treba za prodaju mode na jednom mjestu.</li>
+                    <li>Kompletno softversko rješenje.</li>
+                    <li>Isključivo na ex-yu jezicima.</li>
+                </ul>
 
-    <a href="#" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
-        Saznaj više
-    </a>
-    <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
-        Pogledaj demo
-    </a>
-</div>
+                <a href="#saznajVise" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
+                    Saznaj više
+                </a>
+                <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
+                    Pogledaj demo
+                </a>
+                <a href="#demo" class="inline-block mt-8 bg-sky-500 active:bg-sky-500 hover:bg-sky-400 text-white px-6 py-3 text-sm font-semibold">
+                    Započnite
+                </a>
+            </div>
 
-            <!-- IMAGE -->
+            <!-- IMAGES -->
             <div class="grid grid-cols-3 grid-rows-2 gap-4 h-[600px]">
                 <picture class="object-cover w-full h-full sm:row-span-2 col-span-1 hover:scale-105 transition duration-700">
                     <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/fashionable-hero-4_320x400.webp') }}">
@@ -70,6 +72,41 @@
             </div>
 
         </div>
+    </section>
+    <hr class="border-t-2 border-gray-800 mb-[1rem]">
+    </hr>
+    <section id="saznajVise" class="relative bg-white">
+        <button class="nav-btn nav-left absolute lg:text-3xl bg-gray-800 active:bg-gray-900 hover:bg-gray-700 ml-[1px] text-white">&#10094;</button>
+        <div id="carouselTrack" class="flex scroll-smooth snap-x snap-mandatory transition-transform m-auto duration-300 ease-in-out overflow-y-auto  [scrollbar-width:none] [-ms-overflow-style:none]">
+            <div id="carouselItem" class="flex flex-col place-content-evenly items-center min-w-[100%] py-20 px-6 snap-start rounded-xl overflow-hidden bg-white shadow-md rounded-lg  transform transition duration-300">
+                <h1 class="text-5xl text-gray-900 font-bold leading-tight">
+                    Zašto mi je potreban Fashionable?
+                </h1>
+                <ul class="mt-6 text-gray-800 items-center  text-lg list-disc list-inside space-y-4">
+                    <li>Želiš podići online prodaju na novi - profesionalniji i sigurniji nivo!</li>
+                    <li>Tražiš jednostavnu soluciju koja ti neće zaokupirati puno vremena.</li>
+                    <li>Ostala moderna rješenja su preskupa ili prekomplikovana.</li>
+                    <li>Bolje prenosiš poruku i svoj brend na domaćem jeziku</li>
+                    <li>Sve što je potrebno da imaš - tvoj proizvod, bilo kakvu konekciju ili uređaj</li>
+                    <li>Vrijeme je da tehnologija radi za tebe</li>
+                </ul>
+            </div>
+            <div id="discountedItem" class="flex flex-col place-content-evenly items-center min-w-[100%] py-20 px-6 snap-start rounded-xl overflow-hidden bg-white shadow-md rounded-lg  transform transition duration-300">
+            <h1 class="text-5xl text-gray-900 font-bold leading-tight">
+                Zašto mi je potreban Fashionable?
+            </h1>
+
+            <ul class="mt-6 text-gray-800 items-center  text-lg list-disc list-inside space-y-4">
+                <li>Želiš podići online prodaju na novi - profesionalniji i sigurniji nivo!</li>
+                <li>Tražiš jednostavnu soluciju koja ti neće zaokupirati puno vremena.</li>
+                <li>Ostala moderna rješenja su preskupa ili prekomplikovana.</li>
+                <li>Bolje prenosiš poruku i svoj brend na domaćem jeziku</li>
+                <li>Sve što je potrebno da imaš - tvoj proizvod, bilo kakvu konekciju ili uređaj</li>
+                <li>Vrijeme je da tehnologija radi za tebe</li>
+            </ul>
+        </div>
+        </div>
+        <button class="nav-btn nav-right lg:text-3xl text-white bg-gray-800 active:bg-gray-900 hover:bg-gray-700 mr-[1px]">&#10095;</button>
     </section>
     <hr class="border-t-2 border-gray-800 mb-[1rem]">
     </hr>

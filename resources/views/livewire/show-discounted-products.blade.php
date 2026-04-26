@@ -7,10 +7,10 @@
   </div>
   <section class="grid grid-rows-1  relative bg-slate-100 relative justify-center items-center">
     <button class="nav-btn nav-left absolute lg:text-3xl bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white">&#10094;</button>
-    <div class="flex lg:mt-8 items-center w-[100%] md:w-[99%] lg:w-[100%] scroll-smooth snap-x snap-mandatory transition-transform m-auto duration-300 ease-in-out gap-[25px] py-5 overflow-y-auto  [scrollbar-width:none] [-ms-overflow-style:none]" id="carouselTrackDiscounted">
+    <div class="flex lg:mt-8 items-center w-[100%] md:w-[99%] lg:w-[100%] scroll-smooth snap-x snap-mandatory transition-transform m-auto duration-300 ease-in-out gap-[25px] py-5 overflow-y-auto  [scrollbar-width:none] [-ms-overflow-style:none]" id="carouselTrack">
       @if($discountedProducts->isNotEmpty())
       @foreach ($discountedProducts as $index=> $product)
-      <div id="discountedItem" class="lg:flex gap-[1rem] flex flex-col xl:flex-row place-content-evenly items-center min-w-[100%] snap-start rounded-xl overflow-hidden bg-white shadow-md  p-[1rem] rounded-lg  transform transition duration-300">
+      <div id="carouselItem" class="lg:flex gap-[1rem] flex flex-col xl:flex-row place-content-evenly items-center min-w-[100%] snap-start rounded-xl overflow-hidden bg-white shadow-md  p-[1rem] rounded-lg  transform transition duration-300">
         @foreach ($product->images as $images)
         <picture>
           <source media="(max-width: 320px)" srcset="{{ asset('storage/'.$images->image_320x320) }}">
@@ -137,7 +137,7 @@
 </div>
 <script>
   //To remove scroll buttons when no discount is detected
-  const discountedItem = document.getElementById('discountedItem');
+  const discountedItem = document.getElementById('carouselItem');
   const leftBtn = document.querySelector('.nav-left');
   const rightBtn = document.querySelector('.nav-right');
   if (!discountedItem) {
