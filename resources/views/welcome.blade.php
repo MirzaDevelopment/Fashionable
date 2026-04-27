@@ -86,44 +86,68 @@
                     <li>Želiš podići online prodaju na novi - profesionalniji i sigurniji nivo!</li>
                     <li>Tražiš jednostavnu soluciju koja ti neće zaokupirati puno vremena.</li>
                     <li>Ostala moderna rješenja su preskupa ili prekomplikovana.</li>
-                    <li>Bolje prenosiš poruku i svoj brend na domaćem jeziku</li>
-                    <li>Sve što je potrebno da imaš - tvoj proizvod, bilo kakvu konekciju ili uređaj</li>
-                    <li>Vrijeme je da tehnologija radi za tebe</li>
+                    <li>Bolje prenosiš poruku i svoj brend na domaćem jeziku.</li>
+                    <li>Sve što je potrebno da imaš - tvoj proizvod, bilo kakvu konekciju ili uređaj.</li>
+                    <li>Vrijeme je da tehnologija radi za tebe.</li>
                 </ul>
+                <div class="flex flex-row gap-12">
+                    <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
+                        Pogledaj demo
+                    </a>
+                    <a href="#demo" class="inline-block mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500  text-white px-6 py-3 text-sm font-semibold">
+                        Započnite besplatno
+                    </a>
+                </div>
             </div>
             <div id="discountedItem" class="flex flex-col place-content-evenly items-center min-w-[100%] py-20 px-6 snap-start rounded-xl overflow-hidden bg-white shadow-md rounded-lg  transform transition duration-300">
                 <h1 class="text-5xl text-gray-900 font-bold leading-tight">
                     Šta mi Fashionable nudi?
                 </h1>
                 <ul class="mt-6 text-gray-800 items-center  text-lg list-disc list-inside space-y-4">
+                    <li> <strong>Potpuno besplatno korištenje i testiranje Fashionable softvera jedan mjesec, bez upisa ikakvih podataka sa kartica.</strong></li>
                     <li> Kompletno upravljanje proizvodom, korisnicima i procesom kupovine.</li>
                     <li> Upravljanje porukama klijenata uz instant slanje odogovora na mail bez izlaska iz programa.</li>
-                    <li> Limit je vaša mašta - kreirajte, kategorije, proizvode, ponude bez ograničenja</li>
+                    <li> Limit je vaša mašta - kreirajte, kategorije, proizvode, ponude bez ograničenja.</li>
                     <li> Kreiranje vrastitih događaja - top ponuda i kolekcija koje mame klijente.</li>
                     <li> Moćni statistički pregledi svih aspekata prodaje.</li>
                     <li> Fleksibilnost - napravi online prodavnicu za cipele jednako kao i za nakit.</li>
-                    <li>"Eye catchy" dizajn sa fokusom na modu, odjeću, nakit, preglednost i fluidnost prodaje.</li>
+                    <li>"Eye catchy" premium dizajn sa fokusom na modu, odjeću, nakit, preglednost i fluidnost prodaje.</li>
                     <li> Besplatni vodič u .pdf formatu za svaku funkcionalnost zajedno sa video vodičem za vizuelno pojašnjenje.</li>
-                    <li> Potpuno besplatno korištenje i testiranje Fashionable softvera jedan mjesec, bez upisa ikakvih podataka sa kartica.</li>
                     <li> Fashionable pokreće moćni Laravel frejmvork sa Tailwindom i Livewire kao reaktivni frontend frejmvork brzine munje.</li>
                     <li> Fasihonable je u potpunosti "custom-coded" i održava se redovno.</li>
                     <li> Fasihonable prati sve najbolje i state of the art programerske prakse i dostupan je na githubu.</li>
                 </ul>
+                <div class="flex flex-row gap-12">
+                    <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
+                        Pogledaj demo
+                    </a>
+                    <a href="#demo" class="inline-block mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500  text-white px-6 py-3 text-sm font-semibold">
+                        Započnite besplatno
+                    </a>
+                </div>
             </div>
             <div id="discountedItem" class="flex flex-col place-content-evenly items-center min-w-[100%] py-20 px-6 snap-start rounded-xl overflow-hidden bg-white shadow-md rounded-lg  transform transition duration-300">
                 <h1 class="text-5xl text-gray-900 font-bold leading-tight">
                     Šta Fashionable nudi mojim kupcima?
                 </h1>
                 <ul class="mt-6 text-gray-800 items-center  text-lg list-disc list-inside space-y-4">
-                    <li>Jednostavna i sigurna registracija manuelno ili putem google računa</li>
-                    <li>Instant pretraga bilo putem "pretraži" opcije ili putem kategorija proizvoda</li>
-                    <li> Lista želja sa trenutnim mail obaviještenjem kada je proizvod na popustu</li>
-                    <li> Brza i transparentna kupovina - kupac će u potpunosti znati da li tražena kombinacija proizvoda postoji na stanju</li>
-                    <li> Statistika kupovina - pregled svih obavljenih kupovina na sajtu</li>
-                    <li> Mail obaviještenje o obavljenoj kupovini sa pregledom kupljenog proizvoda</li>
-                    <li> Komunikacija putem kontant forme i dobijanja odgovora na mail</li>
-                    <li> Maksimalna zaštita kupaca i sigurnost podataka - svi podaci su šifrirani i zaštićeni naprednim Laravel funkcijama </li>
+                    <li>Jednostavna i sigurna registracija manuelno ili putem google računa.</li>
+                    <li>Instant pretraga bilo putem "pretraži" opcije ili putem kategorija proizvoda.</li>
+                    <li> Lista želja sa trenutnim mail obaviještenjem kada je proizvod na popustu.</li>
+                    <li> Brza i transparentna kupovina - kupac će u potpunosti znati da li tražena kombinacija proizvoda postoji na stanju.</li>
+                    <li> Statistika kupovina - pregled svih obavljenih kupovina na sajtu.</li>
+                    <li> Mail obaviještenje o obavljenoj kupovini sa pregledom kupljenog proizvoda.</li>
+                    <li> Komunikacija putem kontant forme i dobijanja odgovora na mail.</li>
+                    <li> Maksimalna zaštita kupaca i sigurnost podataka - svi podaci su šifrirani i zaštićeni naprednim Laravel funkcijama.</li>
                 </ul>
+                <div class="flex flex-row gap-12">
+                    <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
+                        Pogledaj demo
+                    </a>
+                    <a href="#demo" class="inline-block mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500  text-white px-6 py-3 text-sm font-semibold">
+                        Započnite besplatno
+                    </a>
+                </div>
             </div>
         </div>
         <button class="nav-btn nav-right lg:text-3xl text-white bg-gray-800 active:bg-gray-900 hover:bg-gray-700 mr-[1px]">&#10095;</button>
