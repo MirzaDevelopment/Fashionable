@@ -108,14 +108,12 @@
                     <li> Kompletno upravljanje proizvodom, korisnicima i procesom kupovine.</li>
                     <li> Upravljanje porukama klijenata uz instant slanje odogovora na mail bez izlaska iz programa.</li>
                     <li> Limit je vaša mašta - kreirajte, kategorije, proizvode, ponude bez ograničenja.</li>
-                    <li> Kreiranje vrastitih događaja - top ponuda i kolekcija koje mame klijente.</li>
                     <li> Moćni statistički pregledi svih aspekata prodaje.</li>
-                    <li> Fleksibilnost - napravi online prodavnicu za cipele jednako kao i za nakit.</li>
-                    <li>"Eye catchy" premium dizajn sa fokusom na modu, odjeću, nakit, preglednost i fluidnost prodaje.</li>
-                    <li> Besplatni vodič u .pdf formatu za svaku funkcionalnost zajedno sa video vodičem za vizuelno pojašnjenje.</li>
+                    <li> Responsive dizajn sa fokusom na modu, odjeću, nakit, preglednost i fluidnost prodaje.</li>
                     <li> Fashionable pokreće moćni Laravel frejmvork sa Tailwindom i Livewire kao reaktivni frontend frejmvork brzine munje.</li>
-                    <li> Fasihonable je u potpunosti "custom-coded" i održava se redovno.</li>
+                    <li> Fasihonable je u potpunosti ručno iskodirana aplikacija i nadograđuje se redovno.</li>
                     <li> Fasihonable prati sve najbolje i state of the art programerske prakse i dostupan je na githubu.</li>
+                    <li> Fashionable se pokreće na moćnom Digital Ocean VPS serveru povezanim sa Cloudflare DNS-om uz potporu Laravel Forge-a.</li>
                 </ul>
                 <div class="flex flex-row gap-12">
                     <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
@@ -136,8 +134,8 @@
                     <li> Lista želja sa trenutnim mail obaviještenjem kada je proizvod na popustu.</li>
                     <li> Brza i transparentna kupovina - kupac će u potpunosti znati da li tražena kombinacija proizvoda postoji na stanju.</li>
                     <li> Statistika kupovina - pregled svih obavljenih kupovina na sajtu.</li>
-                    <li> Mail obaviještenje o obavljenoj kupovini sa pregledom kupljenog proizvoda.</li>
-                    <li> Komunikacija putem kontant forme i dobijanja odgovora na mail.</li>
+                    <li> E-mail obaviještenje o obavljenoj kupovini sa pregledom kupljenog proizvoda.</li>
+                    <li> Komunikacija putem kontakt forme i dobijanja odgovora na e-mail.</li>
                     <li> Maksimalna zaštita kupaca i sigurnost podataka - svi podaci su šifrirani i zaštićeni naprednim Laravel funkcijama.</li>
                 </ul>
                 <div class="flex flex-row gap-12">
