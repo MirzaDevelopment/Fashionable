@@ -150,6 +150,9 @@
         </div>
         <button class="nav-btn nav-right lg:text-3xl text-white bg-gray-800 active:bg-gray-900 hover:bg-gray-700 mr-[1px]">&#10095;</button>
     </section>
+    <section>
+        <!--Reserved for screenshot part-->
+    </section>
     <hr class="border-t-2 border-gray-800 mb-[1rem]">
     </hr>
     <section id="demo" class="flex justify-center">
