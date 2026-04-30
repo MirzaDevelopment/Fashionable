@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-    .nav-btn {
+    .nav-btn-1, .nav-btn-2 {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
@@ -11,10 +11,10 @@
       cursor: pointer;
       z-index: 10;
     }
-    .nav-left {
+    .nav-left, .nav-left-screen {
       left: 0;
     }
-    .nav-right {
+    .nav-right, .nav-right-screen {
       right: 0;
     }
 
