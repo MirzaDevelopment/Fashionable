@@ -151,9 +151,18 @@
         <button class="nav-btn-1 nav-right lg:text-3xl text-white bg-gray-800 active:bg-gray-900 hover:bg-gray-700 mr-[1px]">&#10095;</button>
     </section>
     <section class="relative">
-        <button class="nav-btn-2 nav-left-screen absolute lg:text-3xl bg-gray-800 active:bg-gray-900 hover:bg-gray-700 ml-[1px] text-white">&#10094;</button>
-        <div id="carouselTrackScreenShot" class="flex max-h-[851px] scroll-smooth snap-x snap-mandatory transition-transform m-auto duration-300 ease-in-out overflow-y-auto  [scrollbar-width:none] [-ms-overflow-style:none]">
-            <div id="carouselItemScreenShot" class="flex flex-col items-center min-w-[100%] py-20 px-6 snap-start overflow-hidden bg-white shadow-md rounded-lg  transform transition duration-300">
+        <div class="grid  mx-auto px-6 py-20 grid-cols-1 sm:grid-cols-2 gap-12">
+            <div class="flex flex-col items-center min-w-[100%]  snap-start bg-white  transform transition duration-300">
+                <p><strong>Slika: Pretraživanje proizvoda po kategorijama</strong></p>
+                <picture>
+                    <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/category_search_products_320x195.webp') }}">
+                    <source media="(max-width: 480px)" srcset="{{ asset('storage/images/400x400/category_search_products_400x244.webp') }}">
+                    <source media="(max-width: 768px)" srcset="{{ asset('storage/images/640x640/category_search_products_640x390.webp') }}">
+                    <source media="(min-width: 1024px)" srcset="{{ asset('storage/images/800x800/category_search_products_800x488.webp') }}">
+                    <img class="shadow-xl rounded-xl mx-auto max-w-8xl w-full h-full" fetchpriority="high" loading="eager" src="{{ asset('storage/images/320x320/category_search_products_320x195.webp') }}" width=320 height=150 alt="edit_product_screenshot">
+                </picture>
+            </div>
+            <div class="flex flex-col items-center min-w-[100%]  snap-start bg-white  transform transition duration-300">
                 <p><strong>Slika: Modificiranje proizvoda</strong></p>
                 <picture>
                     <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/edit_product_320x150.webp') }}">
@@ -162,10 +171,10 @@
                     <source media="(max-width: 1024px)" srcset="{{ asset('storage/images/800x800/edit_product_800x375.webp') }}">
                     <source media="(max-width: 1280px)" srcset="{{ asset('storage/images/1200x1200/edit_product_1200x563.webp') }}">
                     <source media="(min-width: 1536px)" srcset="{{ asset('storage/images/1400x1400/edit_product_1400x656.webp') }}">
-                    <img class="shadow-xl rounded-xl mx-auto max-w-8xl  w-full h-full" fetchpriority="high" loading="eager" src="{{ asset('storage/images/320x320/edit_product_320x150.webp') }}" width=320 height=150 alt="edit_product_screenshot">
+                    <img class="shadow-xl rounded-xl mx-auto max-w-8xl w-full h-full" fetchpriority="high" loading="eager" src="{{ asset('storage/images/320x320/edit_product_320x150.webp') }}" width=320 height=150 alt="edit_product_screenshot">
                 </picture>
             </div>
-            <div id="carouselItemScreenShot" class="flex flex-col items-center min-w-[100%] py-20 px-6 snap-start overflow-hidden bg-white shadow-md rounded-lg  transform transition duration-300">
+            <div class="flex flex-col items-center min-w-[100%]  snap-start  bg-white  transform transition duration-300">
                 <p><strong>Slika: Kontakt forma</strong></p>
                 <picture>
                     <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/contact_form_320x152.webp') }}">
@@ -177,7 +186,7 @@
                     <img class="shadow-xl rounded-xl mx-auto max-w-8xl  w-full h-full" fetchpriority="high" loading="eager" src="{{ asset('storage/images/320x320/contact_form_320x152.webp') }}" width=320 height=400 alt="contact_form_screenshot">
                 </picture>
             </div>
-            <div id="carouselItemScreenShot" class="flex overflow-scroll flex-col items-center min-w-[100%] py-20 px-6 snap-start overflow-hidden bg-white shadow-md rounded-lg  transform transition duration-300">
+            <div class="flex flex-col items-center min-w-[100%] snap-start bg-white  transform transition duration-300">
                 <p><strong>Slika: Upravljanje količinama</strong></p>
                 <picture>
                     <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/edit_stock_320x393.webp') }}">
@@ -188,7 +197,6 @@
                 </picture>
             </div>
         </div>
-        <button class="nav-btn-2 nav-right-screen lg:text-3xl text-white bg-gray-800 active:bg-gray-900 hover:bg-gray-700 mr-[1px]">&#10095;</button>
     </section>
     <hr class="border-t-2 border-gray-800 mb-[1rem]">
     </hr>
