@@ -47,6 +47,12 @@ Route::get('/shop', function () {
     return view('firstpage');
 })->name('firstpage');
 
+
+//Screenshots route 
+Route::get('/screenshots', function () {
+    return view('screenshots');
+})->name('screenshots');
+
 //User management resource route
 Route::resource("users", UserController::class)->only(['store', 'edit', 'update'])->middleware(['auth', 'verified']);
 

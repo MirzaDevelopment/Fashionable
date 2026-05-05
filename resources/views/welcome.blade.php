@@ -23,7 +23,7 @@
                     Saznaj više
                 </a>
                 <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
-                    Pogledaj demo
+                    Isprobaj demo
                 </a>
                 <a href="#demo" class="inline-block mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500  text-white px-6 py-3 text-sm font-semibold">
                     Započnite besplatno
@@ -92,7 +92,7 @@
                 </ul>
                 <div class="flex flex-row gap-12">
                     <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
-                        Pogledaj demo
+                        Isprobaj demo
                     </a>
                     <a href="#demo" class="inline-block mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500  text-white px-6 py-3 text-sm font-semibold">
                         Započnite besplatno
@@ -117,7 +117,7 @@
                 </ul>
                 <div class="flex flex-row gap-12">
                     <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
-                        Pogledaj demo
+                        Isprobaj demo
                     </a>
                     <a href="#demo" class="inline-block mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500  text-white px-6 py-3 text-sm font-semibold">
                         Započnite besplatno
@@ -140,7 +140,7 @@
                 </ul>
                 <div class="flex flex-row gap-12">
                     <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
-                        Pogledaj demo
+                        Isprobaj demo
                     </a>
                     <a href="#demo" class="inline-block mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500  text-white px-6 py-3 text-sm font-semibold">
                         Započnite besplatno
@@ -150,53 +150,37 @@
         </div>
         <button class="nav-btn-1 nav-right lg:text-3xl text-white bg-gray-800 active:bg-gray-900 hover:bg-gray-700 mr-[1px]">&#10095;</button>
     </section>
-    <!-- APP SCREENSHOTS -->
-    <section class="relative">
-        <div class="grid  mx-auto px-6 py-20 grid-cols-1 sm:grid-cols-2 gap-12">
-            <div class="flex flex-col items-center min-w-[100%]  snap-start bg-white  transform transition duration-300">
-                <p><strong>Slika: Pretraživanje proizvoda po kategorijama</strong></p>
-                <picture>
-                    <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/category_search_products_320x195.webp') }}">
-                    <source media="(max-width: 480px)" srcset="{{ asset('storage/images/400x400/category_search_products_400x244.webp') }}">
-                    <source media="(max-width: 768px)" srcset="{{ asset('storage/images/640x640/category_search_products_640x390.webp') }}">
-                    <source media="(min-width: 1024px)" srcset="{{ asset('storage/images/800x800/category_search_products_800x488.webp') }}">
-                    <img class="shadow-xl rounded-xl mx-auto max-w-8xl w-full h-full" loading="lazy" src="{{ asset('storage/images/320x320/category_search_products_320x195.webp') }}" width=320 height=150 alt="category_product_search_screenshot">
-                </picture>
+    <hr class="border-t-2 border-gray-800 mb-[1rem]">
+    </hr>
+    <section class="flex flex-col items-center justify-center gap-12 mx-auto px-6 py-20">
+        <h1 class="text-2xl lg:text-5xl text-gray-900 font-bold leading-tight">
+            Zapeli ste? Bez brige mi vas pokrivamo!
+        </h1>
+        <div class="flex flex-col lg:flex-row items-center justify-center">
+            <div class="flex flex-col w-[80%] gap-2 lg:w-[25%] items-center">
+                <p>Skinite cjelokupan Fashionable vodič u pdf formatu</p>
+                <a href="#vodič" class="inline-block mb-8 lg:mt-8 w-fit bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
+                    Fashionable vodič.pdf
+                </a>
             </div>
-            <div class="flex flex-col items-center min-w-[100%]  snap-start bg-white  transform transition duration-300">
-                <p><strong>Slika: Modificiranje proizvoda</strong></p>
-                <picture>
-                    <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/edit_product_320x150.webp') }}">
-                    <source media="(max-width: 480px)" srcset="{{ asset('storage/images/400x400/edit_product_400x188.webp') }}">
-                    <source media="(max-width: 768px)" srcset="{{ asset('storage/images/640x640/edit_product_640x300.webp') }}">
-                    <source media="(max-width: 1024px)" srcset="{{ asset('storage/images/800x800/edit_product_800x375.webp') }}">
-                    <source media="(max-width: 1280px)" srcset="{{ asset('storage/images/1200x1200/edit_product_1200x563.webp') }}">
-                    <source media="(min-width: 1536px)" srcset="{{ asset('storage/images/1400x1400/edit_product_1400x656.webp') }}">
-                    <img class="shadow-xl rounded-xl mx-auto max-w-8xl w-full h-full" loading="lazy" src="{{ asset('storage/images/320x320/edit_product_320x150.webp') }}" width=320 height=150 alt="edit_product_screenshot">
-                </picture>
+            <div class="flex flex-col w-[80%] gap-2 lg:w-[25%] items-center">
+                <p>Pogledajte video vodič za brz i jednostavan početak (sve funkcionalnosti su pokrivene).</p>
+                <a href="#videovodič" class="inline-block w-fit mb-8 lg:mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
+                    Video vodiči
+                </a>
             </div>
-            <div class="flex flex-col items-center min-w-[100%]  snap-start  bg-white  transform transition duration-300">
-                <p><strong>Slika: Kontakt forma</strong></p>
-                <picture>
-                    <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/contact_form_320x152.webp') }}">
-                    <source media="(max-width: 480px)" srcset="{{ asset('storage/images/400x400/contact_form_400x191.webp') }}">
-                    <source media="(max-width: 768px)" srcset="{{ asset('storage/images/640x640/contact_form_640x305.webp') }}">
-                    <source media="(max-width: 1024px)" srcset="{{ asset('storage/images/800x800/contact_form_800x381.webp') }}">
-                    <source media="(max-width: 1280px)" srcset="{{ asset('storage/images/1200x1200/contact_form_1200x572.webp') }}">
-                    <source media="(min-width: 1536px)" srcset="{{ asset('storage/images/1400x1400/contact_form_1400x667.webp') }}">
-                    <img class="shadow-xl rounded-xl mx-auto max-w-8xl  w-full h-full" loading="lazy" src="{{ asset('storage/images/320x320/contact_form_320x152.webp') }}" width=320 height=400 alt="contact_form_screenshot">
-                </picture>
+            <div class="flex flex-col w-[80%] gap-2 lg:w-[25%] items-center">
+                <p>Kako izgleda aplikacija unutra? Pogledajte slike.</p>
+                <a href="/screenshots" class="inline-block mb-8 lg:mt-8 w-fit bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
+                    Slike aplikacije
+                </a>
             </div>
-            <div class="flex flex-col items-center min-w-[100%] snap-start bg-white  transform transition duration-300">
-                <p><strong>Slika: Upravljanje količinama</strong></p>
-                <picture>
-                    <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/edit_stock_320x393.webp') }}">
-                    <source media="(max-width: 480px)" srcset="{{ asset('storage/images/400x400/edit_stock_400x491.webp') }}">
-                    <source media="(max-width: 768px)" srcset="{{ asset('storage/images/640x640/edit_stock_640x786.webp') }}">
-                    <source media="(min-width: 1024px)" srcset="{{ asset('storage/images/800x800/edit_stock_800x982.webp') }}">
-                    <img class="shadow-xl rounded-xl mx-auto max-w-8xl  w-full h-full" loading="lazy" src="{{ asset('storage/images/320x320/edit_stock_320x393.webp') }}" width=320 height=400 alt="stock_management_screenshot">
-                </picture>
-            </div>
+        </div>
+        <div class="flex flex-col items-center gap-2">
+            <p class="w-[80%]">Preuzmite ulogu kupca i završite proces kupovine u ovom potpuno funkcionalnom demu.</p>
+            <a href="#demo" class="inline-block w-fit mb-8 lg:mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
+                Isprobaj demo
+            </a>
         </div>
     </section>
     <hr class="border-t-2 border-gray-800 mb-[1rem]">
