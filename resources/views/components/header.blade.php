@@ -146,7 +146,7 @@
     </hr>
     <nav x-data="{ open: false }" class="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/70 backdrop-blur-md">
         <div class="mx-auto max-w-7xl px-6">
-            <div class="flex h-16 items-center justify-between">
+            <div class="flex h-16 gap-6 items-center justify-between">
 
                 <!-- Logo -->
                 <a href="/" class="text-xl font-semibold tracking-wide text-gray-900">
