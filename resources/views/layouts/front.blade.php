@@ -31,7 +31,6 @@
 <body class="font-sans antialiased max-w-[1920px] m-auto">
     <script type="text/javascript" src="https://www.termsfeed.com/public/cookie-consent/4.2.0/cookie-consent.js" charset="UTF-8" async></script>
     <script type="text/javascript" charset="UTF-8">
-         window.addEventListener('load', function() {
         document.addEventListener('DOMContentLoaded', function () {
             cookieconsent.run({
                 "notice_banner_type":"simple",
@@ -45,7 +44,7 @@
                 "website_name":"Fashionable"
             });
         });
-          });
+          
     </script>
         <!-- Message for users with JavaScript disabled -->
     <noscript>
