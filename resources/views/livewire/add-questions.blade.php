@@ -5,16 +5,16 @@
         {!! RecaptchaV3::initJs(['async' => true, 'defer' => true]) !!}
         <form class="mt-8 space-y-5">
             <div>
-                <label class='text-sm text-gray-900 font-medium mb-2 block'>Ime</label>
-                <input wire:model="userName" type='text' placeholder='Unesi ime' class="w-full py-2.5 px-4 text-gray-800 bg-gray-100 border border-gray-200 focus:border-gray-900 focus:bg-transparent text-sm outline-0 transition-all" />
+                <label for="yourName" class='text-sm text-gray-900 font-medium mb-2 block'>Ime</label>
+                <input wire:model="userName"  id="yourName" type='text' placeholder='Unesi ime' class="w-full py-2.5 px-4 text-gray-800 bg-gray-100 border border-gray-200 focus:border-gray-900 focus:bg-transparent text-sm outline-0 transition-all" />
             </div>
             @error('userName')
             <!-- Validation failed message -->
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
             @enderror
             <div>
-                <label class='text-sm text-gray-900 font-medium mb-2 block'>Email</label>
-                <input wire:model="email" type='email' placeholder='Unesi Email' class="w-full py-2.5 px-4 text-gray-800 bg-gray-100 border border-gray-200 focus:border-gray-900 focus:bg-transparent text-sm outline-0 transition-all" />
+                <label for="email" class='text-sm text-gray-900 font-medium mb-2 block'>Email</label>
+                <input wire:model="email" autocomplete="off" id="email" type='email' placeholder='Unesi Email' class="w-full py-2.5 px-4 text-gray-800 bg-gray-100 border border-gray-200 focus:border-gray-900 focus:bg-transparent text-sm outline-0 transition-all" />
 
             </div>
             @error('email')
@@ -22,8 +22,8 @@
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
             @enderror
             <div>
-                <label class='text-sm text-gray-900 font-medium mb-2 block'>Poruka</label>
-                <textarea wire:model="question" placeholder='Unesi poruku' rows="6" class="w-full px-4 text-gray-800 bg-gray-100 border border-gray-200 focus:border-gray-900 focus:bg-transparent text-sm pt-3 outline-0 transition-all"></textarea>
+                <label for="message"  class='text-sm text-gray-900 font-medium mb-2 block'>Poruka</label>
+                <textarea wire:model="question" autocomplete="off" id="message" placeholder='Unesi poruku' rows="6" class="w-full px-4 text-gray-800 bg-gray-100 border border-gray-200 focus:border-gray-900 focus:bg-transparent text-sm pt-3 outline-0 transition-all"></textarea>
 
             </div>
             @error('question')

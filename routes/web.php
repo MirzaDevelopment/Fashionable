@@ -53,6 +53,13 @@ Route::get('/screenshots', function () {
     return view('screenshots');
 })->name('screenshots');
 
+
+//Tenant registration route 
+Route::get('/registration', function () {
+    return view('tenantregistration');
+})->name('tenantregistration');
+
+
 //User management resource route
 Route::resource("users", UserController::class)->only(['store', 'edit', 'update'])->middleware(['auth', 'verified']);
 

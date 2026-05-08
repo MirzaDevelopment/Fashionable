@@ -19,7 +19,7 @@
         <p class="md:text-xl  lg:text-[1.5rem]  2xl:text-[1.8rem]">Mirza Mehagić All rights reserved</p>
         <p class="md:text-xl  lg:text-[1.5rem]  2xl:text-[1.8rem]">Contact: mirza.mehagic@hotmail.com</p>
     </nav>
-    <nav class="flex mt-[2rem] flex-row justify-center xl:col-start-1 xl:row-start-1  items-center self-end gap-[1rem]">
+    <nav class="flex mt-[2rem] flex-row justify-center xl:col-start-1 xl:row-start-2 2xl:row-start-1  items-center self-end gap-[1rem]">
         <a href="https://www.facebook.com/mirza.mehagic" target="_blank"> <img class="w-[2rem] lg:w-[3rem]" src="{{ asset('storage/images/facebook.svg') }}" alt="facebook-logo" width="55" height="55" /></a>
         <a href="https://www.linkedin.com/in/mirza.mehagic" target="_blank"><img class="w-[2rem] lg:w-[3rem]" src="{{ asset('storage/images/linkedin-icon-1-logo-svg-vector.svg') }}" alt="linkedin-logo" width="55" height="65" /></a>
         <a class="self-end" href=https://github.com/MirzaDevelopment target="_blank"><img class="w-[3rem] lg:w-[4rem] xl:w-[4.5rem]" src="{{ asset('storage/images/github-2-logo-svg-vector.svg') }}" alt="github-logo" width="55" height="65" /></a>

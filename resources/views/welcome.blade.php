@@ -25,7 +25,7 @@
                 <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
                     Isprobaj demo
                 </a>
-                <a href="#demo" class="inline-block mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500  text-white px-6 py-3 text-sm font-semibold">
+                <a href="/registration" class="inline-block mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500  text-white px-6 py-3 text-sm font-semibold">
                     Započnite besplatno
                 </a>
             </div>
@@ -48,7 +48,7 @@
                     <source media="(max-width: 1024px)" srcset="{{ asset('storage/images/800x800/fashionable-hero-3_800x1200.webp') }}">
                     <source media="(max-width: 1280px)" srcset="{{ asset('storage/images/1200x1200/fashionable-hero-3_1200x1800.webp') }}">
                     <source media="(min-width: 1536px)" srcset="{{ asset('storage/images/1400x1400/fashionable-hero-3_1400x2100.webp') }}">
-                    <img class="shadow-xl rounded-xl col-span-1 row-span-1 object-cover h-full w-full hover:scale-105 transition duration-700" fetchpriority="high" loading="eager" src="{{ asset('storage/images/320x320/fashionable-hero-3_320x480.webp') }}" width=320 height=480 alt="female_male_model">
+                    <img class="shadow-xl rounded-xl col-span-1 row-span-1 object-cover h-full w-full hover:scale-105 transition duration-700" fetchpriority="high" loading="eager" src="{{ asset('storage/images/320x320/fashionable-hero-3_320x480.webp') }}" width=320 height=480 alt="female_and_male_model">
                 </picture>
                 <picture class="object-cover col-span-1 row-span-1 h-full w-full hover:scale-105 transition duration-700">
                     <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/fashionable-hero-1_320x400.webp') }}">
@@ -57,7 +57,7 @@
                     <source media="(max-width: 1024px)" srcset="{{ asset('storage/images/800x800/fashionable-hero-1_800x1000.webp') }}">
                     <source media="(max-width: 1280px)" srcset="{{ asset('storage/images/1200x1200/fashionable-hero-1_1200x1500.webp') }}">
                     <source media="(min-width: 1536px)" srcset="{{ asset('storage/images/1400x1400/fashionable-hero-1_1400x1750.webp') }}">
-                    <img class="shadow-xl rounded-xl object-cover col-span-1 row-span-1 h-full  w-full hover:scale-105 transition duration-700" fetchpriority="high" loading="eager" src="{{ asset('storage/images/320x320/fashionable-hero-3_320x400.webp') }}" width=320 height=400 alt="female_male_model">
+                    <img class="shadow-xl rounded-xl object-cover col-span-1 row-span-1 h-full  w-full hover:scale-105 transition duration-700" fetchpriority="high" loading="eager" src="{{ asset('storage/images/320x320/fashionable-hero-3_320x400.webp') }}" width=320 height=400 alt="female_and_male_model">
                 </picture>
                 <picture class="object-cover h-full w-full col-span-3 sm:col-span-2 row-span-1 hover:scale-105 transition duration-700">
                     <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/fashionable-hero-2_320x427.webp') }}">
@@ -75,6 +75,7 @@
     </section>
     <hr class="border-t-2 border-gray-800 mb-[1rem]">
     </hr>
+    <!-- Fashionable textual promo part (slides) -->
     <section id="saznajVise" class="relative bg-white">
         <button class="nav-btn-1 nav-left absolute lg:text-3xl bg-gray-800 active:bg-gray-900 hover:bg-gray-700 ml-[1px] text-white">&#10094;</button>
         <div id="carouselTrack" class="flex scroll-smooth snap-x snap-mandatory transition-transform m-auto duration-300 ease-in-out overflow-y-auto  [scrollbar-width:none] [-ms-overflow-style:none]">
@@ -94,7 +95,8 @@
                     <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
                         Isprobaj demo
                     </a>
-                    <a href="#demo" class="inline-block mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500  text-white px-6 py-3 text-sm font-semibold">
+                    <!-- Tenant registration -->
+                    <a href="/registration" class="inline-block mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500  text-white px-6 py-3 text-sm font-semibold">
                         Započnite besplatno
                     </a>
                 </div>
@@ -119,7 +121,7 @@
                     <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
                         Isprobaj demo
                     </a>
-                    <a href="#demo" class="inline-block mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500  text-white px-6 py-3 text-sm font-semibold">
+                    <a href="/registration" class="inline-block mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500  text-white px-6 py-3 text-sm font-semibold">
                         Započnite besplatno
                     </a>
                 </div>
@@ -142,7 +144,7 @@
                     <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
                         Isprobaj demo
                     </a>
-                    <a href="#demo" class="inline-block mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500  text-white px-6 py-3 text-sm font-semibold">
+                    <a href="/registration" class="inline-block mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500  text-white px-6 py-3 text-sm font-semibold">
                         Započnite besplatno
                     </a>
                 </div>
@@ -152,6 +154,7 @@
     </section>
     <hr class="border-t-2 border-gray-800 mb-[1rem]">
     </hr>
+    <!-- Fashionable guides and screenshot parts -->
     <section class="flex flex-col items-center justify-center gap-12 mx-auto px-6 py-20">
         <h1 class="text-2xl lg:text-5xl text-gray-900 font-bold leading-tight">
             Zapeli ste? Bez brige mi vas pokrivamo!
@@ -185,6 +188,7 @@
     </section>
     <hr class="border-t-2 border-gray-800 mb-[1rem]">
     </hr>
+    <!-- Webshop demo part -->
     <section id="demo" class="flex justify-center">
         <a href="/"><img src="{{ asset('storage/images/melisa_fashion_logo_header.svg') }}" alt="web_shop_logo" width="300" height="200" class=" sm:w-[300px] sm:h-[100px] lg:w-[600px] lg:h-[200px] 2xl:w-[900px] 2xl:h-[300px]"></a>
     </section>
