@@ -1,12 +1,11 @@
-<!--Dashboard view-->
+<!--Admin Dashboard view-->
 <x-app-layout>
-    <x-slot name="header">
+    <x-slot name="header"> <!--This comes from the app.blade layout in layouts folder. Its not a separated component like in front layout-->
         <h2 class="font-semibold flex gap-x-[0.5rem]  flex-row flex-wrap text-xl text-gray-800 leading-tight">
             {{ __('Poruke od korisnika') }}
             <a class="flex flex-row" href="{{ route('questions') }}" wire:navigate><img class="cursor-pointer" src="{{ asset('storage/images/message.svg') }}" alt="messages_icon" width="25" height="20"><span class="text-[#D32F2F] ml-[5px]">@if($questionsCount)({{$questionsCount}}) Novih poruka @elseif($questionsCount==0) <span class="text-[#28a745] ml-[5px]">Nemate novih poruka @endif <span></span></a>
         </h2>
     </x-slot>
-    
     <div class="py-12">
         <div class="max-w-[50rem] xl:w-3/4 lg2:w-1/2 mx-auto sm:px-6">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-center">
@@ -126,6 +125,7 @@
         </nav>
     </div>
     <div class="pb-12">
+        <!--Footer part-->
         <x-slot:footerContent>
         <p>Fashionable - software as service (SaaS)</p>
         <p>Melisa Fashion e-commerce website - DEMO</p>

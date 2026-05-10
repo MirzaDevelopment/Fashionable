@@ -1,6 +1,5 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- Same layout as first page, but without header. Used in first (welcome) page and screenshots -->
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -25,32 +24,32 @@
     <!-- Vite CSS only -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
+
 <body class="font-sans antialiased max-w-[1920px] m-auto">
     <script type="text/javascript" src="https://www.termsfeed.com/public/cookie-consent/4.2.0/cookie-consent.js" charset="UTF-8" async></script>
     <script type="text/javascript" charset="UTF-8">
-         window.addEventListener('load', function() {
-        document.addEventListener('DOMContentLoaded', function () {
-            cookieconsent.run({
-                "notice_banner_type":"simple",
-                "consent_type":"express",
-                "palette":"light",
-                "language":"hr",
-                "page_load_consent_levels":["strictly-necessary"],
-                "notice_banner_reject_button_hide":false,
-                "preferences_center_close_button_hide":false,
-                "page_refresh_confirmation_buttons":false,
-                "website_name":"Fashionable"
+        window.addEventListener('load', function() {
+            document.addEventListener('DOMContentLoaded', function() {
+                cookieconsent.run({
+                    "notice_banner_type": "simple",
+                    "consent_type": "express",
+                    "palette": "light",
+                    "language": "hr",
+                    "page_load_consent_levels": ["strictly-necessary"],
+                    "notice_banner_reject_button_hide": false,
+                    "preferences_center_close_button_hide": false,
+                    "page_refresh_confirmation_buttons": false,
+                    "website_name": "Fashionable"
+                });
             });
         });
-          });
     </script>
-        <!-- Message for users with JavaScript disabled -->
+    <!-- Message for users with JavaScript disabled -->
     <noscript>
         Free cookie consent management tool by <a href="https://www.termsfeed.com/">TermsFeed Generator</a>
     </noscript>
     <!-- Page Content -->
     <main class="text-center">
-        
         {{ $slot }}
     </main>
     <!-- Page footer component -->

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html> <!-- Layout used mostly for client pages (shop page etc...) -->
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>

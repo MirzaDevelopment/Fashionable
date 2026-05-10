@@ -104,5 +104,4 @@
              </a>
          </div>
      </section>
-
  </x-welcome-layout>

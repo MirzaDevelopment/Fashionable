@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE html><!-- Layout used mostly for admin dashboard and admin pages -->
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
