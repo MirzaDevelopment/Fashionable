@@ -13,4 +13,11 @@ class Tenant extends Model
 
 // Specify the table name
     protected $table = 'tenants';
+
+
+    protected $casts = [
+        'is_active' => 'boolean',
+        'shipping_cost' => 'decimal:2',
+        'free_shipping_threshold' => 'decimal:2',
+];
 }
