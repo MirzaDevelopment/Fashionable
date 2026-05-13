@@ -25,4 +25,10 @@ class Image extends Model
      { 
          return $this->belongsToMany(Color::class, "products_colors", "category_image_id", "category_color_id")->withTimestamps(); 
      }
+
+    /***One to one relationship with tenant***/
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class);
+    }
 }

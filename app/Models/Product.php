@@ -29,6 +29,12 @@ class Product extends Model
         return $this->belongsTo(Heel::class, "heel_id");
     }
 
+        public function tenant()
+    {
+        return $this->belongsTo(Tenant::class, "tenant_id");
+    }
+
+
     /***One to many***/
     public function prices()
     {

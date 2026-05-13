@@ -20,4 +20,16 @@ class Tenant extends Model
         'shipping_cost' => 'decimal:2',
         'free_shipping_threshold' => 'decimal:2',
 ];
+
+    /***One to many***/
+    public function images()
+    {
+        return $this->hasMany(Image::class);
+    }
+
+    /***One to one relationship with product***/
+    public function product() 
+    { 
+    return $this->hasOne(Product::class)->withTimestamps(); 
+    }
 }
