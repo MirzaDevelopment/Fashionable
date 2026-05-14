@@ -27,9 +27,14 @@ class Tenant extends Model
         return $this->hasMany(Image::class);
     }
 
-    /***One to one relationship with product***/
+    /***One to one relationships***/
     public function product() 
     { 
     return $this->hasOne(Product::class)->withTimestamps(); 
+    }
+
+    public function user() 
+    { 
+    return $this->hasOne(User::class)->withTimestamps(); 
     }
 }

@@ -44,6 +44,12 @@ class User extends Authenticatable implements MustVerifyEmail
         'password' => 'hashed',
     ];
 
+     /***One to one relationship***/
+        public function tenant()
+    {
+        return $this->belongsTo(Tenant::class, "tenant_id");
+    }
+
      /***Wishlist pivot table ("wishlist_items")***/
     public function products() 
     { 
