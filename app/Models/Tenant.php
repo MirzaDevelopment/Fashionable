@@ -10,8 +10,6 @@ class Tenant extends Model
 {
     use HasFactory;
 
-
-// Specify the table name
     protected $table = 'tenants';
 
 
