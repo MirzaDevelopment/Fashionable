@@ -43,7 +43,10 @@ class AddProductStock extends Component
         
         $this->requestId = $request->id; //Used to make sure user gets back to correct page after update
         $this->requestRoute = $request->route; //...also to make sure user gets back to correct page after update
-        $this->product =  session("newProductModel");
+       //Mostly important to show the admin current product stock data
+        $this->product = Product::with("sizesVariant", "colorsVariant")->find($request->id);
+        //Making it available through other livewire components
+        session(['newProductModel' => $this->product]);//Important if user gets here from the show product icon.
         $this->images = $this->product->images;
 
 

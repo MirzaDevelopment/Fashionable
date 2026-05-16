@@ -488,7 +488,7 @@ class AddProduct extends Component
                 'start_date' => $this->startDate,
                 'end_date' => $this->endDate,
             ]);
-          //  $newProduct = Product::with("sizesVariant", "colorsVariant")->find($this->productId);
+          
             session(['newProductModel' =>$product]);
 
             /*
