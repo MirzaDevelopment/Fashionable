@@ -34,6 +34,11 @@
             @endif
 
         </div>
+        <!-- Setting up the minimum quantity below which the app notify the admin-->
+        <div class="p-6 flex flex-col items-center gap-[1rem]">
+            <p class="p-6 bg-sky-500 text-white rounded-md shadow-sm">Odredite donji prag za broj artikala ovog proizvoda ispod kojeg će vas aplikacija vizuelno obavijestiti:</p>
+            <input type="number" min="0" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" value="5"></input>
+        </div>
 
         <section class="mt-10 flex gap-4" x-data="{open:true}">
             <!-- Back button with backend method to transfer correct url parameter to last page (backToProduct) -->
