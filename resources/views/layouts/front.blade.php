@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Dreams to wear">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="preload" as="image" href="/storage/images/melisa_fashion_logo_header.svg" type="image/webp" />
+    <link rel="preload" as="image" href="/storage/images/melisa_fashion_logo_header.svg" type="image/webp"/>
     <title>{{ config('app.name', 'Webshop') }}</title>
     <!-- Fonts -->
     <!-- Livewire styles ONLY (small, safe) -->
@@ -29,22 +29,6 @@
 </head>
 
 <body class="font-sans antialiased max-w-[1920px] m-auto">
-    <script type="text/javascript" src="https://www.termsfeed.com/public/cookie-consent/4.2.0/cookie-consent.js" charset="UTF-8" async></script>
-    <script type="text/javascript" charset="UTF-8">
-        document.addEventListener('DOMContentLoaded', function() {
-            cookieconsent.run({
-                "notice_banner_type": "simple",
-                "consent_type": "express",
-                "palette": "light",
-                "language": "hr",
-                "page_load_consent_levels": ["strictly-necessary"],
-                "notice_banner_reject_button_hide": false,
-                "preferences_center_close_button_hide": false,
-                "page_refresh_confirmation_buttons": false,
-                "website_name": "Fashionable"
-            });
-        });
-    </script>
     <!-- Message for users with JavaScript disabled -->
     <noscript>
         Free cookie consent management tool by <a href="https://www.termsfeed.com/">TermsFeed Generator</a>
@@ -57,8 +41,26 @@
     </main>
     <!-- Page footer component -->
     <x-footer />
+        <script type="text/javascript" src="https://www.termsfeed.com/public/cookie-consent/4.2.0/cookie-consent.js" charset="UTF-8"></script>
+    <script type="text/javascript" charset="UTF-8">
+        document.addEventListener('DOMContentLoaded', function() {
+            cookieconsent.run({
+                "notice_banner_type": "simple",
+                "consent_type": "express",
+                "palette": "light",
+                "language": "hr",
+                "page_load_consent_levels": ["strictly-necessary"],
+                "preferences_center_enable": true,
+                "notice_banner_reject_button_hide": false,
+                "preferences_center_close_button_hide": false,
+                "page_refresh_confirmation_buttons": false,
+                "website_name": "Fashionable"
+            });
+        });
+    </script>
     <!-- Livewire scripts LAST -->
     @livewireScripts
+    
 </body>
 
 </html>

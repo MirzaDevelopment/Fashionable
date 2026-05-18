@@ -46,6 +46,7 @@
 
     <!-- Livewire scripts LAST -->
     @livewireScripts
+    
 </body>
 
 </html>
