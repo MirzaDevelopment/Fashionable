@@ -35,21 +35,21 @@ class AddProductStock extends Component
     public string $message;
     #[Validate]
     public array $productStocks;
+    #[Validate]
+    public int $bottomStocksLimit=5;
     public bool $toggle = false;
 
     public function mount(Request $request): void
     {
 
-        
+
         $this->requestId = $request->id; //Used to make sure user gets back to correct page after update
         $this->requestRoute = $request->route; //...also to make sure user gets back to correct page after update
-       //Mostly important to show the admin current product stock data
+        //Mostly important to show the admin current product stock data
         $this->product = Product::with("sizesVariant", "colorsVariant")->find($request->id);
         //Making it available through other livewire components
-        session(['newProductModel' => $this->product]);//Important if user gets here from the show product icon.
+        session(['newProductModel' => $this->product]); //Important if user gets here from the show product icon.
         $this->images = $this->product->images;
-
-
     }
 
 
@@ -62,7 +62,7 @@ class AddProductStock extends Component
         return [
             'productStocks' => 'array',
             'productStocks.*' => 'numeric|min:0',
-
+            'bottomStocksLimit'=>'numeric|min:0'
         ];
     }
 
@@ -75,6 +75,8 @@ class AddProductStock extends Component
         //Product stock validation messages
         'productStocks.*.numeric' => 'Količina artikala mora biti validan broj.',
         'productStocks.*.min' => 'Količina artikala mora biti pozitivan broj.',
+        'bottomStocksLimit' => 'Količina artikala mora biti validan broj.',
+        'bottomStocksLimit' => 'Količina artikala mora biti pozitivan broj.',
 
     ];
 
@@ -87,7 +89,8 @@ class AddProductStock extends Component
 
         DB::beginTransaction();
         try {
-
+            
+            dd($this->bottomStocksLimit);
             //Getting user chosen stock elements
             foreach ($this->productStocks as $key => $stocksElements) {
 
@@ -149,17 +152,17 @@ class AddProductStock extends Component
 
     public function render()
     {
-    //To fix the n+1 problem caused by Livewire hydratation, we do this here instead of mount, and ommit the public variables
-    $this->variantStocks = DB::table("products_variants")->where('product_id', $this->product->id)->get();
-    $colors   = Color::findMany($this->variantStocks->pluck('category_color_id'));
-    $sizes    = Size::findMany($this->variantStocks->pluck('category_size_id'));
-    //Mapping colors to correct variant ids
-foreach ($this->variantStocks as $variant) {
-    $color[] = $colors->firstWhere('id', $variant->category_color_id);
-    $size[]  = $sizes->firstWhere('id', $variant->category_size_id);
-    $this->productStocks[] = $variant->stock_quantity;
-}
+        //To fix the n+1 problem caused by Livewire hydratation, we do this here instead of mount, and ommit the public variables
+        $this->variantStocks = DB::table("products_variants")->where('product_id', $this->product->id)->get();
+        $colors   = Color::findMany($this->variantStocks->pluck('category_color_id'));
+        $sizes    = Size::findMany($this->variantStocks->pluck('category_size_id'));
+        //Mapping colors to correct variant ids
+        foreach ($this->variantStocks as $variant) {
+            $color[] = $colors->firstWhere('id', $variant->category_color_id);
+            $size[]  = $sizes->firstWhere('id', $variant->category_size_id);
+            $this->productStocks[] = $variant->stock_quantity;
+        }
 
-    return view('livewire.add-product-stock', ["products" => $this->product, "images" => $this->images, "variantStocks" => $this->variantStocks, "color"=>$color, "size"=>$size]);
+        return view('livewire.add-product-stock', ["products" => $this->product, "images" => $this->images, "variantStocks" => $this->variantStocks, "color" => $color, "size" => $size]);
     }
 }

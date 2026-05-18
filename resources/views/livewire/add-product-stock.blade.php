@@ -35,9 +35,9 @@
 
         </div>
         <!-- Setting up the minimum quantity below which the app notify the admin-->
-        <div class="p-6 flex flex-col items-center gap-[1rem]">
-            <p class="p-6 bg-sky-500 text-white rounded-md shadow-sm">Odredite donji prag za broj artikala ovog proizvoda ispod kojeg će vas aplikacija vizuelno obavijestiti:</p>
-            <input type="number" min="0" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" value="5"></input>
+        <div class="p-6 border mt-4 border-gray-200 flex flex-col items-center gap-[1rem]">
+            <p class="p-6  text-gray-700">Odredite donji prag za broj artikala ovog proizvoda ispod kojeg će vas aplikacija vizuelno obavijestiti:</p>
+            <input type="number" wire:model="bottomStocksLimit" min="0" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" value="5"></input>
         </div>
 
         <section class="mt-10 flex gap-4" x-data="{open:true}">
