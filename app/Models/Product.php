@@ -15,6 +15,7 @@ class Product extends Model
         'total_stock',
         'heel_id',
         'type_id',
+        'tenant_id',
     ];
 
 
