@@ -4,12 +4,12 @@
         <p class="text-xl mb-6 mt-6">{{$product->product_name}}</p>
         <hr class="w-[35%] h-[15px] mb-6">
         </hr>
-        <div class="flex">
+        <div class="flex flex-row overflow-scroll">
             @foreach($images as $images)
             <img src="{{asset('storage/'.$images->image_320x320)}}" width=320 alt="product image">
             @endforeach
         </div>
-        <div class="mt-6 grid grid-cols-3 gap-[3rem] items-center justify-items-center border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
+        <div class="mt-6 w-[100%] sm:w-fit sm:grid sm:grid-cols-3 gap-[3rem] items-center justify-items-center border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
             @foreach($variantStocks as $key=> $items)
             <div class="flex flex-col items-center gap-3">
                 <p class="text-xl">Size: {{$size[$key]->size}}</p>
@@ -40,7 +40,7 @@
             <input type="number" wire:model="bottomStocksLimit" min="0" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" value="5"></input>
         </div>
 
-        <section class="mt-10 flex gap-4" x-data="{open:true}">
+        <section class="mt-10 flex flex-col-reverse sm:flex-row gap-4" x-data="{open:true}">
             <!-- Back button with backend method to transfer correct url parameter to last page (backToProduct) -->
             <a wire:click="backToProduct" class="col-start-1 min-w-[206.15px] cursor-pointer lg:col-span-2 lg2:col-start-1 lg2:col-span-1 justify-center inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150" wire:navigate>Natrag</a>
 
