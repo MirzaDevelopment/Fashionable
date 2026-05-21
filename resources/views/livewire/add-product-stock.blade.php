@@ -29,16 +29,20 @@
 
             @endforeach
 
-            @if(session('errorException'))
-            <span class="error text-[#D32F2F] mt-1 w-[80%]">{{session('errorException')}}</span>
-            @endif
 
         </div>
         <!-- Setting up the minimum quantity below which the app notify the admin-->
         <div class="p-6 border mt-4 border-gray-200 flex flex-col items-center gap-[1rem]">
             <p class="p-6  text-gray-700">Odredite donji prag za broj artikala ovog proizvoda ispod kojeg će vas aplikacija vizuelno obavijestiti:</p>
-            <input type="number" wire:model="bottomStocksLimit" min="0" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" value="5"></input>
+            <input type="number" wire:model="bottomStocksLimit" min="0" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" placeholder="{{$product->bottom_stock_limit}}"></input>
         </div>
+        @error('bottomStocksLimit')
+        <!-- Validation failed message -->
+        <span class="error text-[#D32F2F] mt-1 w-[80%]">{{ $message }}</span>
+        @enderror
+        @if(session('errorException'))
+        <span class="error text-[#D32F2F] mt-1 w-[80%]">{{session('errorException')}}</span>
+        @endif
 
         <section class="mt-10 flex flex-col-reverse sm:flex-row gap-4" x-data="{open:true}">
             <!-- Back button with backend method to transfer correct url parameter to last page (backToProduct) -->

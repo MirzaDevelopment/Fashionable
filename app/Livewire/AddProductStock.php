@@ -36,7 +36,7 @@ class AddProductStock extends Component
     #[Validate]
     public array $productStocks;
     #[Validate]
-    public int $bottomStocksLimit=5;
+    public int $bottomStocksLimit;
     public bool $toggle = false;
 
     public function mount(Request $request): void
@@ -47,6 +47,7 @@ class AddProductStock extends Component
         $this->requestRoute = $request->route; //...also to make sure user gets back to correct page after update
         //Mostly important to show the admin current product stock data
         $this->product = Product::with("sizesVariant", "colorsVariant")->find($request->id);
+        $this->bottomStocksLimit=$this->product->bottom_stock_limit;
         //Making it available through other livewire components
         session(['newProductModel' => $this->product]); //Important if user gets here from the show product icon.
         $this->images = $this->product->images;
@@ -75,8 +76,8 @@ class AddProductStock extends Component
         //Product stock validation messages
         'productStocks.*.numeric' => 'Količina artikala mora biti validan broj.',
         'productStocks.*.min' => 'Količina artikala mora biti pozitivan broj.',
-        'bottomStocksLimit' => 'Količina artikala mora biti validan broj.',
-        'bottomStocksLimit' => 'Količina artikala mora biti pozitivan broj.',
+        'bottomStocksLimit.numeric' => 'Količina artikala mora biti validan broj.',
+        'bottomStocksLimit.min' => 'Količina artikala mora biti pozitivan broj.',
 
     ];
 
@@ -85,12 +86,10 @@ class AddProductStock extends Component
     {
 
         Gate::authorize('update', Product::class);
+        
         $this->validate();
-
         DB::beginTransaction();
         try {
-            
-            dd($this->bottomStocksLimit);
             //Getting user chosen stock elements
             foreach ($this->productStocks as $key => $stocksElements) {
 
@@ -105,11 +104,12 @@ class AddProductStock extends Component
                 $this->product->sizesVariant()->wherePivot('category_color_id', $categoryColorId)->updateExistingPivot($stocksElements->category_size_id, ['stock_quantity' =>   $stocks[$key]]);
             }
 
-
+            
             //Inserting into product main table (general data). It is later used to show total quantity during product search.
             $this->product->update([
 
                 'total_stock' => $sum,
+                'bottom_stock_limit'=>$this->bottomStocksLimit,
 
 
             ]);

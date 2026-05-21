@@ -13,6 +13,7 @@ class Product extends Model
         'product_name',
         'description',
         'total_stock',
+        'bottom_stock_limit',
         'heel_id',
         'type_id',
         'tenant_id',
