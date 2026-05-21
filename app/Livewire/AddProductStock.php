@@ -6,7 +6,7 @@ It includes:
 - Using the obtained product model, we get the pivot product_variants table, and therefore colors, sizes, and stock quantities (also product image!)
 - All the validation rules with corresponding messages.
 - Stock update method with admin authorisation wrapped in transaction.
-- During the update, the sum of all product variation quantity is added to the main product table and displayed during the product search
+- During the update, the sum of all product variation quantity is added to the main product table and displayed during the product search, just as the bottom stock limit the user chose (products table).
 - Small function backToProduct to return the admin with back button to correct panel (show products, add product or modify product). After the update, livewire doesn't seem to care much about the url parameters, and they seems to vanish.
 */
 
