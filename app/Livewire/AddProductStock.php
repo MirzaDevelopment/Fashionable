@@ -45,7 +45,7 @@ class AddProductStock extends Component
 
         $this->requestId = $request->id; //Used to make sure user gets back to correct page after update
         $this->requestRoute = $request->route; //...also to make sure user gets back to correct page after update
-        //Mostly important to show the admin current product stock data
+        //Mostly important to show the admin current product stock data and bottom stock limit
         $this->product = Product::with("sizesVariant", "colorsVariant")->find($request->id);
         $this->bottomStocksLimit=$this->product->bottom_stock_limit;
         //Making it available through other livewire components
