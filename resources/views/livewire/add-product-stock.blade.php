@@ -19,7 +19,7 @@
                 <p>Boja: {{$color[$key]->color}}</p><input type="color" value="{{$color[$key]->hex_code}}" disabled></input>
                 <p>Trenutna količina:</p>
                 <div @if ($errors->has('productStocks.' . $key)) class="p-2 border border-[#D32F2F]" @endif class="mb-10">
-                    <input @if(($variantStocks[$key]->stock_quantity)<=\App\Livewire\AddProductStock::minQuantity && $this->toggle==false)class="bg-[#f8d7da] text-[#721c24]" @endif wire:key="{{ $key }}" wire:model="productStocks.{{$key}}" id="productStock" type="number" min="0" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" placeholder="{{$variantStocks[$key]->stock_quantity}}">
+                    <input @if(($variantStocks[$key]->stock_quantity)<=$bottomStocksLimit && $this->toggle==false)class="bg-[#f8d7da] text-[#721c24]" @endif wire:key="{{ $key }}" wire:model="productStocks.{{$key}}" id="productStock" type="number" min="0" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" placeholder="{{$variantStocks[$key]->stock_quantity}}">
                 </div>
                 @error('productStocks.' . $key)
                 <!-- Validation failed message -->

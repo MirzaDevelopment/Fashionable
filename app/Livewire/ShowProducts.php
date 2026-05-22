@@ -24,7 +24,6 @@ class ShowProducts extends Component
     use WithPagination;
 
     public string $empty = "Proizvodi nisu pronađeni...";
-    public int $totalQuantityLowLimit=15;
     public string $search = "";
     public User $user;
     public string $count = "";
