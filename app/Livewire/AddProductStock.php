@@ -6,7 +6,7 @@ It includes:
 - Using the obtained product model, we get the pivot product_variants table, and therefore colors, sizes, and stock quantities (also product image!)
 - All the validation rules with corresponding messages.
 - Stock update method with admin authorisation wrapped in transaction.
-- During the update, the sum of all product variation quantity is added to the main product table and displayed during the product search, just as the bottom stock limit the user chose (products table).
+- During the update, the sum of all product variation quantity is added to the main product table and displayed during the product search (admin products table), just as the bottom stock limit the user chose .
 - Small function backToProduct to return the admin with back button to correct panel (show products, add product or modify product). After the update, livewire doesn't seem to care much about the url parameters, and they seems to vanish.
 */
 
@@ -47,6 +47,7 @@ class AddProductStock extends Component
         $this->requestRoute = $request->route; //...also to make sure user gets back to correct page after update
         //Mostly important to show the admin current product stock data and bottom stock limit
         $this->product = Product::with("sizesVariant", "colorsVariant")->find($request->id);
+        //To show the user current chosen bottom limit for product stock
         $this->bottomStocksLimit=$this->product->bottom_stock_limit;
         //Making it available through other livewire components
         session(['newProductModel' => $this->product]); //Important if user gets here from the show product icon.
