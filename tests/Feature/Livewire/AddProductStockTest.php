@@ -27,11 +27,11 @@ class AddProductStockTest extends TestCase
         $fakeProduct = Product::factory()->create(['id' => 1, 'product_name' => 'Test Name', 'description' => 'Test description', 'total_stock' => 34, 'tenant_id' => null]);
         session(['newProductModel' => $fakeProduct]);
 
-        
+
         // Insert a row into the 'category_colors' table
         $category_color_id = DB::table('category_colors')->insertGetId([
             'color' => "green",
-            "hex_code"=>"#5bd742",
+            "hex_code" => "#5bd742",
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -43,21 +43,21 @@ class AddProductStockTest extends TestCase
             'created_at' => now(),
             'updated_at' => now(),
         ]);
-            DB::table('products_variants')->insert([
-                'product_id' => 1,
-                'category_color_id' => $category_color_id,
-                'category_size_id' => $category_size_id,
-                'stock_quantity' => $faker->numberBetween(0, 32767),
-                'created_at' => now(),
-                'updated_at' => now(),
-            ]);
+        DB::table('products_variants')->insert([
+            'product_id' => 1,
+            'category_color_id' => $category_color_id,
+            'category_size_id' => $category_size_id,
+            'stock_quantity' => $faker->numberBetween(0, 32767),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
 
         Livewire::withQueryParams([
-    'id' => 1,
-    'route' => 'search',
-])->test(AddProductStock::class)
-            ->assertSee('green')   
-            ->assertSee('medium') 
+            'id' => 1,
+            'route' => 'search',
+        ])->test(AddProductStock::class)
+            ->assertSee('green')
+            ->assertSee('medium')
             ->assertSeeLivewire('add-product-stock'); // Check if the Livewire component is rendered
     }
 
