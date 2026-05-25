@@ -22,6 +22,8 @@ class ProductFactory extends Factory
         'product_name' => fake()->word(),
         'description' =>  fake()->word(),
         "total_stock" => fake()->randomNumber(2),
+        "bottom_stock_limit" => fake()->randomNumber(2),
+        "tenant_id"=>null,
         "type_id"=>Type::factory(),
 
         ];

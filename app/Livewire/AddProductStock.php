@@ -29,7 +29,7 @@ class AddProductStock extends Component
     const minQuantity = 15;
     public ?int $requestId = null;
     public ?string $requestRoute = null;
-    public object $product;
+    public Product $product;
     public object $variantStocks;
     public object $images;
     public string $message;
@@ -43,7 +43,7 @@ class AddProductStock extends Component
     {
 
 
-        $this->requestId = $request->id; //Used to make sure user gets back to correct page after update
+        $this->requestId = $request->id; //Used to make sure user gets back to correct page after update 
         $this->requestRoute = $request->route; //...also to make sure user gets back to correct page after update
         //Mostly important to show the admin current product stock data and bottom stock limit
         $this->product = Product::with("sizesVariant", "colorsVariant")->find($request->id);

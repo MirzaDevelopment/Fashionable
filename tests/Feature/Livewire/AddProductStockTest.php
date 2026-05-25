@@ -24,9 +24,8 @@ class AddProductStockTest extends TestCase
     public function test_component_exists_on_the_page()
     {
         $faker = Faker::create();
-        $fakeProduct = Product::factory()->create(['id' => 1, 'product_name' => 'Test Name', 'description' => 'Test description', 'total_stock' => 34]);
+        $fakeProduct = Product::factory()->create(['id' => 1, 'product_name' => 'Test Name', 'description' => 'Test description', 'total_stock' => 34, 'tenant_id' => null]);
         session(['newProductModel' => $fakeProduct]);
-
 
         
         // Insert a row into the 'category_colors' table
@@ -53,7 +52,10 @@ class AddProductStockTest extends TestCase
                 'updated_at' => now(),
             ]);
 
-         Livewire::test(AddProductStock::class, ['product_id' => 1])
+        Livewire::withQueryParams([
+    'id' => 1,
+    'route' => 'search',
+])->test(AddProductStock::class)
             ->assertSee('green')   
             ->assertSee('medium') 
             ->assertSeeLivewire('add-product-stock'); // Check if the Livewire component is rendered
