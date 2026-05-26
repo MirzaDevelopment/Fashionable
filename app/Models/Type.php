@@ -16,7 +16,7 @@ class Type extends Model
     ];
 
      /***One to one relationship***/
-    public function products() 
+    public function product() 
     { 
     return $this->hasOne(Product::class)->withTimestamps(); 
     }

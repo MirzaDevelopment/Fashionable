@@ -18,7 +18,7 @@ class Material extends Model
     ];
 
     /***Many to many relationship with product***/
-    public function product()
+    public function products()
     {
         return $this->belongsToMany(Product::class, "products_materials", "category_material_id", "product_id")->withTimestamps(); 
     }

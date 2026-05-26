@@ -21,15 +21,12 @@ class Wishlist extends Model
     'notified_of_discount' => 'boolean',
 ];
 
-    /***Wishlist relationships***/
-
+   /***One to one relationship***/
    
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
-    /***Wishlist relationships***/
 
     public function product()
     {
