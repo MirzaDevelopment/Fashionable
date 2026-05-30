@@ -17,7 +17,7 @@ class Tenant extends Model
         'is_active' => 'boolean',
         'shipping_cost' => 'decimal:2',
         'free_shipping_threshold' => 'decimal:2',
-];
+    ];
 
     /***One to many***/
     public function images()
@@ -26,13 +26,18 @@ class Tenant extends Model
     }
 
     /***One to one relationships***/
-    public function product() 
-    { 
-    return $this->hasOne(Product::class)->withTimestamps(); 
+    public function product()
+    {
+        return $this->hasOne(Product::class)->withTimestamps();
     }
 
-    public function user() 
-    { 
-    return $this->hasOne(User::class)->withTimestamps(); 
+    public function user()
+    {
+        return $this->hasOne(User::class)->withTimestamps();
+    }
+
+    public function color()
+    {
+        return $this->hasOne(Color::class)->withTimestamps();
     }
 }
