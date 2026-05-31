@@ -201,14 +201,14 @@
                 <source media="(min-width: 1400px)" srcset="{{ asset('storage/images/1400x1400/torbice_1400x933.webp') }}">
                 <img class="w-[100vw] col-span-1 row-start-2 h-auto" src="{{ asset('storage/images/320x320/torbice_320x214.webp') }}" width=1200 height=801 alt="female_purses" loading="eager" fetchpriority="high">
             </picture>
-            <h2 class="font-playfair p-[1rem] absolute text-6xl sm:text-7xl text-white md:text-[6rem] lg:text-[7rem] 2xl:text-[11rem] leading-tight">
+            <h2 class="font-playfair p-4 absolute text-6xl sm:text-7xl md:text-8xl lg:text-9xl text-white leading-tight">
                 Melisa Webshop
                 <p class="text-4xl font-bold 2xl:text-6xl">(Demo)</p>
             </h2>
 
         </div>
         <div class="sm:mt-[2rem]  xl:mt-0 min-w-[31%]">
-            <a class="text-gray-800 xl:leading-tight break-normal hover:text-gray-900 text-3xl sm:text-4xl rounded-md relative group w-fit lg:text-[3rem] xl:text-[4rem] 2xl:text-[6rem]" href="{{ route('firstpage') }}">
+            <a class="text-gray-800 break-normal hover:text-gray-900 text-3xl sm:text-4xl lg:text-5xl xl:text-6xl 2xl:text-8xl rounded-md relative group w-fit xl:leading-tight" href="{{ route('firstpage') }}">
                 {{ __('Ulaz u online prodavnicu') }}
                 <span class="absolute top-[36px] left-0 lg:top-[3.5rem] xl:top-auto xl:left-5 w-0 h-[2px] lg:h-[3px] 2xl:h-[4px] bg-gray-800 transition-all group-hover:w-full"></span>
             </a>
