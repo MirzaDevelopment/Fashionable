@@ -22,4 +22,10 @@ class Material extends Model
     {
         return $this->belongsToMany(Product::class, "products_materials", "category_material_id", "product_id")->withTimestamps(); 
     }
+
+    /***One to one relationship with tenant***/
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class, "tenant_id");
+    }
 }

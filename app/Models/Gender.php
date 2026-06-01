@@ -22,4 +22,10 @@ class Gender extends Model
     { 
         return $this->belongsToMany(Product::class, "products_genders", "category_gender_id", "product_id")->withTimestamps(); 
     }
+
+    /***One to one relationship with tenant***/
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class, "tenant_id");
+    }
 }

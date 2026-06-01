@@ -40,4 +40,13 @@ class Tenant extends Model
     {
         return $this->hasOne(Color::class)->withTimestamps();
     }
+    public function gender()
+    {
+        return $this->hasOne(Gender::class)->withTimestamps();
+    }
+
+    public function material()
+    {
+        return $this->hasOne(Material::class)->withTimestamps();
+    }
 }
