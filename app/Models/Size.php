@@ -25,4 +25,10 @@ class Size extends Model
                     ->withPivot('stock_quantity') 
                     ->withTimestamps(); 
     }
+
+    /***One to one relationship with tenant***/
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class, "tenant_id");
+    }
 }
