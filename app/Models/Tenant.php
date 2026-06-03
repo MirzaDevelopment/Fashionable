@@ -49,8 +49,13 @@ class Tenant extends Model
     {
         return $this->hasOne(Material::class)->withTimestamps();
     }
-        public function size()
+    public function size()
     {
         return $this->hasOne(Size::class)->withTimestamps();
+    }
+
+    public function tag()
+    {
+        return $this->hasOne(Tag::class)->withTimestamps();
     }
 }

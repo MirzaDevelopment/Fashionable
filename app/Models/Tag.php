@@ -22,4 +22,10 @@ class Tag extends Model
          return $this->belongsToMany(Product::class, "products_tags", "category_tag_id", "product_id")->withTimestamps(); 
      }
 
+    /***One to one relationship with tenant***/
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class, "tenant_id");
+    }
+
 }
