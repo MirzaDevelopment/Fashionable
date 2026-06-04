@@ -58,4 +58,8 @@ class Tenant extends Model
     {
         return $this->hasOne(Tag::class)->withTimestamps();
     }
+        public function heel()
+    {
+        return $this->hasOne(Heel::class)->withTimestamps();
+    }
 }

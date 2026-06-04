@@ -17,9 +17,13 @@ class Heel extends Model
         'heel_type',   
     ];
 
-    /***One to one relationship with product***/
+    /***One to one relationships***/
     public function product()
     {
         return $this->hasOne(Product::class);
+    }
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class, "tenant_id");
     }
 }
