@@ -12,13 +12,17 @@ class Type extends Model
 
     protected $table = 'types';
     protected $fillable = [
-        'type_name',   
+        'type_name',
     ];
 
-     /***One to one relationship***/
-    public function product() 
-    { 
-    return $this->hasOne(Product::class)->withTimestamps(); 
+    /***One to one relationship***/
+    public function product()
+    {
+        return $this->hasOne(Product::class)->withTimestamps();
     }
-    
+
+    public function tenant()
+    {
+        return $this->belongsTo(Tenant::class, "tenant_id");
+    }
 }

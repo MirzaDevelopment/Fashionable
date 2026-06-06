@@ -113,7 +113,7 @@
                     <li> Moćni statistički pregledi svih aspekata prodaje.</li>
                     <li> Responsive dizajn sa fokusom na modu, odjeću, nakit, preglednost i fluidnost prodaje.</li>
                     <li> Fashionable pokreće moćni Laravel frejmvork sa Tailwindom i Livewire kao reaktivni frontend frejmvork brzine munje.</li>
-                    <li> Fasihonable je u potpunosti ručno iskodirana aplikacija i nadograđuje se redovno.</li>
+                    <li> Fashihonable je u potpunosti ručno iskodirana aplikacija i nadograđuje se redovno.</li>
                     <li> Fasihonable prati sve najbolje i state of the art programerske prakse i dostupan je na githubu.</li>
                     <li> Fashionable se pokreće na moćnom Digital Ocean VPS serveru povezanim sa Cloudflare DNS-om uz potporu Laravel Forge-a.</li>
                 </ul>
