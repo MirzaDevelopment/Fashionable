@@ -91,7 +91,10 @@
                     <li>Sve što je potrebno da imaš - tvoj proizvod, bilo kakvu konekciju ili uređaj.</li>
                     <li>Vrijeme je da tehnologija radi za tebe.</li>
                 </ul>
-                <div class="flex flex-row gap-12">
+                <div class="flex flex-row justify-evenly flex-wrap gap-12">
+                    <a href="/screenshots" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
+                        Slike aplikacije
+                    </a>
                     <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
                         Isprobaj demo
                     </a>
@@ -117,7 +120,10 @@
                     <li> Fasihonable prati sve najbolje i state of the art programerske prakse i dostupan je na githubu.</li>
                     <li> Fashionable se pokreće na moćnom Digital Ocean VPS serveru povezanim sa Cloudflare DNS-om uz potporu Laravel Forge-a.</li>
                 </ul>
-                <div class="flex flex-row gap-12">
+                <div class="flex flex-row justify-evenly flex-wrap gap-12">
+                    <a href="/screenshots" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
+                        Slike aplikacije
+                    </a>
                     <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
                         Isprobaj demo
                     </a>
@@ -140,7 +146,10 @@
                     <li> Komunikacija putem kontakt forme i dobijanja odgovora na e-mail.</li>
                     <li> Maksimalna zaštita kupaca i sigurnost podataka - svi podaci su šifrirani i zaštićeni naprednim Laravel funkcijama.</li>
                 </ul>
-                <div class="flex flex-row gap-12">
+                <div class="flex flex-row justify-evenly flex-wrap gap-12">
+                    <a href="/screenshots" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
+                        Slike aplikacije
+                    </a>
                     <a href="#demo" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
                         Isprobaj demo
                     </a>
@@ -160,22 +169,16 @@
             Zapeli ste? Bez brige mi vas pokrivamo!
         </h1>
         <div class="flex flex-col lg:flex-row items-center justify-center">
-            <div class="flex flex-col w-[80%] gap-2 lg:w-[25%] items-center">
+            <div class="flex flex-col w-[80%] gap-2 lg:w-[50%] items-center">
                 <p>Skinite cjelokupan Fashionable vodič u pdf formatu</p>
                 <a href="#vodič" class="inline-block mb-8 lg:mt-8 w-fit bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
                     Fashionable vodič.pdf
                 </a>
             </div>
-            <div class="flex flex-col w-[80%] gap-2 lg:w-[25%] items-center">
+            <div class="flex flex-col w-[80%] gap-2 lg:w-[50%] items-center">
                 <p>Pogledajte video vodič za brz i jednostavan početak (sve funkcionalnosti su pokrivene).</p>
                 <a href="#videovodič" class="inline-block w-fit mb-8 lg:mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
                     Video vodiči
-                </a>
-            </div>
-            <div class="flex flex-col w-[80%] gap-2 lg:w-[25%] items-center">
-                <p>Kako izgleda aplikacija unutra? Pogledajte slike.</p>
-                <a href="/screenshots" class="inline-block mb-8 lg:mt-8 w-fit bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
-                    Slike aplikacije
                 </a>
             </div>
         </div>

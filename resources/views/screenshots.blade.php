@@ -98,7 +98,10 @@
          <hr class="border-t-2 border-gray-800 mb-[1rem] w-[100%]">
          </hr>
          <p class="text-4xl p-4 text-gray-900 font-bold leading-tight">I mnogo više...</p>
-         <div class="flex flex-col w-[80%] gap-2 lg:w-[25%] items-center">
+         <div class="flex flex-row w-[80%] gap-2 lg:w-[25%] justify-center">
+            <a href="/" class="inline-block w-fit mb-8 lg:mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
+                    Natrag
+                </a>
              <a href="/#demo" class="inline-block w-fit mb-8 lg:mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
                  Isprobaj demo
              </a>
