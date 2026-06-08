@@ -1,1 +1,1 @@
-<p>Work in progress...</p>
+<livewire:register-tenant />

@@ -6,7 +6,7 @@
     </p>
   </div>
   <section class="grid grid-rows-1  relative bg-slate-100 relative justify-center items-center">
-    <button class="nav-btn nav-left absolute lg:text-3xl bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white">&#10094;</button>
+    <button class="nav-btn-2 nav-left absolute lg:text-3xl bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white">&#10094;</button>
     <div class="flex lg:mt-8 items-center w-[100%] md:w-[99%] lg:w-[100%] scroll-smooth snap-x snap-mandatory transition-transform m-auto duration-300 ease-in-out gap-[25px] py-5 overflow-y-auto  [scrollbar-width:none] [-ms-overflow-style:none]" id="carouselTrack">
       @if($discountedProducts->isNotEmpty())
       @foreach ($discountedProducts as $index=> $product)
@@ -132,7 +132,7 @@
       <span class="text-xl bg-red-100 text-gray-800 lg:text-2xl rounded-xl shadow-lg p-[3rem]">Naše posebne ponude su trenutno završene. Pratite nas — uskoro najavljujemo nove!</span>
       @endif
     </div>
-    <button class="nav-btn nav-right lg:text-3xl text-white bg-gray-800 active:bg-gray-900 hover:bg-gray-700">&#10095;</button>
+    <button class="nav-btn-2 nav-right lg:text-3xl text-white bg-gray-800 active:bg-gray-900 hover:bg-gray-700">&#10095;</button>
   </section>
 </div>
 <script>

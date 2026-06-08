@@ -49,9 +49,9 @@ class AddProduct extends Component
     #[Validate]
     public string $productDescription;
     #[Validate]
-    public ?float $productPrice = null;
+    public ?string $productPrice = null;
     #[Validate]
-    public ?float $productDiscount = null;
+    public ?string $productDiscount = null;
     #[Validate]
     public ?string $startDate = null;
     #[Validate]
@@ -213,9 +213,9 @@ class AddProduct extends Component
             //Product description validation
             'productDescription' => 'required|string|min:10|max:1000',
             //Product price validation
-            'productPrice' => 'required|numeric|regex:/^\d+(\.\d{1,2})?$/|gt:0',
+            'productPrice' => 'required|numeric|gt:0',
             //Product discount validation
-            'productDiscount' => 'nullable|numeric|between:0,100|regex:/^\d+(\.\d{1,2})?$/',
+            'productDiscount' => 'nullable|numeric|between:0,100|',
             //Discount start and end date validation
             'startDate' => 'nullable|date',
             'endDate' => 'nullable|date',
@@ -255,12 +255,10 @@ class AddProduct extends Component
         // Product Price validation messages
         'productPrice.required' => 'Početna cijena proizvoda je obavezna.',
         'productPrice.numeric' => 'Cijena proizvoda mora biti broj.',
-        'productPrice.regex' => 'Cijena mora biti ispravan broj sa dvije decimale (npr. 25.45, 100.00).',
         'product_price.gt' => 'Cijena mora biti veća od 0.',
         // Product discount validation messages
         'productDiscount.numeric' => 'Popust mora biti ispravan broj.',
         'productDiscount.between' => 'Procenat popusta mora biti između 0 i 100.',
-        'productDiscount.regex' => 'Popust mora biti ispravan broj sa najviše dvije decimale.',
         // Discount start and end date validation messages
         'startDate' => 'Uneseni datum početka popusta nije ispravan.',
         'endDate' => 'Uneseni datum završetka popusta nije ispravan.',

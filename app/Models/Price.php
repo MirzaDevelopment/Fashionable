@@ -17,6 +17,11 @@ class Price extends Model
         'start_date',
         'end_date',
     ];
+
+    protected $casts = [
+    'price' => 'decimal:2',
+];
+
     /***One to one relationship with product***/
     public function product()
     {

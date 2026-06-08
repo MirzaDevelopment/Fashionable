@@ -34,7 +34,6 @@ class ShowProductsFront extends Component
     public array $tagSelect = [];
     public string $empty = "Proizvodi nisu pronađeni...";
     public string $search = "";
-    const DELIVERY = 9.50; //Shipping cost
     public string $sortinator = "type_name";
     public string $sortToggle = "ASC";
     public array $wishListArray = [""];
