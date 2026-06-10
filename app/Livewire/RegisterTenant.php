@@ -16,7 +16,7 @@ class RegisterTenant extends Component
 
     //Tenant part
     #[Validate]
-    public string $name;
+    public string $tenantName;
     #[Validate]
     public string $slug;
     #[Validate]
@@ -49,12 +49,12 @@ class RegisterTenant extends Component
     protected function rules(): array
     {
         return [
-            'name' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\']+( [\p{L}\s\']+)?$/u'],
-            'slug' => ['required', 'string', 'max:255', 'alpha_dash', 'unique:stores,slug'],
+            'tenantName' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\']+( [\p{L}\s\']+)?$/u'],
+            'slug' => ['required', 'string', 'max:255', 'alpha_dash', 'unique:tenants,slug'],
             'logoImageId' => ['integer', 'exists:category_images,id'],
             'coverImageId' => ['integer', 'exists:category_images,id'],
 
-            'currency' => ['required', 'string', 'size:3'],
+            'currency' => ['required', 'in:EUR,BAM,RSD'],
 
             'email' => ['required', 'email:rfc,dns', 'max:255'],
             'phone' => ['required', 'string', 'max:50'],
@@ -74,18 +74,19 @@ class RegisterTenant extends Component
     protected function messages(): array
     {
         return [
-            'name.required' => 'Naziv trgovine je obavezan.',
-
-            'slug.required' => 'Slug trgovine je obavezan.',
-            'slug.alpha_dash' => 'Slug može sadržavati samo slova, brojeve, crtice i donje crtice.',
-            'slug.unique' => 'Ovaj slug se već koristi.',
+            'tenantName.required' => 'Unesite naziv.',
+            'tenantName.string'   => 'Naziv mora biti ispravno unesen kao tekst.',
+            'tenantName.max'      => 'Naziv ne može biti duži od 255 karaktera.',
+            'tenantName.regex'    => 'Naziv može sadržavati samo slova, razmake i apostrof te se može sastojati od najviše dvije riječi.',
+            'slug.required' => 'URL trgovine je obavezan.',
+            'slug.alpha_dash' => 'URL može sadržavati samo slova, brojeve, crtice i donje crtice.',
+            'slug.unique' => 'Ovaj URL se već koristi.',
 
             'logoImageId.exists' => 'Odabrana logo slika nije ispravna.',
 
             'coverImageId.exists' => 'Odabrana naslovna slika nije ispravna.',
 
             'currency.required' => 'Valuta je obavezna.',
-            'currency.size' => 'Valuta mora biti važeći ISO kod od 3 slova.',
 
             'email.required' => 'Email adresa je obavezna.',
             'email.email' => 'Unesite ispravnu email adresu.',
@@ -98,7 +99,7 @@ class RegisterTenant extends Component
 
             'freeShippingThreshold.numeric' => 'Prag za besplatnu dostavu mora biti broj.',
             'freeShippingThreshold.min' => 'Prag za besplatnu dostavu ne može biti negativan.',
-            
+
             //User message validation starts here
             'user_name.required' => 'Ime je obavezno.',
             'user_name.string' => 'Ime mora biti tekst.',
@@ -127,13 +128,8 @@ class RegisterTenant extends Component
 
     public function registerTenant()
     {
-
-
-
-
-
-
-
+    $this->validate();
+        
     }
 
 
