@@ -28,8 +28,6 @@ class RegisterTenant extends Component
     #[Validate]
     public string $locale = "BS";
     #[Validate]
-    public string $email;
-    #[Validate]
     public string $phone;
     #[Validate]
     public string $shippingProvider;
@@ -56,7 +54,6 @@ class RegisterTenant extends Component
 
             'currency' => ['required', 'in:EUR,BAM,RSD'],
 
-            'email' => ['required', 'email:rfc,dns', 'max:255'],
             'phone' => ['required', 'string', 'max:50'],
 
             'shippingProvider' => ['string', 'max:255'],
@@ -87,9 +84,6 @@ class RegisterTenant extends Component
             'coverImageId.exists' => 'Odabrana naslovna slika nije ispravna.',
 
             'currency.required' => 'Valuta je obavezna.',
-
-            'email.required' => 'Email adresa je obavezna.',
-            'email.email' => 'Unesite ispravnu email adresu.',
 
             'phone.required' => 'Broj telefona je obavezan.',
 
