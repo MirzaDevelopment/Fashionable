@@ -20,9 +20,9 @@ class RegisterTenant extends Component
     #[Validate]
     public string $slug;
     #[Validate]
-    public int $logoImageId;
+    public ?string $logoImage=null;
     #[Validate]
-    public int $coverImageId;
+    public ?string $coverImage;
     #[Validate]
     public string $currency = "EUR";
     #[Validate]
@@ -49,8 +49,13 @@ class RegisterTenant extends Component
         return [
             'tenantName' => ['required', 'string', 'max:255', 'regex:/^[\p{L}\s\']+( [\p{L}\s\']+)?$/u'],
             'slug' => ['required', 'string', 'max:255', 'alpha_dash', 'unique:tenants,slug'],
-            'logoImageId' => ['integer', 'exists:category_images,id'],
-            'coverImageId' => ['integer', 'exists:category_images,id'],
+
+            //Product image upload validation for real time
+            'logoImage' => [
+                'required',
+                'mimes:svg,png,webp,jpg,jpeg',
+                'max:512',
+            ],
 
             'currency' => ['required', 'in:EUR,BAM,RSD'],
 
@@ -79,9 +84,9 @@ class RegisterTenant extends Component
             'slug.alpha_dash' => 'URL može sadržavati samo slova, brojeve, crtice i donje crtice.',
             'slug.unique' => 'Ovaj URL se već koristi.',
 
-            'logoImageId.exists' => 'Odabrana logo slika nije ispravna.',
-
-            'coverImageId.exists' => 'Odabrana naslovna slika nije ispravna.',
+            'logoImage.required' => 'Molimo odaberite logo.',
+            'logoImage.mimes' => 'Podržani formati logotipa su SVG, PNG, WebP, jpg, jpeg.',
+            'logoImage.max' => 'Veličina logotipa ne smije prelaziti 512 KB.',
 
             'currency.required' => 'Valuta je obavezna.',
 
@@ -122,8 +127,7 @@ class RegisterTenant extends Component
 
     public function registerTenant()
     {
-    $this->validate();
-        
+        $this->validate();
     }
 
 

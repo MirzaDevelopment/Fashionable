@@ -277,7 +277,7 @@ class AddProduct extends Component
 
     ];
 
-    //Real life validation of image
+    //Real time validation of image
     public function updatedproductImage(): void
     {
         $this->validateOnly("productImage.*");
