@@ -85,6 +85,32 @@
                 @endif
                 @endif
             </div>
+            <label class="font-medium" for="logoImage">Naslovna slika koju će koristiti vaša online prodavnica.</label>
+            <div class="overflow-scroll lg2:overflow-auto flex flex-col gap-6">
+                <p class="text-xs text-gray-400">*Ekstenzije PNG, JPEG, JPG, WEBP su dozvoljene.<br> Program automatski optimizira slike i slaže ih u odgovarajuće veličine. Nije potrebna prethodna optimizacija od strane korisnika.</p>
+                <div x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true" x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-cancel="uploading = false" x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
+                    <input wire:model="coverImage" @if ($errors->has
+                    ('coverImage')) class="w-full text-gray-500 font-medium text-base bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2.5 file:px-4 file:mr-4 file:bg-gray-800 file:hover:bg-gray-700 file:text-white rounded border border-[#D32F2F] w-4/5 sm:w-fit 2xl:w-4/5" @endif class="w-full text-gray-500 font-medium text-base bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2.5 file:px-4 file:mr-4 file:bg-gray-800 file:hover:bg-gray-700 file:text-white rounded" accept="image/jpeg, image/jpg, image/png, image/webp" type="file" id="logoImage"></input>
+
+                    <!-- Progress Bar -->
+                    <div x-show="uploading">
+                        <progress max="100" x-bind:value="progress"></progress>
+                    </div>
+                </div>
+                @error('coverImage')
+                <!-- Validation failed message -->
+                <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
+                @enderror
+                @if ($coverImage)
+                @if (!$errors->has
+                ('coverImage'))
+                <div class="ml-auto mr-auto">
+                    <p>Pregled slike</p>
+                    <img src="{{ $coverImage->temporaryUrl()}}" width="200" />
+                </div>
+                @endif
+                @endif
+            </div>
             <x-primary-button wire:click="registerTenant" wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="lg:col-span-2 justify-center col-start-2 lg2:col-start-4">
 
                 {{ __('Kreiraj moju online prodavnicu') }}

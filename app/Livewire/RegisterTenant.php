@@ -22,7 +22,7 @@ class RegisterTenant extends Component
     #[Validate]
     public ?object $logoImage = null;
     #[Validate]
-    public ?object $coverImage=null;
+    public ?object $coverImage = null;
     #[Validate]
     public string $currency = "EUR";
     #[Validate]
@@ -90,9 +90,14 @@ class RegisterTenant extends Component
             'slug.alpha_dash' => 'URL može sadržavati samo slova, brojeve, crtice i donje crtice.',
             'slug.unique' => 'Ovaj URL se već koristi.',
 
-            
+
             'logoImage.mimes' => 'Podržani formati logotipa su SVG, PNG, WebP, jpg, jpeg.',
             'logoImage.max' => 'Veličina logotipa ne smije prelaziti 512 KB.',
+            
+            'coverImage.image' => 'Molimo odaberite sliku.',
+            'coverImage.mimes' => 'Podržani formati: JPG, JPEG, PNG i WEBP.',
+            'coverImage.max' => 'Slika može biti maksimalno 2 MB.',
+            'coverImage.dimensions' => 'Minimalna veličina slike je 1200×630 px.',
 
             'currency.required' => 'Valuta je obavezna.',
 
