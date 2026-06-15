@@ -15,8 +15,8 @@ class Tenant extends Model
 
     protected $casts = [
         'is_active' => 'boolean',
-        'shipping_cost' => 'decimal:2',
-        'free_shipping_threshold' => 'decimal:2',
+        'shippingCost' => 'decimal:2',
+        'freeShippingThreshold' => 'decimal:2',
     ];
 
     /***One to many***/

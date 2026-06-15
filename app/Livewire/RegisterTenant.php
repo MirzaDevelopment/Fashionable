@@ -32,9 +32,11 @@ class RegisterTenant extends Component
     #[Validate]
     public string $shippingProvider;
     #[Validate]
-    public ?string $shippingCost = null;
+    public string $shippingProviderOther;
     #[Validate]
-    public ?string $freeShippingThreshold = null;
+    public $shippingCost = null;
+    #[Validate]
+    public $freeShippingThreshold = null;
     #[Validate]
     public string $plan = "free";
 
@@ -65,12 +67,18 @@ class RegisterTenant extends Component
             ],
             'currency' => ['required', 'in:EUR,BAM,RSD'],
 
-            'phone' => ['required', 'string', 'max:50'],
+            'phone' => [
+                'required',
+                'string',
+                'min:8',
+                'max:50',
+                'regex:/^\+[0-9][0-9\s]{7,19}$/',
+            ],
 
-            'shippingProvider' => ['string', 'max:255'],
+            'shippingProviderOther' => ['nullable', 'string', 'max:255', 'required_if:shippingProvider,other'],
 
-            'shippingCost' => ['numeric', 'min:0'],
-            'freeShippingThreshold' => ['nullable', 'numeric', 'min:0'],
+            'shippingCost' => ['nullable','numeric', 'min:0', 'decimal:0,2'],
+            'freeShippingThreshold' => ['nullable', 'numeric', 'min:0','decimal:0,2'],
             //User validation
             'user_name' => ['required', 'string', 'max:255'],
             'user_email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
@@ -93,7 +101,7 @@ class RegisterTenant extends Component
 
             'logoImage.mimes' => 'Podržani formati logotipa su SVG, PNG, WebP, jpg, jpeg.',
             'logoImage.max' => 'Veličina logotipa ne smije prelaziti 512 KB.',
-            
+
             'coverImage.image' => 'Molimo odaberite sliku.',
             'coverImage.mimes' => 'Podržani formati: JPG, JPEG, PNG i WEBP.',
             'coverImage.max' => 'Slika može biti maksimalno 2 MB.',
@@ -102,6 +110,11 @@ class RegisterTenant extends Component
             'currency.required' => 'Valuta je obavezna.',
 
             'phone.required' => 'Broj telefona je obavezan.',
+            'phone.min' => 'Unesite ispravan broj telefona (minimum osam cifara)',
+            'phone.regex' => 'Broj telefona mora biti u obliku +387 xx xxx xxx.',
+
+            'shippingProviderOther.required_if' => 'Molimo da unesete naziv dostavljača.',
+            'shippingProviderOther.max' => 'Naziv je predugačak (max 255 karaktera).',
 
             'shippingCost.required' => 'Cijena dostave je obavezna.',
             'shippingCost.numeric' => 'Cijena dostave mora biti broj.',
