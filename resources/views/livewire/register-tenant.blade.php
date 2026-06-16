@@ -1,15 +1,18 @@
-<div>
+<div> <!-- Frontend livewire component for tenant registration -->
     <x-welcome-layout>
         <section class="p-6 mt-10 place-content-evenly bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
             <h1 class="text-xl">Kreirajte svoju prodavnicu</h1>
             <hr>
+            <!-- Webshop data -->
             <h2 class="text-xl">Osnovne informacije</h2>
+            <!-- Webshop title -->
             <label class="font-medium" for="tenantName">Naziv</label>
             <input wire:model.blur="tenantName" @if ($errors->has('tenantName')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" id="tenantName" placeholder="" type="text" name="tenantName" required autofocus autocomplete="name" />
             @error('tenantName')
             <!-- Validation failed message -->
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
             @enderror
+            <!-- Webshop URL-->
             <label class="font-medium" for="slug">URL oznaka</label>
             <input wire:model.live="slug" id="slug" @if ($errors->has('slug')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" placeholder="" type="text" name="slug"></input>
             <p class="text-xs text-gray-400">Url vaše online prodavnice će izgledati ovako: www.fashionable/{{$slug}}.com</p>
@@ -17,6 +20,7 @@
             <!-- Validation failed message -->
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
             @enderror
+            <!-- Webshop currency -->
             <label class="font-medium" for="slug">Valuta koju koristi vaša prodavnica</label>
             <div x-data="{ open: false }" class="relative w-full">
                 <button type="button" @click="open = !open" class="flex items-center justify-between w-full px-4 py-2 border rounded-lg bg-white">
@@ -59,6 +63,7 @@
             <!-- Validation failed message -->
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
             @enderror
+            <!-- Webshop logo and cover image -->
             <label class="font-medium" for="logoImage">Logo koji će koristiti vaša prodavnica</label>
             <p class="text-xs">Napomena: Logo i naslovna slika (cover image) nisu obavezne kod registracije i mogu se dodati naknadno</p>
             <div class="overflow-scroll lg2:overflow-auto flex flex-col gap-6">
@@ -112,6 +117,7 @@
                 @endif
                 @endif
             </div>
+            <!-- Phone number -->
             <label class="font-medium" for="phone">Vaš telefon (molimo da unesete validan telefonski broj)</label>
             <input wire:model="phone" id="phone" placeholder="format: +387 61 123 456" @if ($errors->has('phone')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="tel" name="phone"></input>
             @error('phone')
@@ -122,50 +128,52 @@
             <label class="font-medium" for="shippingProvider">Odaberite ili dopišite dostavljača sa kojim surađujete</label>
             <select wire:model="shippingProvider" class="form-select">
                 <option value="">Izaberi dostavljača</option>
-                <!-- BiH -->
+                <!-- Bosnia -->
                 <option value="bh_posta">BH Pošta</option>
                 <option value="posta_rs">Pošta Srpske</option>
                 <option value="express_one">Express One BiH</option>
                 <option value="dhl_bih">DHL BiH</option>
                 <option value="gls_bih">GLS BiH</option>
 
-                <!-- Hrvatska -->
+                <!-- Croatia -->
                 <option value="posta_hr">Hrvatska Pošta</option>
                 <option value="dpd_hr">DPD Hrvatska</option>
                 <option value="gls_hr">GLS Hrvatska</option>
                 <option value="overseas_hr">Overseas Express</option>
 
-                <!-- Srbija -->
+                <!-- Serbia -->
                 <option value="posta_rs_srb">Pošta Srbije</option>
                 <option value="dexpress">D Express</option>
                 <option value="aks">AKS</option>
 
-                <!-- Crna Gora -->
+                <!-- Montenegro -->
                 <option value="posta_cg">Pošta Crne Gore</option>
 
-                <!-- Ostalo -->
+                <!-- Other (user typed) -->
                 <option value="other">Ostalo</option>
             </select>
             @if($shippingProvider === 'other')
-            <input  type="text" @if ($errors->has('shippingProviderOther')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" wire:model="shippingProviderOther" class="form-input mt-2" placeholder="Upiši dostavljača">
+            <input type="text" @if ($errors->has('shippingProviderOther')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" wire:model="shippingProviderOther" class="form-input mt-2" placeholder="Upiši dostavljača">
             @endif
             @error('shippingProviderOther')
             <!-- Validation failed message -->
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
             @enderror
+            <!-- Courier costs -->
             <label class="font-medium" for="shippingCost">Procjenjeni troškovi dostave (može se dodati kasnije)</label>
             <input wire:model="shippingCost" id="shippingCost" @if ($errors->has('shippingCost')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" placeholder="" type="number" name="shippingCost" min="0" step="0.01"></input>
             @error('shippingCost')
             <!-- Validation failed message -->
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
             @enderror
+            <!-- Shipping value threshold for free delivery -->
             <label class="font-medium" for="freeShippingThreshold">Iznos vrijednosti kupovine iznad kojeg nema troškova dostave (može se dodati kasnije)</label>
             <input wire:model="freeShippingThresholdt" id="freeShippingThreshold" @if ($errors->has('freeShippingThreshold')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" placeholder="" type="number" name="freeShippingThreshold" min="0" step="0.01"></input>
             @error('freeShippingThreshold')
             <!-- Validation failed message -->
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
             @enderror
-
+            <!-- Tenant admin data -->
             <h2 class="text-xl">Vaš račun</h2>
 
             <x-primary-button wire:click="registerTenant" wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="lg:col-span-2 justify-center col-start-2 lg2:col-start-4">
