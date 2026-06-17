@@ -175,6 +175,45 @@
             @enderror
             <!-- Tenant admin data -->
             <h2 class="text-xl">Vaš račun</h2>
+              <div>
+            <x-input-label for="name" :value="__('Korisničko ime')" />
+            <x-text-input wire:model="user_name" id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
+            <x-input-error :messages="$errors->get('name')" class="mt-2" />
+        </div>
+
+        <!-- Email Address -->
+        <div class="mt-4">
+            <x-input-label for="email" :value="__('Email')" />
+            <x-text-input wire:model="user_email" id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autocomplete="username" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+
+        <!-- Password -->
+        <div class="mt-4">
+            <x-input-label for="password" :value="__('Lozinka')" />
+
+            <x-text-input wire:model="user_password" id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
+
+            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="mt-4">
+            <x-input-label for="password_confirmation" :value="__('Potvrdi lozinku')" />
+
+            <x-text-input  id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
+
+            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
+        </div>
+        <div class="mt-6 grid grid-cols-2 items-center justify-items-center mb-[2rem] grid-rows-1 gap-y-[0.5rem]">
+            <input class="ml-[8rem]" id="policyCheckbox" type="checkbox" name="policy">
+            <label for="policyCheckbox"> Slažem se s <a href="/#footer" class="underline text-cornflowerblue">Uvjetima korištenja i Politikom privatnosti.</a></label>
+            @error('policy')
+            <!-- Validation failed message -->
+            <span class="error text-[#D32F2F] mt-1 col-start-2">{{ $message }}</span>
+            @enderror
+
+        </div>
 
             <x-primary-button wire:click="registerTenant" wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="lg:col-span-2 justify-center col-start-2 lg2:col-start-4">
 
