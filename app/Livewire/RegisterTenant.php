@@ -44,6 +44,7 @@ class RegisterTenant extends Component
     public string $user_name;
     public string $user_email;
     public string $user_password;
+    public string $user_password_confirmation;
 
 
     protected function rules(): array
@@ -136,7 +137,7 @@ class RegisterTenant extends Component
             'user_email.unique' => 'Ova email adresa je već registrovana.',
 
             'user_password.required' => 'Lozinka je obavezna.',
-            'user_password.confirmed' => 'Potvrda lozinke se ne podudara.',
+            'user_password.confirmed' => 'Lozinke se ne podudaraju.',
             'user_password.min' => 'Lozinka mora imati najmanje :min karaktera.',
             'user_password.letters' => 'Lozinka mora sadržavati najmanje jedno slovo.',
             'user_password.mixed_case' => 'Lozinka mora sadržavati velika i mala slova.',
