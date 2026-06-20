@@ -2,9 +2,8 @@
     <x-welcome-layout>
         <h1 class="text-2xl  p-6">Kreirajte svoju prodavnicu</h1>
         <hr class="mb-8 m-auto w-[35%]">
-        <section class="p-6 mt-10 w-fit m-auto place-content-evenly bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
-
-            <div class="max-w-[50%] m-auto flex flex-col gap-y-6 p-8">
+        <section class="sm:p-6 mt-10 w-fit m-auto place-content-evenly bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
+            <div class="lg:max-w-[50%] m-auto flex flex-col gap-y-6 p-8">
                 <!-- Webshop data -->
                 <h2 class="text-lg">Osnovne informacije</h2>
                 <!-- Webshop title -->
@@ -177,12 +176,12 @@
                 @enderror
             </div>
         </section>
-        <section class="p-6 mt-10 w-fit m-auto place-content-evenly bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
-            <div class="max-w-[50%] m-auto flex flex-col gap-y-6 p-8">
+        <section class="sm:p-6 mt-10 w-fit m-auto place-content-evenly bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
+            <div class="m-auto flex flex-col gap-y-6 p-8">
                 <!-- Tenant admin data -->
                 <h2 class="text-lg">Vaš račun</h2>
                 <label class="font-medium" for="user_name"> Korisničko ime <span style="color:red">*</span></label>
-                <input wire:model="user_name" id="user_name" @if ($errors->has('user_name')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="text" name="name" :value="old('user_name')" required autofocus autocomplete="user_name" />
+                <input wire:model="user_name" id="user_name" @if ($errors->has('user_name')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="text" name="user_name"  required autofocus autocomplete="user_name" />
                 @error('user_name')
                 <!-- Validation failed message -->
                 <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
@@ -190,7 +189,7 @@
 
                 <!-- Email Address -->
                 <label class="font-medium" for="user_email"> Email <span style="color:red">*</span></label>
-                <input wire:model="user_email" id="user_email" @if ($errors->has('user_email')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="email" name="email" :value="old(user_email')" required autocomplete="user_email" />
+                <input wire:model="user_email" id="user_email" @if ($errors->has('user_email')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="email" name="email"  required autocomplete="user_email" />
                 @error('user_email')
                 <!-- Validation failed message -->
                 <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
@@ -209,8 +208,8 @@
                 <!-- Confirm Password -->
                 <label class="font-medium" for="user_password_confirmation"> Potvrdi lozinku</label>
                 <input wire:model="user_password_confirmation" id="user_password_confirmation" @if ($errors->has('password_confirmation')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="password" name="user_password_confirmation" required />
-                <div class="mt-6 grid grid-cols-2 items-center justify-items-center mb-[2rem] grid-rows-1 gap-y-[0.5rem]">
-                    <input class="ml-[8rem]" id="policyCheckbox" type="checkbox" name="policy">
+                <div class="mt-6 items-center justify-items-center mb-[2rem]  gap-y-[0.5rem]">
+                    <input  id="policyCheckbox" type="checkbox" name="policy">
                     <label for="policyCheckbox"> Slažem se s <a href="/#footer" class="underline text-cornflowerblue">Uvjetima korištenja i Politikom privatnosti.</a></label>
                     @error('policy')
                     <!-- Validation failed message -->
@@ -219,13 +218,12 @@
 
                 </div>
             </div>
-            <x-primary-button wire:click="registerTenant" wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="justify-center max-w-[50%] m-auto h-[50px]">
+
+        </section>
+            <x-primary-button wire:click="registerTenant" wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="mt-6 mb-6 justify-center sm:max-w-[50%] m-auto h-[50px]">
 
                 {{ __('Kreiraj moju online prodavnicu') }}
 
             </x-primary-button>
-        </section>
-
-
     </x-welcome-layout>
 </div>
