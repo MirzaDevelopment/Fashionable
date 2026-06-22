@@ -21,7 +21,7 @@
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
             @enderror
             <!-- Webshop currency -->
-            <label class="font-medium" for="slug">Valuta koju koristi vaša prodavnica</label>
+            <label class="font-medium">Valuta koju koristi vaša prodavnica</label>
             <div x-data="{ open: false }" class="relative w-full">
                 <button type="button" @click="open = !open" class="flex items-center justify-between w-full px-4 py-2 border rounded-lg bg-white">
                     <div class="flex items-center gap-2">
@@ -91,12 +91,12 @@
                 @endif
                 @endif
             </div>
-            <label class="font-medium" for="logoImage">Naslovna slika koju će koristiti vaša prodavnica</label>
+            <label class="font-medium" for="coverImage">Naslovna slika koju će koristiti vaša prodavnica</label>
             <div class="overflow-scroll lg2:overflow-auto flex flex-col gap-6">
                 <p class="text-xs text-gray-400">*Ekstenzije PNG, JPEG, JPG, WEBP su dozvoljene.<br> Program automatski optimizira slike i slaže ih u odgovarajuće veličine. Nije potrebna prethodna optimizacija od strane korisnika.</p>
                 <div x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true" x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-cancel="uploading = false" x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
                     <input wire:model="coverImage" @if ($errors->has
-                    ('coverImage')) class="w-full text-gray-500 font-medium text-base bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2.5 file:px-4 file:mr-4 file:bg-gray-800 file:hover:bg-gray-700 file:text-white rounded border border-[#D32F2F] w-4/5 sm:w-fit 2xl:w-4/5" @endif class="w-full text-gray-500 font-medium text-base bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2.5 file:px-4 file:mr-4 file:bg-gray-800 file:hover:bg-gray-700 file:text-white rounded" accept="image/jpeg, image/jpg, image/png, image/webp" type="file" id="logoImage">
+                    ('coverImage')) class="w-full text-gray-500 font-medium text-base bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2.5 file:px-4 file:mr-4 file:bg-gray-800 file:hover:bg-gray-700 file:text-white rounded border border-[#D32F2F] w-4/5 sm:w-fit 2xl:w-4/5" @endif class="w-full text-gray-500 font-medium text-base bg-gray-100 file:cursor-pointer cursor-pointer file:border-0 file:py-2.5 file:px-4 file:mr-4 file:bg-gray-800 file:hover:bg-gray-700 file:text-white rounded" accept="image/jpeg, image/jpg, image/png, image/webp" type="file" id="coverImage">
 
                     <!-- Progress Bar -->
                     <div x-show="uploading">
@@ -126,7 +126,7 @@
             @enderror
             <p class="text-xs text-gray-400">Napomena: vaš broj telefona koristi se isključivo za potrebe registracije i verifikacije online prodavnice. Broj neće biti dijeljen s trećim stranama niti korišten u marketinške svrhe bez vaše saglasnosti. Podaci se obrađuju i čuvaju u skladu s važećim pravilima zaštite privatnosti.</p>
             <label class="font-medium" for="shippingProvider">Odaberite ili dopišite dostavljača sa kojim surađujete</label>
-            <select wire:model="shippingProvider" class="form-select">
+            <select id="shippingProvider" wire:model="shippingProvider" class="form-select">
                 <option value="">Izaberi dostavljača</option>
                 <!-- Bosnia -->
                 <option value="bh_posta">BH Pošta</option>
@@ -180,7 +180,7 @@
             <!-- Tenant admin data -->
             <h2 class="text-lg">Vaš račun</h2>
             <label class="font-medium" for="user_name"> Korisničko ime <span style="color:red">*</span></label>
-            <input wire:model="user_name" id="user_name" @if ($errors->has('user_name')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="text" name="user_name" required autofocus autocomplete="user_name" />
+            <input wire:model="user_name" id="user_name" @if ($errors->has('user_name')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="text" name="user_name" required autofocus autocomplete="username" />
             @error('user_name')
             <!-- Validation failed message -->
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
@@ -188,7 +188,7 @@
 
             <!-- Email Address -->
             <label class="font-medium" for="user_email"> Email <span style="color:red">*</span></label>
-            <input wire:model="user_email" id="user_email" @if ($errors->has('user_email')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="email" name="email" required autocomplete="user_email" />
+            <input wire:model="user_email" id="user_email" @if ($errors->has('user_email')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="email" name="user_email" required autocomplete="email" />
             @error('user_email')
             <!-- Validation failed message -->
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
@@ -198,7 +198,7 @@
             <!-- Password -->
             <label class="font-medium" for="user_password"> Lozinka <span style="color:red">*</span></label>
 
-            <input wire:model="user_password" id="user_password" @if ($errors->has('user_password')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="password" name="user_password" required autocomplete="new-password"/>
+            <input wire:model="user_password" id="user_password" @if ($errors->has('user_password')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="password" name="user_password" required autocomplete="current-password"/>
             @error('user_password')
             <!-- Validation failed message -->
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
@@ -207,7 +207,7 @@
             <!-- Confirm Password -->
             <label class="font-medium" for="user_password_confirmation"> Potvrdi lozinku</label>
             <input wire:model="user_password_confirmation" id="user_password_confirmation" @if ($errors->has('password_confirmation')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="password" name="user_password_confirmation" required />
-            <div class="mt-6 items-center flex flex-col sm:flex-row justify-items-center mb-[2rem]  gap-y-[0.5rem]">
+            <div class="mt-6 items-center gap-2y flex flex-col sm:flex-row justify-items-center mb-[2rem]  gap-y-[0.5rem]">
                 <input id="policyCheckbox" type="checkbox" name="policy">
                 <label for="policyCheckbox"> Slažem se s <a href="/#footer" class="underline text-cornflowerblue">Uvjetima korištenja i Politikom privatnosti.</a></label>
                 @error('policy')
