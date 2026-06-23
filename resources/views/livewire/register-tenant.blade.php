@@ -160,7 +160,7 @@
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
             @enderror
             <!-- Courier costs -->
-            <label class="font-medium" for="shippingCost">Procjenjeni troškovi dostave (može se dodati kasnije)</label>
+            <label class="font-medium" for="shippingCost">Procjenjeni troškovi dostave u odabranoj valuti (može se dodati kasnije)</label>
             <input wire:model="shippingCost" id="shippingCost" @if ($errors->has('shippingCost')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" placeholder="" type="number" name="shippingCost" min="0" step="0.01"></input>
             @error('shippingCost')
             <!-- Validation failed message -->

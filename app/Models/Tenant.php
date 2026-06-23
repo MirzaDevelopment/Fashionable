@@ -12,7 +12,17 @@ class Tenant extends Model
 
     protected $table = 'tenants';
 
-
+        protected $fillable = [
+        'tenant_name',
+        'slug',
+        'logo_image_id',
+        'cover_image_id',
+        'currency',
+        'phone',
+        'shipping_provider',
+        'shipping_cost',
+        'free_shipping_threshold',
+    ];
     protected $casts = [
         'is_active' => 'boolean',
         'shippingCost' => 'decimal:2',
