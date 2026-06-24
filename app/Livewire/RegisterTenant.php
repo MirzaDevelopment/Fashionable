@@ -4,8 +4,15 @@ namespace App\Livewire;
 
 use Livewire\Component;
 use App\Models\User;
+use App\Models\Tenant;
+use App\Models\Image;
+use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Validate;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Hash;
+use Intervention\Image\Encoders\WebpEncoder;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\Rules;
 use Livewire\WithFileUploads;
@@ -15,6 +22,7 @@ class RegisterTenant extends Component
     use WithFileUploads;
 
     //Tenant part
+    public bool $isUploading = false; //Toggle property to prevet form submit spam
     #[Validate]
     public string $tenantName;
     #[Validate]
@@ -78,11 +86,12 @@ class RegisterTenant extends Component
 
             'shippingProviderOther' => ['nullable', 'string', 'max:255', 'required_if:shippingProvider,other'],
 
-            'shippingCost' => ['nullable','numeric', 'min:0', 'decimal:0,2'],
-            'freeShippingThreshold' => ['nullable', 'numeric', 'min:0','decimal:0,2'],
+            'shippingCost' => ['nullable', 'numeric', 'min:0', 'decimal:0,2'],
+            'freeShippingThreshold' => ['nullable', 'numeric', 'min:0', 'decimal:0,2'],
             //User validation
             'user_name' => ['required', 'string', 'max:255'],
             'user_email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'g-recaptcha-response' => 'required|recaptchav3:register,0.5',
             'user_password' => ['required', 'confirmed', Rules\Password::defaults()],
 
         ];
@@ -152,10 +161,80 @@ class RegisterTenant extends Component
 
     public function registerTenant()
     {
+        if ($this->isUploading) {
+            return null; // Prevent further submissions if already uploading
+        }
+
         $this->validate();
+
+        //Beginning transaction
+        DB::beginTransaction();
+        try {
+            //Inserting tenant logo in category_images table and on
+            $logoPath = ($this->logoImage);
+            //ImageManager class instance
+            $manager = new ImageManager(Driver::class);
+           
+
+            $RawName = $logoPath->getClientOriginalName();
+            //Store the original default size image
+            $realPath = $logoPath->store("images", "public");
+            //Hash the new resized name
+            $hashedWebPName = md5(time() . $RawName) . ".webp";
+            //Using intervention package to resize and encode to webP
+            $image_200x200 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 200)->encode(new WebpEncoder(quality: 80));
+            $image_400x400 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 400)->encode(new WebpEncoder(quality: 80));
+
+            //Saving in appropriate path
+            $image_200x200->save(storage_path("app/public/images/200x200/{$hashedWebPName}"));
+            $image_400x400->save(storage_path("app/public/images/400x400/{$hashedWebPName}"));
+
+            //Finally saving the path to database
+            $logoImage = Image::create([
+                'image_path'=>"logo",
+                'image_path' => $realPath, //Default image size
+                'image_320x320' => null,
+                'image_400x400' => 'images/400x400/' . $hashedWebPName,
+                'image_800x800' => null,
+                'image_1200x1200' => null,
+
+            ]);
+
+
+            //Inserting into tenant table
+            $tenant = Tenant::create([
+                'tenant_name' => ucfirst($this->tenantName),
+                'slug' => $this->slug,
+                'logo_image_id' => $logoImage->id,
+                'cover_image_id' => $coverImageId,
+                'currency' => $this->curency,
+                'phone' => $this->phone,
+                'shipping_provider' => $this->shippingProvider, //Or shippingProviderOther
+                'shipping_cost' => $this->shippingCost,
+                'free_shipping_threshold' => $this->freeShippingThreshold
+
+
+            ]);
+
+            $user = User::create([
+                'name' => $this->user_name,
+                'email' => $this->user_email,
+                'password' => Hash::make($this->user_password),
+                'role' => 'admin',
+                'tenant_id' => $tenant->id
+            ]);
+
+
+            DB::commit();
+            $this->isUploading = true;
+            return redirect()->back()->with("statusTenant", "Vaša prodavnica je uspješno kreirana!");
+        } catch (\Exception $e) {
+            DB::rollBack(); // Rollback the transaction on error
+            $this->isUploading = false;
+            Log::error('Error occurred: ' . $e->getMessage());
+            return redirect()->back()->with("errorException", "Nastao je problem prilikom kreiranja prodavnice. Molimo pokušajte ponovo.");
+        }
     }
-
-
 
 
 
