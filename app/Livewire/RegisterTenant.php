@@ -47,13 +47,15 @@ class RegisterTenant extends Component
     public $freeShippingThreshold = null;
     #[Validate]
     public string $plan = "free";
+    public $recaptcha;
+
 
     //User part (user will be added with appropriate tenant_id with admin role)
     public string $user_name;
     public string $user_email;
     public string $user_password;
     public string $user_password_confirmation;
-
+    public bool $policy = false;
 
     protected function rules(): array
     {
@@ -88,10 +90,12 @@ class RegisterTenant extends Component
 
             'shippingCost' => ['nullable', 'numeric', 'min:0', 'decimal:0,2'],
             'freeShippingThreshold' => ['nullable', 'numeric', 'min:0', 'decimal:0,2'],
+
             //User validation
             'user_name' => ['required', 'string', 'max:255'],
             'user_email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'g-recaptcha-response' => 'required|recaptchav3:register,0.5',
+            'policy' => ['accepted'],
+            'recaptcha' => 'required|recaptchav3:recaptchaHidden,0.5',
             'user_password' => ['required', 'confirmed', Rules\Password::defaults()],
 
         ];
@@ -145,6 +149,8 @@ class RegisterTenant extends Component
             'user_email.max' => 'Email adresa ne smije imati više od 255 karaktera.',
             'user_email.unique' => 'Ova email adresa je već registrovana.',
 
+            'policy.accepted' => 'Morate prihvatiti Politiku privatnosti i Uslove korištenja.',
+
             'user_password.required' => 'Lozinka je obavezna.',
             'user_password.confirmed' => 'Lozinke se ne podudaraju.',
             'user_password.min' => 'Lozinka mora imati najmanje :min karaktera.',
@@ -174,7 +180,7 @@ class RegisterTenant extends Component
             $logoPath = ($this->logoImage);
             //ImageManager class instance
             $manager = new ImageManager(Driver::class);
-           
+
 
             $RawName = $logoPath->getClientOriginalName();
             //Store the original default size image
@@ -191,7 +197,7 @@ class RegisterTenant extends Component
 
             //Finally saving the path to database
             $logoImage = Image::create([
-                'image_path'=>"logo",
+                'image_type' => "logo",
                 'image_path' => $realPath, //Default image size
                 'image_320x320' => null,
                 'image_400x400' => 'images/400x400/' . $hashedWebPName,

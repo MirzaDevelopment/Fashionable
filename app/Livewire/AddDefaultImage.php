@@ -95,6 +95,7 @@ public function defaultImageUpload():?RedirectResponse
         $image_1200x1200->save(storage_path("app/public/images/1200x1200/{$defaultImageName}"));
         //Finally saving the path to database
         $imageIdArray[] = Image::create([
+            'image_type'=>"default",
             'image_path' => $realPath, //Default image size
             'image_320x320' => 'images/320x320/' . $defaultImageName,
             'image_400x400' => 'images/400x400/' . $defaultImageName,

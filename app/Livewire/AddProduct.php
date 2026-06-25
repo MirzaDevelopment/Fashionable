@@ -437,6 +437,7 @@ class AddProduct extends Component
                 $image_1200x1200->save(storage_path("app/public/images/1200x1200/{$hashedWebPName}"));
                 //Finally saving the path to database
                 $imageIdArray[] = Image::create([
+                    'image_type'=>"product",
                     'image_path' => $realPath, //Default image size
                     'image_320x320' => 'images/320x320/' . $hashedWebPName,
                     'image_400x400' => 'images/400x400/' . $hashedWebPName,

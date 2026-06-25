@@ -1,4 +1,5 @@
 <div class="min-h-screen bg-gradient-to-br from-white via-slate-50 to-blue-50"> <!-- Frontend livewire component for tenant registration -->
+    {!! RecaptchaV3::initJs(['async' => true, 'defer' => true]) !!}
     <h1 class="text-2xl  p-6">Kreirajte svoju prodavnicu</h1>
     <hr class="mb-8 m-auto w-[35%]">
     <section wire:key="step-1" class="sm:max-w-[80%] xl:max-w-[50%] w-fit sm:p-6 mt-10 m-auto place-content-evenly bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
@@ -207,8 +208,8 @@
             <!-- Confirm Password -->
             <label class="font-medium" for="user_password_confirmation"> Potvrdi lozinku</label>
             <input wire:model="user_password_confirmation" id="user_password_confirmation" @if ($errors->has('password_confirmation')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="password" name="user_password_confirmation" required />
-            <div class="mt-6 items-center gap-2y flex flex-col sm:flex-row justify-items-center mb-[2rem]  gap-y-[0.5rem]">
-                <input id="policyCheckbox" type="checkbox" name="policy">
+            <div class="mt-6 items-center gap-2y flex flex-col sm:flex-row justify-items-center mb-[2rem]  gap-x-[0.5rem]">
+                <input id="policyCheckbox" wire:model="policy" type="checkbox" name="policy">
                 <label for="policyCheckbox"> Slažem se s <a href="/#footer" class="underline text-cornflowerblue">Uvjetima korištenja i Politikom privatnosti.</a></label>
                 @error('policy')
                 <!-- Validation failed message -->
@@ -219,9 +220,22 @@
         </div>
 
     </section>
-    <x-primary-button wire:click="registerTenant" wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="mt-6 mb-6 justify-center sm:max-w-[50%] m-auto h-[50px]">
 
-        {{ __('Kreiraj moju online prodavnicu') }}
+    
+        <a href="/" class="inline-block w-fit mb-8 lg:mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
+            Natrag
+        </a>
+        {!! RecaptchaV3::field('recaptchaHidden') !!}
+        <input type="hidden" wire:model="recaptcha" name="g-recaptcha-response">
+        <x-primary-button wire:click="registerTenant" wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="mt-6 mb-6 justify-center sm:max-w-[50%] m-auto h-[50px]">
 
-    </x-primary-button>
+            {{ __('Kreiraj moju online prodavnicu') }}
+
+        </x-primary-button>
+  
+    @if ($errors->has('g-recaptcha-response'))
+    <span class="help-block">
+        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+    </span>
+    @endif
 </div>
