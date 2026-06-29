@@ -176,6 +176,10 @@ class RegisterTenant extends Component
         //Beginning transaction
         DB::beginTransaction();
         try {
+            /*
+            PART I, CODE FOR LOGO AND COVER
+            */
+            //Backend code for tenant logo
             //Inserting tenant logo in category_images table and on
             $logoPath = ($this->logoImage);
             //ImageManager class instance
@@ -206,13 +210,47 @@ class RegisterTenant extends Component
 
             ]);
 
+            //Backend code for tenant Cover
+            //Inserting tenant cover in category_images table and on
+            $coverPath = ($this->coverImage);
+            //ImageManager class instance
+            $manager = new ImageManager(Driver::class);
+
+
+            $RawName = $coverPath->getClientOriginalName();
+            //Store the original default size image
+            $realPath = $coverPath->store("images", "public");
+            //Hash the new resized name
+            $hashedWebPName = md5(time() . $RawName) . ".webp";
+            //Using intervention package to resize and encode to webP
+            $image_200x200 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 200)->encode(new WebpEncoder(quality: 80));
+            $image_400x400 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 400)->encode(new WebpEncoder(quality: 80));
+
+            //Saving in appropriate path
+            $image_200x200->save(storage_path("app/public/images/200x200/{$hashedWebPName}"));
+            $image_400x400->save(storage_path("app/public/images/400x400/{$hashedWebPName}"));
+
+            //Finally saving the path to database
+            $coverImage = Image::create([
+                'image_type' => "cover",
+                'image_path' => $realPath, //Default image size
+                'image_320x320' => null,
+                'image_400x400' => 'images/400x400/' . $hashedWebPName,
+                'image_800x800' => null,
+                'image_1200x1200' => null,
+
+            ]);
+
+            /*
+            PART II, CODE FOR GENERAL TENANT INSERT IN TABLE
+            */
 
             //Inserting into tenant table
             $tenant = Tenant::create([
                 'tenant_name' => ucfirst($this->tenantName),
                 'slug' => $this->slug,
                 'logo_image_id' => $logoImage->id,
-                'cover_image_id' => $coverImageId,
+                'cover_image_id' => $coverImage->Id,
                 'currency' => $this->curency,
                 'phone' => $this->phone,
                 'shipping_provider' => $this->shippingProvider, //Or shippingProviderOther
@@ -221,7 +259,9 @@ class RegisterTenant extends Component
 
 
             ]);
-
+            /*
+            PART III, CODE FOR ADDING AN ADMIN ASSOCIATED WITH TENANT IN USER TABLE
+            */
             $user = User::create([
                 'name' => $this->user_name,
                 'email' => $this->user_email,

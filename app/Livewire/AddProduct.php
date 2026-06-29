@@ -297,13 +297,13 @@ class AddProduct extends Component
             return null; // Prevent further submissions if already uploading
         }
 
-        
-        if(empty($this->productName) | empty($this->productDescription) | empty($this->productPrice) | empty($this->colorSelect) | empty($this->genderSelect) | empty($this->materialSelect) | empty ($this->sizeSelect) | empty($this->typeSelect)|empty($this->productImage)){
-          $this->validationFailedExtraMessage="Greška! Molimo provjerite da li ste popunili sve obavezne kategorije!";
+
+        if (empty($this->productName) | empty($this->productDescription) | empty($this->productPrice) | empty($this->colorSelect) | empty($this->genderSelect) | empty($this->materialSelect) | empty($this->sizeSelect) | empty($this->typeSelect) | empty($this->productImage)) {
+            $this->validationFailedExtraMessage = "Greška! Molimo provjerite da li ste popunili sve obavezne kategorije!";
         }
 
         $this->validate();
- 
+
         //Making sure both discount and dates are selected
         if (!(empty($this->productDiscount)) && empty($this->startDate) && empty($this->endDate)) {
 
@@ -437,7 +437,7 @@ class AddProduct extends Component
                 $image_1200x1200->save(storage_path("app/public/images/1200x1200/{$hashedWebPName}"));
                 //Finally saving the path to database
                 $imageIdArray[] = Image::create([
-                    'image_type'=>"product",
+                    'image_type' => "product",
                     'image_path' => $realPath, //Default image size
                     'image_320x320' => 'images/320x320/' . $hashedWebPName,
                     'image_400x400' => 'images/400x400/' . $hashedWebPName,
@@ -487,8 +487,8 @@ class AddProduct extends Component
                 'start_date' => $this->startDate,
                 'end_date' => $this->endDate,
             ]);
-          
-            session(['newProductModel' =>$product]);
+
+            session(['newProductModel' => $product]);
 
             /*
         Part IV - return message
