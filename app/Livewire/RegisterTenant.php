@@ -165,7 +165,7 @@ class RegisterTenant extends Component
 
 
 
-    public function registerTenant()
+    public function registerTenant():?RedirectResponse
     {
         if ($this->isUploading) {
             return null; // Prevent further submissions if already uploading
