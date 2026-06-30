@@ -1,3 +1,4 @@
+<div>
 <div class="min-h-screen bg-gradient-to-br from-white via-slate-50 to-blue-50"> <!-- Frontend livewire component for tenant registration -->
     {!! RecaptchaV3::initJs(['async' => true, 'defer' => true]) !!}
     <h1 class="text-2xl  p-6">Kreirajte svoju prodavnicu</h1>
@@ -189,8 +190,8 @@
 
             <!-- Email Address -->
             <label class="font-medium" for="user_email"> Email <span style="color:red">*</span></label>
-            <input wire:model="user_email" id="user_email" @if ($errors->has('user_email')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="email" name="user_email" required autocomplete="email" />
-            @error('user_email')
+            <input wire:model="email" id="user_email" @if ($errors->has('email')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="email" name="email" required autocomplete="email" />
+            @error('email')
             <!-- Validation failed message -->
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
             @enderror
@@ -232,10 +233,23 @@
             {{ __('Kreiraj moju online prodavnicu') }}
 
         </x-primary-button>
+          @if (session('status'))
+                <!-- Successful insert message -->
+                <div class="lg:col-span-2 lg2:col-span-1 lg2:col-start-4 lg:col-start-3 lg:row-start-3 row-start-2" x-data="{open:true}">
+                    <div class="text-[#004085] rounded-md p-2.5 bg-[#cce5ff] justify-center" x-show="open" x-on:click.outside="open=false" x-transition>{{ session('status')}}</div>
+                </div>
+                <!-- Resetting input -->
+                @elseif(session('errorException'))
+                <!-- Failed insert message -->
+                <div class="lg:col-span-2 lg2:col-span-1 lg2:col-start-4 lg:col-start-3 lg:row-start-3 row-start-2" x-data="{open:true}">
+                    <div class="text-[#721c24] rounded-md bg-[#f8d7da] p-2.5 justify-center" x-show="open" x-on:click.outside="open=false" x-transition>{{ session('errorException')}}</div>
+                </div>
+                @endif
   
     @if ($errors->has('g-recaptcha-response'))
     <span class="help-block">
         <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
     </span>
     @endif
+</div>
 </div>

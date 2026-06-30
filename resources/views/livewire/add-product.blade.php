@@ -189,7 +189,7 @@
                 <x-primary-button onclick="location.reload();" class="justify-center row-start-2 xl:col-span-2 xl:col-start-3 col-start-2 lg:col-start-3 lg:col-span-2 lg2:col-span-1 lg2:col-start-4">
                     {{ __('Očisti sve') }}
                 </x-primary-button>
-                @if (session('status'))
+                @if (session('statusTenant'))
                 <!-- Successful insert message -->
                 <div class="lg:col-span-2 lg2:col-span-1 lg2:col-start-4 lg:col-start-3 lg:row-start-3 row-start-2" x-data="{open:true}">
                     <div class="text-[#004085] rounded-md p-2.5 bg-[#cce5ff] justify-center" x-show="open" x-on:click.outside="open=false" x-transition>{{ session('status')}}</div>

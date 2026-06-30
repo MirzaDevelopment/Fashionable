@@ -52,7 +52,7 @@ class RegisterTenant extends Component
 
     //User part (user will be added with appropriate tenant_id with admin role)
     public string $user_name;
-    public string $user_email;
+    public string $email;
     public string $user_password;
     public string $user_password_confirmation;
     public bool $policy = false;
@@ -93,7 +93,7 @@ class RegisterTenant extends Component
 
             //User validation
             'user_name' => ['required', 'string', 'max:255'],
-            'user_email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'policy' => ['accepted'],
             'recaptcha' => 'required|recaptchav3:recaptchaHidden,0.5',
             'user_password' => ['required', 'confirmed', Rules\Password::defaults()],
@@ -142,12 +142,12 @@ class RegisterTenant extends Component
             'user_name.string' => 'Ime mora biti tekst.',
             'user_name.max' => 'Ime ne smije imati više od 255 karaktera.',
 
-            'user_email.required' => 'Email adresa je obavezna.',
-            'user_email.string' => 'Email adresa mora biti tekst.',
-            'user_email.lowercase' => 'Email adresa mora biti napisana malim slovima.',
-            'user_email.email' => 'Unesite ispravnu email adresu.',
-            'user_email.max' => 'Email adresa ne smije imati više od 255 karaktera.',
-            'user_email.unique' => 'Ova email adresa je već registrovana.',
+            'email.required' => 'Email adresa je obavezna.',
+            'email.string' => 'Email adresa mora biti tekst.',
+            'email.lowercase' => 'Email adresa mora biti napisana malim slovima.',
+            'email.email' => 'Unesite ispravnu email adresu.',
+            'email.max' => 'Email adresa ne smije imati više od 255 karaktera.',
+            'email.unique' => 'Ova email adresa je već registrovana.',
 
             'policy.accepted' => 'Morate prihvatiti Politiku privatnosti i Uslove korištenja.',
 
@@ -165,7 +165,7 @@ class RegisterTenant extends Component
 
 
 
-    public function registerTenant():?RedirectResponse
+    public function registerTenant(): ?RedirectResponse
     {
         if ($this->isUploading) {
             return null; // Prevent further submissions if already uploading
@@ -176,71 +176,72 @@ class RegisterTenant extends Component
         //Beginning transaction
         DB::beginTransaction();
         try {
+            dd("kita");
             /*
             PART I, CODE FOR LOGO AND COVER
             */
             //Backend code for tenant logo
             //Inserting tenant logo in category_images table and on
-            $logoPath = ($this->logoImage);
-            //ImageManager class instance
-            $manager = new ImageManager(Driver::class);
+            if ($this->logoImage) {
+                $logoPath = ($this->logoImage);
+                //ImageManager class instance
+                $manager = new ImageManager(Driver::class);
+                $RawName = $logoPath->getClientOriginalName();
+                //Store the original default size image
+                $realPath = $logoPath->store("images", "public");
+                //Hash the new resized name
+                $hashedWebPName = md5(time() . $RawName) . ".webp";
+                //Using intervention package to resize and encode to webP
+                $image_200x200 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 200)->encode(new WebpEncoder(quality: 80));
+                $image_400x400 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 400)->encode(new WebpEncoder(quality: 80));
 
+                //Saving in appropriate path
+                $image_200x200->save(storage_path("app/public/images/200x200/{$hashedWebPName}"));
+                $image_400x400->save(storage_path("app/public/images/400x400/{$hashedWebPName}"));
 
-            $RawName = $logoPath->getClientOriginalName();
-            //Store the original default size image
-            $realPath = $logoPath->store("images", "public");
-            //Hash the new resized name
-            $hashedWebPName = md5(time() . $RawName) . ".webp";
-            //Using intervention package to resize and encode to webP
-            $image_200x200 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 200)->encode(new WebpEncoder(quality: 80));
-            $image_400x400 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 400)->encode(new WebpEncoder(quality: 80));
+                //Finally saving the path to database
+                $logoImage = Image::create([
+                    'image_type' => "logo",
+                    'image_path' => $realPath, //Default image size
+                    'image_320x320' => null,
+                    'image_400x400' => 'images/400x400/' . $hashedWebPName,
+                    'image_800x800' => null,
+                    'image_1200x1200' => null,
 
-            //Saving in appropriate path
-            $image_200x200->save(storage_path("app/public/images/200x200/{$hashedWebPName}"));
-            $image_400x400->save(storage_path("app/public/images/400x400/{$hashedWebPName}"));
-
-            //Finally saving the path to database
-            $logoImage = Image::create([
-                'image_type' => "logo",
-                'image_path' => $realPath, //Default image size
-                'image_320x320' => null,
-                'image_400x400' => 'images/400x400/' . $hashedWebPName,
-                'image_800x800' => null,
-                'image_1200x1200' => null,
-
-            ]);
-
+                ]);
+            }
             //Backend code for tenant Cover
             //Inserting tenant cover in category_images table and on
-            $coverPath = ($this->coverImage);
-            //ImageManager class instance
-            $manager = new ImageManager(Driver::class);
+            if ($this->coverImage) {
+                $coverPath = ($this->coverImage);
+                //ImageManager class instance
+                $manager = new ImageManager(Driver::class);
 
 
-            $RawName = $coverPath->getClientOriginalName();
-            //Store the original default size image
-            $realPath = $coverPath->store("images", "public");
-            //Hash the new resized name
-            $hashedWebPName = md5(time() . $RawName) . ".webp";
-            //Using intervention package to resize and encode to webP
-            $image_200x200 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 200)->encode(new WebpEncoder(quality: 80));
-            $image_400x400 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 400)->encode(new WebpEncoder(quality: 80));
+                $RawName = $coverPath->getClientOriginalName();
+                //Store the original default size image
+                $realPath = $coverPath->store("images", "public");
+                //Hash the new resized name
+                $hashedWebPName = md5(time() . $RawName) . ".webp";
+                //Using intervention package to resize and encode to webP
+                $image_200x200 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 200)->encode(new WebpEncoder(quality: 80));
+                $image_400x400 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 400)->encode(new WebpEncoder(quality: 80));
 
-            //Saving in appropriate path
-            $image_200x200->save(storage_path("app/public/images/200x200/{$hashedWebPName}"));
-            $image_400x400->save(storage_path("app/public/images/400x400/{$hashedWebPName}"));
+                //Saving in appropriate path
+                $image_200x200->save(storage_path("app/public/images/200x200/{$hashedWebPName}"));
+                $image_400x400->save(storage_path("app/public/images/400x400/{$hashedWebPName}"));
 
-            //Finally saving the path to database
-            $coverImage = Image::create([
-                'image_type' => "cover",
-                'image_path' => $realPath, //Default image size
-                'image_320x320' => null,
-                'image_400x400' => 'images/400x400/' . $hashedWebPName,
-                'image_800x800' => null,
-                'image_1200x1200' => null,
+                //Finally saving the path to database
+                $coverImage = Image::create([
+                    'image_type' => "cover",
+                    'image_path' => $realPath, //Default image size
+                    'image_320x320' => null,
+                    'image_400x400' => 'images/400x400/' . $hashedWebPName,
+                    'image_800x800' => null,
+                    'image_1200x1200' => null,
 
-            ]);
-
+                ]);
+            }
             /*
             PART II, CODE FOR GENERAL TENANT INSERT IN TABLE
             */
@@ -262,9 +263,9 @@ class RegisterTenant extends Component
             /*
             PART III, CODE FOR ADDING AN ADMIN ASSOCIATED WITH TENANT IN USER TABLE
             */
-            $user = User::create([
+            User::create([
                 'name' => $this->user_name,
-                'email' => $this->user_email,
+                'email' => $this->email,
                 'password' => Hash::make($this->user_password),
                 'role' => 'admin',
                 'tenant_id' => $tenant->id
