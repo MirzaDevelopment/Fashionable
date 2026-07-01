@@ -226,19 +226,17 @@
         <a href="/" class="inline-block w-fit mb-8 lg:mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
             Natrag
         </a>
-        {!! RecaptchaV3::field('recaptchaHidden') !!}
-        <input type="hidden" wire:model="recaptcha" name="g-recaptcha-response">
-        <x-primary-button wire:click="registerTenant" wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="mt-6 mb-6 justify-center sm:max-w-[50%] m-auto h-[50px]">
+        
+        <x-primary-button wire:click="registerTenant"  wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="mt-6 mb-6 justify-center sm:max-w-[50%] m-auto h-[50px]">
 
             {{ __('Kreiraj moju online prodavnicu') }}
 
         </x-primary-button>
-          @if (session('status'))
+          @if (session('statusTenant'))
                 <!-- Successful insert message -->
                 <div class="lg:col-span-2 lg2:col-span-1 lg2:col-start-4 lg:col-start-3 lg:row-start-3 row-start-2" x-data="{open:true}">
-                    <div class="text-[#004085] rounded-md p-2.5 bg-[#cce5ff] justify-center" x-show="open" x-on:click.outside="open=false" x-transition>{{ session('status')}}</div>
+                    <div class="text-[#004085] rounded-md p-2.5 bg-[#cce5ff] justify-center" x-show="open" x-on:click.outside="open=false" x-transition>{{ session('statusTenant')}}</div>
                 </div>
-                <!-- Resetting input -->
                 @elseif(session('errorException'))
                 <!-- Failed insert message -->
                 <div class="lg:col-span-2 lg2:col-span-1 lg2:col-start-4 lg:col-start-3 lg:row-start-3 row-start-2" x-data="{open:true}">
@@ -246,9 +244,9 @@
                 </div>
                 @endif
   
-    @if ($errors->has('g-recaptcha-response'))
+    @if ($errors->has('recaptcha'))
     <span class="help-block">
-        <strong>{{ $errors->first('g-recaptcha-response') }}</strong>
+        <strong>{{ $errors->first('recaptcha') }}</strong>
     </span>
     @endif
 </div>

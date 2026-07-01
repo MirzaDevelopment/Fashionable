@@ -51,9 +51,13 @@ class RegisterTenant extends Component
 
 
     //User part (user will be added with appropriate tenant_id with admin role)
+    #[Validate]
     public string $user_name;
+    #[Validate]
     public string $email;
+    #[Validate]
     public string $user_password;
+    #[Validate]
     public string $user_password_confirmation;
     public bool $policy = false;
 
