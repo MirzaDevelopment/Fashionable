@@ -60,7 +60,7 @@
     </script>
     <!-- Livewire scripts LAST -->
     @livewireScripts
-    
+
 </body>
 
 </html>

@@ -10,7 +10,9 @@ namespace App\Livewire;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use DutchCodingCompany\LivewireRecaptcha\ValidatesRecaptcha;
 use App\Models\Question;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 
 class AddQuestions extends Component
@@ -22,7 +24,7 @@ class AddQuestions extends Component
     #[Validate]
     public string $question;
     public string $status;
-
+    public string $gRecaptchaResponse;
 
     protected function rules(): array
     {
@@ -56,10 +58,9 @@ class AddQuestions extends Component
         'email.email' => 'Molimo unesite ispravan format email adrese.',
 
     ];
-
-    public function uploadQuestion()
+    #[ValidatesRecaptcha]
+    public function uploadQuestion(): ?RedirectResponse
     {
-
 
         $this->validate();
         //Beginning transaction
@@ -71,7 +72,7 @@ class AddQuestions extends Component
                 'user_email' => $this->email,
                 'question' => $this->question,
                 'status' => "neodgovoreno",
-                
+
 
             ]);
             DB::commit();

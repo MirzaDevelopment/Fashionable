@@ -1,12 +1,11 @@
 <div>
-    
+
     <div class="p-4 w-[300px] mx-auto  bg-white shadow-lg max-w-[300px]">
         <h2 class="text-3xl text-gray-900 font-bold">Kako Vam možemo pomoći?</h2>
-        {!! RecaptchaV3::initJs(['async' => true, 'defer' => true]) !!}
-        <form class="mt-8 space-y-5">
+        <form wire:submit="uploadQuestion" class="mt-8 space-y-5" wire:recaptcha>
             <div>
                 <label for="yourName" class='text-sm text-gray-900 font-medium mb-2 block'>Ime</label>
-                <input wire:model="userName"  id="yourName" type='text' placeholder='Unesi ime' class="w-full py-2.5 px-4 text-gray-800 bg-gray-100 border border-gray-200 focus:border-gray-900 focus:bg-transparent text-sm outline-0 transition-all" />
+                <input wire:model="userName" id="yourName" type='text' placeholder='Unesi ime' class="w-full py-2.5 px-4 text-gray-800 bg-gray-100 border border-gray-200 focus:border-gray-900 focus:bg-transparent text-sm outline-0 transition-all" />
             </div>
             @error('userName')
             <!-- Validation failed message -->
@@ -22,7 +21,7 @@
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
             @enderror
             <div>
-                <label for="message"  class='text-sm text-gray-900 font-medium mb-2 block'>Poruka</label>
+                <label for="message" class='text-sm text-gray-900 font-medium mb-2 block'>Poruka</label>
                 <textarea wire:model="question" autocomplete="off" id="message" placeholder='Unesi poruku' rows="6" class="w-full px-4 text-gray-800 bg-gray-100 border border-gray-200 focus:border-gray-900 focus:bg-transparent text-sm pt-3 outline-0 transition-all"></textarea>
 
             </div>
@@ -30,10 +29,12 @@
             <!-- Validation failed message -->
             <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
             @enderror
-            {!! RecaptchaV3::field('register') !!}
-            <button type='button' wire:click="uploadQuestion" class="text-white bg-gray-800 font-medium hover:bg-gray-700 active:bg-gray-900 tracking-wide text-sm px-4 py-2.5 w-full border-0 outline-0 cursor-pointer">Pošalji</button>
+            <button type="submit"  class="text-white bg-gray-800 font-medium hover:bg-gray-700 active:bg-gray-900 tracking-wide text-sm px-4 py-2.5 w-full border-0 outline-0 cursor-pointer">Pošalji</button>
 
         </form>
+        @if($errors->has('gRecaptchaResponse'))
+        <div class="alert alert-danger">{{ $errors->first('gRecaptchaResponse') }}</div>
+        @endif
         @if (session('status'))
         <!-- Successful insert message -->
         <div class="lg:col-span-2 lg2:col-span-1 lg2:col-start-4 lg:col-start-3 lg:row-start-3 row-start-2" x-data="{open:true}">
@@ -47,3 +48,5 @@
         @endif
     </div>
 </div>
+<!-- Add the `@livewireRecaptcha` Blade directive -->
+@livewireRecaptcha
