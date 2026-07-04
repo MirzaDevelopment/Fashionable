@@ -9,6 +9,7 @@ use App\Models\Image;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Validate;
 use Illuminate\Http\RedirectResponse;
+use DutchCodingCompany\LivewireRecaptcha\ValidatesRecaptcha;
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Encoders\WebpEncoder;
 use Intervention\Image\ImageManager;
@@ -47,7 +48,7 @@ class RegisterTenant extends Component
     public $freeShippingThreshold = null;
     #[Validate]
     public string $plan = "free";
-    public $recaptcha;
+    public string $gRecaptchaResponse;
 
 
     //User part (user will be added with appropriate tenant_id with admin role)
@@ -99,7 +100,6 @@ class RegisterTenant extends Component
             'user_name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'policy' => ['accepted'],
-            'recaptcha' => 'required|recaptchav3:recaptchaHidden,0.5',
             'user_password' => ['required', 'confirmed', Rules\Password::defaults()],
 
         ];
@@ -168,7 +168,7 @@ class RegisterTenant extends Component
     }
 
 
-
+    #[ValidatesRecaptcha]
     public function registerTenant(): ?RedirectResponse
     {
         if ($this->isUploading) {
