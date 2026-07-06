@@ -1,11 +1,9 @@
 <div>
     <div class="min-h-screen bg-gradient-to-br from-white via-slate-50 to-blue-50"> <!-- Frontend livewire component for tenant registration -->
-        {!! RecaptchaV3::initJs(['async' => true, 'defer' => true]) !!}
         <h1 class="text-2xl  p-6">Kreirajte svoju prodavnicu</h1>
         <hr class="mb-8 m-auto w-[35%]">
         <section wire:key="step-1" class="sm:max-w-[80%] xl:max-w-[50%] w-fit sm:p-6 mt-10 m-auto place-content-evenly bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
-            <div class="m-auto flex flex-col gap-y-6 p-8">
-                <form wire:submit="registerTenant" class="mt-8 space-y-5" wire:recaptcha>
+                <form class="m-auto flex flex-col gap-y-6 p-8" wire:submit="registerTenant" class="mt-8 space-y-5" wire:recaptcha>
                     <!-- Webshop data -->
                     <h2 class="text-lg">Osnovne informacije</h2>
                     <!-- Webshop title -->
@@ -176,8 +174,7 @@
                     <!-- Validation failed message -->
                     <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
                     @enderror
-                </form>
-            </div>
+                
         </section>
         <section wire:key="step-2" class="sm:p-6 mt-10 sm:max-w-[80%] xl:max-w-[50%] fit m-auto place-content-evenly bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
             <div class="m-auto flex flex-col gap-y-6 p-8">
@@ -234,6 +231,7 @@
             {{ __('Kreiraj moju online prodavnicu') }}
 
         </x-primary-button>
+        </form>
         @if (session('statusTenant'))
         <!-- Successful insert message -->
         <div class="lg:col-span-2 lg2:col-span-1 lg2:col-start-4 lg:col-start-3 lg:row-start-3 row-start-2" x-data="{open:true}">

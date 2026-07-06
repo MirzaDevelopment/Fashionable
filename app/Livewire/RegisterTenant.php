@@ -9,7 +9,7 @@ use App\Models\Image;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\Validate;
 use Illuminate\Http\RedirectResponse;
-use DutchCodingCompany\LivewireRecaptcha\ValidatesRecaptcha;
+use DutchCodingCompany\LivewireRecaptcha\ValidatesRecaptcha; //External recaptcha library for livewire
 use Illuminate\Support\Facades\Hash;
 use Intervention\Image\Encoders\WebpEncoder;
 use Intervention\Image\ImageManager;
@@ -48,7 +48,7 @@ class RegisterTenant extends Component
     public $freeShippingThreshold = null;
     #[Validate]
     public string $plan = "free";
-    public string $gRecaptchaResponse;
+    public string $gRecaptchaResponse;//required for recaptcha
 
 
     //User part (user will be added with appropriate tenant_id with admin role)
