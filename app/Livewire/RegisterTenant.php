@@ -180,7 +180,6 @@ class RegisterTenant extends Component
         //Beginning transaction
         DB::beginTransaction();
         try {
-            dd("kita");
             /*
             PART I, CODE FOR LOGO AND COVER
             */
