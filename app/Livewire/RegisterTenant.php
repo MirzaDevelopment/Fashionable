@@ -29,9 +29,9 @@ class RegisterTenant extends Component
     #[Validate]
     public string $slug;
     #[Validate]
-    public ?object $logoImage = null;
+    public ?object $logoImage = null; //The ones that user picked
     #[Validate]
-    public ?object $coverImage = null;
+    public ?object $coverImage = null;//The ones that user picked
     #[Validate]
     public string $currency = "EUR";
     #[Validate]
@@ -49,6 +49,11 @@ class RegisterTenant extends Component
     #[Validate]
     public string $plan = "free";
     public string $gRecaptchaResponse;//required for recaptcha
+    
+    public object $tenant;
+    //Properties that will store optimized images
+    public ?object $logoImageFinal=null;
+    public ?object $coverImageFinal=null;
 
 
     //User part (user will be added with appropriate tenant_id with admin role)
@@ -186,6 +191,7 @@ class RegisterTenant extends Component
             //Backend code for tenant logo
             //Inserting tenant logo in category_images table and on
             if ($this->logoImage) {
+                
                 $logoPath = ($this->logoImage);
                 //ImageManager class instance
                 $manager = new ImageManager(Driver::class);
@@ -203,7 +209,7 @@ class RegisterTenant extends Component
                 $image_400x400->save(storage_path("app/public/images/400x400/{$hashedWebPName}"));
 
                 //Finally saving the path to database
-                $logoImage = Image::create([
+                $this->logoImageFinal = Image::create([
                     'image_type' => "logo",
                     'image_path' => $realPath, //Default image size
                     'image_320x320' => null,
@@ -216,6 +222,7 @@ class RegisterTenant extends Component
             //Backend code for tenant Cover
             //Inserting tenant cover in category_images table and on
             if ($this->coverImage) {
+                
                 $coverPath = ($this->coverImage);
                 //ImageManager class instance
                 $manager = new ImageManager(Driver::class);
@@ -235,7 +242,7 @@ class RegisterTenant extends Component
                 $image_400x400->save(storage_path("app/public/images/400x400/{$hashedWebPName}"));
 
                 //Finally saving the path to database
-                $coverImage = Image::create([
+                $this->coverImageFinal = Image::create([
                     'image_type' => "cover",
                     'image_path' => $realPath, //Default image size
                     'image_320x320' => null,
@@ -248,14 +255,15 @@ class RegisterTenant extends Component
             /*
             PART II, CODE FOR GENERAL TENANT INSERT IN TABLE
             */
-
+            
+            
             //Inserting into tenant table
-            $tenant = Tenant::create([
+            $this->tenant = Tenant::create([
                 'tenant_name' => ucfirst($this->tenantName),
                 'slug' => $this->slug,
-                'logo_image_id' => $logoImage->id,
-                'cover_image_id' => $coverImage->Id,
-                'currency' => $this->curency,
+                'logo_image_id' => $this->logoImageFinal?->id,
+                'cover_image_id' => $this->coverImageFinal?->Id,
+                'currency' => $this->currency,
                 'phone' => $this->phone,
                 'shipping_provider' => $this->shippingProvider, //Or shippingProviderOther
                 'shipping_cost' => $this->shippingCost,
@@ -271,7 +279,7 @@ class RegisterTenant extends Component
                 'email' => $this->email,
                 'password' => Hash::make($this->user_password),
                 'role' => 'admin',
-                'tenant_id' => $tenant->id
+                'tenant_id' => $this->tenant->id
             ]);
 
 
