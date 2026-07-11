@@ -49,7 +49,8 @@ class RegisterTenant extends Component
     #[Validate]
     public string $plan = "free";
     public string $gRecaptchaResponse;//required for recaptcha
-    
+
+    //Property that will store the tenant object which is created by tenant
     public object $tenant;
     //Properties that will store optimized images
     public ?object $logoImageFinal=null;
