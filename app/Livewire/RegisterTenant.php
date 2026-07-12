@@ -192,7 +192,6 @@ class RegisterTenant extends Component
             //Backend code for tenant logo
             //Inserting tenant logo in category_images table and on
             if ($this->logoImage) {
-                
                 $logoPath = ($this->logoImage);
                 //ImageManager class instance
                 $manager = new ImageManager(Driver::class);
