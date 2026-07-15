@@ -12,7 +12,7 @@ class Image extends Model
 
     protected $table = 'category_images';
     protected $fillable = ['image_type',
-        'image_path', 'image_320x320','image_400x400', 'image_800x800', 'image_1200x1200'
+        'image_path', 'image_200x200', 'image_320x320','image_400x400', 'image_800x800', 'image_1200x1200'
     ];
     
     /***Many to many relationship with product***/

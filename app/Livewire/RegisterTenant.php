@@ -199,21 +199,22 @@ class RegisterTenant extends Component
                 //Store the original default size image
                 $realPath = $logoPath->store("images", "public");
                 //Hash the new resized name
-                $hashedWebPName = md5(time() . $RawName) . ".webp";
+                $hashedLogoWebPName = md5(time() . $RawName) . ".webp";//Vidjeti treba li ovo uopste???
                 //Using intervention package to resize and encode to webP
                 $image_200x200 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 200)->encode(new WebpEncoder(quality: 80));
                 $image_400x400 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 400)->encode(new WebpEncoder(quality: 80));
 
                 //Saving in appropriate path
-                $image_200x200->save(storage_path("app/public/images/200x200/{$hashedWebPName}"));
-                $image_400x400->save(storage_path("app/public/images/400x400/{$hashedWebPName}"));
+                $image_200x200->save(storage_path("app/public/images/200x200/{$hashedLogoWebPName}"));
+                $image_400x400->save(storage_path("app/public/images/400x400/{$hashedLogoWebPName}"));
 
                 //Finally saving the path to database
                 $this->logoImageFinal = Image::create([
                     'image_type' => "logo",
                     'image_path' => $realPath, //Default image size
+                    'image_200x200' => 'images/200x200/' . $hashedLogoWebPName,
                     'image_320x320' => null,
-                    'image_400x400' => 'images/400x400/' . $hashedWebPName,
+                    'image_400x400' => 'images/400x400/' . $hashedLogoWebPName,
                     'image_800x800' => null,
                     'image_1200x1200' => null,
 
@@ -232,21 +233,22 @@ class RegisterTenant extends Component
                 //Store the original default size image
                 $realPath = $coverPath->store("images", "public");
                 //Hash the new resized name
-                $hashedWebPName = md5(time() . $RawName) . ".webp";
+                $hashedCoverWebPName = md5(time() . $RawName) . ".webp";
                 //Using intervention package to resize and encode to webP
                 $image_200x200 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 200)->encode(new WebpEncoder(quality: 80));
                 $image_400x400 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 400)->encode(new WebpEncoder(quality: 80));
 
                 //Saving in appropriate path
-                $image_200x200->save(storage_path("app/public/images/200x200/{$hashedWebPName}"));
-                $image_400x400->save(storage_path("app/public/images/400x400/{$hashedWebPName}"));
+                $image_200x200->save(storage_path("app/public/images/200x200/{$hashedCoverWebPName}"));
+                $image_400x400->save(storage_path("app/public/images/400x400/{$hashedCoverWebPName}"));
 
                 //Finally saving the path to database
                 $this->coverImageFinal = Image::create([
                     'image_type' => "cover",
                     'image_path' => $realPath, //Default image size
+                    'image_200x200' => 'images/200x200/' . $hashedCoverWebPName,
                     'image_320x320' => null,
-                    'image_400x400' => 'images/400x400/' . $hashedWebPName,
+                    'image_400x400' => 'images/400x400/' . $hashedCoverWebPName,
                     'image_800x800' => null,
                     'image_1200x1200' => null,
 
