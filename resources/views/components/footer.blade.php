@@ -17,7 +17,6 @@
         <p class="md:text-xl  lg:text-[1.5rem]  2xl:text-[1.8rem]">Developed by Mirza Mehagić</p>
         <p class="md:text-xl  lg:text-[1.5rem]  2xl:text-[1.8rem]">Copyright © <?php echo date("Y"); ?></p>
         <p class="md:text-xl  lg:text-[1.5rem]  2xl:text-[1.8rem]">Mirza Mehagić All rights reserved</p>
-        <p class="md:text-xl  lg:text-[1.5rem]  2xl:text-[1.8rem]">Contact: mirza.mehagic@hotmail.com</p>
     </nav>
     <nav class="flex mt-[2rem] flex-row justify-center xl:col-start-1 xl:row-start-2 2xl:row-start-1  items-center self-end gap-[1rem]">
         <a href="https://www.facebook.com/mirza.mehagic" target="_blank"> <img class="w-[2rem] lg:w-[3rem]" src="{{ asset('storage/images/facebook.svg') }}" alt="facebook-logo" width="55" height="55" /></a>

@@ -66,7 +66,7 @@
                 @enderror
                 <!-- Webshop logo and cover image -->
                 <label class="font-medium" for="logoImage">Logo koji će koristiti vaša prodavnica</label>
-                <p class="text-xs">Napomena: Logo i naslovna slika (cover image) nisu obavezne kod registracije i mogu se dodati naknadno</p>
+                <p class="text-xs">Napomena: Logo i naslovna slika (cover image) nisu obavezne kod registracije i mogu se dodati naknadno. Ukoliko tokom registracije ne odaberete logo ili naslovnu sliku, aplikacija će na to predviđeno mjesto prikazati naziv vaše prodavnice</p>
                 <div class="overflow-scroll lg2:overflow-auto flex flex-col gap-6">
                     <p class="text-xs text-gray-400">*Ekstenzije PNG, JPG, JPEG, SVG, WEBP su dozvoljene.<br> Program automatski optimizira slike i slaže ih u odgovarajuće veličine. Nije potrebna prethodna optimizacija od strane korisnika.</p>
                     <div x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true" x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-cancel="uploading = false" x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">

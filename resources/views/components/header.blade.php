@@ -167,7 +167,7 @@
                     <a href="/shop#special-prices" class="text-sm font-medium text-gray-800 hover:text-black transition">
                         Najbolje cijene
                     </a>
-                    <a href="/sho#footer" class="text-sm font-medium text-gray-800 hover:text-black transition">
+                    <a href="/shop#footer" class="text-sm font-medium text-gray-800 hover:text-black transition">
                         O nama
                     </a>
                 </div>
