@@ -3,6 +3,8 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\Tenant;
 use App\Models\Image;
@@ -193,13 +195,44 @@ class RegisterTenant extends Component
             //Inserting tenant logo in category_images table and on
             if ($this->logoImage) {
                 $logoPath = ($this->logoImage);
+                $extension = strtolower($logoPath->getClientOriginalExtension());
+                  if ($extension === 'svg') {
+        $fileName = Str::uuid() . '.svg';
+        $realPath = $logoPath->storeAs(
+            'images',
+            $fileName,
+            'public'
+        );
+        Storage::copy(
+            "public/{$realPath}",
+            "public/images/200x200/{$fileName}"
+        );
+        Storage::copy(
+            "public/{$realPath}",
+            "public/images/400x400/{$fileName}"
+        );
+        // Saving in db
+        $this->logoImageFinal = Image::create([
+            'image_type'      => "logo",
+            'image_path'      => $realPath,
+            'image_200x200'   => 'images/200x200/' . $fileName,
+            'image_320x320'   => null,
+            'image_400x400'   => 'images/400x400/' . $fileName,
+            'image_800x800'   => null,
+            'image_1200x1200' => null,
+        ]);
+
+    } else {
+                //If users uploads other extensions than .svg
                 //ImageManager class instance
                 $manager = new ImageManager(Driver::class);
+                $extensions = [".jpg", ".jpeg", ".png"];
                 $RawName = $logoPath->getClientOriginalName();
                 //Store the original default size image
                 $realPath = $logoPath->store("images", "public");
+                $webPname = str_replace($extensions, ".webp", $RawName);
                 //Hash the new resized name
-                $hashedLogoWebPName = md5(time() . $RawName) . ".webp";//Vidjeti treba li ovo uopste???
+                $hashedLogoWebPName = md5(time() . $webPname);//Vidjeti treba li ovo uopste???
                 //Using intervention package to resize and encode to webP
                 $image_200x200 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 200)->encode(new WebpEncoder(quality: 80));
                 $image_400x400 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 400)->encode(new WebpEncoder(quality: 80));
@@ -227,13 +260,14 @@ class RegisterTenant extends Component
                 $coverPath = ($this->coverImage);
                 //ImageManager class instance
                 $manager = new ImageManager(Driver::class);
-
+                $extensions = [".jpg", ".jpeg", ".png", ".svg"];
 
                 $RawName = $coverPath->getClientOriginalName();
                 //Store the original default size image
                 $realPath = $coverPath->store("images", "public");
+                $webPname = str_replace($extensions, ".webp", $RawName);
                 //Hash the new resized name
-                $hashedCoverWebPName = md5(time() . $RawName) . ".webp";
+                $hashedCoverWebPName = md5(time() . $webPname) . ".webp";
                 //Using intervention package to resize and encode to webP
                 $image_200x200 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 200)->encode(new WebpEncoder(quality: 80));
                 $image_400x400 = $manager->read(storage_path("app/public/{$realPath}"))->scaleDown(width: 400)->encode(new WebpEncoder(quality: 80));
@@ -254,6 +288,7 @@ class RegisterTenant extends Component
 
                 ]);
             }
+            } 
             /*
             PART II, CODE FOR GENERAL TENANT INSERT IN TABLE
             */

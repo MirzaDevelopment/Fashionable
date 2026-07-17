@@ -85,10 +85,11 @@
                     @if ($logoImage)
                     @if (!$errors->has
                     ('logoImage'))
-                    <div class="ml-auto mr-auto">
-                        <p>Pregled slike</p>
+                    <div class="ml-auto mb-[4rem] mr-auto">
+                        <p class="mb-4">Odabrali ste ovaj logo:</p>
                         <img src="{{ $logoImage->temporaryUrl()}}" width="200" />
                     </div>
+                    <hr></hr>
                     @endif
                     @endif
                 </div>
