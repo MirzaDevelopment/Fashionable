@@ -7,14 +7,14 @@
                 <!-- Webshop data -->
                 <h2 class="text-lg">Osnovne informacije</h2>
                 <!-- Webshop title -->
-                <label class="font-medium" for="tenantName">Naziv <span style="color:red">*</span></label>
+                <label class="font-medium text-base" for="tenantName">Naziv <span style="color:red">*</span></label>
                 <input wire:model="tenantName" @if ($errors->has('tenantName')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" id="tenantName" placeholder="" type="text" name="tenantName" required autofocus autocomplete="name" />
                 @error('tenantName')
                 <!-- Validation failed message -->
                 <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
                 @enderror
                 <!-- Webshop URL-->
-                <label class="font-medium" for="slug">URL oznaka <span style="color:red">*</span></label>
+                <label class="font-medium text-base" for="slug">URL oznaka <span style="color:red">*</span></label>
                 <input wire:model.live.debounce.400ms="slug" id="slug" @if ($errors->has('slug')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" placeholder="" type="text" name="slug"></input>
                 <p class="text-xs text-gray-400">Url vaše online prodavnice će izgledati ovako: www.fashionable/<span class="font-semibold text-gray-700">{{$slug}}</span>.com</p>
                 @error('slug')
@@ -22,7 +22,7 @@
                 <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
                 @enderror
                 <!-- Webshop currency -->
-                <label class="font-medium">Valuta koju koristi vaša prodavnica</label>
+                <label class="font-medium text-base">Valuta koju koristi vaša prodavnica</label>
                 <div x-data="{ open: false }" class="relative w-full">
                     <button type="button" @click="open = !open" class="flex items-center justify-between w-full px-4 py-2 border rounded-lg bg-white">
                         <div class="flex items-center gap-2">
@@ -65,7 +65,7 @@
                 <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
                 @enderror
                 <!-- Webshop logo and cover image -->
-                <label class="font-medium" for="logoImage">Logo koji će koristiti vaša prodavnica</label>
+                <label class="font-medium text-base" for="logoImage">Logo koji će koristiti vaša prodavnica</label>
                 <p class="text-xs">Napomena: Logo i naslovna slika (cover image) nisu obavezne kod registracije i mogu se dodati naknadno. Ukoliko tokom registracije ne odaberete logo ili naslovnu sliku, aplikacija će na to predviđeno mjesto prikazati naziv vaše prodavnice</p>
                 <div class="overflow-scroll lg2:overflow-auto flex flex-col gap-6">
                     <p class="text-xs text-gray-400">*Ekstenzije PNG, JPG, JPEG, SVG, WEBP su dozvoljene.<br> Program automatski optimizira slike i slaže ih u odgovarajuće veličine. Nije potrebna prethodna optimizacija od strane korisnika.</p>
@@ -93,7 +93,7 @@
                     @endif
                     @endif
                 </div>
-                <label class="font-medium" for="coverImage">Naslovna slika koju će koristiti vaša prodavnica</label>
+                <label class="font-medium text-base" for="coverImage">Naslovna slika koju će koristiti vaša prodavnica</label>
                 <div class="overflow-scroll lg2:overflow-auto flex flex-col gap-6">
                     <p class="text-xs text-gray-400">*Ekstenzije PNG, JPEG, JPG, WEBP su dozvoljene.<br> Program automatski optimizira slike i slaže ih u odgovarajuće veličine. Nije potrebna prethodna optimizacija od strane korisnika.</p>
                     <div x-data="{ uploading: false, progress: 0 }" x-on:livewire-upload-start="uploading = true" x-on:livewire-upload-finish="uploading = false" x-on:livewire-upload-cancel="uploading = false" x-on:livewire-upload-error="uploading = false" x-on:livewire-upload-progress="progress = $event.detail.progress">
@@ -120,7 +120,7 @@
                     @endif
                 </div>
                 <!-- Phone number -->
-                <label class="font-medium" for="phone">Vaš telefon (molimo da unesete validan telefonski broj) <span style="color:red">*</span></label>
+                <label class="font-medium text-base" for="phone">Vaš telefon (molimo da unesete validan telefonski broj) <span style="color:red">*</span></label>
                 <input wire:model="phone" id="phone" placeholder="format: +387 61 123 456" @if ($errors->has('phone')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="tel" name="phone"></input>
                 @error('phone')
                 <!-- Validation failed message -->
@@ -162,14 +162,14 @@
                 <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
                 @enderror
                 <!-- Courier costs -->
-                <label class="font-medium" for="shippingCost">Procjenjeni troškovi dostave u odabranoj valuti (može se dodati kasnije)</label>
+                <label class="font-medium text-base" for="shippingCost">Procjenjeni troškovi dostave u odabranoj valuti (može se dodati kasnije)</label>
                 <input wire:model="shippingCost" id="shippingCost" @if ($errors->has('shippingCost')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" placeholder="" type="number" name="shippingCost" min="0" step="0.01"></input>
                 @error('shippingCost')
                 <!-- Validation failed message -->
                 <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
                 @enderror
                 <!-- Shipping value threshold for free delivery -->
-                <label class="font-medium" for="freeShippingThreshold">Iznos vrijednosti kupovine iznad kojeg nema troškova dostave (može se dodati kasnije)</label>
+                <label class="font-medium text-base" for="freeShippingThreshold">Iznos vrijednosti kupovine iznad kojeg nema troškova dostave (može se dodati kasnije)</label>
                 <input wire:model="freeShippingThreshold" id="freeShippingThreshold" @if ($errors->has('freeShippingThreshold')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" placeholder="" type="number" name="freeShippingThreshold" min="0" step="0.01"></input>
                 @error('freeShippingThreshold')
                 <!-- Validation failed message -->
@@ -181,7 +181,7 @@
             <div class="m-auto flex flex-col gap-y-6 p-8">
                 <!-- Tenant admin data -->
                 <h2 class="text-lg">Vaš račun</h2>
-                <label class="font-medium" for="user_name"> Korisničko ime <span style="color:red">*</span></label>
+                <label class="font-medium text-base" for="user_name"> Korisničko ime <span style="color:red">*</span></label>
                 <input wire:model="user_name" id="user_name" @if ($errors->has('user_name')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="text" name="user_name" required autofocus autocomplete="username" />
                 @error('user_name')
                 <!-- Validation failed message -->
@@ -189,7 +189,7 @@
                 @enderror
 
                 <!-- Email Address -->
-                <label class="font-medium" for="user_email"> Email <span style="color:red">*</span></label>
+                <label class="font-medium text-base" for="user_email"> Email <span style="color:red">*</span></label>
                 <input wire:model="email" id="user_email" @if ($errors->has('email')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="email" name="email" required autocomplete="email" />
                 @error('email')
                 <!-- Validation failed message -->
@@ -198,7 +198,7 @@
 
 
                 <!-- Password -->
-                <label class="font-medium" for="user_password"> Lozinka <span style="color:red">*</span></label>
+                <label class="font-medium text-base" for="user_password"> Lozinka <span style="color:red">*</span></label>
 
                 <input wire:model="user_password" id="user_password" @if ($errors->has('user_password')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="password" name="user_password" required autocomplete="current-password"/>
                 @error('user_password')
@@ -210,7 +210,7 @@
                 <label class="font-medium" for="user_password_confirmation"> Potvrdi lozinku</label>
                 <input wire:model="user_password_confirmation" id="user_password_confirmation" @if ($errors->has('password_confirmation')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="password" name="user_password_confirmation" required />
                 <div class="mt-6 items-center gap-2y flex flex-col sm:flex-row justify-items-center mb-[2rem]  gap-x-[0.5rem]">
-                    <input id="policyCheckbox" wire:model="policy" type="checkbox" name="policy">
+                    <input class="mb-2 sm:mb-0" id="policyCheckbox" wire:model="policy" type="checkbox" name="policy">
                     <label for="policyCheckbox"> Slažem se s <a href="/#footer" class="underline text-cornflowerblue">Uvjetima korištenja i Politikom privatnosti.</a></label>
 
 
