@@ -12,7 +12,7 @@
         <div class="mt-6 w-[100%] sm:w-fit sm:grid sm:grid-cols-3 gap-[3rem] items-center justify-items-center border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
             @foreach($variantStocks as $key=> $items)
             <div class="flex flex-col items-center gap-3">
-                <p class="text-xl">Size: {{$size[$key]->size}}</p>
+                <p class="text-xl">Veličina: {{$size[$key]->size}}</p>
                 <hr>
                 </hr>
 
