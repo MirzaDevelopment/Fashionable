@@ -1,7 +1,7 @@
 <div class="flex flex-col items-center" x-data="{ open: false }"><!-- Livewire frontend component for heel management - delete and insert -->
     <!-- Button to toggle categories -->
     <button class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-700 active:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800 p-2 text-gray-900 mb-6" x-on:click="open = ! open" x-data="{ red: false }" x-bind:class="red ? ' bg-gray-800 text-white' : ''" @click="red = ! red">
-       Vrste štikli
+       Vrste peti
     </button>
     <div class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 p-4" x-show="open" x-transition>
         <!-- Category representation icon -->
@@ -12,7 +12,7 @@
         @foreach ($heels as $index => $heel)
         <!-- Category insert inputs -->
         <div class="flex flex-col-reverse gap-1 items-end mt-6">
-            <input @if ($errors->has('heels.' . $index)) class="border-[#D32F2F]" @endif class='border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm' wire:key="{{$index}}" type="text" wire:model="heels.{{ $index }}" placeholder="{{$index +1 }}. Novi tip štikle" /></input><button type="button" wire:key="{{ $index }}" wire:click="removeHeelInput({{$index}})"><svg xmlns="http://www.w3.org/2000/svg" class="cursor-pointer" height="30" width="30" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+            <input @if ($errors->has('heels.' . $index)) class="border-[#D32F2F]" @endif class='border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm' wire:key="{{$index}}" type="text" wire:model="heels.{{ $index }}" placeholder="{{$index +1 }}. Novi tip pete" /></input><button type="button" wire:key="{{ $index }}" wire:click="removeHeelInput({{$index}})"><svg xmlns="http://www.w3.org/2000/svg" class="cursor-pointer" height="30" width="30" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                     <path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zm79 143c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z" />
                 </svg></button>
         </div>
@@ -52,7 +52,7 @@
             </x-primary-button>
             @endif
             @isset($heelsAll)
-            <h3 class="mt-6">Trenutno dostupne vrste štikli:</h3>
+            <h3 class="mt-6">Trenutno dostupne vrste peti:</h3>
             <!-- Showing heel categories -->
             <div class="mt-6 grid grid-cols-4 gap-3 gap-x-0 justify-items-center">
                 @foreach ($heelsAll as $name)
