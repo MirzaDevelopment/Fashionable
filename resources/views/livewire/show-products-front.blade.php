@@ -130,7 +130,7 @@
             </div>
             <hr class="border-t-1 row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[100%] col-span-1">
             <h3 class="text-xl lg:text-3xl 2xl:text-4xl font-semibold text-gray-900">{{ $product->product_name }}</h3>
-            <span class="text-sm text-gray-800  lg:text-2xl lg2:text-3xl">
+            <span class="text-sm text-gray-800 flex flex-wrap gap-[0.2rem]  lg:text-2xl lg2:text-3xl">
                 @foreach ($product->materials as $key=> $materials)
                 @if($key==0)
                 <span class="bg-slate-200 p-2">{{$materials->material}}</span>

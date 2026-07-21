@@ -81,7 +81,7 @@
             <span class="mr-[0.5rem] text-base" wire:key="{{$index}}">{{$colors->color}}</span>
             @endforeach
           </span>
-          <div class="gap-[1rem]">
+          <div class="gap-y-[1rem] flex flex-wrap flex-row gap-x-[0.2rem] justify-center">
             <span class="text-gray-800 text-xl md:text-2xl 2xl:text-4xl">
               @foreach ($product->materials as $key=> $materials)
               @if($key==0)
