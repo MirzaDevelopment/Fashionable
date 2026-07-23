@@ -51,6 +51,7 @@ class RegisterTenant extends Component
     #[Validate]
     public string $plan = "free";
     public string $gRecaptchaResponse;//required for recaptcha
+    public string $validationFailedExtraMessage;
 
     //Property that will store the tenant object which is created by tenant
     public object $tenant;
@@ -181,6 +182,10 @@ class RegisterTenant extends Component
     {
         if ($this->isUploading) {
             return null; // Prevent further submissions if already uploading
+        }
+            //Checking if user skipped some fields to show a proper message in his view.
+            if (empty($this->tenantName) | empty($this->slug) | empty($this->currency) | empty($this->phone) | empty($this->shippingProvider) | empty($this->shippingProviderOther) | empty($this->user_name) | empty($this->email) | empty($this->user_password) | empty($this->user_password_confirmation) | ($this->policy) ) {
+            $this->validationFailedExtraMessage = "Greška! Molimo provjerite da li ste popunili sva obavezna polja!";
         }
 
         $this->validate();

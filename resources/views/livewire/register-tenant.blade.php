@@ -89,7 +89,8 @@
                         <p class="mb-4">Odabrali ste ovaj logo:</p>
                         <img src="{{ $logoImage->temporaryUrl()}}" width="200" />
                     </div>
-                    <hr></hr>
+                    <hr>
+                    </hr>
                     @endif
                     @endif
                 </div>
@@ -223,16 +224,22 @@
 
         </section>
         <section class="flex flex-col-reverse sm:flex-row sm:justify-center sm:max-w-[80%] gap-x-1 xl:max-w-[50%] w-fit m-auto">
-        <a href="/" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-6 mb-6 justify-center sm:max-w-[50%] m-auto h-[50px]">
-            Natrag
-        </a>
+            <a href="/" class="inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 mt-6 mb-6 justify-center sm:max-w-[50%] m-auto h-[50px]">
+                Natrag
+            </a>
 
-        <x-primary-button type="submit" wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="mt-6 mb-6 justify-center  m-auto h-[50px]">
+            <x-primary-button type="submit" wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="mt-6 mb-6 justify-center  m-auto h-[50px]">
 
-            {{ __('Kreiraj moju online prodavnicu') }}
+                {{ __('Kreiraj moju online prodavnicu') }}
 
-        </x-primary-button>
+            </x-primary-button>
+
         </section>
+            @if(!empty($validationFailedExtraMessage))
+            <div class="lg:col-span-2 lg2:col-span-1 lg2:col-start-4 lg:col-start-3 lg:row-start-3 row-start-2" x-data="{open:true}">
+                <div class="text-[#721c24] rounded-md bg-[#f8d7da] p-2.5 justify-center" x-show="open" x-on:click.outside="open=false" x-transition>{{$validationFailedExtraMessage}}</div>
+            </div>
+            @endif
 
         </form>
         @if (session('statusTenant'))
