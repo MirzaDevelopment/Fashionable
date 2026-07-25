@@ -1,7 +1,7 @@
-<div class="flex flex-col items-center" x-data="{ open: false }"> <!--Frontend component for rendering present heel categories for chosen product-->
+<div class="flex flex-col items-center" x-data="{ open: false }"> <!--Frontend component for rendering chosen heel categories for selected product-->
     <!-- Button to toggle categories -->
     <button class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-700 active:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800 p-2 text-gray-900 mb-6" x-on:click="open = ! open" x-data="{ red: false }" x-bind:class="red ? ' bg-gray-800 text-white' : ''" @click="red = ! red">
-        Štikle
+        Pete
     </button>
     <div class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 p-4" x-show="open" x-transition>
         <!-- Category representation icon -->
@@ -11,7 +11,7 @@
         @if (isset(($emptyHeels)))
         <p class="mt-6">{{$emptyHeels}}</p>
         @elseif(isset($heelsAll))
-        <h3 class="mt-6">Promijeni vrstu štikle (dostupno samo za obuću):</h3>
+        <h3 class="mt-6">Promijeni vrstu pete (dostupno samo za obuću):</h3>
         <!-- Showing heel categories -->
         <div class="mt-6 grid grid-cols-2 gap-2 gap-x-10 justify-items-center">
             @foreach ($heelsAll as $index => $name)

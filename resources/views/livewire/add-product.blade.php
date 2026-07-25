@@ -260,7 +260,7 @@
                             <p>{{ implode(', ', $genderSelect) }}</p>
                             @endif
                             @if(!empty($heelSelect))
-                            <p>Vrsta štikle: {{ implode(', ', $heelSelect) }}</p>
+                            <p>Vrsta pete: {{ implode(', ', $heelSelect) }}</p>
                             @endif
                             @if(!empty($materialSelect))
                             <p>Napravljen od: {{ implode(', ', $materialSelect) }}</p>
