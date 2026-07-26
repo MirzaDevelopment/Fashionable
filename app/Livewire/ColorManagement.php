@@ -54,7 +54,7 @@ class ColorManagement extends Component
 
         return [
             'colors' => 'required|array',
-            'colors.*' => 'required|min:3|string|unique:category_colors,color|regex:/^[A-Za-z]+( [A-Za-z]+)?$/',
+            'colors.*' => 'required|min:3|string|unique:category_colors,color|regex:/^\p{L}+(?: \p{L}+)?$/u',
             'colorPicked' => 'required|array',
             'colorPicked.*' => 'unique:category_colors,hex_code'
         ];

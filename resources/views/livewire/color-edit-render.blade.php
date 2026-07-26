@@ -15,7 +15,11 @@
         <div class="mt-6 grid grid-cols-2 gap-2 gap-x-10 justify-items-center">
         
             @foreach ($colorsAll as $index => $name)
+            @if($name->color=="Šareno")
+            {!!$name->hex_code!!}
+            @else
             <input type="color" value="{{$name->hex_code}}" disabled></input>
+            @endif
             @if((in_array($name->color, $colorNames)))
             <p wire:click="$parent.ColorDeSelect('{{$name->color}}')" class="{{in_array($name->color, $colorDeSelect)? 'p-1 min-w-16  self-center bg-white  border border-gray-200 rounded-lg shadow' : 'p-1 min-w-16  self-center bg-[#EDE8D0] border border-gray-200 rounded-lg shadow'}}" style="cursor: pointer" wire:key="{{$name->id}}">{{$name->color}}</p>
             @else
