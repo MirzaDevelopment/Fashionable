@@ -44,7 +44,7 @@ class HeelManagement extends Component
 
         return [
             'heels' => 'required|array',
-            'heels.*' => 'required|min:3|string|unique:heels,heel_type|regex:/^[A-Za-z]+( [A-Za-z]+)?$/',
+            'heels.*' => 'required|min:3|string|unique:heels,heel_type|regex:/^\p{L}+(?: \p{L}+)?$/u',
 
         ];
     }
@@ -64,15 +64,6 @@ class HeelManagement extends Component
     public function insertHeel(): RedirectResponse
     {
         Gate::authorize('create', Heel::class);
-        //Checking if heel is already present but soft deleted (to prevent unique validation error)
-        foreach ($this->heels as $heels) {
-
-            if ($heelsDeleted = Heel::onlyTrashed()->where('heel_type', $heels)->first()) {
-                $heelsDeleted->restore();
-                return redirect()->back()->with("status", "Vrste štikli su dodane uspješno.");
-            } else {
-
-                //...if not, continue with regular insert
 
                 $this->validate();
 
@@ -92,8 +83,8 @@ class HeelManagement extends Component
                     Log::error('Error occurred: ' . $e->getMessage());
                     return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja kategorije štikli. Molimo pokušajte ponovo.");
                 }
-            }
-        }
+            
+        
     }
 
     // Method to delete category from db (soft method not used)
@@ -101,7 +92,7 @@ class HeelManagement extends Component
     {
         Gate::authorize('delete', Heel::class);
         $heel = Heel::find($id);
-        $heel->delete();
+        $heel->forceDelete();
     }
     //Method to reset input fields
     public function resetHeel(): void

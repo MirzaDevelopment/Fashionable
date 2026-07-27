@@ -46,7 +46,7 @@ class SizeManagement extends Component
             'sizes.*' => [
                 'required',
                 'min:1',
-                'regex:/^[A-Za-z]+( [A-Za-z]+)?$|^\d+(\.\d+)?(cm|mm|px)?$/i',
+                'regex:/^\p{L}+(?: \p{L}+)?$|^\d+(?:\.\d+)?(cm|mm|px)?$/iu',
             ],
 
 
@@ -65,14 +65,7 @@ class SizeManagement extends Component
     public function insertSize(): RedirectResponse
     {
         Gate::authorize('create', Size::class);
-        //Checking if size is already present but soft deleted (to prevent unique validation error)
-        foreach ($this->sizes as $sizes) {
 
-            if ($sizesDeleted = Size::onlyTrashed()->where('size', $sizes)->first()) {
-                $sizesDeleted->restore();
-                return redirect()->back()->with("status", "Veličine su uspješno dodane.");
-            } else {
-                //...if not, continue with regular insert
                 $this->validate();
 
                 //Beginning transaction
@@ -99,15 +92,15 @@ class SizeManagement extends Component
                     Log::error('Error occurred: ' . $e->getMessage());
                     return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja kategorije veličine. Molimo pokušajte kasnije.");
                 }
-            }
-        }
+            
+        
     }
     // Method to delete category from db (soft method not used)
     public function deleteSizeCategory(int $id): void
     {
         Gate::authorize('delete', Size::class);
         $size = Size::find($id);
-        $size->delete();
+        $size->forceDelete();
     }
     //Method to reset input fields
     public function resetSize(): void

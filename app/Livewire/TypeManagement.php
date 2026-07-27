@@ -42,7 +42,7 @@ class TypeManagement extends Component
 
         return [
             'types' => 'required|array',
-            'types.*' => 'required|min:3|string|unique:types,type_name|regex:/^[A-Za-z]+( [A-Za-z]+)?$/',
+            'types.*' => 'required|min:3|string|unique:types,type_name|regex:/^\p{L}+(?: \p{L}+)?$/u',
 
         ];
     }
@@ -61,14 +61,6 @@ class TypeManagement extends Component
     public function insertType(): RedirectResponse
     {
         Gate::authorize('create', Type::class);
-        //Checking if type is already present but soft deleted (to prevent unique validation error)
-        foreach ($this->types as $types) {
-
-            if ($typesDeleted = Type::onlyTrashed()->where('type_name', $types)->first()) {
-                $typesDeleted->restore();
-                return redirect()->back()->with("status", "Vrsta proizvoda je dodana uspješno!");
-            } else {
-                //...if not, continue with regular insert
                 $this->validate();
                 //Beginning transaction
 
@@ -86,8 +78,7 @@ class TypeManagement extends Component
                     Log::error('Error occurred: ' . $e->getMessage());
                     return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja kategorija vrste proizvoda. Molimo pokušajte kasnije.");
                 }
-            }
-        }
+            
     }
 
 
@@ -96,7 +87,7 @@ class TypeManagement extends Component
     {
         Gate::authorize('delete', Type::class);; //Authorisation for admin
         $type = Type::find($id);
-        $type->delete();
+        $type->forceDelete();
     }
     //Method to reset input fields
     public function resetType(): void

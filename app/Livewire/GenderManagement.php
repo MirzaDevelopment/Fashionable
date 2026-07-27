@@ -44,7 +44,7 @@ class GenderManagement extends Component
 
         return [
             'genders' => 'required|array',
-            'genders.*' => 'required|min:3|string|unique:category_genders,gender|regex:/^[A-Za-z]+( [A-Za-z]+)?$/',
+            'genders.*' => 'required|min:3|string|unique:category_genders,gender|regex:/^\p{L}+(?: \p{L}+)?$/u',
 
         ];
     }
@@ -63,32 +63,22 @@ class GenderManagement extends Component
     public function insertGender(): RedirectResponse
     {
         Gate::authorize('create', Gender::class);
-        //Checking if gender is already present but soft deleted (to prevent unique validation error)
-        foreach ($this->genders as $genders) {
-            if ($gendersDeleted = Gender::onlyTrashed()->where('gender', $genders)->first()) {
-                $gendersDeleted->restore();
-                return redirect()->back()->with("status", "Spolovi su dodani uspješno.");
-            } else {
-                //...if not, continue with regular insert
-                $this->validate();
+        $this->validate();
+        //Beginning transaction
+        DB::beginTransaction();
+        try {
+            foreach ($this->genders as $genders) {
 
-                //Beginning transaction
-                DB::beginTransaction();
-                try {
-                    foreach ($this->genders as $genders) {
-
-                        Gender::create([
-                            'gender' => ucwords($genders),
-                        ]);
-                    }
-                    DB::commit();
-                    return redirect()->back()->with("status", "Spolovi su dodani uspješno.");
-                } catch (\Exception $e) {
-                    DB::rollBack(); // Rollback the transaction on error
-                    Log::error('Error occurred: ' . $e->getMessage());
-                    return redirect()->back()->with("errorException", "Nastao je problem prilikom ažuriranja kategorije spola. Molimo pokušajte ponovo.");
-                }
+                Gender::create([
+                    'gender' => ucwords($genders),
+                ]);
             }
+            DB::commit();
+            return redirect()->back()->with("status", "Spolovi su dodani uspješno.");
+        } catch (\Exception $e) {
+            DB::rollBack(); // Rollback the transaction on error
+            Log::error('Error occurred: ' . $e->getMessage());
+            return redirect()->back()->with("errorException", "Nastao je problem prilikom ažuriranja kategorije spola. Molimo pokušajte ponovo.");
         }
     }
 
@@ -97,7 +87,7 @@ class GenderManagement extends Component
     {
         Gate::authorize('delete', Gender::class, $id);
         $gender = Gender::find($id);
-        $gender->delete();
+        $gender->forceDelete();
     }
     //Method to reset input fields
     public function resetGender(): void

@@ -43,7 +43,7 @@ class MaterialManagement extends Component
 
         return [
             'materials' => 'required|array',
-            'materials.*' => 'required|min:3|string|unique:category_materials,material|regex:/^[A-Za-z]+( [A-Za-z]+)?$/',
+            'materials.*' => 'required|min:3|string|unique:category_materials,material|regex:/^\p{L}+(?: \p{L}+)?$/u',
 
         ];
     }
@@ -62,15 +62,7 @@ class MaterialManagement extends Component
     public function insertMaterial(): RedirectResponse
     {
         Gate::authorize('create', Material::class);
-        //Checking if material is already present but soft deleted (to prevent unique validation error)
 
-        foreach ($this->materials as $materials) {
-
-            if ($materialsDeleted = Material::onlyTrashed()->where('material', $materials)->first()) {
-                $materialsDeleted->restore();
-                return redirect()->back()->with("status", "Vrste materijala su dodane uspješno.");
-            } else {
-                //...if not, continue with regular insert
                 $this->validate();
 
                 //Beginning transaction
@@ -88,8 +80,8 @@ class MaterialManagement extends Component
                     Log::error('Error occurred: ' . $e->getMessage());
                     return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja kategorije materijala. Molimo pokušajte kasnije.");
                 }
-            }
-        }
+            
+        
     }
 
 
@@ -98,7 +90,7 @@ class MaterialManagement extends Component
     {
         Gate::authorize('delete', Material::class);
         $material = Material::find($id);
-        $material->delete();
+        $material->forceDelete();
     }
     //Method to reset input fields
     public function resetMaterial(): void

@@ -46,7 +46,7 @@ class TagManagement extends Component
 
         return [
             'tags' => 'required|array',
-            'tags.*' => 'required|min:3|string|unique:category_tags,tag|regex:/^[A-Za-z]+( [A-Za-z]+)?$/',
+            'tags.*' => 'required|min:3|string|unique:category_tags,tag|regex:/^\p{L}+(?: \p{L}+)?$/u',
 
         ];
     }
@@ -65,13 +65,6 @@ class TagManagement extends Component
     public function insertTag(): RedirectResponse
     {
         Gate::authorize('create', Tag::class);
-        //Checking if tag is already present but soft deleted (to prevent unique validation error)
-        foreach ($this->tags as $tags) {
-            if ($tagsDeleted = Tag::onlyTrashed()->where('tag', $tags)->first()) {
-                $tagsDeleted->restore();
-                return redirect()->back()->with("status", "Oznaka je dodana uspješno!");
-            } else {
-                //...if not, continue with regular insert
 
                 $this->validate();
 
@@ -92,8 +85,8 @@ class TagManagement extends Component
                     return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja oznaka. Molimo pokušaje ponovo.");
                 }
             }
-        }
-    }
+        
+    
 
 
     // Method to delete category from db (soft method not used)
@@ -102,7 +95,7 @@ class TagManagement extends Component
     {
         Gate::authorize('delete', Tag::class); //Authorisation for admin
         $tag = Tag::find($id);
-        $tag->delete();
+        $tag->forceDelete();
     }
 
     //Method to reset input fields

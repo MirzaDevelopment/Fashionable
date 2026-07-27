@@ -54,7 +54,7 @@ class ColorManagement extends Component
 
         return [
             'colors' => 'required|array',
-            'colors.*' => 'required|min:3|string|unique:category_colors,color|regex:/^\p{L}+(?: \p{L}+)?$/u',
+            'colors.*' => 'required|min:3|string|unique:category_colors,color|regex:/^\p{L}+(?: \p{L}+)*(?: \d+)?$/u',
             'colorPicked' => 'required|array',
             'colorPicked.*' => 'unique:category_colors,hex_code'
         ];
@@ -75,30 +75,14 @@ class ColorManagement extends Component
     public function insertColor(): RedirectResponse
     {
         Gate::authorize('create', Color::class);
-        //Checking if color is already present but soft deleted (to prevent unique validation error)
-        //Preparations first
         $this->colorUserPicked = $this->updatedcolorPicked(); //Getting chosen color
-        $hex_codes_present = Color::pluck('hex_code', 'id')->toArray(); //Getting hex_codes already stored
-        foreach ($this->colors as $key => $colors) {
-            if ($colorsDeleted = Color::onlyTrashed()->where('color', $colors)->first()) {
-                if (in_array($this->colorUserPicked[$key], $hex_codes_present)) {
-                    return redirect()->back()->with("errorException", "Nastao je problem tokom dodavanja kategorije boje: Otkrivena je duplirana boja");
-                } else {
-
-                    $colorsDeleted->restore();
-                    return redirect()->back()->with("status", "Tipovi boje su uspješno dodani!");
-                    Color::where('color', $colors)->update(['hex_code' => $this->colorUserPicked[$key]]);
-                }
-            } else {
-                //...if not, continue with regular insert
                 $this->validate();
-
                 //Beginning transaction
                 DB::beginTransaction();
                 try {
                     foreach ($this->colors as $key => $colors) {
                         Color::create([
-                            'color' => str_replace(' ', '', ucfirst(strtolower($colors))),
+                            'color' => ucfirst(strtolower($colors)),
                             'hex_code' => $this->colorUserPicked[$key],
                         ]);
                     }
@@ -110,15 +94,13 @@ class ColorManagement extends Component
                     Log::error('Error occurred: ' . $e->getMessage());
                     return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja kategorije boje. Molimo pokušajte ponovo.");
                 }
-            }
-        }
     }
     // Method to delete category from db
     public function deleteColorCategory(int $id): void
     {
         Gate::authorize('delete', Color::class);
         $color = Color::find($id);
-        $color->delete();
+        $color->forceDelete();
     }
 
     //Method to reset input fields
