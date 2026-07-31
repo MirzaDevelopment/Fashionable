@@ -11,7 +11,7 @@
         @foreach ($colors as $index => $color)
         <!-- Category insert inputs -->
         <div class="flex flex-col-reverse gap-1 items-end mt-6">
-            <p class="flex gap-2 items-center">Odaberite boju: <input type="color" wire:key="{{ $index }}" wire:model.live="colorPicked.{{$index}}"></input></p>
+            <p class="flex gap-2 items-center">Odaberite boju: <input type="color" wire:key="{{ $index }}" wire:model.live="colorPicked.{{$index}}" value="#ff0000"></input></p>
             <input @if ($errors->has('colors.' . $index) || ($errors->has('colorPicked.' . $index))) class="border-[#D32F2F]" @endif class='border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm' wire:key="{{$index}}" type="text" wire:model="colors.{{ $index }}" placeholder="{{$index +1 }}. naziv boje" /></input><button type="button" wire:key="{{ $index }}" wire:click="removeColorInput({{$index}})"><svg xmlns="http://www.w3.org/2000/svg" class="cursor-pointer" height="30" width="30" viewBox="0 0 448 512"><!--!Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                     <path d="M64 32C28.7 32 0 60.7 0 96L0 416c0 35.3 28.7 64 64 64l320 0c35.3 0 64-28.7 64-64l0-320c0-35.3-28.7-64-64-64L64 32zm79 143c9.4-9.4 24.6-9.4 33.9 0l47 47 47-47c9.4-9.4 24.6-9.4 33.9 0s9.4 24.6 0 33.9l-47 47 47 47c9.4 9.4 9.4 24.6 0 33.9s-24.6 9.4-33.9 0l-47-47-47 47c-9.4 9.4-24.6 9.4-33.9 0s-9.4-24.6 0-33.9l47-47-47-47c-9.4-9.4-9.4-24.6 0-33.9z" />
                 </svg></button>
@@ -65,7 +65,7 @@
             <div class="mt-6 grid grid-cols-3 gap-3 gap-x-0 items-center justify-items-center">
                 @foreach ($colorsAll as $name)
                 <input type="color" value="{{$name->hex_code}}" disabled></input>
-                <p class="@if(in_array($name->hex_code, $colorUserPicked))bg-sky-200 @endif p-1 min-w-16 max-w-[6rem] break-words self-center border border-gray-200 rounded-lg shadow">{{$name->color}}</p><button type="button" wire:click="deleteColorCategory({{$name->id}})"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <p class="@if(in_array($name->hex_code, $colorUserPicked) || ($name->hex_code == null))bg-sky-200 @endif p-1 min-w-16 max-w-[6rem] break-words self-center border border-gray-200 rounded-lg shadow">{{$name->color}}</p><button type="button" wire:click="deleteColorCategory({{$name->id}})"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                         <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z" />
                     </svg></button>
                 @endforeach

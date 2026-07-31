@@ -25,19 +25,18 @@ class ColorManagement extends Component
 {
 
     public array $colors = [''];
-    public array $colorPicked = ["#000000"]; //Default input color
+    public array $colorPicked; //Default input color
     public array $colorUserPicked = []; //Colors that user picked
 
     // Method to add a new blank input field for another material
     public function addColorInput(): void
     {
         $this->colors[] = '';
-        $this->colorPicked[] = "#000000";
+        $this->colorPicked;
     }
     //Update variable when user picks color
-    public function updatedcolorPicked(): array
+    public function updatedcolorPicked(): ?array
     {
-
         $colorUserPicked = $this->colorPicked;
         return $colorUserPicked;
     }
@@ -55,7 +54,7 @@ class ColorManagement extends Component
         return [
             'colors' => 'required|array',
             'colors.*' => 'required|min:3|string|unique:category_colors,color|regex:/^\p{L}+(?: \p{L}+)*(?: \d+)?$/u',
-            'colorPicked' => 'required|array',
+            'colorPicked' => 'array',
             'colorPicked.*' => 'unique:category_colors,hex_code'
         ];
     }
@@ -75,25 +74,35 @@ class ColorManagement extends Component
     public function insertColor(): RedirectResponse
     {
         Gate::authorize('create', Color::class);
+        $this->validate();
+        // Checking if user actually picked a color from color wheel. Used for single color products.
         $this->colorUserPicked = $this->updatedcolorPicked(); //Getting chosen color
-                $this->validate();
-                //Beginning transaction
-                DB::beginTransaction();
-                try {
-                    foreach ($this->colors as $key => $colors) {
-                        Color::create([
-                            'color' => ucfirst(strtolower($colors)),
-                            'hex_code' => $this->colorUserPicked[$key],
-                        ]);
-                    }
-
-                    DB::commit();
-                    return redirect()->back()->with("status", "Tipovi boje su uspješno dodani!");
-                } catch (\Exception $e) {
-                    DB::rollBack(); // Rollback the transaction on error
-                    Log::error('Error occurred: ' . $e->getMessage());
-                    return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja kategorije boje. Molimo pokušajte ponovo.");
+        //Beginning transaction
+        DB::beginTransaction();
+        try {
+            foreach ($this->colors as $key => $colors) {
+                if ($this->colorUserPicked != null) {
+                    Color::create([
+                        'color' => ucfirst(strtolower($colors)),
+                        'hex_code' => $this->colorUserPicked[$key],
+                    ]);
+                } else {
+                    Color::create([
+                        'color' => ucfirst(strtolower($colors)),
+                        'hex_code' => null,
+                    ]);
                 }
+            }
+
+            DB::commit();
+            return redirect()->back()->with("status", "Tipovi boje su uspješno dodani!");
+        } catch (\Exception $e) {
+            DB::rollBack(); // Rollback the transaction on error
+            Log::error('Error occurred: ' . $e->getMessage());
+            return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja kategorije boje. Molimo pokušajte ponovo.");
+        }
+        //If user didnt pick any color from input field, then null will be added in hex_code column. This is used when user wants to add Multicolored clothes, so title would not be associated with any color. 
+
     }
     // Method to delete category from db
     public function deleteColorCategory(int $id): void
