@@ -75,17 +75,19 @@ class ColorManagement extends Component
     {
         Gate::authorize('create', Color::class);
         $this->validate();
-        // Checking if user actually picked a color from color wheel. Used for single color products.
+
         $this->colorUserPicked = $this->updatedcolorPicked(); //Getting chosen color
         //Beginning transaction
         DB::beginTransaction();
         try {
             foreach ($this->colors as $key => $colors) {
+                // Checking if user actually picked a color from color wheel. Used for single color products.
                 if ($this->colorUserPicked != null) {
                     Color::create([
                         'color' => ucfirst(strtolower($colors)),
                         'hex_code' => $this->colorUserPicked[$key],
                     ]);
+                    //If user didnt pick any color from input field, then null will be added in hex_code column. This is used when user wants to add Multicolored clothes, so title would not be associated with any color. 
                 } else {
                     Color::create([
                         'color' => ucfirst(strtolower($colors)),
@@ -101,8 +103,6 @@ class ColorManagement extends Component
             Log::error('Error occurred: ' . $e->getMessage());
             return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja kategorije boje. Molimo pokušajte ponovo.");
         }
-        //If user didnt pick any color from input field, then null will be added in hex_code column. This is used when user wants to add Multicolored clothes, so title would not be associated with any color. 
-
     }
     // Method to delete category from db
     public function deleteColorCategory(int $id): void
