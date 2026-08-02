@@ -31,12 +31,12 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
     'google' => [
-    'client_id' => env('GOOGLE_CLIENT_ID'),
-    'client_secret' => env('GOOGLE_CLIENT_SECRET'),
-    'redirect' => env('GOOGLE_REDIRECT'),
-],
+        'client_id' => env('GOOGLE_CLIENT_ID'),
+        'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+        'redirect' => env('GOOGLE_REDIRECT'),
 
-    'google' => [
+
+
         'recaptcha' => [
             'site_key' => env('RECAPTCHAV3_SITEKEY'),
             'secret_key' => env('RECAPTCHAV3_SECRET'),
@@ -44,6 +44,6 @@ return [
             'score' => 0.5, // An integer between 0 and 1, that indicates the minimum score to pass the Captcha challenge.
             'endpoint' => 'https://www.google.com/recaptcha/api/siteverify', // For enterprise users, fill in your URL from Google Console.
         ],
-    ],
 
+    ],
 ];
