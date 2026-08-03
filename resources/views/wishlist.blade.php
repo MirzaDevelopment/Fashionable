@@ -10,12 +10,14 @@
                 <div class="p-6 text-gray-900">
                     {{ __("Lista željenih proizvoda") }}
                 </div>
-                 <p>Poslaćemo Vam email obaviještenje kada neki od ovih proizvoda bude na popustu.</p>
+                <p>Poslaćemo Vam email obaviještenje kada neki od ovih proizvoda bude na popustu.</p>
             </div>
         </div>
     </div>
+    <!--Livewire regular component that renders wishlisted items-->
     <livewire:show-user-wishlist />
     <div class="pb-12">
+        <!--Footer part is here-->
         <x-slot:footerContent>
             <p>Fashionable - software as service (SaaS)</p>
             <p>Melisa Fashion e-commerce website - DEMO</p>
