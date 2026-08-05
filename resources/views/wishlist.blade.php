@@ -29,5 +29,4 @@
             <p> Za pravne dokumente molimo da posjetite: <a href="/#footer" class="underline">Početna stranica</a></p>
             </x-slot>
     </div>
-
 </x-app-layout>

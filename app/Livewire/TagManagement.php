@@ -74,6 +74,7 @@ class TagManagement extends Component
                 try {
                     foreach ($this->tags as $tags) {
                         Tag::create([
+                            'source' => 'user',
                             'tag' => ucwords($tags),
                         ]);
                     }

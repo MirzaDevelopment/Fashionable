@@ -11,7 +11,7 @@ class Type extends Model
     use SoftDeletes, HasFactory;
 
     protected $table = 'types';
-    protected $fillable = [
+    protected $fillable = ['source',
         'type_name',
     ];
 

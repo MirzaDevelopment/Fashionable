@@ -12,7 +12,7 @@ class Material extends Model
    
     protected $table = 'category_materials';
     
-    protected $fillable = [
+    protected $fillable = ['source',
         'material',
 
     ];

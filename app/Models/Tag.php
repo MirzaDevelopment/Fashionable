@@ -11,7 +11,7 @@ class Tag extends Model
     use HasFactory;
     use SoftDeletes, HasFactory;
     protected $table = 'category_tags';
-    protected $fillable = [
+    protected $fillable = ['source',
         'tag',   
     ];
 

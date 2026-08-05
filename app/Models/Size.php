@@ -10,7 +10,7 @@ class Size extends Model
 {
     use SoftDeletes, HasFactory;
     protected $table = 'category_sizes';
-    protected $fillable = [
+    protected $fillable = ['source',
         'size', 'size_type',  
     ];
 

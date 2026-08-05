@@ -11,7 +11,7 @@ class Color extends Model
     use SoftDeletes, HasFactory;
 
     protected $table = 'category_colors';
-    protected $fillable = [
+    protected $fillable = ['source',
         'color', 'hex_code',
     ];
 

@@ -13,7 +13,7 @@ class Gender extends Model
 
     protected $table = 'category_genders';
 
-    protected $fillable = [
+    protected $fillable = ['source',
         'gender',   
     ];
 

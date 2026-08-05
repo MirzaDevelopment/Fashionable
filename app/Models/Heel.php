@@ -13,7 +13,7 @@ class Heel extends Model
     // Specify the table name
     protected $table = 'heels';
 
-    protected $fillable = [
+    protected $fillable = ['source',
         'heel_type',   
     ];
 

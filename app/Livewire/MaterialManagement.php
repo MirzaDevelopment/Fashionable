@@ -70,6 +70,7 @@ class MaterialManagement extends Component
                 try {
                     foreach ($this->materials as $materials) {
                         Material::create([
+                            'source' => 'user',
                             'material' => ucwords($materials),
                         ]);
                     }

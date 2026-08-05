@@ -68,6 +68,7 @@ class TypeManagement extends Component
                 try {
                     foreach ($this->types as $types) {
                         Type::create([
+                            'source' => 'user',
                             'type_name' => ucwords($types),
                         ]);
                     }

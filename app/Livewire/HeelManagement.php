@@ -73,6 +73,7 @@ class HeelManagement extends Component
                 try {
                     foreach ($this->heels as $heels) {
                         Heel::create([
+                            'source' => 'user',
                             'heel_type' => ucwords($heels),
                         ]);
                     }

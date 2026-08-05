@@ -75,11 +75,13 @@ class SizeManagement extends Component
                         //Small distinction in size category
                         if (preg_match($this->numberPattern, $sizes)) {
                             Size::create([
+                                'source' => 'user',
                                 'size' => ucwords($sizes),
                                 'size_type' => "shoe",
                             ]);
                         } else {
                             Size::create([
+                                'source' => 'user',
                                 'size' => ucwords($sizes),
                                 'size_type' => "clothing",
                             ]);

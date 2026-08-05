@@ -70,6 +70,7 @@ class GenderManagement extends Component
             foreach ($this->genders as $genders) {
 
                 Gender::create([
+                    'source' => 'user',
                     'gender' => ucwords($genders),
                 ]);
             }
