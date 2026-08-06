@@ -57,8 +57,9 @@
             @endif
             @isset($gendersAll)
             <h3 class="mt-6">Trenutno zastupljeni spolovi:</h3>
+            <p class="text-xs text-gray-400">Spolovi sa oznakom katanca su ugrađeni i nije ih moguće brisati</p>
             <!-- Showing gender categories -->
-            <div class="mt-6 grid grid-cols-2 gap-3 gap-x-0 justify-items-center">
+            <div class="mt-6 grid grid-cols-2 gap-3 gap-x-0 items-center justify-items-center">
                 @foreach ($gendersAll as $name)
                 @if($name->source=="user")
                 <p class="p-1 min-w-16 max-w-[6rem]  break-words self-center @if(in_array($name->gender, $genders)) bg-sky-200 @endif border border-gray-200 rounded-lg shadow">{{$name->gender}}</p><button type="button" wire:click="deleteGenderCategory({{$name->id}})"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
@@ -66,6 +67,9 @@
                     </svg></button>
                 @elseif($name->source=="default")
                 <p class="p-1 min-w-16 max-w-[6rem]  break-words self-center @if(in_array($name->gender, $genders)) bg-sky-200 @endif border border-gray-200 rounded-lg shadow">{{$name->gender}}</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#000">
+                    <path d="M17 9h-1V7a4 4 0 10-8 0v2H7a2 2 0 00-2 2v9a2 2 0 002 2h10a2 2 0 002-2v-9a2 2 0 00-2-2zm-7-2a2 2 0 114 0v2h-4V7z" />
+                </svg>
                 @endif
                 @endforeach
                 @endisset

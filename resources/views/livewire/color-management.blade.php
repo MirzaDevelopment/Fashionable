@@ -61,6 +61,7 @@
             @endif
             @isset($colorsAll)
             <h3 class="mt-6">Boje koje su trenutno zastupljene:</h3>
+            <p class="text-xs text-gray-400">Boje sa oznakom katanca su ugrađene boje i nije ih moguće brisati</p>
             <!-- Showing color categories -->
             <div class="mt-6 grid grid-cols-3 gap-3 gap-x-0 items-center justify-items-center">
                 @foreach ($colorsAll as $name)
@@ -70,21 +71,53 @@
                 <p class="@if(in_array($name->hex_code, $colorUserPicked) || ($name->hex_code == null))bg-sky-200 @endif p-1 min-w-16 max-w-[6rem] break-words self-center border border-gray-200 rounded-lg shadow">{{$name->color}}</p><button type="button" wire:click="deleteColorCategory({{$name->id}})"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                         <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z" />
                     </svg></button>
-                    @elseif($name->source=="default")
-                    <input type="color" value="{{$name->hex_code}}" disabled></input>
-                    <p class="@if(in_array($name->hex_code, $colorUserPicked) || ($name->hex_code == null))bg-sky-200 @endif p-1 min-w-16 max-w-[6rem] break-words self-center border border-gray-200 rounded-lg shadow">{{$name->color}}</p>
-                    @endif
-                    @else
-                    @if($name->source=="user")
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="24" height="24"><defs><clipPath id="circle"><circle cx="50" cy="50" r="45"/></clipPath></defs><g clip-path="url(#circle)"><rect x="0" y="0" width="50" height="50" fill="#EF4444"/><rect x="50" y="0" width="50" height="50" fill="#FACC15"/><rect x="0" y="50" width="50" height="50" fill="#22C55E"/><rect x="50" y="50" width="50" height="50" fill="#3B82F6"/></g><circle cx="50" cy="50" r="45" fill="none" stroke="#444" stroke-width="4"/></svg>
+                @elseif($name->source=="default")
+                <input type="color" value="{{$name->hex_code}}" disabled></input>
+                <p class="@if(in_array($name->hex_code, $colorUserPicked) || ($name->hex_code == null))bg-sky-200 @endif p-1 min-w-16 max-w-[6rem] break-words self-center border border-gray-200 rounded-lg shadow">{{$name->color}}</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#000">
+                    <path d="M17 9h-1V7a4 4 0 10-8 0v2H7a2 2 0 00-2 2v9a2 2 0 002 2h10a2 2 0 002-2v-9a2 2 0 00-2-2zm-7-2a2 2 0 114 0v2h-4V7z" />
+                </svg>
+                @endif
+                @else
+                @if($name->source=="user")
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="24" height="24">
+                    <defs>
+                        <clipPath id="circle">
+                            <circle cx="50" cy="50" r="45" />
+                        </clipPath>
+                    </defs>
+                    <g clip-path="url(#circle)">
+                        <rect x="0" y="0" width="50" height="50" fill="#EF4444" />
+                        <rect x="50" y="0" width="50" height="50" fill="#FACC15" />
+                        <rect x="0" y="50" width="50" height="50" fill="#22C55E" />
+                        <rect x="50" y="50" width="50" height="50" fill="#3B82F6" />
+                    </g>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#444" stroke-width="4" />
+                </svg>
                 <p class="@if(in_array($name->color, $colors))bg-sky-200 @endif p-1 min-w-16 max-w-[6rem] break-words self-center border border-gray-200 rounded-lg shadow">{{$name->color}}</p><button type="button" wire:click="deleteColorCategory({{$name->id}})"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                         <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z" />
                     </svg></button>
-                    @elseif($name->source=="default")
-                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="24" height="24"><defs><clipPath id="circle"><circle cx="50" cy="50" r="45"/></clipPath></defs><g clip-path="url(#circle)"><rect x="0" y="0" width="50" height="50" fill="#EF4444"/><rect x="50" y="0" width="50" height="50" fill="#FACC15"/><rect x="0" y="50" width="50" height="50" fill="#22C55E"/><rect x="50" y="50" width="50" height="50" fill="#3B82F6"/></g><circle cx="50" cy="50" r="45" fill="none" stroke="#444" stroke-width="4"/></svg>
-                    <p class="@if(in_array($name->color, $colors))bg-sky-200 @endif p-1 min-w-16 max-w-[6rem] break-words self-center border border-gray-200 rounded-lg shadow">{{$name->color}}</p>
-                    @endif
-                    @endif
+                @elseif($name->source=="default")
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="24" height="24">
+                    <defs>
+                        <clipPath id="circle">
+                            <circle cx="50" cy="50" r="45" />
+                        </clipPath>
+                    </defs>
+                    <g clip-path="url(#circle)">
+                        <rect x="0" y="0" width="50" height="50" fill="#EF4444" />
+                        <rect x="50" y="0" width="50" height="50" fill="#FACC15" />
+                        <rect x="0" y="50" width="50" height="50" fill="#22C55E" />
+                        <rect x="50" y="50" width="50" height="50" fill="#3B82F6" />
+                    </g>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#444" stroke-width="4" />
+                </svg>
+                <p class="@if(in_array($name->color, $colors))bg-sky-200 @endif p-1 min-w-16 max-w-[6rem] break-words self-center border border-gray-200 rounded-lg shadow">{{$name->color}}</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#000">
+                    <path d="M17 9h-1V7a4 4 0 10-8 0v2H7a2 2 0 00-2 2v9a2 2 0 002 2h10a2 2 0 002-2v-9a2 2 0 00-2-2zm-7-2a2 2 0 114 0v2h-4V7z" />
+                </svg>
+                @endif
+                @endif
                 @endforeach
                 @endisset
             </div>

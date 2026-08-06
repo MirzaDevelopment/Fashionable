@@ -1,7 +1,7 @@
 <div class="flex flex-col items-center" x-data="{ open: false }"><!-- Livewire frontend component for  general heel category management - delete and insert (not associated with products) -->
     <!-- Button to toggle categories -->
     <button class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-700 active:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800 p-2 text-gray-900 mb-6" x-on:click="open = ! open" x-data="{ red: false }" x-bind:class="red ? ' bg-gray-800 text-white' : ''" @click="red = ! red">
-       Vrste peti
+        Vrste peti
     </button>
     <div class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700 p-4" x-show="open" x-transition>
         <!-- Category representation icon -->
@@ -53,16 +53,20 @@
             @endif
             @isset($heelsAll)
             <h3 class="mt-6">Trenutno dostupne vrste peti:</h3>
+            <p class="text-xs text-gray-400">Pete sa oznakom katanca su ugrađene i nije ih moguće brisati</p>
             <!-- Showing heel categories -->
-            <div class="mt-6 grid grid-cols-4 gap-3 gap-x-0 justify-items-center">
+            <div class="mt-6 grid grid-cols-4 gap-3 gap-x-0 items-center justify-items-center">
                 @foreach ($heelsAll as $name)
                 @if($name->source=="user")
                 <p class="p-1 min-w-16 max-w-[6rem] break-words self-center @if(in_array($name->heel_type, $heels)) bg-sky-200 @endif border border-gray-200 rounded-lg shadow">{{$name->heel_type}}</p><button type="button" wire:click="deleteHeelCategory({{$name->id}})"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                         <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z" />
                     </svg></button>
-                    @elseif($name->source=="default")
-                    <p class="p-1 min-w-16 max-w-[6rem] break-words self-center @if(in_array($name->heel_type, $heels)) bg-sky-200 @endif border border-gray-200 rounded-lg shadow">{{$name->heel_type}}</p>
-                    @endif
+                @elseif($name->source=="default")
+                <p class="p-1 min-w-16 max-w-[6rem] break-words self-center @if(in_array($name->heel_type, $heels)) bg-sky-200 @endif border border-gray-200 rounded-lg shadow">{{$name->heel_type}}</p>
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#000">
+                    <path d="M17 9h-1V7a4 4 0 10-8 0v2H7a2 2 0 00-2 2v9a2 2 0 002 2h10a2 2 0 002-2v-9a2 2 0 00-2-2zm-7-2a2 2 0 114 0v2h-4V7z" />
+                </svg>
+                @endif
                 @endforeach
                 @endisset
             </div>

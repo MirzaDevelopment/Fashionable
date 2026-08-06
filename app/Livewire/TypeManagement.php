@@ -6,7 +6,7 @@ This is a backend class in livewire framework used for category management (add 
 - Method to update the variable to the one admin chose wrapped in transaction.
 - Validation rules with corresponding messages.
 - Insert color category method, with admin authorisation check.
-- Method to delete category (soft delete).
+- Method to delete category permanently.
 - Method to reset input fields.
 It's frontend component is also used a child component in categories.blade.php view.
 */
