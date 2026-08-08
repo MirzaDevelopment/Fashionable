@@ -74,7 +74,7 @@ class HeelManagement extends Component
                     foreach ($this->heels as $heels) {
                         Heel::create([
                             'source' => 'user',
-                            'heel_type' => ucwords($heels),
+                            'heel_type' => ucfirst(mb_strtolower($heels)),
                         ]);
                     }
                     DB::commit();

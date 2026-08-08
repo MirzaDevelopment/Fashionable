@@ -71,7 +71,7 @@ class MaterialManagement extends Component
                     foreach ($this->materials as $materials) {
                         Material::create([
                             'source' => 'user',
-                            'material' => ucwords($materials),
+                            'material' => ucfirst(mb_strtolower($materials)),
                         ]);
                     }
                     DB::commit();

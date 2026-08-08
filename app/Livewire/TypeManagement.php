@@ -69,7 +69,7 @@ class TypeManagement extends Component
                     foreach ($this->types as $types) {
                         Type::create([
                             'source' => 'user',
-                            'type_name' => ucwords($types),
+                            'type_name' => ucfirst(mb_strtolower($types)),
                         ]);
                     }
                     DB::commit();

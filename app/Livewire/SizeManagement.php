@@ -82,7 +82,7 @@ class SizeManagement extends Component
                         } else {
                             Size::create([
                                 'source' => 'user',
-                                'size' => ucwords($sizes),
+                                'size' => ucfirst(mb_strtolower($sizes)),
                                 'size_type' => "clothing",
                             ]);
                         }

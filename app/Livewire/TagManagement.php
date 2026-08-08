@@ -75,7 +75,7 @@ class TagManagement extends Component
                     foreach ($this->tags as $tags) {
                         Tag::create([
                             'source' => 'user',
-                            'tag' => ucwords($tags),
+                            'tag' => ucfirst(mb_strtolower($tags)),
                         ]);
                     }
                     DB::commit();

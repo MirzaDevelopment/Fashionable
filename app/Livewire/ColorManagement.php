@@ -85,14 +85,14 @@ class ColorManagement extends Component
                 if ($this->colorUserPicked != null) {
                     Color::create([
                         'source' => 'user',
-                        'color' => ucfirst(strtolower($colors)),
+                        'color' => ucfirst(mb_strtolower($colors)),
                         'hex_code' => $this->colorUserPicked[$key],
                     ]);
                     //If user didnt pick any color from input field, then null will be added in hex_code column. This is used when user wants to add Multicolored clothes, so title would not be associated with any color. 
                 } else {
                     Color::create([
                         'source' => 'user',
-                        'color' => ucfirst(strtolower($colors)),
+                        'color' => ucfirst(mb_strtolower($colors)),
                         'hex_code' => null,
                     ]);
                 }

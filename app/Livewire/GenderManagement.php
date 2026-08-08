@@ -71,7 +71,7 @@ class GenderManagement extends Component
 
                 Gender::create([
                     'source' => 'user',
-                    'gender' => ucwords($genders),
+                    'gender' => ucfirst(mb_strtolower($genders)),
                 ]);
             }
             DB::commit();
