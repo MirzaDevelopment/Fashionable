@@ -26,6 +26,7 @@ class GenderManagement extends Component
 
 
     public array $genders = [''];
+    public array $tidyGenders;
 
     // Method to add a new blank input field for another gender
     public function addGenderInput(): void
@@ -62,16 +63,20 @@ class GenderManagement extends Component
     //Inserting category in db
     public function insertGender(): RedirectResponse
     {
+        $this->tidyGenders=array_map(
+            fn ($gender) => ucfirst(mb_strtolower($gender)),
+            $this->genders
+        );
         Gate::authorize('create', Gender::class);
         $this->validate();
         //Beginning transaction
         DB::beginTransaction();
         try {
-            foreach ($this->genders as $genders) {
+            foreach ($this->tidyGenders as $genders) {
 
                 Gender::create([
                     'source' => 'user',
-                    'gender' => ucfirst(mb_strtolower($genders)),
+                    'gender' => $genders,
                 ]);
             }
             DB::commit();

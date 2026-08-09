@@ -31,7 +31,7 @@
 
         </div>
         @if (session('status'))
-        <div class="flex flex-col place-content-evenly my-4">
+        <div class="flex flex-col place-content-evenly items-center my-4">
             <!-- Successful insert message -->
             <div x-data="{open:true}">
                 <div class="text-[#004085] rounded-md w-60 p-2.5 bg-[#cce5ff]" x-show="open" x-on:click.outside="open=false" x-transition>{{ session('status')}}</div>
@@ -62,11 +62,11 @@
             <div class="mt-6 grid grid-cols-2 gap-3 gap-x-0 items-center justify-items-center">
                 @foreach ($gendersAll as $name)
                 @if($name->source=="user")
-                <p class="p-1 min-w-16 max-w-[6rem]  break-words self-center @if(in_array($name->gender, $genders)) bg-sky-200 @endif border border-gray-200 rounded-lg shadow">{{$name->gender}}</p><button type="button" wire:click="deleteGenderCategory({{$name->id}})"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
+                <p class="p-1 min-w-16 max-w-[6rem]  break-words self-center @if(in_array($name->gender, $tidyGenders)) bg-sky-200 @endif border border-gray-200 rounded-lg shadow">{{$name->gender}}</p><button type="button" wire:click="deleteGenderCategory({{$name->id}})"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 512 512"><!--!Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.-->
                         <path d="M256 48a208 208 0 1 1 0 416 208 208 0 1 1 0-416zm0 464A256 256 0 1 0 256 0a256 256 0 1 0 0 512zM175 175c-9.4 9.4-9.4 24.6 0 33.9l47 47-47 47c-9.4 9.4-9.4 24.6 0 33.9s24.6 9.4 33.9 0l47-47 47 47c9.4 9.4 24.6 9.4 33.9 0s9.4-24.6 0-33.9l-47-47 47-47c9.4-9.4 9.4-24.6 0-33.9s-24.6-9.4-33.9 0l-47 47-47-47c-9.4-9.4-24.6-9.4-33.9 0z" />
                     </svg></button>
                 @elseif($name->source=="default")
-                <p class="p-1 min-w-16 max-w-[6rem]  break-words self-center @if(in_array($name->gender, $genders)) bg-sky-200 @endif border border-gray-200 rounded-lg shadow">{{$name->gender}}</p>
+                <p class="p-1 min-w-16 max-w-[6rem]  break-words self-center @if(in_array($name->gender, $tidyGenders)) bg-sky-200 @endif border border-gray-200 rounded-lg shadow">{{$name->gender}}</p>
                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="#000">
                     <path d="M17 9h-1V7a4 4 0 10-8 0v2H7a2 2 0 00-2 2v9a2 2 0 002 2h10a2 2 0 002-2v-9a2 2 0 00-2-2zm-7-2a2 2 0 114 0v2h-4V7z" />
                 </svg>
