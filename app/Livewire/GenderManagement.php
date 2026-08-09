@@ -63,6 +63,7 @@ class GenderManagement extends Component
     //Inserting category in db
     public function insertGender(): RedirectResponse
     {
+        //Creating array items with first letter as capital letter regardless of number of words.
         $this->tidyGenders=array_map(
             fn ($gender) => ucfirst(mb_strtolower($gender)),
             $this->genders
