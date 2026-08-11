@@ -27,6 +27,7 @@ class ColorManagement extends Component
     public array $colors = [''];
     public array $colorPicked; //Default input color
     public array $colorUserPicked = []; //Colors that user picked
+    public array $tidyColors;
 
     // Method to add a new blank input field for another material
     public function addColorInput(): void
@@ -73,6 +74,11 @@ class ColorManagement extends Component
     //Inserting category in db
     public function insertColor(): RedirectResponse
     {
+             //Creating array items with first letter as capital letter regardless of number of words.
+        $this->tidyColors=array_map(
+            fn ($colors) => ucfirst(mb_strtolower($colors)),
+            $this->colors
+        );
         Gate::authorize('create', Color::class);
         $this->validate();
 
@@ -80,19 +86,19 @@ class ColorManagement extends Component
         //Beginning transaction
         DB::beginTransaction();
         try {
-            foreach ($this->colors as $key => $colors) {
+            foreach ($this->tidyColors as $key => $colors) {
                 // Checking if user actually picked a color from color wheel. Used for single color products.
                 if ($this->colorUserPicked != null) {
                     Color::create([
                         'source' => 'user',
-                        'color' => ucfirst(mb_strtolower($colors)),
+                        'color' => $colors,
                         'hex_code' => $this->colorUserPicked[$key],
                     ]);
                     //If user didnt pick any color from input field, then null will be added in hex_code column. This is used when user wants to add Multicolored clothes, so title would not be associated with any color. 
                 } else {
                     Color::create([
                         'source' => 'user',
-                        'color' => ucfirst(mb_strtolower($colors)),
+                        'color' => $colors,
                         'hex_code' => null,
                     ]);
                 }
