@@ -25,6 +25,7 @@ class HeelManagement extends Component
 
 
     public array $heels = [''];
+    public array $tidyHeels;
 
     // Method to add a new blank input field for another material
     public function addHeelInput(): void
@@ -63,6 +64,11 @@ class HeelManagement extends Component
     //Inserting category in db
     public function insertHeel(): RedirectResponse
     {
+              //Creating array items with first letter as capital letter regardless of number of words.
+        $this->tidyHeels=array_map(
+            fn ($heels) => ucfirst(mb_strtolower($heels)),
+            $this->heels
+        );
         Gate::authorize('create', Heel::class);
 
                 $this->validate();
@@ -74,7 +80,7 @@ class HeelManagement extends Component
                     foreach ($this->heels as $heels) {
                         Heel::create([
                             'source' => 'user',
-                            'heel_type' => ucfirst(mb_strtolower($heels)),
+                            'heel_type' => $heels,
                         ]);
                     }
                     DB::commit();
