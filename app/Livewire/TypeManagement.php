@@ -25,6 +25,7 @@ class TypeManagement extends Component
 {
 
     public array $types = [''];
+    public array $tidyTypes;
 
     // Method to add a new blank input field for another material
     public function addTypeInput(): void
@@ -60,16 +61,21 @@ class TypeManagement extends Component
     //Inserting category in db
     public function insertType(): RedirectResponse
     {
+             //Creating array items with first letter as capital letter regardless of number of words.
+        $this->tidyTypes=array_map(
+            fn ($types) => ucfirst(mb_strtolower($types)),
+            $this->types
+        );
         Gate::authorize('create', Type::class);
                 $this->validate();
                 //Beginning transaction
 
                 DB::beginTransaction();
                 try {
-                    foreach ($this->types as $types) {
+                    foreach ($this->tidyTypes as $types) {
                         Type::create([
                             'source' => 'user',
-                            'type_name' => ucfirst(mb_strtolower($types)),
+                            'type_name' => $types,
                         ]);
                     }
                     DB::commit();

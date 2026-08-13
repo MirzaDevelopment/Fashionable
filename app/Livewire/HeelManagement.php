@@ -77,7 +77,7 @@ class HeelManagement extends Component
 
                 DB::beginTransaction();
                 try {
-                    foreach ($this->heels as $heels) {
+                    foreach ($this->tidyHeels as $heels) {
                         Heel::create([
                             'source' => 'user',
                             'heel_type' => $heels,

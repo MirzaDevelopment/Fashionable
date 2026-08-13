@@ -24,6 +24,7 @@ class MaterialManagement extends Component
 {
 
     public array $materials = [''];
+    public array $tidyMaterials;
 
     // Method to add a new blank input field for another material
     public function addMaterialInput(): void
@@ -61,6 +62,11 @@ class MaterialManagement extends Component
     //Inserting category in db
     public function insertMaterial(): RedirectResponse
     {
+             //Creating array items with first letter as capital letter regardless of number of words.
+        $this->tidyMaterials=array_map(
+            fn ($materials) => ucfirst(mb_strtolower($materials)),
+            $this->materials
+        );
         Gate::authorize('create', Material::class);
 
                 $this->validate();
@@ -68,10 +74,10 @@ class MaterialManagement extends Component
                 //Beginning transaction
                 DB::beginTransaction();
                 try {
-                    foreach ($this->materials as $materials) {
+                    foreach ($this->tidyMaterials as $materials) {
                         Material::create([
                             'source' => 'user',
-                            'material' => ucfirst(mb_strtolower($materials)),
+                            'material' => $materials,
                         ]);
                     }
                     DB::commit();

@@ -24,6 +24,7 @@ class SizeManagement extends Component
 {
     public string $numberPattern = "/^\d+$/";
     public array $sizes = [''];
+    public array $tidySizes;
 
     // Method to add a new blank input field for another material
     public function addSizeInput(): void
@@ -64,6 +65,11 @@ class SizeManagement extends Component
     //Inserting category in db
     public function insertSize(): RedirectResponse
     {
+                //Creating array items with first letter as capital letter regardless of number of words.
+        $this->tidySizes=array_map(
+            fn ($sizes) => ucfirst(mb_strtolower($sizes)),
+            $this->sizes
+        );
         Gate::authorize('create', Size::class);
 
                 $this->validate();
@@ -71,18 +77,18 @@ class SizeManagement extends Component
                 //Beginning transaction
                 DB::beginTransaction();
                 try {
-                    foreach ($this->sizes as $sizes) {
+                    foreach ($this->tidySizes as $sizes) {
                         //Small distinction in size category
                         if (preg_match($this->numberPattern, $sizes)) {
                             Size::create([
                                 'source' => 'user',
-                                'size' => ucwords($sizes),
+                                'size' => $sizes,
                                 'size_type' => "shoe",
                             ]);
                         } else {
                             Size::create([
                                 'source' => 'user',
-                                'size' => ucfirst(mb_strtolower($sizes)),
+                                'size' => strtoupper($sizes),
                                 'size_type' => "clothing",
                             ]);
                         }

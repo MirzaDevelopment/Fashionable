@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Log;
 class TagManagement extends Component
 {
     public array $tags = [''];
+    public array $tidyTags;
 
 
     // Method to add a new blank input field for another tag
@@ -64,6 +65,11 @@ class TagManagement extends Component
     //Inserting category in db
     public function insertTag(): RedirectResponse
     {
+                //Creating array items with first letter as capital letter regardless of number of words.
+        $this->tidyTags=array_map(
+            fn ($tags) => ucfirst(mb_strtolower($tags)),
+            $this->tags
+        );
         Gate::authorize('create', Tag::class);
 
                 $this->validate();
@@ -72,10 +78,10 @@ class TagManagement extends Component
 
                 DB::beginTransaction();
                 try {
-                    foreach ($this->tags as $tags) {
+                    foreach ($this->tidyTags as $tags) {
                         Tag::create([
                             'source' => 'user',
-                            'tag' => ucfirst(mb_strtolower($tags)),
+                            'tag' => $tags,
                         ]);
                     }
                     DB::commit();
