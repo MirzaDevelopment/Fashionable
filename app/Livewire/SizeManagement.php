@@ -48,6 +48,7 @@ class SizeManagement extends Component
                 'required',
                 'min:1',
                 'regex:/^\p{L}+(?: \p{L}+)?$|^\d+(?:\.\d+)?(cm|mm|px)?$/iu',
+                'unique:category_sizes,size',
             ],
 
 
@@ -65,43 +66,47 @@ class SizeManagement extends Component
     //Inserting category in db
     public function insertSize(): RedirectResponse
     {
-                //Creating array items with first letter as capital letter regardless of number of words.
-        $this->tidySizes=array_map(
+        //Creating array items with first letter as capital letter regardless of number of words.
+        $this->tidySizes = array_map(
             fn ($sizes) => ucfirst(mb_strtolower($sizes)),
             $this->sizes
         );
         Gate::authorize('create', Size::class);
 
-                $this->validate();
+        $this->validate();
 
-                //Beginning transaction
-                DB::beginTransaction();
-                try {
-                    foreach ($this->tidySizes as $sizes) {
-                        //Small distinction in size category
-                        if (preg_match($this->numberPattern, $sizes)) {
-                            Size::create([
-                                'source' => 'user',
-                                'size' => $sizes,
-                                'size_type' => "shoe",
-                            ]);
-                        } else {
-                            Size::create([
-                                'source' => 'user',
-                                'size' => strtoupper($sizes),
-                                'size_type' => "clothing",
-                            ]);
-                        }
-                    }
-                    DB::commit();
-                    return redirect()->back()->with("status", "Veličine su uspješno dodane.");
-                } catch (\Exception $e) {
-                    DB::rollBack(); // Rollback the transaction on error
-                    Log::error('Error occurred: ' . $e->getMessage());
-                    return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja kategorije veličine. Molimo pokušajte kasnije.");
+        //Beginning transaction
+        DB::beginTransaction();
+        try {
+            foreach ($this->tidySizes as $sizes) {
+                //Small distinction in size category
+                if (preg_match($this->numberPattern, $sizes)) {
+                    Size::create([
+                        'source' => 'user',
+                        'size' => $sizes,
+                        'size_type' => "shoe",
+                    ]);
+                } else if (preg_match('/^[\p{L}]+$/u', $sizes)) {
+                    Size::create([
+                        'source' => 'user',
+                        'size' => mb_strtoupper($sizes),
+                        'size_type' => "clothing",
+                    ]);
+                } else {
+                    Size::create([
+                        'source' => 'user',
+                        'size' => $sizes,
+                        'size_type' => "clothing",
+                    ]);
                 }
-            
-        
+            }
+            DB::commit();
+            return redirect()->back()->with("status", "Veličine su uspješno dodane.");
+        } catch (\Exception $e) {
+            DB::rollBack(); // Rollback the transaction on error
+            Log::error('Error occurred: ' . $e->getMessage());
+            return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja kategorije veličine. Molimo pokušajte kasnije.");
+        }
     }
     // Method to delete category from db (soft method not used)
     public function deleteSizeCategory(int $id): void
