@@ -3,8 +3,10 @@
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-center">
-                <div class="text-lg p-6 text-gray-900">
-                    {{ __("Dostupni proizvodi") }}
+                <div class="p-6 text-gray-900">
+                    <p class="mb-2">{{ __("Dostupni proizvodi") }}</p>
+                    <p class="text-sm">Ovdje možete pretraživati, brisati i mijenjati proizvode.</p>
+                    <p class="text-sm">Molimo da se po potrebi konsultujete sa vodičem dostupnim <a href="/#footer" class="underline text-cornflowerblue">ovdje</a></p>
                 </div>
             </div>
         </div>

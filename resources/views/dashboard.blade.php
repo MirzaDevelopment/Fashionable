@@ -10,17 +10,33 @@
         <div class="max-w-[50rem] xl:w-3/4 lg2:w-1/2 mx-auto sm:px-6">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-center">
                 <div class="p-6 text-gray-900">
-                    {{ __("Dobrodošli") }}
-                    <p>Ovdje možete vršiti administratorske funkcije nad vašim proizvodima i korisnicima.</p>
-                    <p>Molimo da se po potrebi konsultujete sa vodičem dostupnim <a href="/#footer" class="underline text-cornflowerblue">ovdje</a></p></p>
+                    <p class="mb-2">{{ __("Dobrodošli") }}</p>
+                    <p class="text-sm">Ovdje možete vršiti administratorske funkcije nad vašim proizvodima i korisnicima.</p>
+                    <p class="text-sm">Molimo da se po potrebi konsultujete sa vodičem dostupnim <a href="/#footer" class="underline text-cornflowerblue">ovdje</a></p>
                 </div>
             </div>
         </div>
     </div>
-     <!--Products-->
+    <!--Products-->
     <div class="sm:p-6 max-w-[50rem] m-auto grid grid-cols-1 items-center justify-center">
         <h1 class="text-xl bg-white overflow-hidden shadow-sm p-[2rem] sm:rounded-t-lg ">Proizvodi ({{$productsCount}})</h1>
         <nav class="p-6 gap-4 grid grid-cols-2 md:grid-cols-3 xl:grid lg:grid-cols-3 justify-center bg-white overflow-hidden shadow-sm sm:rounded-b-lg">
+            <!--Category management-->
+            <div class="flex flex-col items-center">
+                <a href="{{ route('categories') }}" wire:navigate>
+                    <svg viewBox="0 0 24 24" width="75" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                        <g id="SVGRepo_iconCarrier">
+                            <path d="M7 8H4C2.9 8 2 7.1 2 6V4C2 2.9 2.9 2 4 2H7C8.1 2 9 2.9 9 4V6C9 7.1 8.1 8 7 8Z" fill="#292D32"></path>
+                            <path d="M20.8 7H17.2C16.54 7 16 6.46 16 5.8V4.2C16 3.54 16.54 3 17.2 3H20.8C21.46 3 22 3.54 22 4.2V5.8C22 6.46 21.46 7 20.8 7Z" fill="#292D32"></path>
+                            <path d="M20.8 14.5H17.2C16.54 14.5 16 13.96 16 13.3V11.7C16 11.04 16.54 10.5 17.2 10.5H20.8C21.46 10.5 22 11.04 22 11.7V13.3C22 13.96 21.46 14.5 20.8 14.5Z" fill="#292D32"></path>
+                            <path opacity="0.96" d="M16 13.25C16.41 13.25 16.75 12.91 16.75 12.5C16.75 12.09 16.41 11.75 16 11.75H13.25V5.75H16C16.41 5.75 16.75 5.41 16.75 5C16.75 4.59 16.41 4.25 16 4.25H9C8.59 4.25 8.25 4.59 8.25 5C8.25 5.41 8.59 5.75 9 5.75H11.75V18C11.75 19.52 12.98 20.75 14.5 20.75H16C16.41 20.75 16.75 20.41 16.75 20C16.75 19.59 16.41 19.25 16 19.25H14.5C13.81 19.25 13.25 18.69 13.25 18V13.25H16Z" fill="#292D32"></path>
+                            <path d="M20.8 22H17.2C16.54 22 16 21.46 16 20.8V19.2C16 18.54 16.54 18 17.2 18H20.8C21.46 18 22 18.54 22 19.2V20.8C22 21.46 21.46 22 20.8 22Z" fill="#292D32"></path>
+                        </g>
+                    </svg></a>
+                <h3>Upravljaj kategorijama proizvoda</h3>
+            </div>
             <!--Add Products-->
             <div class="flex flex-col items-center">
                 <a href="{{ route('addproduct') }}" wire:navigate>
@@ -60,22 +76,7 @@
                     </svg></a>
                 <h3>Obrisani proizvodi ({{$deletedProductsCount}})</h3>
             </div>
-            <!--Category management-->
-            <div class="flex flex-col items-center">
-                <a href="{{ route('categories') }}" wire:navigate>
-                    <svg viewBox="0 0 24 24" width="75" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
-                        <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
-                        <g id="SVGRepo_iconCarrier">
-                            <path d="M7 8H4C2.9 8 2 7.1 2 6V4C2 2.9 2.9 2 4 2H7C8.1 2 9 2.9 9 4V6C9 7.1 8.1 8 7 8Z" fill="#292D32"></path>
-                            <path d="M20.8 7H17.2C16.54 7 16 6.46 16 5.8V4.2C16 3.54 16.54 3 17.2 3H20.8C21.46 3 22 3.54 22 4.2V5.8C22 6.46 21.46 7 20.8 7Z" fill="#292D32"></path>
-                            <path d="M20.8 14.5H17.2C16.54 14.5 16 13.96 16 13.3V11.7C16 11.04 16.54 10.5 17.2 10.5H20.8C21.46 10.5 22 11.04 22 11.7V13.3C22 13.96 21.46 14.5 20.8 14.5Z" fill="#292D32"></path>
-                            <path opacity="0.96" d="M16 13.25C16.41 13.25 16.75 12.91 16.75 12.5C16.75 12.09 16.41 11.75 16 11.75H13.25V5.75H16C16.41 5.75 16.75 5.41 16.75 5C16.75 4.59 16.41 4.25 16 4.25H9C8.59 4.25 8.25 4.59 8.25 5C8.25 5.41 8.59 5.75 9 5.75H11.75V18C11.75 19.52 12.98 20.75 14.5 20.75H16C16.41 20.75 16.75 20.41 16.75 20C16.75 19.59 16.41 19.25 16 19.25H14.5C13.81 19.25 13.25 18.69 13.25 18V13.25H16Z" fill="#292D32"></path>
-                            <path d="M20.8 22H17.2C16.54 22 16 21.46 16 20.8V19.2C16 18.54 16.54 18 17.2 18H20.8C21.46 18 22 18.54 22 19.2V20.8C22 21.46 21.46 22 20.8 22Z" fill="#292D32"></path>
-                        </g>
-                    </svg></a>
-                <h3>Upravljaj kategorijama</h3>
-            </div>
+
         </nav>
     </div>
     <!--Users-->
@@ -124,19 +125,19 @@
             </div>
         </nav>
     </div>
-   
+
     <div class="pb-12">
         <!--Footer part-->
         <x-slot:footerContent>
-        <p>Fashionable - software as service (SaaS)</p>
-        <p>Melisa Fashion e-commerce website - DEMO</p>
-        <p>Fashionable softver nije vlasnik niti vrši prodaju artikala prikazanih ovdje</p>
-        <p>Developed by Mirza Mehagić</p>
-        <p>Copyright © <?php echo date("Y"); ?></p>
-        <p>Mirza Mehagić All rights reserved</p>
-        <p>Contact: mirza.mehagic@hotmail.com</p>
-        <p> Za pravne dokumente molimo da posjetite: <a href="/#footer" class="underline">Početna stranica</a></p>
-        </x-slot>
+            <p>Fashionable - software as service (SaaS)</p>
+            <p>Melisa Fashion e-commerce website - DEMO</p>
+            <p>Fashionable softver nije vlasnik niti vrši prodaju artikala prikazanih ovdje</p>
+            <p>Developed by Mirza Mehagić</p>
+            <p>Copyright © <?php echo date("Y"); ?></p>
+            <p>Mirza Mehagić All rights reserved</p>
+            <p>Contact: mirza.mehagic@hotmail.com</p>
+            <p> Za pravne dokumente molimo da posjetite: <a href="/#footer" class="underline">Početna stranica</a></p>
+            </x-slot>
     </div>
     </div>
 </x-app-layout>
