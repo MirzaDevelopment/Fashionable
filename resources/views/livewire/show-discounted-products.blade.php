@@ -73,7 +73,7 @@
             </div>
             @endif
           </div>
-          <span class="text-xl md:text-2xl 2xl:text-4xl">Popust vrijedi do: <span class="text-[#9E1B32]"> {{date('d-m-Y', strtotime($product->end_date))}}</span></span>
+          <span class="text-lg md:text-2xl 2xl:text-4xl">Popust vrijedi do: <span class="text-[#9E1B32]"> {{date('d-m-Y', strtotime($product->end_date))}}</span></span>
           <hr class="border-t-1 self-center row-start-1 col-span-2 mt-2 mb-[2rem] lg:mt-4 2xl:mt-8 border-gray-800 w-[20%] col-span-1">
           <span class="text-[1.2rem] max-w-[75%] sm:max-w-[45%] lg:max-w-[50%] justify-center flex flex-row flex-wrap text-gray-800  lg:text-[calc(1rem+1vw)] lg2:text-[2.2rem] items-center">
             <p class="text-gray-800 text-lg  font-bold mr-[0.5rem]">Dostupno u:</p>

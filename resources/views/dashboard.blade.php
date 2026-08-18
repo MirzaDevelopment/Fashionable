@@ -10,7 +10,7 @@
         <div class="max-w-[50rem] xl:w-3/4 lg2:w-1/2 mx-auto sm:px-6">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-center">
                 <div class="p-6 text-gray-900">
-                    <p class="mb-2">{{ __("Dobrodošli") }}</p>
+                    <p class="mb-2 text-base">{{ __("Dobrodošli") }}</p>
                     <p class="text-sm">Ovdje možete vršiti administratorske funkcije nad vašim proizvodima i korisnicima.</p>
                     <p class="text-sm">Molimo da se po potrebi konsultujete sa vodičem dostupnim <a href="/#footer" class="underline text-cornflowerblue">ovdje</a></p>
                 </div>

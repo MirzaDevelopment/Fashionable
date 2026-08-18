@@ -4,7 +4,7 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-center">
                 <div class="p-6 text-gray-900">
-                    <p class="mb-2">{{ __("Obrisani korisnici") }}</p>
+                    <p class="mb-2 text-base">{{ __("Obrisani korisnici") }}</p>
                     <p class="text-sm">Ovdje možete vratiti obrisane korisnike.</p>
                     <p class="text-sm">Molimo da se po potrebi konsultujete sa vodičem dostupnim <a href="/#footer" class="underline text-cornflowerblue">ovdje.</a></p>
                 </div>
