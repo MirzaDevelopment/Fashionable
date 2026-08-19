@@ -8,9 +8,10 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-center">
                 <div class="p-6 text-gray-900">
-                    {{ __("Lista željenih proizvoda") }}
+                    <p class="mb-2 text-base">{{ __("Lista željenih proizvoda") }}</p>
+                    <p class="text-sm">Poslaćemo Vam email obaviještenje kada neki od ovih proizvoda bude na popustu.</p>
                 </div>
-                <p>Poslaćemo Vam email obaviještenje kada neki od ovih proizvoda bude na popustu.</p>
+                
             </div>
         </div>
     </div>

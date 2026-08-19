@@ -8,7 +8,8 @@
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg text-center">
                 <div class="p-6 text-gray-900">
-                    {{ __("Dobrodošli") }}
+                    <p class="mb-2 text-base">{{ __("Dobrodošli") }}</p>
+                    <p class="text-sm">Ovdje možete pratiti vaše izvršene kupovine i listu želja</p>
                 </div>
             </div>
         </div>
