@@ -24,7 +24,7 @@
           <!-- XL–2XL fallback (1280px–1535px) -->
           <source media="(min-width: 1280px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
 
-          <img class="w-fit lg:h-[700px] xl:ml-[5rem] object-contain" loading="lazy" src="{{ asset('storage/'.$images->image_400x400) }}" width="400" height="600" alt="product_image">
+          <img class="w-fit lg:h-[700px] xl:ml-[5rem] object-contain xl:border-r border-gray-800" loading="lazy" src="{{ asset('storage/'.$images->image_400x400) }}" width="400" height="600" alt="product_image">
         </picture>
         @break
         @endforeach
