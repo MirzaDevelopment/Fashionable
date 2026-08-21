@@ -15,8 +15,25 @@
                 <p class="text-xl">Veličina: {{$size[$key]->size}}</p>
                 <hr>
                 </hr>
-
+                @if($color[$key]->hex_code!=null)
                 <p>Boja: {{$color[$key]->color}}</p><input type="color" value="{{$color[$key]->hex_code}}" disabled></input>
+                @else
+                <p>Boja: {{$color[$key]->color}}</p>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="24" height="24">
+                    <defs>
+                        <clipPath id="circle">
+                            <circle cx="50" cy="50" r="45" />
+                        </clipPath>
+                    </defs>
+                    <g clip-path="url(#circle)">
+                        <rect x="0" y="0" width="50" height="50" fill="#EF4444" />
+                        <rect x="50" y="0" width="50" height="50" fill="#FACC15" />
+                        <rect x="0" y="50" width="50" height="50" fill="#22C55E" />
+                        <rect x="50" y="50" width="50" height="50" fill="#3B82F6" />
+                    </g>
+                    <circle cx="50" cy="50" r="45" fill="none" stroke="#444" stroke-width="4" />
+                </svg>
+                @endif
                 <p>Trenutna količina:</p>
                 <div @if ($errors->has('productStocks.' . $key)) class="p-2 border border-[#D32F2F]" @endif class="mb-10">
                     <input @if(($variantStocks[$key]->stock_quantity)<=$bottomStocksLimit && $this->toggle==false)class="bg-[#f8d7da] text-[#721c24]" @endif wire:key="{{ $key }}" wire:model="productStocks.{{$key}}" id="productStock" type="number" min="0" class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" placeholder="{{$variantStocks[$key]->stock_quantity}}">

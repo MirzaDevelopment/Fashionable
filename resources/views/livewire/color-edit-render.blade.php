@@ -1,4 +1,4 @@
-<div class="flex flex-col items-center"  x-data="{ open: false }"> <!--Frontend component for rendering present color categories for chosen product-->
+<div class="flex flex-col items-center" x-data="{ open: false }"> <!--Frontend component for rendering present color categories for chosen product-->
     <!-- Button to toggle categories -->
     <button class="text-gray-900 hover:text-white border border-gray-800 hover:bg-gray-700 active:bg-gray-900 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg px-5 py-2.5 text-center dark:border-gray-600 dark:text-gray-400 dark:hover:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-800 p-2 text-gray-900 mb-6" x-on:click="open = ! open" x-data="{ red: false }" x-bind:class="red ? ' bg-gray-900 text-white' : ''" @click="red = ! red">
         Boje proizvoda
@@ -13,12 +13,25 @@
         <h3 class="mt-6">Promijeni boje proizvoda:</h3>
         <!-- Showing color categories -->
         <div class="mt-6 grid grid-cols-2 gap-2 gap-x-10 justify-items-center">
-        
+
             @foreach ($colorsAll as $index => $name)
-            @if($name->color=="Šareno")
-            {!!$name->hex_code!!}
-            @else
+            @if($name->hex_code!=null)
             <input type="color" value="{{$name->hex_code}}" disabled></input>
+            @else
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="24" height="24">
+                <defs>
+                    <clipPath id="circle">
+                        <circle cx="50" cy="50" r="45" />
+                    </clipPath>
+                </defs>
+                <g clip-path="url(#circle)">
+                    <rect x="0" y="0" width="50" height="50" fill="#EF4444" />
+                    <rect x="50" y="0" width="50" height="50" fill="#FACC15" />
+                    <rect x="0" y="50" width="50" height="50" fill="#22C55E" />
+                    <rect x="50" y="50" width="50" height="50" fill="#3B82F6" />
+                </g>
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#444" stroke-width="4" />
+            </svg>
             @endif
             @if((in_array($name->color, $colorNames)))
             <p wire:click="$parent.ColorDeSelect('{{$name->color}}')" class="{{in_array($name->color, $colorDeSelect)? 'p-1 min-w-16  self-center bg-white  border border-gray-200 rounded-lg shadow' : 'p-1 min-w-16  self-center bg-[#EDE8D0] border border-gray-200 rounded-lg shadow'}}" style="cursor: pointer" wire:key="{{$name->id}}">{{$name->color}}</p>
@@ -30,34 +43,34 @@
 
         </div>
         <section class="mt-6">
-        @if (session('status'))
-        <!-- Successful insert message -->
-        <div class="lg:col-span-2 lg2:col-span-1" x-data="{open:true}">
-            <div class="text-[#004085] rounded-md p-2.5 bg-[#cce5ff] justify-center" x-show="open" x-on:click.outside="open=false" x-transition>{{ session('status')}}</div>
-        </div>
-        @elseif(session('errorException'))
-        <!-- Failed insert message -->
-        <div class="lg:col-span-2 lg2:col-span-1" x-data="{open:true}">
-            <div class="text-[#721c24] rounded-md bg-[#f8d7da] p-2.5 justify-center" x-show="open" x-on:click.outside="open=false" x-transition>{{ session('errorException')}}</div>
-        </div>
-        @elseif(session('errorColors'))
-        <!-- Failed insert message -->
-        <div class="lg:col-span-2 lg2:col-span-1" x-data="{open:true}">
-            <div class="text-[#721c24] rounded-md bg-[#f8d7da] p-2.5 justify-center" x-show="open" x-on:click.outside="open=false" x-transition>{{ session('errorColors')}}</div>
-        </div>
-        @elseif(session('emptyColors'))
-        <!-- Failed insert message -->
-        <div class="lg:col-span-2 lg2:col-span-1" x-data="{open:true}">
-            <div class="text-[#721c24] rounded-md bg-[#f8d7da] p-2.5 justify-center" x-show="open" x-on:click.outside="open=false" x-transition>{{ session('emptyColors')}}</div>
-        </div>
-        @endif
-    </section>
+            @if (session('status'))
+            <!-- Successful insert message -->
+            <div class="lg:col-span-2 lg2:col-span-1" x-data="{open:true}">
+                <div class="text-[#004085] rounded-md p-2.5 bg-[#cce5ff] justify-center" x-show="open" x-on:click.outside="open=false" x-transition>{{ session('status')}}</div>
+            </div>
+            @elseif(session('errorException'))
+            <!-- Failed insert message -->
+            <div class="lg:col-span-2 lg2:col-span-1" x-data="{open:true}">
+                <div class="text-[#721c24] rounded-md bg-[#f8d7da] p-2.5 justify-center" x-show="open" x-on:click.outside="open=false" x-transition>{{ session('errorException')}}</div>
+            </div>
+            @elseif(session('errorColors'))
+            <!-- Failed insert message -->
+            <div class="lg:col-span-2 lg2:col-span-1" x-data="{open:true}">
+                <div class="text-[#721c24] rounded-md bg-[#f8d7da] p-2.5 justify-center" x-show="open" x-on:click.outside="open=false" x-transition>{{ session('errorColors')}}</div>
+            </div>
+            @elseif(session('emptyColors'))
+            <!-- Failed insert message -->
+            <div class="lg:col-span-2 lg2:col-span-1" x-data="{open:true}">
+                <div class="text-[#721c24] rounded-md bg-[#f8d7da] p-2.5 justify-center" x-show="open" x-on:click.outside="open=false" x-transition>{{ session('emptyColors')}}</div>
+            </div>
+            @endif
+        </section>
         <div class="mt-6">
-    <x-primary-button wire:click="$parent.editColors" wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="lg:col-span-2 justify-center col-start-2 lg2:col-start-4">
+            <x-primary-button wire:click="$parent.editColors" wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="lg:col-span-2 justify-center col-start-2 lg2:col-start-4">
 
-        {{ __('Promijeni') }}
+                {{ __('Promijeni') }}
 
-    </x-primary-button>
-    </div>
+            </x-primary-button>
+        </div>
     </div>
 </div>
