@@ -80,6 +80,7 @@
                 @endif
                 @else
                 @if($name->source=="user")
+                  <!-- If no color is picked from color picker, default icon here would be displayed. It represents colors or multiple colors named by admin, that cannot be picked from color picker/color wheel. Default icon is also displayed wherever this type of color is used -->
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="24" height="24">
                     <defs>
                         <clipPath id="circle">
