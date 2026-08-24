@@ -13,7 +13,24 @@
             <!-- Showing color categories -->
             <div class="mt-6 grid grid grid-cols-2 gap-2 gap-x-10  items-center justify-items-center">
                 @foreach ($colorsAll as $name)
+                @if($name->hex_code!=null)
                 <input type="color" value="{{$name->hex_code}}" disabled></input>
+                @else
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="24" height="24">
+                <defs>
+                    <clipPath id="circle">
+                        <circle cx="50" cy="50" r="45" />
+                    </clipPath>
+                </defs>
+                <g clip-path="url(#circle)">
+                    <rect x="0" y="0" width="50" height="50" fill="#EF4444" />
+                    <rect x="50" y="0" width="50" height="50" fill="#FACC15" />
+                    <rect x="0" y="50" width="50" height="50" fill="#22C55E" />
+                    <rect x="50" y="50" width="50" height="50" fill="#3B82F6" />
+                </g>
+                <circle cx="50" cy="50" r="45" fill="none" stroke="#444" stroke-width="4" />
+            </svg>
+            @endif
                 <p wire:click="$parent.ColorSelect('{{$name->color}}')" class="{{in_array($name->color, $colorSelect)? 'p-1 min-w-16  self-center bg-[#EDE8D0] border border-gray-200 rounded-lg shadow' : 'p-1 min-w-16  self-center bg-white border border-gray-200 rounded-lg shadow'}}" style="cursor: pointer" wire:key="{{$name->id}}">{{$name->color}}</p>
                 @endforeach
                 @endisset
