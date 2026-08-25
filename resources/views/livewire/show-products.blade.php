@@ -1,5 +1,5 @@
 <div> <!--Livewire frontend component for products search -->
-    <input class="shadow-sm sm:rounded-lg border-transparent mb-4" type="text" wire:model.live="search" placeholder="Pretraži..."></input>
+    <input class="shadow-sm sm:rounded-lg border-transparent mb-4" type="text" wire:model.live.debounce.300ms="search" placeholder="Pretraži..."></input>
     @error('name') <span class="error">{{ $message }}</span> @enderror
     <section class="pt-10 max-w-[1920px] flex flex-col bg-white overflow-auto shadow-sm sm:rounded-lg sm:p-12 m-auto w-full flex justify-center">
         <div class="relative -top-10">
@@ -31,15 +31,16 @@
                 <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 border border-slate-300 ">{{ $product->description }}</td>
                 <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 border border-slate-300">{{$product->price}}</td>
                 <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 border border-slate-300">{{$product->discount}} </td>
-                <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 border border-slate-300"> @if(empty($product->end_date)) <p class="opacity-[0.25]">Nema popusta</p> @elseif($currentDate->between($product->start_date, $product->end_date))<p class="text-[#28a745] font-semibold">Aktivan</p> @elseif($currentDate->gt($product->end_date)) <p class="text-[#D32F2F] font-semibold">Istekao</p>  @else <p class="text-[#fb923c] font-semibold">Uskoro</p> @endif </td>
-                <td x-data="{ show: false }" class="p-3 border border-slate-300">@foreach($product->sizesVariant as $colors)@if($colors->pivot->stock_quantity<$product->bottom_stock_limit) <p class="flex justify-center"><a  href="/stock-management/{{$product->id}}?route=search" wire:navigate><img @mouseenter="show = true" @mouseleave="show = false" src="{{asset('storage/images/warning.png')}}" width="20" alt="low stock warning"></a></p> <p x-show="show" x-transition class="absolute mb-2 mt-2 px-2 py-1 text-sm text-white bg-gray-800 rounded shadow-lg">Količina nekog artikla je ispod dozvoljenog minimuma!</p>@break @endif @endforeach {{ $product->total_stock }}
+                <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 border border-slate-300"> @if(empty($product->end_date)) <p class="opacity-[0.25]">Nema popusta</p> @elseif($currentDate->between($product->start_date, $product->end_date))<p class="text-[#28a745] font-semibold">Aktivan</p> @elseif($currentDate->gt($product->end_date)) <p class="text-[#D32F2F] font-semibold">Istekao</p> @else <p class="text-[#fb923c] font-semibold">Uskoro</p> @endif </td>
+                <td x-data="{ show: false }" class="p-3 border border-slate-300">@foreach($product->sizesVariant as $colors)@if($colors->pivot->stock_quantity<$product->bottom_stock_limit) <p class="flex justify-center"><a href="/stock-management/{{$product->id}}?route=search" wire:navigate><img @mouseenter="show = true" @mouseleave="show = false" src="{{asset('storage/images/warning.png')}}" width="20" alt="low stock warning"></a></p>
+                        <p x-show="show" x-transition class="absolute mb-2 mt-2 px-2 py-1 text-sm text-white bg-gray-800 rounded shadow-lg">Količina nekog artikla je ispod dozvoljenog minimuma!</p>@break @endif @endforeach {{ $product->total_stock }}
                 </td>
                 <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 border border-slate-300">{{$product->wishlist}}</td>
                 <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 border border-slate-300">{{ $product->type->type_name }}</td>
-                <td  wire:click="RowCheckBox({{ $product->id}})" class="p-3 min-w-[150px] border border-slate-300">{{date('d-m-Y', strtotime($product->created_at))}}</td>
+                <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 min-w-[150px] border border-slate-300">{{date('d-m-Y', strtotime($product->created_at))}}</td>
                 <td wire:click="RowCheckBox({{ $product->id}})" class="{{ in_array($product->id, $checkBox) ? 'text-xl p-3 sm:p-6 border border-slate-300 bg-red-600 text-white ': 'text-xl p-3 sm:p-6 border border-slate-300'}}"><button wire:click="deleteProduct" class="bg-red-700 text-white font-medium px-5 py-2.5 rounded-lg shadow-sm hover:bg-red-800 transition-colors duration-200 disabled:opacity-5" wire:confirm="Da li stvarno želite da obrišete proizvod/e" wire:offline.attr="disabled" type="submit" @if(!in_array($product->id, $checkBox)) disabled @endif>Obriši</button></td> <!--Disabled if offline-->
                 <td class="p-3 text-xl sm:p-6 border border-slate-300 bg-sky-500 text-white">
-                    <a class="bg-sky-600 text-white font-medium px-5 py-2.5 rounded-lg hover:bg-sky-700 transition-colors duration-200 shadow-sm"href="/edit-products/{{$product->id}}" wire:navigate>Izmijeni</a>
+                    <a class="bg-sky-600 text-white font-medium px-5 py-2.5 rounded-lg hover:bg-sky-700 transition-colors duration-200 shadow-sm" href="/edit-products/{{$product->id}}" wire:navigate>Izmijeni</a>
                 </td> <!--Disabled if offline-->
             </tr>
             @endforeach
