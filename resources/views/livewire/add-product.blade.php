@@ -30,7 +30,7 @@
                 <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
                 @enderror
                 <label class="font-medium" for="productDiscount">Postavite popust na cijenu ili ostavite prazno.</label>
-                <input wire:model.live="productDiscount" id="productDiscount" type="number" min="0" @if ($errors->has('productDiscount')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" placeholder="Procenat popusta">
+                <input wire:model.live.debounce.300ms="productDiscount" id="productDiscount" type="number" min="0" @if ($errors->has('productDiscount')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" placeholder="Procenat popusta">
                 @error('productDiscount')
                 <!-- Validation failed message -->
                 <span class="error text-[#D32F2F] mt-1">{{ $message }}</span>
