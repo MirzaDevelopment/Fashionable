@@ -306,8 +306,9 @@ class AddProduct extends Component
 
         //Making sure both discount and dates are selected
         if (!(empty($this->productDiscount)) && empty($this->startDate) && empty($this->endDate)) {
-
+            $this->validationFailedExtraMessage = "Greška! Molimo provjerite da li ste popunili sve obavezne kategorije!";
             return session()->flash('errorDates', 'Molimo odaberite početni i završni datum trajanja popusta!');
+            
         }
 
         //Beginning transaction
