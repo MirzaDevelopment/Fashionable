@@ -66,10 +66,10 @@ class TagManagement extends Component
     public function insertTag(): RedirectResponse
     {
                 //Creating array items with first letter as capital letter regardless of number of words.
-        $this->tidyTags=array_map(
-            fn ($tags) => ucfirst(mb_strtolower($tags)),
-            $this->tags
-        );
+$this->tidyTags = array_map(function ($tag) {
+    $tag = mb_strtolower(trim($tag));
+    return mb_strtoupper(mb_substr($tag, 0, 1)) . mb_substr($tag, 1);
+}, $this->tags);
         Gate::authorize('create', Tag::class);
 
                 $this->validate();
