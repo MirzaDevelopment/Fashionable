@@ -64,10 +64,10 @@ class GenderManagement extends Component
     public function insertGender(): RedirectResponse
     {
         //Creating array items with first letter as capital letter regardless of number of words.
-        $this->tidyGenders=array_map(
-            fn ($gender) => ucfirst(mb_strtolower($gender)),
-            $this->genders
-        );
+        $this->tidyGenders = array_map(function ($gender) {
+            $gender = mb_strtolower(trim($gender));
+            return mb_strtoupper(mb_substr($gender, 0, 1)) . mb_substr($gender, 1);
+        }, $this->genders);
         Gate::authorize('create', Gender::class);
         $this->validate();
         //Beginning transaction

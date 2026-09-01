@@ -65,35 +65,35 @@ class TagManagement extends Component
     //Inserting category in db
     public function insertTag(): RedirectResponse
     {
-                //Creating array items with first letter as capital letter regardless of number of words.
-$this->tidyTags = array_map(function ($tag) {
-    $tag = mb_strtolower(trim($tag));
-    return mb_strtoupper(mb_substr($tag, 0, 1)) . mb_substr($tag, 1);
-}, $this->tags);
+        //Creating array items with first letter as capital letter regardless of number of words.
+        $this->tidyTags = array_map(function ($tag) {
+            $tag = mb_strtolower(trim($tag));
+            return mb_strtoupper(mb_substr($tag, 0, 1)) . mb_substr($tag, 1);
+        }, $this->tags);
         Gate::authorize('create', Tag::class);
 
-                $this->validate();
+        $this->validate();
 
-                //Beginning transaction
+        //Beginning transaction
 
-                DB::beginTransaction();
-                try {
-                    foreach ($this->tidyTags as $tags) {
-                        Tag::create([
-                            'source' => 'user',
-                            'tag' => $tags,
-                        ]);
-                    }
-                    DB::commit();
-                    return redirect()->back()->with("status", "Oznaka je dodana uspješno!");
-                } catch (\Exception $e) {
-                    DB::rollBack(); // Rollback the transaction on error
-                    Log::error('Error occurred: ' . $e->getMessage());
-                    return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja oznaka. Molimo pokušaje ponovo.");
-                }
+        DB::beginTransaction();
+        try {
+            foreach ($this->tidyTags as $tags) {
+                Tag::create([
+                    'source' => 'user',
+                    'tag' => $tags,
+                ]);
             }
-        
-    
+            DB::commit();
+            return redirect()->back()->with("status", "Oznaka je dodana uspješno!");
+        } catch (\Exception $e) {
+            DB::rollBack(); // Rollback the transaction on error
+            Log::error('Error occurred: ' . $e->getMessage());
+            return redirect()->back()->with("errorException", "Nastao je problem prilikom dodavanja oznaka. Molimo pokušaje ponovo.");
+        }
+    }
+
+
 
 
     // Method to delete category from db (soft method not used)
