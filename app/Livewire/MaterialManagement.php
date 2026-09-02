@@ -63,10 +63,10 @@ class MaterialManagement extends Component
     public function insertMaterial(): RedirectResponse
     {
              //Creating array items with first letter as capital letter regardless of number of words.
-        $this->tidyMaterials=array_map(
-            fn ($materials) => ucfirst(mb_strtolower($materials)),
-            $this->materials
-        );
+      $this->tidyMaterials = array_map(function ($materials) {
+            $materials = mb_strtolower(trim($materials));
+            return mb_strtoupper(mb_substr($materials, 0, 1)) . mb_substr($materials, 1);
+        }, $this->materials);
         Gate::authorize('create', Material::class);
 
                 $this->validate();

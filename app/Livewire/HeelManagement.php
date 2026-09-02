@@ -65,10 +65,10 @@ class HeelManagement extends Component
     public function insertHeel(): RedirectResponse
     {
               //Creating array items with first letter as capital letter regardless of number of words.
-        $this->tidyHeels=array_map(
-            fn ($heels) => ucfirst(mb_strtolower($heels)),
-            $this->heels
-        );
+      $this->tidyHeels = array_map(function ($heels) {
+            $heels = mb_strtolower(trim($heels));
+            return mb_strtoupper(mb_substr($heels, 0, 1)) . mb_substr($heels, 1);
+        }, $this->heels);
         Gate::authorize('create', Heel::class);
 
                 $this->validate();

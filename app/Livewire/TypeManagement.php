@@ -62,10 +62,11 @@ class TypeManagement extends Component
     public function insertType(): RedirectResponse
     {
              //Creating array items with first letter as capital letter regardless of number of words.
-        $this->tidyTypes=array_map(
-            fn ($types) => ucfirst(mb_strtolower($types)),
-            $this->types
-        );
+      $this->tidyTypes= array_map(function ($types) {
+            $types = mb_strtolower(trim($types));
+            return mb_strtoupper(mb_substr($types, 0, 1)) . mb_substr($types, 1);
+        }, $this->types);
+
         Gate::authorize('create', Type::class);
                 $this->validate();
                 //Beginning transaction

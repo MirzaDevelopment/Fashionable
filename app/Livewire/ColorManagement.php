@@ -75,10 +75,10 @@ class ColorManagement extends Component
     public function insertColor(): RedirectResponse
     {
              //Creating array items with first letter as capital letter regardless of number of words.
-        $this->tidyColors=array_map(
-            fn ($colors) => ucfirst(mb_strtolower($colors)),
-            $this->colors
-        );
+      $this->tidyColors = array_map(function ($colors) {
+            $colors = mb_strtolower(trim($colors));
+            return mb_strtoupper(mb_substr($colors, 0, 1)) . mb_substr($colors, 1);
+        }, $this->colors);
         Gate::authorize('create', Color::class);
         $this->validate();
 

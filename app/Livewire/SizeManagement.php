@@ -67,10 +67,10 @@ class SizeManagement extends Component
     public function insertSize(): RedirectResponse
     {
         //Creating array items with first letter as capital letter regardless of number of words.
-        $this->tidySizes = array_map(
-            fn ($sizes) => ucfirst(mb_strtolower($sizes)),
-            $this->sizes
-        );
+      $this->tidySizes = array_map(function ($sizes) {
+            $sizes = mb_strtolower(trim($sizes));
+            return mb_strtoupper(mb_substr($sizes, 0, 1)) . mb_substr($sizes, 1);
+        }, $this->sizes);
         Gate::authorize('create', Size::class);
 
         $this->validate();

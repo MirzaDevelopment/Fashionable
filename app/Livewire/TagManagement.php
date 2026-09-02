@@ -70,6 +70,7 @@ class TagManagement extends Component
             $tag = mb_strtolower(trim($tag));
             return mb_strtoupper(mb_substr($tag, 0, 1)) . mb_substr($tag, 1);
         }, $this->tags);
+        
         Gate::authorize('create', Tag::class);
 
         $this->validate();
