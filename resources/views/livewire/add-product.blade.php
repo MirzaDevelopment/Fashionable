@@ -230,7 +230,7 @@
                         <div class="row-span-1 justify-center items-center flex">
                             Dostupno u:
                             @foreach ($colorRender as $index => $bgColor)
-                            <div wire:model="colorRender.{{ $index }}" class="m-1 border-2" wire:key="{{$index}}" style="width: 25px; height: 25px; background-color:{{$bgColor}}; border-radius: 50%;"></div>
+                            <div wire:key="colorRender.{{ $index }}" class="m-1 border-2" wire:key="{{$index}}" style="width: 25px; height: 25px; background-color:{{$bgColor}}; border-radius: 50%;"></div>
                             @endforeach
                         </div>
                         @endif
