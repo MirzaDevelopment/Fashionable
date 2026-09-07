@@ -230,7 +230,12 @@
                         <div class="row-span-1 justify-center items-center flex">
                             Dostupno u:
                             @foreach ($colorRender as $index => $bgColor)
+                            @if($bgColor!=null)
                             <div wire:key="colorRender.{{ $index }}" class="m-1 border-2" wire:key="{{$index}}" style="width: 25px; height: 25px; background-color:{{$bgColor}}; border-radius: 50%;"></div>
+                            @else
+                            <!-- Using svg icon that represents multiple colors or specific custom design patterns -->
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="24" height="24"><defs><clipPath id="circle"><circle cx="50" cy="50" r="45"/></clipPath></defs><g clip-path="url(#circle)"><rect x="0" y="0" width="50" height="50" fill="#EF4444"/><rect x="50" y="0" width="50" height="50" fill="#FACC15"/><rect x="0" y="50" width="50" height="50" fill="#22C55E"/><rect x="50" y="50" width="50" height="50" fill="#3B82F6"/></g><circle cx="50" cy="50" r="45" fill="none" stroke="#444" stroke-width="4"/></svg>
+                            @endif
                             @endforeach
                         </div>
                         @endif
