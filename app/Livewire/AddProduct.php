@@ -49,7 +49,7 @@ class AddProduct extends Component
     #[Validate]
     public string $productDescription;
     #[Validate]
-    public ?string $productPrice = null;
+    public int|float|null $productPrice = null;
     #[Validate]
     public ?string $productDiscount = null;
     #[Validate]
