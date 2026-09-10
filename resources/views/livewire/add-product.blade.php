@@ -129,7 +129,7 @@
             <section class="p-6 mt-10 max-h-[845px] sm:col-span-2 lg2:col-span-1 sm:grid-cols-subgrid gap-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col gap-6">
                 <h2 class="text-xl">4. Slike proizvoda</h2>
                 <hr>
-                <label class="font-medium" for="productImage">Umetnite sliku vašeg proizvoda koji odgovara odabranoj boji.</label>
+                <span class="font-medium" for="productImage">Umetnite sliku vašeg proizvoda koji odgovara odabranoj boji.</span>
                 <div class="overflow-scroll lg2:overflow-auto flex flex-col gap-6">
                     <p class="text-xs text-gray-400">*Ekstenzije PNG, JPG SVG, WEBP, and GIF su dozvoljene.<br> Program automatski optimizira slike i slaže ih u odgovarajuće veličine. Nije potrebna prethodna optimizacija od strane korisnika.</p>
                     <!--Input fields for colors-->
