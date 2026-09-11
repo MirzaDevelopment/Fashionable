@@ -4,7 +4,7 @@
     <div @if($lightBox) class="mt-10 bg-white static flex justify-center lg2:items-center items-end" @endif class="mt-10 bg-white">
         <div @if($lightBox) class="sm:grid grid-cols-2 gap-x-2 lg:grid-cols-4 gap-y-6 w-full px-6 py-4 bg-white overflow-hidden sm:rounded-lg m-auto bg-gray-800 blur-lg" @endif class="sm:grid grid-cols-2 gap-x-2 lg:grid-cols-4 gap-y-6 w-full px-6 py-4 bg-white overflow-hidden sm:rounded-lg m-auto">
             <!--Product general info section-->
-            <section class="p-6 mt-10 place-content-evenly bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
+            <section class="p-6 gap-6 mt-10 place-content-evenly bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
                 <h2 class="text-xl">1. Podaci o proizvodu</h2>
                 <hr>
                 <label class="font-medium" for="productName">Naziv vašeg proizvoda?</label>
@@ -21,7 +21,7 @@
                 @enderror
             </section>
             <!--Prices and discount section-->
-            <section class="p-6 mt-10 bg-white place-content-evenly border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
+            <section class="gap-6 p-6 mt-10 bg-white place-content-evenly border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
                 <h2 class="text-xl">2. Cijene i popusti vašeg proizvoda.</h2>
                 <hr>
                 <label class="font-medium" for="productPrice">Postavite cijenu vašeg proizvoda.</label>
@@ -60,7 +60,7 @@
                 @endif
             </section>
             <!--Select product categories section-->
-            <section class="p-6 mt-10 max-h-[845px] sm:col-span-2 lg2:col-span-1 bg-white sm:grid-cols-subgrid gap-4  border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col gap-6">
+            <section class="gap-6 p-6 mt-10 max-h-[845px] sm:col-span-2 lg2:col-span-1 bg-white sm:grid-cols-subgrid border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
                 <h2 class="text-xl">3. Kategorije proizvoda i oznake</h2>
                 <hr>
                 <p class="font-medium">Odaberite kategorije i oznake za vaš proizvod.</p>
@@ -126,7 +126,7 @@
                 </div>
             </section>
             <!--Upload product images section-->
-            <section class="p-6 mt-10 max-h-[845px] sm:col-span-2 lg2:col-span-1 sm:grid-cols-subgrid gap-4 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col gap-6">
+            <section class="p-6 mt-10 max-h-[845px] sm:col-span-2 lg2:col-span-1 sm:grid-cols-subgrid gap-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col gap-6">
                 <h2 class="text-xl">4. Slike proizvoda</h2>
                 <hr>
                 <span class="font-medium" for="productImage">Umetnite sliku vašeg proizvoda koji odgovara odabranoj boji.</span>
