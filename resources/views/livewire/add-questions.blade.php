@@ -1,5 +1,4 @@
 <div>
-
     <div class="p-4 w-[300px] mx-auto  bg-white shadow-lg max-w-[300px]">
         <h2 class="text-3xl text-gray-900 font-bold">Kako Vam možemo pomoći?</h2>
         <form wire:submit="uploadQuestion" class="mt-8 space-y-5" wire:recaptcha>
@@ -48,5 +47,5 @@
         @endif
     </div>
 </div>
-<!-- Add the `@livewireRecaptcha` Blade directive -->
+<!-- @livewireRecaptcha Blade directive -->
 @livewireRecaptcha
