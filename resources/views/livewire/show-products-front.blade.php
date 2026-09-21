@@ -116,14 +116,14 @@
                     {{ $wishListFailed[$product->id] }}
                 </div>
                 @endif
-                <!--Images-->
+                <!--Product images-->
                 @foreach ($product->images as $images)
                 <picture>
                     <source media="(max-width: 320px)" srcset="{{ asset('storage/'.$images->image_320x320) }}">
                     <source media="(max-width: 640px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
                     <source media="(max-width: 1023px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
                     <source media="(min-width: 1024px)" srcset="{{ asset('storage/'.$images->image_400x400) }}">
-                    <img class="object-cover transition-transform duration-500 ease-out hover:scale-105" loading="lazy" fetchpriority="low" decoding="async" src="{{ asset('storage/'.$images->image_400x400)}}" width="400" height="600" alt="product image">
+                    <img class="object-cover transition-transform duration-500 ease-out hover:scale-105" loading="lazy" fetchpriority="low" decoding="async" src="{{ asset('storage/'.$images->image_400x400)}}" width="400" height="600" alt="product_image">
                 </picture>
                 @break
                 @endforeach
