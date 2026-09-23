@@ -1,9 +1,17 @@
 <!--Admin Dashboard view-->
 <x-app-layout>
     <x-slot name="header"> <!--This comes from the app.blade layout in layouts folder. Its not a separated component like in front layout-->
-        <h2 class="font-semibold flex gap-x-[0.5rem]  flex-row flex-wrap text-xl text-gray-800 leading-tight">
-            {{ __('Poruke od korisnika') }}
-            <a class="flex flex-row" href="{{ route('questions') }}" wire:navigate><img class="cursor-pointer" src="{{ asset('storage/images/message.svg') }}" alt="messages_icon" width="25" height="20"><span class="text-[#D32F2F] ml-[5px]">@if($questionsCount)({{$questionsCount}}) Novih poruka @elseif($questionsCount==0) <span class="text-[#28a745] ml-[5px]">Nemate novih poruka @endif <span></span></a>
+            <a class="flex flex-row-reverse" href="{{ route('questions') }}" wire:navigate><span class="text-[#22c55e] ml-[5px]">@if($questionsCount)<div class="relative inline-block">
+  <!-- Ikona ili tekst -->
+  <button class="p-2 text-gray-600 bg-gray-100 rounded-full hover:bg-gray-200">
+    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://w3.org"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"></path></svg>
+  </button>
+  <!-- Pulsirajući zeleni krugić -->
+  <span class="absolute top-0 right-0 flex h-2.5 w-2.5">
+    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-green-500"></span>
+  </span>
+</div>({{$questionsCount}}) @elseif($questionsCount==0) <span class="text-[#22c55e] ml-[5px]">Nemate novih poruka @endif <span></span></a>
         </h2>
     </x-slot>
     <div class="py-12">
