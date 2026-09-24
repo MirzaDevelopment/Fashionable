@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout><!--User/customer dashboard view-->
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Upravljačka ploča za korisnike') }}

@@ -1,5 +1,4 @@
-<!--Admin Dashboard view-->
-<x-app-layout>
+<x-app-layout><!--Admin Dashboard view-->
     <x-slot name="header"> <!--This comes from the app.blade layout in layouts folder. Its not a separated component like in front layout-->
         <a class="flex flex-row-reverse" href="{{ route('questions') }}" wire:navigate><span class="text-[#22c55e] ml-[5px]">@if($questionsCount)<div class="relative inline-block">
                     <!-- Message notification icon and pulsating circle -->

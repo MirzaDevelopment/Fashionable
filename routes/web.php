@@ -63,9 +63,13 @@ Route::get('/registration', function () {
 //User management resource route
 Route::resource("users", UserController::class)->only(['store', 'edit', 'update'])->middleware(['auth', 'verified']);
 
+/***Route for superadmin***/
+Route::get('/tenants', function () {
+    return view('tenants');
+})->middleware(['auth', 'verified'])->name('tenants');
 
 
-/***Custom routes***/
+/***Custom routes for tenants***/
 Route::middleware(['auth', 'verified'])->group(function () {
     //Admin route (authorised in controller)
     Route::get('/dashboard', [DashboardController::class, 'countUsersAndProducts'], function () {
