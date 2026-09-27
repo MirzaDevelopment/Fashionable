@@ -56,6 +56,7 @@ Route::get('/screenshots', function () {
 
 //Tenant registration route 
 Route::get('/registration', function () {
+    Gate::authorize('view', Tenant::class); //Authorisation for admin
     return view('tenantregistration');
 })->name('tenantregistration');
 
