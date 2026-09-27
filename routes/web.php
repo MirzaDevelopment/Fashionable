@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Product;
+use App\Models\Tenant;
 use App\Models\Question;
 use App\Models\Wishlist;
 use App\Http\Controllers\Auth\GoogleController;
@@ -56,7 +57,6 @@ Route::get('/screenshots', function () {
 
 //Tenant registration route 
 Route::get('/registration', function () {
-    Gate::authorize('view', Tenant::class); //Authorisation for admin
     return view('tenantregistration');
 })->name('tenantregistration');
 
@@ -66,6 +66,7 @@ Route::resource("users", UserController::class)->only(['store', 'edit', 'update'
 
 /***Route for superadmin***/
 Route::get('/tenants', function () {
+     Gate::authorize('view', Tenant::class); //Authorisation for superadmin
     return view('tenants');
 })->middleware(['auth', 'verified'])->name('tenants');
 
