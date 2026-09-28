@@ -28,6 +28,10 @@
                 <a href="/registration" class="inline-block mt-8 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500  text-white px-6 py-3 text-sm font-semibold">
                     Započnite besplatno
                 </a>
+                
+                <a href="/login" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">Već ste klijent?
+                Prijavite se!
+            </a>
             </div>
 
             <!-- PROMO IMAGES -->

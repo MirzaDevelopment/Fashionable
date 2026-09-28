@@ -184,8 +184,9 @@ class RegisterTenant extends Component
             return null; // Prevent further submissions if already uploading
         }
             //Checking if user skipped some fields to show a proper message in his view.
-            if (empty($this->tenantName) | empty($this->slug) | empty($this->currency) | empty($this->phone) | empty($this->shippingProvider) | empty($this->shippingProviderOther) | empty($this->user_name) | empty($this->email) | empty($this->user_password) | empty($this->user_password_confirmation) | ($this->policy) ) {
+            if (empty($this->tenantName) | empty($this->slug) | empty($this->currency) | empty($this->phone) | empty($this->shippingProvider) | empty($this->user_name) | empty($this->email) | empty($this->user_password) | empty($this->user_password_confirmation) | empty($this->policy) ) {
             $this->validationFailedExtraMessage = "Greška! Molimo provjerite da li ste popunili sva obavezna polja!";
+            dd($this->validationFailedExtraMessage);
         }
 
         $this->validate();
@@ -304,7 +305,7 @@ class RegisterTenant extends Component
                 'tenant_name' => ucfirst($this->tenantName),
                 'slug' => $this->slug,
                 'logo_image_id' => $this->logoImageFinal?->id,
-                'cover_image_id' => $this->coverImageFinal?->Id,
+                'cover_image_id' => $this->coverImageFinal?->id,
                 'currency' => $this->currency,
                 'phone' => $this->phone,
                 'shipping_provider' => $this->shippingProvider, //Or shippingProviderOther
