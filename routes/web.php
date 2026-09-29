@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Models\User;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use App\Models\Tenant;
 use App\Models\Question;
 use App\Models\Wishlist;
@@ -73,9 +74,11 @@ Route::get('/tenants', function () {
 
 /***Custom routes for tenants***/
 Route::middleware(['auth', 'verified'])->group(function () {
-    //Admin route (authorised in controller)
-    Route::get('/dashboard', [DashboardController::class, 'countUsersAndProducts'], function () {
+        //Admin route (authorised in controller)
+    Route::get('{tenant}/dashboard', [DashboardController::class, 'countUsersAndProducts'], function () { 
     })->name('dashboard');
+
+
 
     //Guest route
 Route::get('/dashboardusers', function () {
