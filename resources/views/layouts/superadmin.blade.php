@@ -24,6 +24,7 @@
 
 <body class="font-sans antialiased">
     <div class="min-h-screen bg-slate-100">
+        @include('layouts.navigationsuperadmin')
         <!-- Page Heading -->
         @if (isset($header))
         <header class="bg-white shadow">
@@ -42,7 +43,7 @@
 
     <!-- Livewire scripts LAST -->
     @livewireScripts
-    
+
 </body>
 
 </html>

@@ -25,17 +25,17 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        
         $request->authenticate();
-        $tenant=auth()->user()->tenant()->first();
+        $tenant = auth()->user()->tenant()->first();
         $request->session()->regenerate();
-        if(auth()->user()->role=="admin" && $tenant){
-        return redirect()->guest("{$tenant->slug}/dashboard");
-       //return redirect(RouteServiceProvider::HOME);
-        }else {
-        return redirect()->guest("dashboardusers");
+        if (auth()->user()->role == "admin" && $tenant) {
+            return redirect()->guest("{$tenant->slug}/dashboard");
+            //return redirect(RouteServiceProvider::HOME);
+        } else if (auth()->user()->role == "superadmin") {
+            return redirect()->guest("tenants");
+        } else {
+            return redirect()->guest("dashboardusers");
         }
-        
     }
 
     /**
