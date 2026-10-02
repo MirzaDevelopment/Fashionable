@@ -5,10 +5,9 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="mt-1">
-                <a href="/shop">
+                <a href="/">
                 <img src="{{ asset('storage/images/melisa_fashion_logo_header.svg') }}" alt="shop-logo" width="180" height="200" class ="fill-current text-gray-500"/></a>
             </div>
-
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">

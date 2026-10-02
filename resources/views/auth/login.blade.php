@@ -4,7 +4,7 @@
 
     <form method="POST" action="{{ route('login') }}">
         @csrf
-
+        <h1 class="text-lg text-center font-medium mt-6 mb-6 text-gray-700 leading-tight">Prijava</h1>
         <!-- Email Address -->
         <div>
             <x-input-label for="email" :value="__('Email')" />

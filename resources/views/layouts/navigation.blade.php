@@ -5,14 +5,17 @@
             <div class="flex">
                 <!-- Logo -->
                 <div class="mt-1">
-                <a href="/shop">
-                <img src="{{ asset('storage/images/melisa_fashion_logo_header.svg') }}" alt="shop-logo" width="180" height="200" class ="fill-current text-gray-500"/></a>
-            </div>
+                    <a href="/shop">
+                        <img src="{{ asset('storage/images/melisa_fashion_logo_header.svg') }}" alt="shop-logo" width="180" height="200" class="fill-current text-gray-500" /></a>
+                </div>
 
                 <!-- Navigation Links -->
-                 @if(Auth::user()->role=="admin")
+                @if(Auth::user()->role=="admin")
+                @php
+                session()->put('slug', 'Auth::user()->tenant()->first()->slug');
+                @endphp
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard', ['tenant'=>Auth::user()->tenant()->first()->slug])" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('dashboard', ['tenant'=>'slug'])" :active="request()->routeIs('dashboard')">
                         {{ __('Administratorska ploča') }}
                     </x-nav-link>
                 </div>
@@ -47,8 +50,7 @@
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
 
-                            <x-dropdown-link :href="route('logout')"
-                                    onclick="event.preventDefault();
+                            <x-dropdown-link :href="route('logout')" onclick="event.preventDefault();
                                                 this.closest('form').submit();">
                                 {{ __('Odjava') }}
                             </x-dropdown-link>
@@ -72,7 +74,7 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('dashboard', ['tenant'=>Auth::user()->tenant()->first()->slug])" :active="request()->routeIs('dashboard')">
+            <x-responsive-nav-link :href="route('dashboard', ['tenant'=>'slug'])" :active="request()->routeIs('dashboard')">
                 {{ __('Administratorska ploča') }}
             </x-responsive-nav-link>
         </div>
@@ -93,8 +95,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <x-responsive-nav-link :href="route('logout')"
-                            onclick="event.preventDefault();
+                    <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault();
                                         this.closest('form').submit();">
                         {{ __('Odjava') }}
                     </x-responsive-nav-link>
