@@ -23,7 +23,7 @@
             <a href="/">
                 <img class="sm:rounded-lg shadow-md " src="http://melisa.test/storage/images/fashionable-logo.png" alt="fashionable-logo" width="auto" height="auto" fetchpriority="high"></a>
         </div>
-        <div class="w-full sm:max-w-md px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+        <div class="w-full min-h-[448px] sm:max-w-md px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
             <main>
                 {{ $slot }}
             </main>
