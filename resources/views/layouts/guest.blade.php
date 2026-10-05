@@ -18,12 +18,13 @@
 </head>
 
 <body class="font-sans text-gray-900 antialiased">
-    <div class="min-h-screen p-3 flex flex-col sm:flex-row gap-2 sm:justify-center items-center pt-6 sm:pt-0 bg-slate-100">
+    <div class="min-h-screen p-3 flex flex-col sm:flex-row gap-6 sm:justify-center items-center pt-6 sm:pt-0 bg-gradient-to-br from-white via-slate-50 to-blue-50">
         <div class="w-full sm:max-w-md">
             <a href="/">
-                <img class="sm:rounded-lg shadow-md " src="http://melisa.test/storage/images/fashionable-logo.png" alt="fashionable-logo" width="auto" height="auto" fetchpriority="high"></a>
+                <img class="sm:rounded-lg shadow-md md:min-h-[463.50px] " src="http://melisa.test/storage/images/fashionable-logo.png" alt="fashionable-logo" width="auto" height="auto" fetchpriority="high"></a>
         </div>
         <div class="w-full min-h-[448px] sm:max-w-md px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            
             <main>
                 {{ $slot }}
             </main>

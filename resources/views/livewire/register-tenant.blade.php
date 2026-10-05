@@ -228,7 +228,7 @@
                 Natrag
             </a>
 
-            <x-primary-button type="submit" wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="mt-6 mb-6 justify-center  m-auto h-[50px]">
+            <x-primary-button type="submit" wire:offline.attr="disabled" wire:loading.attr="disabled" wire:loading.class="opacity-50" class="mt-6 mb-6 justify-center  m-auto h-[50px] bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500  text-white px-6 py-3 text-sm font-semibold">
 
                 {{ __('Kreiraj moju online prodavnicu') }}
 

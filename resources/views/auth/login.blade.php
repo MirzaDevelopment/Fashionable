@@ -29,31 +29,36 @@
             </label>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-
-            @if (Route::has('password.request'))
-            <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                {{ __('Zaboravili ste lozinku?') }}
+        <div class="flex items-center justify-center mt-4">
+            <a href="/" class="ms-3 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                {{ __('Natrag') }}
             </a>
-
-            @endif
-
             <x-primary-button class="ms-3">
                 {{ __('Prijavi se') }}
             </x-primary-button>
 
+
+
         </div>
     </form>
     <div class="flex flex-col gap-2 items-center justify-center dark:bg-gray-800">
+
         <a href="{{ route('google.login') }}" wire:navigate>
             <button class="px-4 py-2 mt-6 border flex gap-2 border-slate-200 dark:border-slate-700 rounded-lg text-slate-700 dark:text-slate-200 hover:border-slate-400 dark:hover:border-slate-500 hover:text-slate-900 dark:hover:text-slate-300 hover:shadow transition duration-150">
                 <img class="w-6 h-6" src="https://www.svgrepo.com/show/475656/google-color.svg" loading="lazy" alt="google logo">
                 <span>Prijavi se sa Google</span>
             </button>
         </a>
+        @if (Route::has('password.request'))
+        <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+            {{ __('Zaboravili ste lozinku?') }}
+        </a>
+
+        @endif
         <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('register') }}">
             {{ __("Nemate račun? Registrirajte se ovdje.") }}
         </a>
+
     </div>
 
 </x-guest-layout>
