@@ -67,25 +67,26 @@ Route::resource("users", UserController::class)->only(['store', 'edit', 'update'
 
 /***Route for superadmin***/
 Route::get('/tenants', function () {
-     Gate::authorize('view', Tenant::class); //Authorisation for superadmin
+    Gate::authorize('view', Tenant::class); //Authorisation for superadmin
     return view('tenants');
 })->middleware(['auth', 'verified'])->name('tenants');
 
 
 /***Custom routes for tenants***/
 Route::middleware(['auth', 'verified'])->group(function () {
-        //Admin route (authorised in controller)
-    Route::get('{tenant}/dashboard', [DashboardController::class, 'countUsersAndProducts'], function () { 
+    //Admin route (authorised in controller)
+    Route::get('{tenant}/dashboard', [DashboardController::class, 'countUsersAndProducts'], function () {
     })->name('dashboard');
 
 
 
     //Guest route
-Route::get('/dashboardusers', function () {
-    if (auth()->user() && auth()->user()->role == "gost") {
-        return view("dashboardusers");
-    }
-})->name('dashboardusers');
+    Route::get('/dashboardusers', function () {
+        if (auth()->user() && auth()->user()->role == "gost") {
+            return view("dashboardusers");
+        }
+    })->name('dashboardusers');
+
     //Livewire users search route
     Route::get('/users', function () {
         Gate::authorize('view', User::class); //Authorisation for admin

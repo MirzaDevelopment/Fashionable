@@ -16,7 +16,8 @@ class AuthenticatedSessionController extends Controller
      * Display the login view.
      */
     public function create(): View
-    {
+    {   
+        
         return view('auth.login');
     }
 
@@ -24,11 +25,12 @@ class AuthenticatedSessionController extends Controller
      * Handle an incoming authentication request.
      */
     public function store(LoginRequest $request): RedirectResponse
-    {
+    {   
+       
         $request->authenticate();
         $tenant = auth()->user()->tenant()->first();
         $request->session()->regenerate();
-        if (auth()->user()->role == "admin" && $tenant) {
+        if (auth()->user()->role == "admin" && $tenant!=null) {
             return redirect()->guest("{$tenant->slug}/dashboard");
             //return redirect(RouteServiceProvider::HOME);
         } else if (auth()->user()->role == "superadmin") {
