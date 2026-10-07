@@ -181,7 +181,7 @@
         <section wire:key="step-2" class="sm:p-6 mt-10 sm:max-w-[80%] xl:max-w-[50%] w-fit m-auto place-content-evenly bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 flex flex-col">
             <div class="m-auto flex flex-col gap-y-6 p-8">
                 <!-- Tenant admin data -->
-                <h2 class="text-lg">Vaš račun</h2>
+                <h2 class="text-lg">Vaš administratorski račun</h2>
                 <label class="font-medium text-base" for="user_name"> Korisničko ime <span style="color:red">*</span></label>
                 <input wire:model="user_name" id="user_name" @if ($errors->has('user_name')) class="border-[#D32F2F]" @endif class="border-gray-300 focus:border-indigo-500 focus:ring-indigo-500 rounded-md shadow-sm" type="text" name="user_name" required autofocus autocomplete="username" />
                 @error('user_name')

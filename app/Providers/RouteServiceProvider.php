@@ -17,7 +17,7 @@ class RouteServiceProvider extends ServiceProvider
      *
      * @var string
      */
-    public const HOME = '/tenants'; //Logged in users come here where clicked on login route after logged in (currently superadmin)
+    public const HOME = '/shop'; //Logged in users come here where clicked on login route after logged in (currently superadmin)
     public const GUESTHOME = '/shop';
 
     /**
