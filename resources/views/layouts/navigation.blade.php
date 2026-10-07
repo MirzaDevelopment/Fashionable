@@ -11,16 +11,13 @@
 
                 <!-- Navigation Links -->
                 @if(Auth::user()->role=="admin")
-                @php
-                session()->put('slug', 'Auth::user()->tenant()->first()->slug');
-                @endphp
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('dashboard', ['tenant'=>'slug'])" :active="request()->routeIs('dashboard')">
+                    <x-nav-link :href="route('dashboard', ['tenant'=>Auth::user()->tenant()->first()->slug])" :active="request()->routeIs('dashboard')">
                         {{ __('Administratorska ploča') }}
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('statistics')" :active="request()->routeIs('statistics')">
+                    <x-nav-link :href="route('statistics', ['tenant'=>Auth::user()->tenant()->first()->slug])" :active="request()->routeIs('statistics')">
                         {{ __('Statistika') }}
                     </x-nav-link>
                 </div>

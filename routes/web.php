@@ -102,7 +102,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('deleted-users');
     })->name('deleted-users');
     //Small category route (using product view policy here)
-    Route::get('/categories', function () {
+    Route::get('{tenant}/categories', function () {
         Gate::authorize('view', Product::class); //Authorisation for admin
         return view('categories');
     })->name('categories');
@@ -156,7 +156,7 @@ require __DIR__ . '/auth.php';
 
 
 //Statistics route (planned for tenant)
-Route::get('/statistics', function () {
+Route::get('{tenant}/statistics', function () {
     return view('statistics');
 })->middleware(['auth', 'verified'])->name('statistics');
 
