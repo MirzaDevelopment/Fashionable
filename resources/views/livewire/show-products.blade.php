@@ -40,7 +40,11 @@
                 <td wire:click="RowCheckBox({{ $product->id}})" class="p-3 min-w-[150px] border border-slate-300">{{date('d-m-Y', strtotime($product->created_at))}}</td>
                 <td wire:click="RowCheckBox({{ $product->id}})" class="{{ in_array($product->id, $checkBox) ? 'text-xl p-3 sm:p-6 border border-slate-300 bg-red-600 text-white ': 'text-xl p-3 sm:p-6 border border-slate-300'}}"><button wire:click="deleteProduct" class="bg-red-700 text-white font-medium px-5 py-2.5 rounded-lg shadow-sm hover:bg-red-800 transition-colors duration-200 disabled:opacity-5" wire:confirm="Da li stvarno želite da obrišete proizvod/e" wire:offline.attr="disabled" type="submit" @if(!in_array($product->id, $checkBox)) disabled @endif>Obriši</button></td> <!--Disabled if offline-->
                 <td class="p-3 text-xl sm:p-6 border border-slate-300 bg-sky-500 text-white">
-                    <a class="bg-sky-600 text-white font-medium px-5 py-2.5 rounded-lg hover:bg-sky-700 transition-colors duration-200 shadow-sm" href="/edit-products/{{$product->id}}" wire:navigate>Izmijeni</a>
+                    <a class="bg-sky-600 text-white font-medium px-5 py-2.5 rounded-lg hover:bg-sky-700 transition-colors duration-200 shadow-sm" href="{{ route('editproduct', ['tenant' => Auth::user()->tenant()->first()->slug, 'id' => $product->id]) }}" wire:navigate>
+                        Izmijeni
+                    </a>
+
+
                 </td> <!--Disabled if offline-->
             </tr>
             @endforeach
@@ -51,7 +55,7 @@
         <div class="shadow-sm sm:rounded-lg border-transparent w-fit p-2 mb-4 mt-4 hover:bg-slate-100">
             <button wire:click="clearCheckbox">Očisti odabrano</button>
         </div>
-        <a class="mb-6 md:mb-0 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 w-fit" href="{{ route('dashboard') }}" wire:navigate>Natrag na ploču</a>
+        <a class="mb-6 md:mb-0 inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150 w-fit" href="{{ route('dashboard',['tenant'=>Auth::user()->tenant()->first()->slug]) }}" wire:navigate>Natrag na ploču</a>
     </section>
     <!--Rendering message if no products are found-->
     @if(count($products)==0)

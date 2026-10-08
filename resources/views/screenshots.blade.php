@@ -41,11 +41,11 @@
              <div class="flex flex-col items-center min-w-[100%]  bg-white">
                  <p><strong>Slika: Upravljanje količinama</strong></p>
                  <picture>
-                     <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/edit_stock_320x393.webp') }}">
-                     <source media="(max-width: 480px)" srcset="{{ asset('storage/images/400x400/edit_stock_400x491.webp') }}">
-                     <source media="(max-width: 768px)" srcset="{{ asset('storage/images/640x640/edit_stock_640x786.webp') }}">
-                     <source media="(min-width: 1024px)" srcset="{{ asset('storage/images/640x640/edit_stock_640x786.webp') }}">
-                     <img class="shadow-xl rounded-xl mx-auto max-w-8xl  w-full h-full" loading="lazy" src="{{ asset('storage/images/320x320/edit_stock_320x393.webp') }}" width=320 height=400 alt="stock_management_screenshot">
+                     <source media="(max-width: 320px)" srcset="{{ asset('storage/images/320x320/edit_stock_320x352.webp') }}">
+                     <source media="(max-width: 480px)" srcset="{{ asset('storage/images/400x400/edit_stock_400x440.webp') }}">
+                     <source media="(max-width: 768px)" srcset="{{ asset('storage/images/640x640/edit_stock_665x752.webp') }}">
+                     <source media="(min-width: 1024px)" srcset="{{ asset('storage/images/640x640/edit_stock_665x752.webp') }}">
+                     <img class="shadow-xl rounded-xl mx-auto max-w-8xl  w-full h-full" loading="lazy" src="{{ asset('storage/images/320x320/edit_stock_320x352.webp') }}" width=320 height=400 alt="stock_management_screenshot">
                  </picture>
              </div>
              <div class="flex flex-col items-center min-w-[100%] bg-white">

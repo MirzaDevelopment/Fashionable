@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Color;
 use App\Models\Size;
 use Illuminate\Routing\Redirector;
@@ -134,11 +135,11 @@ class AddProductStock extends Component
     //Small method needed to be implemented to allow user to return to proper page after the update.
     public function backToProduct(): RedirectResponse|Redirector
     {
-
+        $slug=Auth::user()->tenant()->first()->slug;
         $parameter = $this->requestRoute;
         $id = $this->requestId;
         if ($parameter == "update") {
-            $url = route('editproduct', ['id' => $id]);
+            $url = route('editproduct', ["tenant"=>$slug,'id' => $id]);
             return redirect()->to($url);
         } else if ($parameter == "search") {
             $url = route('products', ['id' => $id]);

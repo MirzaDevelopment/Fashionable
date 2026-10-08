@@ -117,7 +117,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('stock-management');
     })->name('stock-management');
     //Show, modify and delete products
-    Route::get('/products', function () {
+    Route::get('{tenant}/products', function () {
         Gate::authorize('view', Product::class); //Authorisation for admin
         return view('products');
     })->name('products');
@@ -125,7 +125,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Gate::authorize('delete', Product::class); //Authorisation for admin
         return view('deleted-products');
     })->name('deleted-products');
-    Route::get('/edit-products/{id}', function () {
+    Route::get('{tenant}/edit-products/{id}', function () {
         Gate::authorize('view', Product::class); //Authorisation for admin
         return view('editproduct');
     })->name('editproduct');
