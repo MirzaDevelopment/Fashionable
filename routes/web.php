@@ -102,12 +102,12 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('deleted-users');
     })->name('deleted-users');
     //Small category route (using product view policy here)
-    Route::get('{tenant}/categories', function () {
+    Route::get('{tenant}/kategorije', function () {
         Gate::authorize('view', Product::class); //Authorisation for admin
         return view('categories');
     })->name('categories');
     //Livewire product routes
-    Route::get('/addproduct', function () {
+    Route::get('{tenant}/dodajproizvod', function () {
         Gate::authorize('create', Product::class); //Authorisation for admin
         return view('addproduct');
     })->name('addproduct');
