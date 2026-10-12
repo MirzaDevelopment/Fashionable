@@ -7,42 +7,46 @@
             <div class="flex flex-col gap-1 lg:gap-5 xl:gap-6 lg:mt-6  xl:mt-6 2xl:gap-8 mt-[1rem] 2xl:mt-12 2xl:mb-[1.5rem] " x-show="open" x-transition>
                 @if(Auth::user() && Auth::user()->role=="admin")
                 <div>
-                    <p class="text-2xl  lg:text-4xl">Dobrodošli natrag, <a class="w-fit" href="{{ route('dashboard', ['tenant'=>Auth::user()->tenant()->first()->slug]) }}">{{Auth::user()->name}}.</a></p>
+                    <p class="text-xl  lg:text-4xl">Dobrodošli natrag, <a class="w-fit" href="{{ route('dashboard', ['tenant'=>Auth::user()->tenant()->first()->slug]) }}">{{Auth::user()->name}}.</a></p>
                 </div>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <div class="flex flex-col gap-[0.5rem] items-start">
-                        <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="route('logout')"><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/logouticon.svg') }}" onclick="event.preventDefault();
+                <div class="flex flex-row gap-2">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <div class="flex flex-col gap-[0.5rem] items-start">
+                            <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="route('logout')"><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/logouticon.svg') }}" onclick="event.preventDefault();
                                                 this.closest('form').submit();" alt="messages_icon" width="25" height="25"></a></div>
-                        <div>
-                            <p>Odjava</p>
+                            <div>
+                                <p>Odjava</p>
+                            </div>
                         </div>
-                    </div>
-                </form>
-                <div class="flex flex-col gap-[0.5rem] items-start">
-                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href=""><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/carticon.svg') }}" alt="messages_icon" width="25" height="25"></a></div>
-                    <div>
-                        <p>Korpa</p>
+                    </form>
+                    <div class="flex flex-col gap-[0.5rem] items-start">
+                        <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href=""><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/carticon.svg') }}" alt="messages_icon" width="25" height="25"></a></div>
+                        <div>
+                            <p>Korpa</p>
+                        </div>
                     </div>
                 </div>
                 @elseif(Auth::user() && Auth::user()->role=="gost")
                 <div>
-                    <p class="text-2xl  lg:text-4xl">Dobrodošli natrag, <a class="w-fit" href="{{ route('dashboardusers') }}">{{Auth::user()->name}}.</a></p>
+                    <p class="text-xl  lg:text-4xl">Dobrodošli natrag, <a class="w-fit" href="{{ route('dashboardusers') }}">{{Auth::user()->name}}.</a></p>
                 </div>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
-                    <div class="flex flex-col gap-[0.5rem] items-center">
-                        <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="route('logout')"><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/logouticon.svg') }}" onclick="event.preventDefault();
+                <div class="flex flex-row gap-2">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <div class="flex flex-col gap-[0.5rem] items-center">
+                            <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="route('logout')"><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/logouticon.svg') }}" onclick="event.preventDefault();
                                                 this.closest('form').submit();" alt="messages_icon" width="25" height="25"></a></div>
-                        <div>
-                            <p>Odjava</p>
+                            <div>
+                                <p>Odjava</p>
+                            </div>
                         </div>
-                    </div>
-                </form>
-                <div class="flex flex-col gap-[0.5rem] items-center">
-                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href=""><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/carticon.svg') }}" alt="messages_icon" width="25" height="25"></a></div>
-                    <div>
-                        <p>Korpa</p>
+                    </form>
+                    <div class="flex flex-col gap-[0.5rem] items-center">
+                        <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href=""><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/carticon.svg') }}" alt="messages_icon" width="25" height="25"></a></div>
+                        <div>
+                            <p>Korpa</p>
+                        </div>
                     </div>
                 </div>
                 @else
@@ -75,44 +79,48 @@
             <div class="flex flex-row gap-1 lg:gap-5 xl:gap-6  xl:mt-6  2xl:gap-8  items-end  2xl:mb-[1.5rem]">
                 @if(Auth::user() && Auth::user()->role=="admin")
                 <div>
-                    <p class="text-2xl  lg:text-4xl text-gray-800">Dobrodošli natrag, <a class=" text-gray-800  " href="{{ route('dashboard', ['tenant'=>Auth::user()->tenant()->first()->slug]) }}">{{Auth::user()->name}}.</a></p>
+                    <p class="text-xl  lg:text-4xl text-gray-800">Dobrodošli natrag, <a class=" text-gray-800  " href="{{ route('dashboard', ['tenant'=>Auth::user()->tenant()->first()->slug]) }}">{{Auth::user()->name}}.</a></p>
                 </div>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
+                <div class="flex flex-row gap-2">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
 
-                    <div class="flex flex-col gap-[0.5rem] items-center">
-                        <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="route('logout')"><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/logouticon.svg') }}" onclick="event.preventDefault();
+                        <div class="flex flex-col gap-[0.5rem] items-center">
+                            <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="route('logout')"><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/logouticon.svg') }}" onclick="event.preventDefault();
                                                 this.closest('form').submit();" alt="messages_icon" width="25" height="25"></a></div>
-                        <div>
-                            <p>Odjava</p>
+                            <div>
+                                <p>Odjava</p>
+                            </div>
                         </div>
-                    </div>
-                </form>
-                <div class="flex flex-col gap-[0.5rem] items-center">
-                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href=""><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/carticon.svg') }}" alt="messages_icon" width="25" height="25"></a></div>
-                    <div>
-                        <p>Korpa</p>
+                    </form>
+                    <div class="flex flex-col gap-[0.5rem] items-center">
+                        <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href=""><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/carticon.svg') }}" alt="messages_icon" width="25" height="25"></a></div>
+                        <div>
+                            <p>Korpa</p>
+                        </div>
                     </div>
                 </div>
                 @elseif(Auth::user() && Auth::user()->role=="gost")
                 <div>
-                    <p class="text-2xl  lg:text-4xl">Dobrodošli natrag, <a class="w-fit" href="{{ route('dashboardusers') }}">{{Auth::user()->name}}.</a></p>
+                    <p class="text-xl  lg:text-4xl">Dobrodošli natrag, <a class="w-fit" href="{{ route('dashboardusers') }}">{{Auth::user()->name}}.</a></p>
                 </div>
-                <form method="POST" action="{{ route('logout') }}">
-                    @csrf
+                <div class="flex flex-row gap-2">
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
 
-                    <div class="flex flex-col gap-[0.5rem] items-center">
-                        <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="route('logout')"><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/logouticon.svg') }}" onclick="event.preventDefault();
+                        <div class="flex flex-col gap-[0.5rem] items-center">
+                            <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href="route('logout')"><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/logouticon.svg') }}" onclick="event.preventDefault();
                                                 this.closest('form').submit();" alt="messages_icon" width="25" height="25"></a></div>
-                        <div>
-                            <p>Odjava</p>
+                            <div>
+                                <p>Odjava</p>
+                            </div>
                         </div>
-                    </div>
-                </form>
-                <div class="flex flex-col gap-[0.5rem] items-center">
-                    <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href=""><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/carticon.svg') }}" alt="messages_icon" width="25" height="25"></a></div>
-                    <div>
-                        <p>Korpa</p>
+                    </form>
+                    <div class="flex flex-col gap-[0.5rem] items-center">
+                        <div class="bg-white text-gray-700 border border-gray-200 rounded-full shadow-lg hover:shadow-xl p-3"><a href=""><img class="cursor-pointer w-6 lg:w-10 lg:h-10 h-6" src="{{ asset('storage/images/carticon.svg') }}" alt="messages_icon" width="25" height="25"></a></div>
+                        <div>
+                            <p>Korpa</p>
+                        </div>
                     </div>
                 </div>
                 @else
@@ -149,25 +157,26 @@
             <div class="flex h-16 gap-6 items-center justify-between">
 
                 <!-- Logo -->
-                <a href="/" class="text-xl font-semibold tracking-wide text-gray-900">
-                    FASHIONABLE
+                <a href="/" class="text-3xl font-semibold tracking-wide text-gray-900">
+                    MODICA
                 </a>
 
                 <!-- Desktop Nav -->
                 <div class="hidden md:flex items-center space-x-10">
-                    <a href="/shop#explore" class="text-sm font-medium text-gray-800 hover:text-black transition">
+                    <a href="/prodavnica#istraži" class="text-base font-medium text-gray-800 hover:text-black transition">
                         Kategorije i pretraga
                     </a>
-                    <a href="/shop#special-prices" class="text-sm font-medium text-gray-800 hover:text-black transition">
+                    <a href="/prodavnica#posebne-cijene" class="text-base font-medium text-gray-800 hover:text-black transition">
                         Posebne ponude
                     </a>
-                    <a href="/shop#special-prices" class="text-sm font-medium text-gray-800 hover:text-black transition">
+
+                    <a href="/prodavnica#posebne-cijene" class="text-base font-medium text-gray-800 hover:text-black transition">
                         Najnovija linija
                     </a>
-                    <a href="/shop#special-prices" class="text-sm font-medium text-gray-800 hover:text-black transition">
+                    <a href="/prodavnica#posebne-cijene" class="text-base font-medium text-gray-800 hover:text-black transition">
                         Najbolje cijene
                     </a>
-                    <a href="/shop#footer" class="text-sm font-medium text-gray-800 hover:text-black transition">
+                    <a href="/prodavnica#footer" class="text-base font-medium text-gray-800 hover:text-black transition">
                         O nama
                     </a>
                 </div>
@@ -176,19 +185,19 @@
             <!-- Mobile Menu -->
             <div class="md:hidden py-4 space-y-4 flex flex-col">
 
-                <a href="/shop#explore" class="block text-sm text-gray-800 hover:text-black">
-                    Kategorije proizvoda
+                <a href="/prodavnica#istraži" class="block text-sm text-gray-800 hover:text-black">
+                    Kategorije i pretraga
                 </a>
-                <a href="/shop#special-prices" class="text-sm font-medium text-gray-800 hover:text-black transition">
+                <a href="/prodavnica#posebne-cijene" class="text-sm font-medium text-gray-800 hover:text-black transition">
                     Posebne ponude
                 </a>
-                <a href="/shop#special-prices" class="text-sm font-medium text-gray-800 hover:text-black transition">
+                <a href="/prodavnica#special-prices" class="text-sm font-medium text-gray-800 hover:text-black transition">
                     Najnovija linija
                 </a>
-                <a href="/shop#special-prices" class="block text-sm text-gray-800 hover:text-black">
+                <a href="/prodavnica#special-prices" class="block text-sm text-gray-800 hover:text-black">
                     Najbolje cijene
                 </a>
-                <a href="/shop/#footer" class="block text-sm text-gray-800 hover:text-black">
+                <a href="/prodavnica/#footer" class="block text-sm text-gray-800 hover:text-black">
                     O nama
                 </a>
             </div>

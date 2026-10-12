@@ -45,7 +45,7 @@ Route::get('/assets/{filename}', function ($filename) {
 });
 
 //Product first page route 
-Route::get('/shop', function () {
+Route::get('/prodavnica', function () {
     return view('firstpage');
 })->name('firstpage');
 
@@ -88,16 +88,16 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboardusers');
 
     //Livewire users search route
-    Route::get('/users', function () {
+    Route::get('/korisnici', function () {
         Gate::authorize('view', User::class); //Authorisation for admin
         return view('users');
     })->name('users');
     //Add user by Admin view (safety route)
-    Route::get('/add-user', function () {
+    Route::get('/dodaj-korisnika', function () {
         Gate::authorize('create', User::class); //Authorisation for admin
         return view('adduser');
     })->name('adduser');
-    Route::get('/deleted-users', function () {
+    Route::get('/obrisani-korisnici', function () {
         Gate::authorize('delete', User::class); //Authorisation for admin
         return view('deleted-users');
     })->name('deleted-users');
@@ -117,27 +117,27 @@ Route::middleware(['auth', 'verified'])->group(function () {
         return view('stock-management');
     })->name('stock-management');
     //Show, modify and delete products
-    Route::get('{tenant}/products', function () {
+    Route::get('{tenant}/proizvodi', function () {
         Gate::authorize('view', Product::class); //Authorisation for admin
         return view('products');
     })->name('products');
-    Route::get('/deleted-products', function () {
+    Route::get('/obrisaniproizvodi', function () {
         Gate::authorize('delete', Product::class); //Authorisation for admin
         return view('deleted-products');
     })->name('deleted-products');
-    Route::get('{tenant}/edit-products/{id}', function () {
+    Route::get('{tenant}/izmijeni/{id}', function () {
         Gate::authorize('view', Product::class); //Authorisation for admin
         return view('editproduct');
     })->name('editproduct');
 
     //Livewire show questions route
-    Route::get('/questions', function () {
+    Route::get('/komentari', function () {
         Gate::authorize('view', Question::class);; //Authorisation for admin
         return view('questions');
     })->name('questions');
 
     //User routes (wishlist and purhchase history)
-    Route::get('/wishlist', function () {
+    Route::get('/listaželja', function () {
         Gate::authorize('view', Wishlist::class,); //Authorisation for admin
         return view('wishlist');
     })->name('wishlist');
@@ -156,7 +156,7 @@ require __DIR__ . '/auth.php';
 
 
 //Statistics route (planned for tenant)
-Route::get('{tenant}/statistics', function () {
+Route::get('{tenant}/statistika', function () {
     return view('statistics');
 })->middleware(['auth', 'verified'])->name('statistics');
 

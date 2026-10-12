@@ -1,6 +1,6 @@
 <div><!--Livewire frontend component for showing and filtering products on commerce page-->
     <section class="mt-[4rem] mb-[4rem] 2xl:h-[68px] m-[1rem] flex flex-col flex-col-reverse 2xl:grid 2xl:grid-rows-1 2xl:grid-cols-4 gap-[4rem] 2xl:justify-between items-center relative">
-        <div class="relative 2xl:self-baseline 2xl:min-w-[400px] h-[68px] 2xl:max-w-[400px] h-auto flex justify-center 2xl:justify-normal 2xl:items-center" id="explore">
+        <div class="relative 2xl:self-baseline 2xl:min-w-[400px] h-[68px] 2xl:max-w-[400px] h-auto flex justify-center 2xl:justify-normal 2xl:items-center" id="istraži">
             <aside class="flex flex-col top-0  absolute  lg:min-w-[400px] lg:max-w-[400px]" x-data="{ open: false, red: false }">
                 <!--Frontend livewire components that render category filters-->
                 <button class="w-[15rem] lg:w-[400px] min-h-[40px] lg:min-h-[56px]  lg:h-[auto] lg:p-[1rem] text-base lg:text-2xl 2xl:max-w-[90%] text-gray-800" :class="red ? 'text-gray-900 border-b border-gray-900 bg-gray-50' : 'border-b border-gray-200  bg-white'" @click="red = !red; open = !open">Kategorije proizvoda</button>

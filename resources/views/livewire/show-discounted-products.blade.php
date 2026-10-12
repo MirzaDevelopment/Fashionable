@@ -1,4 +1,4 @@
-<div id="special-prices" class="p-[0.5rem] bg-slate-100  mt-[3rem] z-[10]"><!--Livewire frontend component for showing discounted products on commerce page-->
+<div id="posebne-cijene" class="p-[0.5rem] bg-slate-100  mt-[3rem] z-[10]"><!--Livewire frontend component for showing discounted products on commerce page-->
   <div class="bg-gray-800 text-white py-6 px-8 rounded-lg shadow-lg max-w-6xl mx-auto">
     <h2 class="text-4xl lg:text-5xl font-extrabold text-center mb-4">Akcijske cijene</h2>
     <p class="text-center text-xl max-w-lg lg:text-2xl mx-auto mb-6">

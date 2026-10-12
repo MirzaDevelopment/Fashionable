@@ -13,7 +13,7 @@
                 <img class="col-span-1 shadow-[0_8px_30px_rgba(0,0,0,0.12)] row-start-2  w-full h-auto" fetchpriority="high" loading="eager" src="{{ asset('storage/images/320x320/shop_female_320x213.webp') }}" width=320 height=213 alt="female_model">
                 </picture>
             <!--Navigation towards search and category-->
-            <span class="absolute top-[25px] text-7xl sm:text-8xl  lg:text-[calc(7rem+2vw)] xl:text-[calc(9rem+1vw)] 2xl:text-[12rem] lg2:text-[25rem] text-white"><a href="/shop#explore">Istraži</a></span>
+            <span class="absolute top-[25px] text-7xl sm:text-8xl  lg:text-[calc(7rem+2vw)] xl:text-[calc(9rem+1vw)] 2xl:text-[12rem] lg2:text-[25rem] text-white"><a href="/prodavnica#istraži">Istraži</a></span>
         </div>
        
     </div>
@@ -49,7 +49,7 @@
             </picture>
             </picture>
             <!--Navigation towards discounted items-->
-            <span class="absolute top-[25px] text-7xl sm:text-8xl lg:text-[calc(7rem+2vw)] xl:text-[calc(9rem+1vw)] 2xl:text-[12rem] lg2:text-[25rem] text-white"><a href="/shop#special-prices">Top cijene</a></span>
+            <span class="absolute top-[25px] text-7xl sm:text-8xl lg:text-[calc(7rem+2vw)] xl:text-[calc(9rem+1vw)] 2xl:text-[12rem] lg2:text-[25rem] text-white"><a href="/prodavnica#posebne-cijene">Top cijene</a></span>
         </div>
        
     </div>
