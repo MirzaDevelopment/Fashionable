@@ -138,9 +138,9 @@
     <div class="pb-12">
         <!--Footer part-->
         <x-slot:footerContent>
-            <p>Fashionable - software as service (SaaS)</p>
+            <p>MODICA - software as service (SaaS)</p>
             <p>Melisa Fashion e-commerce website - DEMO</p>
-            <p>Fashionable softver nije vlasnik niti vrši prodaju artikala prikazanih ovdje</p>
+            <p>MODICA softver nije vlasnik niti vrši prodaju artikala prikazanih ovdje</p>
             <p>Developed by Mirza Mehagić</p>
             <p>Copyright © <?php echo date("Y"); ?></p>
             <p>Mirza Mehagić All rights reserved</p>

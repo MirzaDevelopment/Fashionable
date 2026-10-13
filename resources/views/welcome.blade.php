@@ -1,7 +1,7 @@
 <x-welcome-layout><!--Welcome page view with the front.blade structure component in layouts folder-->
-    <!--Header fashionable-logo part is here-->
+    <!--Header MODICA-logo part is here-->
     <section>
-        <a href="/"><img src="{{ asset('storage/images/fashionable-logo.png') }}" alt="fashionable-logo" width="500" height="500" fetchpriority="high"></a>
+        <a href="/"><img src="{{ asset('storage/images/modica_logo_500x500.png') }}" alt="modica-logo" width="500" height="500" fetchpriority="high"></a>
     </section>
     <!--Main content-->
     <hr class="border-t-2 border-gray-800 mb-[1rem]">
@@ -79,13 +79,13 @@
     </section>
     <hr class="border-t-2 border-gray-800 mb-[1rem]">
     </hr>
-    <!-- Fashionable textual promo part (slides) -->
+    <!-- MODICA textual promo part (slides) -->
     <section id="saznajVise" class="relative bg-white">
         <button class="nav-btn-1 nav-left absolute lg:text-3xl bg-gray-800 active:bg-gray-900 hover:bg-gray-700 ml-[1px] text-white">&#10094;</button>
         <div id="carouselTrack" class="flex scroll-smooth snap-x snap-mandatory transition-transform m-auto duration-300 ease-in-out overflow-y-auto  [scrollbar-width:none] [-ms-overflow-style:none]">
             <div id="carouselItem" class="flex flex-col place-content-evenly items-center min-w-[100%] py-20 px-6 snap-start rounded-xl overflow-hidden bg-white shadow-md rounded-lg  transform transition duration-300">
                 <h1 class="text-5xl text-gray-900 font-bold leading-tight">
-                    Zašto mi je potreban Fashionable?
+                    Zašto mi je potreban MODICA?
                 </h1>
                 <ul class="mt-6 text-gray-800 items-center  text-lg list-disc list-inside space-y-4">
                     <li>Želiš podići online prodaju na novi - profesionalniji i sigurniji nivo!</li>
@@ -110,19 +110,19 @@
             </div>
             <div id="carouselItem" class="flex flex-col place-content-evenly items-center min-w-[100%] py-20 px-6 snap-start rounded-xl overflow-hidden bg-white shadow-md rounded-lg  transform transition duration-300">
                 <h1 class="text-5xl text-gray-900 font-bold leading-tight">
-                    Šta mi Fashionable nudi?
+                    Šta mi MODICA nudi?
                 </h1>
                 <ul class="mt-6 text-gray-800 items-center  text-lg list-disc list-inside space-y-4">
-                    <li> <strong>Potpuno besplatno korištenje i testiranje Fashionable softvera jedan mjesec, bez upisa ikakvih podataka sa kartica.</strong></li>
+                    <li> <strong>Potpuno besplatno korištenje i testiranje MODICA softvera jedan mjesec, bez upisa ikakvih podataka sa kartica.</strong></li>
                     <li> Kompletno upravljanje proizvodom, korisnicima i procesom kupovine.</li>
                     <li> Upravljanje porukama klijenata uz instant slanje odogovora na mail bez izlaska iz programa.</li>
                     <li> Limit je vaša mašta - kreirajte, kategorije, proizvode, ponude bez ograničenja.</li>
                     <li> Moćni statistički pregledi svih aspekata prodaje.</li>
                     <li> Responsive dizajn sa fokusom na modu, odjeću, nakit, preglednost i fluidnost prodaje.</li>
-                    <li> Fashionable pokreće moćni Laravel frejmvork sa Tailwindom i Livewire kao reaktivni frontend frejmvork brzine munje.</li>
-                    <li> Fashihonable je u potpunosti ručno iskodirana aplikacija i nadograđuje se redovno.</li>
-                    <li> Fasihonable prati sve najbolje i state of the art programerske prakse i dostupan je na githubu.</li>
-                    <li> Fashionable se pokreće na moćnom Digital Ocean VPS serveru povezanim sa Cloudflare DNS-om uz potporu Laravel Forge-a.</li>
+                    <li> MODICA pokreće moćni Laravel frejmvork sa Tailwindom i Livewire kao reaktivni frontend frejmvork brzine munje.</li>
+                    <li> MODICA je u potpunosti ručno iskodirana aplikacija i nadograđuje se redovno.</li>
+                    <li> MODICA prati sve najbolje i state of the art programerske prakse i dostupan je na githubu.</li>
+                    <li> MODICA se pokreće na moćnom Digital Ocean VPS serveru povezanim sa Cloudflare DNS-om uz potporu Laravel Forge-a.</li>
                 </ul>
                 <div class="flex flex-row justify-evenly flex-wrap gap-12">
                     <a href="/screenshots" class="inline-block mt-8 bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
@@ -138,7 +138,7 @@
             </div>
             <div id="carouselItem" class="flex flex-col place-content-evenly items-center min-w-[100%] py-20 px-6 snap-start rounded-xl overflow-hidden bg-white shadow-md rounded-lg  transform transition duration-300">
                 <h1 class="text-5xl text-gray-900 font-bold leading-tight">
-                    Šta Fashionable nudi mojim kupcima?
+                    Šta MODICA nudi mojim kupcima?
                 </h1>
                 <ul class="mt-6 text-gray-800 items-center  text-lg list-disc list-inside space-y-4">
                     <li>Jednostavna i sigurna registracija manuelno ili putem google računa.</li>
@@ -167,16 +167,16 @@
     </section>
     <hr class="border-t-2 border-gray-800 mb-[1rem]">
     </hr>
-    <!-- Fashionable guides and screenshot parts -->
+    <!-- MODICA guides and screenshot parts -->
     <section class="flex flex-col items-center justify-center gap-12 mx-auto px-6 py-20">
         <h1 class="text-2xl lg:text-5xl text-gray-900 font-bold leading-tight">
             Zapeli ste? Bez brige mi vas pokrivamo!
         </h1>
         <div class="flex flex-col lg:flex-row items-center justify-center">
             <div class="flex flex-col w-[80%] gap-2 lg:w-[50%] items-center">
-                <p>Skinite cjelokupan Fashionable vodič u pdf formatu</p>
+                <p>Skinite cjelokupan MODICA vodič u pdf formatu</p>
                 <a href="#vodič" class="inline-block mb-8 lg:mt-8 w-fit bg-gray-800 active:bg-gray-900 hover:bg-gray-700 text-white px-6 py-3 text-sm font-semibold">
-                    Fashionable vodič.pdf
+                    MODICA vodič.pdf
                 </a>
             </div>
             <div class="flex flex-col w-[80%] gap-2 lg:w-[50%] items-center">

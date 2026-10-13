@@ -1,7 +1,7 @@
  <x-welcome-layout><!--Welcome page view with the front.blade structure component in layouts folder-->
      <!-- APP SCREENSHOTS -->
      <h1 class="text-4xl p-4 lg:p-20 text-gray-900 font-bold leading-tight">
-         Kako to izgleda unutar Fashionable aplikacije?
+         Kako to izgleda unutar MODICA aplikacije?
      </h1>
      <section class="relative flex flex-col items-center w-fit">
          <div class="grid  mx-auto px-6 py-20 grid-cols-1 sm:grid-cols-2 gap-12">

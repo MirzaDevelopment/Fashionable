@@ -11,9 +11,9 @@
         <a class="sm:text-2xl  font-bold lg:text-[1.8rem]  2xl:text-[2rem]" href="{{ route('firstpage') }}">Webshop DEMO</a>
     </nav>
     <nav class="flex flex-col mt-[2rem] gap-[1rem]  lg:gap-[2rem] 2xl:gap-[3rem]">
-        <p class="text-[1.5rem] md:text-3xl  lg:text-[2rem]  2xl:text-[3rem]">Fashionable - software as service (SaaS)</p>
+        <p class="text-[1.5rem] md:text-3xl  lg:text-[2rem]  2xl:text-[3rem]">MODICA - software as service (SaaS)</p>
         <p class="text-[1.5rem] md:text-3xl  lg:text-[2rem]  2xl:text-[3rem]">Melisa Fashion e-commerce website - DEMO</p>
-        <p class="md:text-xl  lg:text-[1.5rem]  2xl:text-[1.8rem]">Fashionable softver nije vlasnik niti vrši prodaju artikala prikazanih ovdje</p>
+        <p class="md:text-xl  lg:text-[1.5rem]  2xl:text-[1.8rem]">MODICA softver nije vlasnik niti vrši prodaju artikala prikazanih ovdje</p>
         <p class="md:text-xl  lg:text-[1.5rem]  2xl:text-[1.8rem]">Developed by Mirza Mehagić</p>
         <p class="md:text-xl  lg:text-[1.5rem]  2xl:text-[1.8rem]">Copyright © <?php echo date("Y"); ?></p>
         <p class="md:text-xl  lg:text-[1.5rem]  2xl:text-[1.8rem]">Mirza Mehagić All rights reserved</p>

@@ -54,7 +54,7 @@
                 "notice_banner_reject_button_hide": false,
                 "preferences_center_close_button_hide": false,
                 "page_refresh_confirmation_buttons": false,
-                "website_name": "Fashionable"
+                "website_name": "MODICA"
             });
         });
     </script>
