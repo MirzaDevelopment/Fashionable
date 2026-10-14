@@ -75,7 +75,7 @@ Route::get('/tenants', function () {
 /***Custom routes for tenants***/
 Route::middleware(['auth', 'verified'])->group(function () {
     //Admin route (authorised in controller)
-    Route::get('{tenant}/dashboard', [DashboardController::class, 'countUsersAndProducts'], function () {
+    Route::get('{tenant}/upravljačka-ploča', [DashboardController::class, 'countUsersAndProducts'], function () {
     })->name('dashboard');
 
 
@@ -121,7 +121,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
         Gate::authorize('view', Product::class); //Authorisation for admin
         return view('products');
     })->name('products');
-    Route::get('/obrisaniproizvodi', function () {
+    Route::get('{tenant}/obrisani-proizvodi', function () {
         Gate::authorize('delete', Product::class); //Authorisation for admin
         return view('deleted-products');
     })->name('deleted-products');
