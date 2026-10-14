@@ -135,7 +135,7 @@
                 @if($key==0)
                 <span class="bg-slate-200 p-2">{{$materials->material}}</span>
                 @elseif($key>0)
-                <span class="ml-[-4px]">,</span> <span class="bg-slate-200 p-2">{{$materials->material}}</span>
+                <span class="ml-[-4px]"></span> <span class="bg-slate-200 p-2">{{$materials->material}}</span>
                 @else
                 <span class="bg-slate-200 p-2">{{$materials->material}}</span>
                 @endif
