@@ -131,7 +131,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('editproduct');
 
     //Livewire show questions route
-    Route::get('/komentari', function () {
+    Route::get('{tenant}/komentari', function () {
         Gate::authorize('view', Question::class);; //Authorisation for admin
         return view('questions');
     })->name('questions');
