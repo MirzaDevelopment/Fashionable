@@ -1,6 +1,6 @@
 <x-app-layout><!--Admin Dashboard view-->
     <x-slot name="header"> <!--This comes from the app.blade layout in layouts folder. Its not a separated component like in front layout-->
-        <a class="flex flex-row-reverse" href="{{ route('questions') }}" wire:navigate><span class="text-[#22c55e] ml-[5px]">@if($questionsCount)<div class="relative inline-block">
+        <a class="flex flex-row-reverse" href="{{ route('questions', ['tenant'=>Auth::user()->tenant()->first()->slug]) }}" wire:navigate><span class="text-[#22c55e] ml-[5px]">@if($questionsCount)<div class="relative inline-block">
                     <!-- Message notification icon and pulsating circle -->
                     <button class="p-2 text-gray-600 bg-gray-100 rounded-full hover:bg-gray-200">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://w3.org">
