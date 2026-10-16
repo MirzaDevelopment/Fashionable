@@ -33,16 +33,12 @@
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Snimi') }}</x-primary-button>
-
-            @if (session('status') === 'password-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
-                >{{ __('Snimljeno') }}</p>
-            @endif
+            <!-- Successfull profile update message -->
+            @if (session('password-status'))
+                <div x-data="{open:true}">
+                    <div class="text-[#004085] rounded-md p-2.5 bg-[#cce5ff] justify-center" x-show="open" x-on:click.outside="open=false" x-transition>{{ session('password-status')}}</div>
+                </div>
+                @endif
         </div>
     </form>
 </section>

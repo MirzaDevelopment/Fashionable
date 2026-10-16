@@ -17,7 +17,7 @@
     <div class="flex items-center flex-col sm:flex-row gap-4 grid-cols-2 justify-center">
         <div class="p-6 gap-4 flex items-center flex-row gap-4 justify-center bg-white overflow-hidden shadow-sm sm:rounded-lg">
             <div class="flex flex-col items-center">
-            <a href="{{ route('wishlist') }}" wire:navigate>
+            <a href="{{ route('wishlist',['tenant'=>Auth::user()->tenant()->first()->slug]) }}" wire:navigate>
             <img src="{{ asset('storage/images/wishlist-user-icon.svg') }}" alt="wishlist_logo" width="75" height="75"></a>
             <h3>Lista željenih proizvoda</h3>
         </div>

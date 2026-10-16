@@ -29,7 +29,7 @@
                 </div>
                 @elseif(Auth::user() && Auth::user()->role=="gost")
                 <div>
-                    <p class="text-xl  lg:text-4xl">Dobrodošli natrag, <a class="w-fit" href="{{ route('dashboardusers') }}">{{Auth::user()->name}}.</a></p>
+                    <p class="text-xl  lg:text-4xl">Dobrodošli natrag, <a class="w-fit" href="{{ route('dashboardusers',['tenant'=>Auth::user()->tenant()->first()->slug]) }}">{{Auth::user()->name}}.</a></p>
                 </div>
                 <div class="flex flex-row gap-2">
                     <form method="POST" action="{{ route('logout') }}">
@@ -102,7 +102,7 @@
                 </div>
                 @elseif(Auth::user() && Auth::user()->role=="gost")
                 <div>
-                    <p class="text-xl  lg:text-4xl">Dobrodošli natrag, <a class="w-fit" href="{{ route('dashboardusers') }}">{{Auth::user()->name}}.</a></p>
+                    <p class="text-xl  lg:text-4xl">Dobrodošli natrag, <a class="w-fit" href="{{ route('dashboardusers',['tenant'=>Auth::user()->tenant()->first()->slug]) }}">{{Auth::user()->name}}.</a></p>
                 </div>
                 <div class="flex flex-row gap-2">
                     <form method="POST" action="{{ route('logout') }}">

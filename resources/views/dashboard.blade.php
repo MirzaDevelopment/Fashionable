@@ -94,7 +94,7 @@
         <nav class="p-6 gap-4 grid grid-cols-2 md:grid-cols-3  xl:grid lg:grid-cols-3 justify-center bg-white overflow-hidden shadow-sm sm:rounded-b-lg">
             <!--Add users-->
             <div class="flex flex-col items-center">
-                <a href="{{ route('adduser') }}" wire:navigate>
+                <a href="{{ route('adduser',['tenant'=>Auth::user()->tenant()->first()->slug]) }}" wire:navigate>
                     <svg viewBox="0 0 24 24" width="75" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -108,7 +108,7 @@
             </div>
             <!--Show and modify users-->
             <div class="flex flex-col items-center">
-                <a href="{{ route('users') }}" wire:navigate>
+                <a href="{{ route('users',['tenant'=>Auth::user()->tenant()->first()->slug]) }}" wire:navigate>
                     <svg viewBox="0 0 24 24" width="75" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
@@ -121,7 +121,7 @@
             </div>
             <!--Delete users-->
             <div class="flex flex-col items-center">
-                <a href="{{ route('deleted-users') }}" wire:navigate>
+                <a href="{{ route('deleted-users',['tenant'=>Auth::user()->tenant()->first()->slug]) }}" wire:navigate>
                     <svg viewBox="0 0 24 24" width="75" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
                         <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>

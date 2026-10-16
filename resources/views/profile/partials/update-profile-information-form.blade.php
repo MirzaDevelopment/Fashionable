@@ -13,7 +13,7 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update',['tenant'=>Auth::user()->tenant()->first()->slug]) }}" class="mt-6 space-y-6">
         @csrf
         @method('patch')
 
@@ -29,36 +29,35 @@
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
-                <div>
-                    <p class="text-sm mt-2 text-gray-800">
-                        {{ __('Vaša email adresa nije verifikovana') }}
+            <div>
+                <p class="text-sm mt-2 text-gray-800">
+                    {{ __('Vaša email adresa nije verifikovana') }}
 
-                        <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                            {{ __('Kliknite ovdje da ponovo pošaljete verifikacijski mail.') }}
-                        </button>
-                    </p>
+                    <button form="send-verification" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        {{ __('Kliknite ovdje da ponovo pošaljete verifikacijski mail.') }}
+                    </button>
+                </p>
 
-                    @if (session('status') === 'verification-link-sent')
-                        <p class="mt-2 font-medium text-sm text-green-600">
-                            {{ __('Novi verifikacijski link je poslan na vašu mail adresu') }}
-                        </p>
-                    @endif
-                </div>
+                @if (session('status') === 'verification-link-sent')
+                <p class="mt-2 font-medium text-sm text-green-600">
+                    {{ __('Novi verifikacijski link je poslan na vašu mail adresu') }}
+                </p>
+                @endif
+            </div>
             @endif
         </div>
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Snimi') }}</x-primary-button>
 
-            @if (session('status') === 'profile-updated')
-                <p
-                    x-data="{ show: true }"
-                    x-show="show"
-                    x-transition
-                    x-init="setTimeout(() => show = false, 2000)"
-                    class="text-sm text-gray-600"
-                >{{ __('Snimljeno.') }}</p>
-            @endif
-        </div>
+            <!-- Successfull profile update message -->
+            @if (session('status'))
+            <div>
+                <div x-data="{open:true}">
+                    <div class="text-[#004085] rounded-md p-2.5 bg-[#cce5ff] justify-center" x-show="open" x-on:click.outside="open=false" x-transition>{{ session('status')}}</div>
+                </div>
+                @endif
+            </div>
+            
     </form>
 </section>
