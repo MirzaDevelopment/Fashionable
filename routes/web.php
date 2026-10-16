@@ -81,7 +81,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 
     //Guest route
-    Route::get('/dashboardusers', function () {
+    Route::get('{tenant}/dashboardusers', function () {
         if (auth()->user() && auth()->user()->role == "gost") {
             return view("dashboardusers");
         }
@@ -137,7 +137,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('questions');
 
     //User routes (wishlist and purhchase history)
-    Route::get('/listaželja', function () {
+    Route::get('{tenant}/lista-želja', function () {
         Gate::authorize('view', Wishlist::class,); //Authorisation for admin
         return view('wishlist');
     })->name('wishlist');
@@ -145,9 +145,9 @@ Route::middleware(['auth', 'verified'])->group(function () {
 
 /***Breeze middleware***/
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('{tenant}/profil', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('profil', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('profil', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__ . '/auth.php';

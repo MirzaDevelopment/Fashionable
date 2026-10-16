@@ -34,7 +34,7 @@ class ProfileController extends Controller
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profil-ažuriran');
+        return Redirect::route('profile.edit',['tenant'=>Auth::user()->tenant()->first()->slug])->with('status', 'profil-ažuriran');
     }
 
     /**
